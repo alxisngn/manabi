@@ -18,13 +18,24 @@
         <span class="brand-title">Manabi</span>
         <span class="brand-jp">学び</span>
       </a>
-      <button type="button" id="btn-backup" class="btn btn-icon" title="Sao lưu / Khôi phục dữ liệu" aria-label="Sao lưu dữ liệu">
-        ⇄
-      </button>
+      <div style="display:flex;gap:8px;">
+        <button type="button" id="btn-menu" class="btn btn-icon" title="Danh mục học tập" aria-label="Danh mục">☰</button>
+        <button type="button" id="btn-backup" class="btn btn-icon" title="Sao lưu / Khôi phục dữ liệu" aria-label="Sao lưu dữ liệu">⇄</button>
+      </div>
     </header>
 
     <main id="app" class="main-view" aria-live="polite"></main>
   </div>
+
+  <dialog id="menu-modal" class="modal">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 class="modal-title">Danh mục Từ vựng</h2>
+        <button type="button" id="btn-close-menu" class="btn btn-icon" aria-label="Đóng">✕</button>
+      </div>
+      <div id="menu-list" class="modal-actions"></div>
+    </div>
+  </dialog>
 
   <dialog id="backup-modal" class="modal">
     <div class="modal-card">
@@ -32,7 +43,7 @@
         <h2 class="modal-title">Dữ liệu học tập</h2>
         <button type="button" id="btn-close-modal" class="btn btn-icon" aria-label="Đóng">✕</button>
       </div>
-      <p class="modal-desc">Sao lưu toàn bộ từ vựng tự thêm và danh sách từ yếu ra file JSON hoặc khôi phục lại.</p>
+      <p class="modal-desc">Sao lưu toàn bộ từ vựng tự thêm và danh sách từ đã sai ra file JSON hoặc khôi phục lại.</p>
       <div class="modal-actions">
         <button type="button" id="btn-export" class="btn btn-teal">⬇ Xuất file backup</button>
         <label class="btn btn-yellow file-label">

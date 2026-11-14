@@ -1,31 +1,19 @@
 import { getStore, updateStore } from '../../core/store.js';
 import { shuffle, escapeHtml } from '../../core/util.js';
 import { mountFlashcard } from './flashcard.js';
+import { mountImporter } from './importer.js';
+import { mountQuiz } from './quiz.js';
 
-export const meta = {
-  id: 'vocab',
-  name: 'Từ vựng',
-  icon: '語'
-};
-
-export const vocabSession = {
-  words: [],
-  lessonIds: [],
-  lessonNames: []
-};
+export const meta = { id: 'vocab', name: 'Từ vựng', icon: '語' };
+export const vocabSession = { words: [], lessonIds: [], lessonNames: [] };
 
 const STORE_KEY = 'vocab';
-const DEFAULT_STORE = {
-  selectedIds: [],
-  customLessons: [],
-  openWords: [],
-  weakWords: []
-};
+const DEFAULT_STORE = { selectedIds: [], customLessons: [], openWords: [], weakWords: [] };
 
 const MODES = [
   { id: 'flashcard', name: 'Học từ mới', sub: 'Lật thẻ Flashcard & nghe phát âm', icon: '🃏', accent: 'accent-teal', ready: true },
   { id: 'match', name: 'Ghép thẻ', sub: 'Nối nhanh từ tiếng Nhật và nghĩa', icon: '🧩', accent: 'accent-yellow', ready: false },
-  { id: 'quiz', name: 'Kiểm tra', sub: 'Trắc nghiệm 4 đáp án & lưu từ yếu', icon: '📝', accent: 'accent-coral', ready: false },
+  { id: 'quiz', name: 'Kiểm tra', sub: 'Trắc nghiệm, Đúng/Sai, Nối cặp & lưu từ đã sai', icon: '📝', accent: 'accent-coral', ready: true },
   { id: 'reflex', name: 'Luyện phản xạ', sub: 'Đếm ngược tốc độ cao từng từ', icon: '⚡', accent: 'accent-teal', ready: false }
 ];
 
@@ -39,72 +27,39 @@ async function fetchRepoLessons() {
     const data = await res.json();
     repoLessonsCache = Array.isArray(data?.lessons) ? data.lessons : [];
     return repoLessonsCache;
-  } catch {
-    return [];
-  }
+  } catch { return []; }
 }
 
 function buildAllLessons(repoLessons, store) {
-  const list = repoLessons.map((l) => ({
-    id: l.id,
-    name: l.name,
-    file: l.file,
-    count: Number(l.count) || 0,
-    source: 'repo'
-  }));
-
+  const list = repoLessons.map((l) => ({ id: l.id, name: l.name, file: l.file, count: Number(l.count) || 0, source: 'repo' }));
   if (Array.isArray(store.openWords) && store.openWords.length > 0) {
-    list.push({
-      id: 'user:open',
-      name: 'Từ ngoài sách (Open)',
-      count: store.openWords.length,
-      words: store.openWords,
-      source: 'local'
-    });
+    list.push({ id: 'user:open', name: 'Bài mở (từ ngoài sách)', count: store.openWords.length, words: store.openWords, source: 'local' });
   }
-
   if (Array.isArray(store.weakWords) && store.weakWords.length > 0) {
-    list.push({
-      id: 'user:weak',
-      name: 'Từ yếu cần ôn',
-      count: store.weakWords.length,
-      words: store.weakWords,
-      source: 'local'
-    });
+    list.push({ id: 'user:weak', name: 'Từ đã sai / Đã lưu', count: store.weakWords.length, words: store.weakWords, source: 'local' });
   }
-
   if (Array.isArray(store.customLessons)) {
     store.customLessons.forEach((cl) => {
       if (cl?.id && Array.isArray(cl.words) && cl.words.length > 0) {
-        list.push({
-          id: String(cl.id),
-          name: cl.name || 'Bài tự thêm',
-          count: cl.words.length,
-          words: cl.words,
-          source: 'local'
-        });
+        list.push({ id: String(cl.id), name: cl.name || 'Bài tự thêm', count: cl.words.length, words: cl.words, source: 'local' });
       }
     });
   }
-
   return list;
 }
 
 async function loadSelectedWords(selectedLessons) {
   const merged = [];
   for (const item of selectedLessons) {
-    if (item.source === 'local' && Array.isArray(item.words)) {
-      merged.push(...item.words);
-    } else if (item.file) {
+    if (item.source === 'local' && Array.isArray(item.words)) merged.push(...item.words);
+    else if (item.file) {
       try {
         const res = await fetch(`data/vocab/${item.file}`);
         if (res.ok) {
           const data = await res.json();
           if (Array.isArray(data?.words)) merged.push(...data.words);
         }
-      } catch (err) {
-        console.error(`Lỗi tải bài ${item.file}:`, err);
-      }
+      } catch (err) { console.error(`Lỗi tải bài ${item.file}:`, err); }
     }
   }
   return shuffle(merged);
@@ -120,13 +75,22 @@ export async function mount(container) {
   const validSavedIds = (store.selectedIds || []).filter((id) => lessons.some((l) => l.id === id));
   const selectedSet = new Set(validSavedIds.length ? validSavedIds : (lessons[0] ? [lessons[0].id] : []));
 
-  let step = 'pick';
-  let isLoadingWords = false;
-  let errorMsg = '';
+  let step = 'pick', importerTab = 'upload', importerTarget = 'user:open';
+  let isLoadingWords = false, errorMsg = '';
+
+  const query = window.location.hash.split('?')[1] || '';
+  const viewParam = new URLSearchParams(query).get('view');
+  if (viewParam === 'weak') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:weak'; }
+  else if (viewParam === 'open') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:open'; }
+  else if (viewParam === 'manage') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:open'; }
 
   function refreshLessonsFromStore() {
     store = getStore(STORE_KEY, DEFAULT_STORE);
     lessons = buildAllLessons(repoLessons, store);
+    for (const id of [...selectedSet]) {
+      if (!lessons.some((l) => l.id === id)) selectedSet.delete(id);
+    }
+    if (selectedSet.size === 0 && lessons[0]) selectedSet.add(lessons[0].id);
   }
 
   function saveSelection() {
@@ -135,17 +99,19 @@ export async function mount(container) {
 
   function getSelectedStats() {
     const picked = lessons.filter((l) => selectedSet.has(l.id));
-    const totalWords = picked.reduce((sum, l) => sum + l.count, 0);
-    return { picked, totalWords };
+    return { picked, totalWords: picked.reduce((sum, l) => sum + l.count, 0) };
   }
 
   function render() {
     if (step === 'flashcard') {
-      mountFlashcard(container, vocabSession.words, () => {
-        refreshLessonsFromStore();
-        step = 'modes';
-        render();
-      });
+      mountFlashcard(container, vocabSession.words, () => { refreshLessonsFromStore(); step = 'modes'; render(); });
+    } else if (step === 'quiz') {
+      mountQuiz(container, vocabSession.words, () => { refreshLessonsFromStore(); step = 'modes'; render(); });
+    } else if (step === 'importer') {
+      mountImporter(container, () => {
+        if (window.location.hash.includes('?')) history.replaceState(null, '', '#/vocab');
+        refreshLessonsFromStore(); saveSelection(); step = 'pick'; render();
+      }, { tab: importerTab, manageTarget: importerTarget });
     } else if (step === 'modes') {
       renderModeMenu();
     } else {
@@ -158,7 +124,7 @@ export async function mount(container) {
     const allChecked = lessons.length > 0 && selectedSet.size === lessons.length;
 
     const listHtml = lessons.length === 0
-      ? `<p class="module-sub">Chưa có bài học nào trong data/vocab/index.json hoặc bộ nhớ máy.</p>`
+      ? `<p class="module-sub">Chưa có bài học nào. Bấm "+ Thêm từ" để tải lên hoặc nhập từ mới.</p>`
       : lessons.map((l) => {
           const checked = selectedSet.has(l.id);
           return `
@@ -168,72 +134,49 @@ export async function mount(container) {
                 <span>${escapeHtml(l.name)}</span>
               </span>
               <span class="badge ${checked ? 'badge-ready' : ''}">${l.count} từ</span>
-            </label>
-          `;
+            </label>`;
         }).join('');
 
     container.innerHTML = `
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
         <a href="#/" class="btn">← Trang chủ</a>
-        <button type="button" id="btn-toggle-all" class="btn" ${lessons.length === 0 ? 'disabled' : ''}>
-          ${allChecked ? 'Bỏ chọn tất cả' : 'Chọn tất cả'}
-        </button>
+        <div style="display:flex;gap:8px;">
+          <button type="button" id="btn-open-importer" class="btn btn-yellow">＋ Thêm từ</button>
+          <button type="button" id="btn-toggle-all" class="btn" ${lessons.length === 0 ? 'disabled' : ''}>${allChecked ? 'Bỏ chọn' : 'Chọn hết'}</button>
+        </div>
       </div>
-
       <div class="card" style="margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;gap:12px;">
         <div>
           <div class="module-title">Chọn bài Từ vựng</div>
           <div class="module-sub">Đã chọn <strong>${picked.length}</strong> bài • Tổng <strong>${totalWords}</strong> từ</div>
         </div>
-        <button type="button" id="btn-start" class="btn btn-teal" ${picked.length === 0 || isLoadingWords ? 'disabled' : ''}>
-          ${isLoadingWords ? 'Đang nạp...' : 'Bắt đầu →'}
-        </button>
+        <button type="button" id="btn-start" class="btn btn-teal" ${picked.length === 0 || isLoadingWords ? 'disabled' : ''}>${isLoadingWords ? 'Đang nạp...' : 'Bắt đầu →'}</button>
       </div>
-
       ${errorMsg ? `<p style="color:var(--red);font-weight:700;margin-bottom:12px;">${escapeHtml(errorMsg)}</p>` : ''}
-
       <div class="module-grid">${listHtml}</div>
     `;
 
+    container.querySelector('#btn-open-importer')?.addEventListener('click', () => { importerTab = 'upload'; step = 'importer'; render(); });
     container.querySelectorAll('.lesson-cb').forEach((cb) => {
       cb.addEventListener('change', (e) => {
-        const id = e.target.value;
-        if (e.target.checked) selectedSet.add(id);
-        else selectedSet.delete(id);
-        errorMsg = '';
-        saveSelection();
-        renderLessonPicker();
+        if (e.target.checked) selectedSet.add(e.target.value); else selectedSet.delete(e.target.value);
+        errorMsg = ''; saveSelection(); renderLessonPicker();
       });
     });
-
     container.querySelector('#btn-toggle-all')?.addEventListener('click', () => {
-      if (allChecked) selectedSet.clear();
-      else lessons.forEach((l) => selectedSet.add(l.id));
-      errorMsg = '';
-      saveSelection();
-      renderLessonPicker();
+      if (allChecked) selectedSet.clear(); else lessons.forEach((l) => selectedSet.add(l.id));
+      errorMsg = ''; saveSelection(); renderLessonPicker();
     });
-
     container.querySelector('#btn-start')?.addEventListener('click', async () => {
       if (picked.length === 0) return;
-      isLoadingWords = true;
-      errorMsg = '';
-      renderLessonPicker();
-
+      isLoadingWords = true; errorMsg = ''; renderLessonPicker();
       const words = await loadSelectedWords(picked);
       isLoadingWords = false;
-
-      if (words.length === 0) {
-        errorMsg = 'Không tìm thấy từ vựng nào trong các bài đã chọn.';
-        renderLessonPicker();
-        return;
-      }
-
+      if (words.length === 0) { errorMsg = 'Không tìm thấy từ vựng nào trong các bài đã chọn.'; renderLessonPicker(); return; }
       vocabSession.words = words;
       vocabSession.lessonIds = picked.map((l) => l.id);
       vocabSession.lessonNames = picked.map((l) => l.name);
-      step = 'modes';
-      render();
+      step = 'modes'; render();
     });
   }
 
@@ -242,42 +185,26 @@ export async function mount(container) {
       <div class="card module-card ${m.ready ? 'is-active' : 'is-disabled'}" data-mode="${m.id}" aria-disabled="${!m.ready}">
         <div class="module-left">
           <div class="module-icon ${m.accent}">${m.icon}</div>
-          <div>
-            <div class="module-title">${m.name}</div>
-            <div class="module-sub">${m.sub}</div>
-          </div>
+          <div><div class="module-title">${m.name}</div><div class="module-sub">${m.sub}</div></div>
         </div>
         <span class="badge ${m.ready ? 'badge-ready' : ''}">${m.ready ? 'Bắt đầu →' : 'Sắp có'}</span>
-      </div>
-    `).join('');
+      </div>`).join('');
 
     container.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
         <button type="button" id="btn-back-pick" class="btn">← Đổi bài học</button>
         <span class="badge badge-ready">Đã trộn ${vocabSession.words.length} từ</span>
       </div>
-
       <div class="card" style="margin-bottom:14px;">
         <div class="module-title">Chọn chế độ luyện tập</div>
         <div class="module-sub">Bài đang gộp: ${escapeHtml(vocabSession.lessonNames.join(', '))}</div>
       </div>
-
       <div class="module-grid">${modesHtml}</div>
     `;
-
-    container.querySelector('#btn-back-pick')?.addEventListener('click', () => {
-      refreshLessonsFromStore();
-      step = 'pick';
-      render();
-    });
-
+    container.querySelector('#btn-back-pick')?.addEventListener('click', () => { refreshLessonsFromStore(); step = 'pick'; render(); });
     container.querySelectorAll('.module-card.is-active').forEach((card) => {
       card.addEventListener('click', () => {
-        const mode = card.dataset.mode;
-        if (mode === 'flashcard') {
-          step = 'flashcard';
-          render();
-        }
+        if (card.dataset.mode === 'flashcard' || card.dataset.mode === 'quiz') { step = card.dataset.mode; render(); }
       });
     });
   }
