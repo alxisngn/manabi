@@ -1,0 +1,194 @@
+{
+  "lesson": {
+    "id": "b27",
+    "name": "Bài 27",
+    "type": "book"
+  },
+  "count": 23,
+  "words": [
+    {
+      "jp": "「ペットを」飼います",
+      "reading": "「ペットを」かいます",
+      "vi": "Nuôi (thú cưng)",
+      "pos": "verb",
+      "ex": "Bさんはペットを飼[か]っていますか。",
+      "exVi": "B ơi cậu có nuôi thú cưng không?"
+    },
+    {
+      "jp": "「道を」走ります",
+      "reading": "「みちを」はしります",
+      "vi": "Chạy (trên đường)",
+      "pos": "verb",
+      "ex": "早[はや]く走[はし]ってください。",
+      "exVi": "Chạy nhanh lên."
+    },
+    {
+      "jp": "「山が」見えます",
+      "reading": "「やまが」みえます",
+      "vi": "Có thể nhìn thấy (núi)",
+      "pos": "verb",
+      "ex": "ここから富士山[ふじさん]が見[み]えますよ。",
+      "exVi": "Từ đây có thể thấy được núi Phú Sĩ."
+    },
+    {
+      "jp": "「音が」聞こえます",
+      "reading": "「おとが」きこえます",
+      "vi": "Có thể nghe thấy (âm thanh)",
+      "pos": "verb",
+      "ex": "ピアノの音[おと]が聞[き]こえますね。",
+      "exVi": "Có thể nghe được tiếng Piano."
+    },
+    {
+      "jp": "「道が」できます",
+      "reading": "「みちが」できます",
+      "vi": "Hoàn thành, xong (con đường)",
+      "pos": "verb",
+      "ex": "Linhさん、Rikiビルはいつできますか。",
+      "exVi": "Linh, khi nào tòa nhà Riki sẽ hoàn thành?"
+    },
+    {
+      "jp": "「教室を」開きます",
+      "reading": "「きょうしつを」ひらきます",
+      "vi": "Mở, tổ chức (lớp)",
+      "pos": "verb",
+      "ex": "学校[がっこう]は来週[らいしゅう]から料理教室[りょうりきょうしつ]を開[ひら]くよ。",
+      "exVi": "Trường sẽ tổ chức một lớp học nấu ăn từ tuần tới."
+    },
+    {
+      "jp": "「家を」建てます",
+      "reading": "「いえを」たてます",
+      "vi": "Xây nhà",
+      "pos": "verb",
+      "ex": "Mimi先生[せんせい]は新[あたら]しい家[いえ]を建[た]てますよ。",
+      "exVi": "Mimi sẽ xây một ngôi nhà mới."
+    },
+    {
+      "jp": "ペット",
+      "reading": "ペット",
+      "vi": "Thú cưng",
+      "pos": "noun",
+      "ex": "家[いえ]にペットはいますか?",
+      "exVi": "Nhà bạn có thú cưng không?"
+    },
+    {
+      "jp": "鳥",
+      "reading": "とり",
+      "vi": "Chim",
+      "pos": "noun",
+      "ex": "家[いえ]に鳥[とり]がいます。",
+      "exVi": "Nhà tôi có một con chim."
+    },
+    {
+      "jp": "声",
+      "reading": "こえ",
+      "vi": "Tiếng, giọng",
+      "pos": "noun",
+      "ex": "鳥[とり]の声[こえ]が聞[き]こえるね。",
+      "exVi": "Có thể nghe được tiếng chim kêu nhỉ."
+    },
+    {
+      "jp": "波",
+      "reading": "なみ",
+      "vi": "Sóng",
+      "pos": "noun",
+      "ex": "波[なみ]が大[おお]きくなってきた。",
+      "exVi": "Sóng lên cao rồi kìa."
+    },
+    {
+      "jp": "花火",
+      "reading": "はなび",
+      "vi": "Pháo hoa",
+      "pos": "noun",
+      "ex": "東京[とうきょう]の花火[はなび]は一番[いちばん]きれいですね。",
+      "exVi": "Pháo hoa ở Tokyo là đẹp nhất nhỉ."
+    },
+    {
+      "jp": "クリーニング",
+      "reading": "クリーニング",
+      "vi": "Giặt ủi",
+      "pos": "noun",
+      "ex": "クリーニングの店[みせ]に持[も]って行[い]ってください。",
+      "exVi": "Cậu hãy mang nó tới tiệm giặt ủi đi."
+    },
+    {
+      "jp": "マンション",
+      "reading": "マンション",
+      "vi": "Chung cư",
+      "pos": "noun",
+      "ex": "マンションに住[す]みたいです。",
+      "exVi": "Tôi muốn sống ở chung cư."
+    },
+    {
+      "jp": "家具",
+      "reading": "かぐ",
+      "vi": "Nội thất trong nhà",
+      "pos": "noun",
+      "ex": "家具[かぐ]を少[すこ]し動[うご]かしただけです。",
+      "exVi": "Tôi chỉ chuyển một ít nội thất trong nhà đi thôi."
+    },
+    {
+      "jp": "道具",
+      "reading": "どうぐ",
+      "vi": "Dụng cụ",
+      "pos": "noun",
+      "ex": "料理道具[りょうりどうぐ]の売[う]り場[ば]はあそこですか。",
+      "exVi": "Nơi bán dụng cụ nấu ăn là ở kia phải không?"
+    },
+    {
+      "jp": "キッチン",
+      "reading": "キッチン",
+      "vi": "Nhà bếp (Kiểu Tây)",
+      "pos": "noun",
+      "ex": "広[ひろ]くて、きれいなキッチンだ。",
+      "exVi": "Nhà bếp cậu rộng với đẹp thế."
+    },
+    {
+      "jp": "心配(な)",
+      "reading": "しんぱい(な)",
+      "vi": "Lo lắng",
+      "pos": "adj",
+      "ex": "何[なに]か心配[しんぱい]なことがありますか。",
+      "exVi": "Cậu có chuyện gì lo lắng à?"
+    },
+    {
+      "jp": "すばらしい",
+      "reading": "すばらしい",
+      "vi": "Tuyệt vời",
+      "pos": "adj",
+      "ex": "旅行[りょこう]はすばらしかった!",
+      "exVi": "Chuyến du lịch tuyệt vời lắm."
+    },
+    {
+      "jp": "〜しか〜ない",
+      "reading": "〜しか〜ない",
+      "vi": "Chỉ ~ (dùng với thể phủ định)",
+      "pos": "adv",
+      "ex": "昼[ひる]ご飯[はん]は野菜[やさい]しか食[た]べないんですか。",
+      "exVi": "Bữa ăn trưa chỉ có rau thôi à."
+    },
+    {
+      "jp": "いつか",
+      "reading": "いつか",
+      "vi": "Một lúc nào đó",
+      "pos": "adv",
+      "ex": "いつか教師[きょうし]になりたいですから。",
+      "exVi": "Vì tớ muốn một ngày nào đó sẽ trở thành giáo viên."
+    },
+    {
+      "jp": "他の",
+      "reading": "ほかの",
+      "vi": "~ Khác",
+      "pos": "adv",
+      "ex": "他[ほか]の仕事[しごと]を探[さが]したい。",
+      "exVi": "Tớ muốn tìm công việc khác."
+    },
+    {
+      "jp": "はっきり",
+      "reading": "はっきり",
+      "vi": "Rõ ràng",
+      "pos": "adv",
+      "ex": "はっきり言[い]ってください。",
+      "exVi": "Cậu hãy nói rõ ràng vào."
+    }
+  ]
+}

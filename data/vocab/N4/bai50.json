@@ -1,0 +1,162 @@
+{
+  "lesson": {
+    "id": "b50",
+    "name": "Bài 50",
+    "type": "book"
+  },
+  "count": 19,
+  "words": [
+    {
+      "jp": "参ります",
+      "reading": "まいります",
+      "vi": "Đi, đến (khiêm nhường ngữ của 行きます、来ます)",
+      "pos": "verb",
+      "ex": "すぐ持[も]ってまいります。",
+      "exVi": "Tôi sẽ mang đi ngay ạ."
+    },
+    {
+      "jp": "伺います",
+      "reading": "うかがいます",
+      "vi": "Hỏi, đến thăm (Khiêm nhường ngữ của 行きます、聞きます)",
+      "pos": "verb",
+      "ex": "先生[せんせい]、伺[うかが]いたいことがあるんですが、...",
+      "exVi": "Sensei ơi, em có điều muốn hỏi ạ."
+    },
+    {
+      "jp": "おります",
+      "reading": "おります",
+      "vi": "Ở (khiêm nhường ngữ của います)",
+      "pos": "verb",
+      "ex": "私[わたし]の家族[かぞく]は、今[いま]ベトナムのハノイに住[す]んでおります。",
+      "exVi": "Gia đình của tôi hiện giờ đang sống ở Hà Nội - Việt Nam."
+    },
+    {
+      "jp": "いただきます",
+      "reading": "いただきます",
+      "vi": "Ăn/ uống/ nhận (khiêm nhường ngữ của 食べます、飲みます、もらいます)",
+      "pos": "verb",
+      "ex": "私[わたし]はラーメンをいただきたいです。",
+      "exVi": "Em muốn ăn mỳ."
+    },
+    {
+      "jp": "申します",
+      "reading": "もうします",
+      "vi": "Nói, tên là ~ (khiêm nhường ngữ của 言います)",
+      "pos": "verb",
+      "ex": "初[はじ]めまして。私[わたし]はAと申[もう]します。",
+      "exVi": "Hân hạnh được biết anh. Tôi tên là A."
+    },
+    {
+      "jp": "いたします",
+      "reading": "いたします",
+      "vi": "Làm (khiêm nhường ngữ của します)",
+      "pos": "verb",
+      "ex": "9時[じ]からいたします。",
+      "exVi": "Bắt đầu lúc 9 giờ ạ."
+    },
+    {
+      "jp": "拝見します",
+      "reading": "はいけんします",
+      "vi": "Xem (khiêm nhường ngữ của 見ます)",
+      "pos": "verb",
+      "ex": "今日[きょう]Riki社[しゃ]を拝見[はいけん]させていただいてもよろしいでしょうか?",
+      "exVi": "Hôm nay tôi đến tham quan Riki được không?"
+    },
+    {
+      "jp": "存じます",
+      "reading": "ぞんじます",
+      "vi": "Biết (khiêm nhường ngữ của 知ります)",
+      "pos": "verb",
+      "ex": "はい、存[ぞん]じております。",
+      "exVi": "Có, tôi biết chứ ạ."
+    },
+    {
+      "jp": "お目にかかります",
+      "reading": "おめにかかります",
+      "vi": "Gặp (khiêm nhường ngữ của 会います)",
+      "pos": "verb",
+      "ex": "社長[しゃちょう]のお目[め]にかかれて、うれしいです。",
+      "exVi": "Chúng em rất vui vì được gặp giám đốc ở đây."
+    },
+    {
+      "jp": "「コーヒーを」入れます",
+      "reading": "「コーヒーを」いれます",
+      "vi": "Pha (cà phê)",
+      "pos": "verb",
+      "ex": "コーヒーを入[い]れようか。",
+      "exVi": "Tôi đi pha cà phê cho cậu nhé?"
+    },
+    {
+      "jp": "用意します",
+      "reading": "よういします",
+      "vi": "Chuẩn bị sẵn",
+      "pos": "verb",
+      "ex": "会議[かいぎ]の資料[しりょう]を用意[ようい]してください。",
+      "exVi": "Chuẩn bị tài liệu cho cuộc họp."
+    },
+    {
+      "jp": "わたくし",
+      "reading": "わたくし",
+      "vi": "Tôi (khiêm nhường ngữ của わたし)",
+      "pos": "adv",
+      "ex": "わたくしは日本語[にほんご]とフランス語[ご]、英語[えいご]少[すこ]しできます。",
+      "exVi": "Tôi có thể nói được tiếng Nhật, tiếng Pháp và một chút tiếng Anh."
+    },
+    {
+      "jp": "ガイド",
+      "reading": "ガイド",
+      "vi": "Hướng dẫn viên du lịch",
+      "pos": "adv",
+      "ex": "将来[しょうらい]、ガイドになりたいの。",
+      "exVi": "Tương lai tớ còn muốn trở thành hướng dẫn viên du lịch nữa cơ."
+    },
+    {
+      "jp": "お宅",
+      "reading": "おたく",
+      "vi": "Nhà của người khác (mang nghĩa tôn kính)",
+      "pos": "adv",
+      "ex": "今週[こんしゅう]の週末[しゅうまつ]、社長[しゃちょう]のお宅[たく]へ行[い]きますか?",
+      "exVi": "Cuối tuần này, cậu có đi tới nhà của Giám đốc để dự tiệc cuối năm không?"
+    },
+    {
+      "jp": "メールアドレス",
+      "reading": "メールアドレス",
+      "vi": "Địa chỉ email",
+      "pos": "adv",
+      "ex": "これはBさんのメールアドレスですか?",
+      "exVi": "Đây là địa chỉ Mail của chị B đúng không."
+    },
+    {
+      "jp": "再来週",
+      "reading": "さらいしゅう",
+      "vi": "Tuần sau nữa",
+      "pos": "adv",
+      "ex": "いいえ、再来週[さらいしゅう]です。",
+      "exVi": "Không phải, vào tuần sau nữa cơ."
+    },
+    {
+      "jp": "再来月",
+      "reading": "さらいげつ",
+      "vi": "Tháng sau nữa",
+      "pos": "adv",
+      "ex": "今[いま]4月[がつ]だね。再来月[さらいげつ]始[はじ]まるよ。",
+      "exVi": "Bây giờ là tháng 4 đúng không nhỉ. Tháng sau nữa sẽ bắt đầu."
+    },
+    {
+      "jp": "再来年",
+      "reading": "さらいねん",
+      "vi": "Năm sau nữa",
+      "pos": "adv",
+      "ex": "再来年[さらいねん]転勤[てんきん]します。",
+      "exVi": "Tôi sẽ chuyển trường vào năm sau nữa."
+    },
+    {
+      "jp": "初めに",
+      "reading": "はじめに",
+      "vi": "Trước hết, đầu tiên",
+      "pos": "adv",
+      "ex": "授業[じゅぎょう]の初[はじ]めにしなければならないことは何[なん]ですか。",
+      "exVi": "Các em, khi vào nhà ai đó, việc chúng ta cần phải làm đầu tiên là gì?"
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "lesson": {
+    "id": "b30",
+    "name": "Bài 30",
+    "type": "book"
+  },
+  "count": 35,
+  "words": [
+    {
+      "jp": "張ります",
+      "reading": "はります",
+      "vi": "Dán",
+      "pos": "verb",
+      "ex": "ポスターを張[は]っています。",
+      "exVi": "Mình đang dán poster."
+    },
+    {
+      "jp": "かけます",
+      "reading": "かけます",
+      "vi": "Treo",
+      "pos": "verb",
+      "ex": "あそこにかけています。",
+      "exVi": "Treo ở kia kìa."
+    },
+    {
+      "jp": "飾ります",
+      "reading": "かざります",
+      "vi": "Trang trí",
+      "pos": "verb",
+      "ex": "いっしょにうちを飾[かざ]りましょう。",
+      "exVi": "Mình cùng nhau trang trí nhà cửa đi!"
+    },
+    {
+      "jp": "並べます",
+      "reading": "ならべます",
+      "vi": "Sắp xếp",
+      "pos": "verb",
+      "ex": "今[いま]いすを並[なら]べます。",
+      "exVi": "Bây giờ tôi sẽ sắp xếp ghế ngồi."
+    },
+    {
+      "jp": "植えます",
+      "reading": "うえます",
+      "vi": "Trồng",
+      "pos": "verb",
+      "ex": "もっともっと植[う]えますよ。",
+      "exVi": "Tôi sẽ trồng nhiều hơn nữa."
+    },
+    {
+      "jp": "戻します",
+      "reading": "もどします",
+      "vi": "Để lại",
+      "pos": "verb",
+      "ex": "帰[かえ]る前[まえ]に、受付[うけつけ]にかぎを戻[もど]してください。",
+      "exVi": "Trước khi ra về, hãy để lại chìa khóa ở quầy lễ tân nhé."
+    },
+    {
+      "jp": "まとめます",
+      "reading": "まとめます",
+      "vi": "Thu dọn",
+      "pos": "verb",
+      "ex": "あ、いますぐまとめます。",
+      "exVi": "A, bây giờ tôi sẽ thu dọn ngay."
+    },
+    {
+      "jp": "しまいます",
+      "reading": "しまいます",
+      "vi": "Cất",
+      "pos": "verb",
+      "ex": "日本語[にほんご]の本[ほん]にしまいますか。",
+      "exVi": "Sách tiếng Nhật cất ở đâu thế?"
+    },
+    {
+      "jp": "決めます",
+      "reading": "きめます",
+      "vi": "Quyết định",
+      "pos": "verb",
+      "ex": "来週[らいしゅう]の日曜日[にちようび]に決[き]めます。",
+      "exVi": "Quyết định đi vào Chủ nhật tuần sau nhé."
+    },
+    {
+      "jp": "予習します",
+      "reading": "よしゅうします",
+      "vi": "Chuẩn bị bài",
+      "pos": "verb",
+      "ex": "すみません、今[いま]予習[よしゅう]していますから。",
+      "exVi": "Xin lỗi, vì bây giờ mình đang chuẩn bị bài."
+    },
+    {
+      "jp": "復習します",
+      "reading": "ふくしゅうします",
+      "vi": "Ôn tập",
+      "pos": "verb",
+      "ex": "よく復習[ふくしゅう]しました。",
+      "exVi": "Mình đã ôn tập rất kỹ rồi."
+    },
+    {
+      "jp": "そのままにします",
+      "reading": "そのままにします",
+      "vi": "Để nguyên như vậy",
+      "pos": "verb",
+      "ex": "あ、外[そと]は寒[さむ]いですから、そのままにしてください。",
+      "exVi": "A, vì ngoài trời đang lạnh nên cứ để nguyên vậy đi."
+    },
+    {
+      "jp": "カレンダー",
+      "reading": "カレンダー",
+      "vi": "Lịch",
+      "pos": "noun",
+      "ex": "新[あたら]しいカレンダーを買[か]いました。",
+      "exVi": "Mình đã mua tờ lịch mới rồi."
+    },
+    {
+      "jp": "授業",
+      "reading": "じゅぎょう",
+      "vi": "Giờ học",
+      "pos": "noun",
+      "ex": "次[つぎ]の授業[じゅぎょう]は何時[なんじ]からですか。",
+      "exVi": "Giờ học tiếp theo bắt đầu từ mấy giờ nhỉ?"
+    },
+    {
+      "jp": "ポスター",
+      "reading": "ポスター",
+      "vi": "Poster",
+      "pos": "noun",
+      "ex": "壁[かべ]にはポスターがあります。",
+      "exVi": "Trên tường có poster."
+    },
+    {
+      "jp": "講義",
+      "reading": "こうぎ",
+      "vi": "Bài giảng",
+      "pos": "noun",
+      "ex": "明日[あした]の講義[こうぎ]を受[う]けますか。",
+      "exVi": "Bạn sẽ tham dự bài giảng ngày mai chứ?"
+    },
+    {
+      "jp": "ゴミ箱",
+      "reading": "ゴミばこ",
+      "vi": "Thùng rác",
+      "pos": "noun",
+      "ex": "すみません、ゴミ箱[ばこ]はどこですか。",
+      "exVi": "Xin lỗi, thùng rác ở đâu vậy ạ?"
+    },
+    {
+      "jp": "お知らせ",
+      "reading": "おしらせ",
+      "vi": "Thông báo",
+      "pos": "noun",
+      "ex": "学校[がっこう]のお知[し]らせをもらいましたか。",
+      "exVi": "Bạn đã nhận được thông báo từ trường học chưa?"
+    },
+    {
+      "jp": "ガイドブック",
+      "reading": "ガイドブック",
+      "vi": "Sách hướng dẫn du lịch",
+      "pos": "noun",
+      "ex": "ですから、行[い]く前[まえ]にガイドブックを買[か]いました。",
+      "exVi": "Vậy nên trước khi đi mình đã mua sách hướng dẫn du lịch rồi."
+    },
+    {
+      "jp": "予定",
+      "reading": "よてい",
+      "vi": "Dự định",
+      "pos": "noun",
+      "ex": "休[やす]みの日[ひ]はどんな予定[よてい]がありますか。",
+      "exVi": "Ngày nghỉ bạn có dự định gì không?"
+    },
+    {
+      "jp": "ミーティング",
+      "reading": "ミーティング",
+      "vi": "Cuộc họp",
+      "pos": "noun",
+      "ex": "部長[ぶちょう]とのミーティングが残[のこ]っていますから。",
+      "exVi": "Vì mình vẫn còn cuộc họp với trưởng phòng nữa."
+    },
+    {
+      "jp": "予定表",
+      "reading": "よていひょう",
+      "vi": "Lịch làm việc",
+      "pos": "noun",
+      "ex": "来月[らいげつ]の予定表[よていひょう]をじゅんびしますか。",
+      "exVi": "Bạn đã chuẩn bị lịch làm việc cho tháng tới chưa?"
+    },
+    {
+      "jp": "かがみ",
+      "reading": "かがみ",
+      "vi": "Gương",
+      "pos": "noun",
+      "ex": "この部屋[へや]にはかがみがありますか。",
+      "exVi": "Căn phòng này có gương không?"
+    },
+    {
+      "jp": "花瓶",
+      "reading": "かびん",
+      "vi": "Lọ hoa",
+      "pos": "noun",
+      "ex": "この花瓶[かびん]はどこで買[か]いますか。",
+      "exVi": "Bình hoa này bạn mua ở đâu thế?"
+    },
+    {
+      "jp": "人形",
+      "reading": "にんぎょう",
+      "vi": "Búp bê",
+      "pos": "noun",
+      "ex": "こどもですから、人形[にんぎょう]を買[か]いましょう。",
+      "exVi": "Vì là trẻ con nên mình mua búp bê đi."
+    },
+    {
+      "jp": "引き出し",
+      "reading": "ひきだし",
+      "vi": "Ngăn kéo",
+      "pos": "noun",
+      "ex": "のびたくんの引[ひ]き出[だ]しから来[き]ました。",
+      "exVi": "Đến từ ngăn kéo bàn của Nobita."
+    },
+    {
+      "jp": "玄関",
+      "reading": "げんかん",
+      "vi": "Lối vào",
+      "pos": "noun",
+      "ex": "玄関[げんかん]に靴[くつ]を置[お]かなければなりません。",
+      "exVi": "Phải đặt giày ở lối vào."
+    },
+    {
+      "jp": "廊下",
+      "reading": "ろうか",
+      "vi": "Hành lang",
+      "pos": "noun",
+      "ex": "廊下[ろうか]で走[はし]ってはだめですよ。",
+      "exVi": "Không được phép chạy trên hành lang đâu đấy."
+    },
+    {
+      "jp": "池",
+      "reading": "いけ",
+      "vi": "Ao, hồ",
+      "pos": "noun",
+      "ex": "この池[いけ]はひろいですね。",
+      "exVi": "Cái hồ này rộng nhỉ."
+    },
+    {
+      "jp": "壁",
+      "reading": "かべ",
+      "vi": "Tường",
+      "pos": "noun",
+      "ex": "学校[がっこう]の赤[あか]い壁[かべ]の前[まえ]に立[た]っています。",
+      "exVi": "Mình đang đứng trước bức tường màu đỏ ở trường học."
+    },
+    {
+      "jp": "元のところ",
+      "reading": "もとのところ",
+      "vi": "Vị trí ban đầu",
+      "pos": "noun",
+      "ex": "本[ほん]を読[よ]んだ後[あと]で、元[もと]のところに戻[もど]してください。",
+      "exVi": "Sau khi đọc cuốn sách, hãy đặt nó trở lại vị trí ban đầu."
+    },
+    {
+      "jp": "周り",
+      "reading": "まわり",
+      "vi": "Xung quanh",
+      "pos": "noun",
+      "ex": "周[まわ]りの人[ひと]に聞[き]きます。",
+      "exVi": "Mình sẽ hỏi mọi người xung quanh xem sao."
+    },
+    {
+      "jp": "真ん中",
+      "reading": "まんなか",
+      "vi": "Chính giữa",
+      "pos": "noun",
+      "ex": "机[つくえ]の真[ま]ん中[なか]ですよ。",
+      "exVi": "Ở chính giữa bàn ấy."
+    },
+    {
+      "jp": "すみ",
+      "reading": "すみ",
+      "vi": "Góc",
+      "pos": "noun",
+      "ex": "この部屋[へや]のすみにあります。",
+      "exVi": "Ở góc phòng này có đó."
+    },
+    {
+      "jp": "まだ",
+      "reading": "まだ",
+      "vi": "Vẫn chưa",
+      "pos": "adv",
+      "ex": "まだしていません。",
+      "exVi": "Mình vẫn chưa làm."
+    }
+  ]
+}

@@ -1,0 +1,122 @@
+{
+  "lesson": {
+    "id": "b45",
+    "name": "Bài 45",
+    "type": "book"
+  },
+  "count": 14,
+  "words": [
+    {
+      "jp": "信じます",
+      "reading": "しんじます",
+      "vi": "Tin",
+      "pos": "verb",
+      "ex": "私[わたし]を信[しん]じてください。",
+      "exVi": "Chạy trốn khỏi cơn sóng thần."
+    },
+    {
+      "jp": "キャンセルします",
+      "reading": "キャンセルします",
+      "vi": "Hủy bỏ",
+      "pos": "verb",
+      "ex": "じゃ、旅行[りょこう]をキャンセルしたほうがいい。",
+      "exVi": "Vậy chắc mình nên hủy chuyến du lịch thôi."
+    },
+    {
+      "jp": "知らせます",
+      "reading": "しらせます",
+      "vi": "Thông báo",
+      "pos": "verb",
+      "ex": "みんなに知[し]らせます。",
+      "exVi": "Em sẽ thông báo cho các bạn ạ."
+    },
+    {
+      "jp": "保証書",
+      "reading": "ほしょうしょ",
+      "vi": "Phiếu bảo hành",
+      "pos": "noun",
+      "ex": "この冷蔵庫[れいぞうこ]は保証書[ほしょうしょ]がありますか。",
+      "exVi": "Cái tủ lạnh này có phiếu bảo hành không?"
+    },
+    {
+      "jp": "領収書",
+      "reading": "りょうしゅうしょ",
+      "vi": "Hóa đơn",
+      "pos": "noun",
+      "ex": "あのう、領収書[りょうしゅうしょ]が欲[ほ]しいんですが･･･",
+      "exVi": "Tôi muốn nhận hóa đơn..."
+    },
+    {
+      "jp": "キャンプ",
+      "reading": "キャンプ",
+      "vi": "Cắm trại",
+      "pos": "noun",
+      "ex": "夏休[なつやす]みにともだちとキャンプしたいです。",
+      "exVi": "Nghỉ hè, tôi muốn đi cắm trại với bạn bè."
+    },
+    {
+      "jp": "点",
+      "reading": "てん",
+      "vi": "Điểm, điểm số",
+      "pos": "noun",
+      "ex": "勉強[べんきょう]しなかったから、悪[わる]い点[てん]を取[と]ってしまいました。",
+      "exVi": "Vì không học bài nên tôi đã bị điểm kém."
+    },
+    {
+      "jp": "梅",
+      "reading": "うめ",
+      "vi": "Hoa mơ",
+      "pos": "noun",
+      "ex": "1月[がつ]に梅[うめ]が咲[さ]きます。",
+      "exVi": "Hoa mơ sẽ nở vào tháng 1."
+    },
+    {
+      "jp": "110番",
+      "reading": "110ばん",
+      "vi": "Số điện thoại báo cảnh sát",
+      "pos": "noun",
+      "ex": "どろぼうを見[み]たら、110番[ばん]を電話[でんわ]してください。",
+      "exVi": "Khi bắt gặp kẻ trộm, hãy gọi đến số 110."
+    },
+    {
+      "jp": "119番",
+      "reading": "119ばん",
+      "vi": "Số điện thoại báo cháy",
+      "pos": "noun",
+      "ex": "火事[かじ]が起[お]こったら、119番[ばん]を電話[でんわ]してください。",
+      "exVi": "Khi có hỏa hoạn, hãy gọi đến số 119."
+    },
+    {
+      "jp": "急に",
+      "reading": "きゅうに",
+      "vi": "Đột ngột, đột nhiên",
+      "pos": "adv",
+      "ex": "あれ、急[きゅう]に雨[あめ]が降[ふ]ってきた。",
+      "exVi": "Ớ, đột nhiên lại mưa này."
+    },
+    {
+      "jp": "無理に",
+      "reading": "むりに",
+      "vi": "Cố, gắng (làm không hợp lý)",
+      "pos": "adv",
+      "ex": "行[い]きたくなければ、無理[むり]に行[い]くことはないよ。",
+      "exVi": "Nếu không muốn đi thì không cần miễn cưỡng."
+    },
+    {
+      "jp": "楽しみにしています",
+      "reading": "たのしみにしています",
+      "vi": "Tôi rất mong chờ",
+      "pos": "other",
+      "ex": "楽[たの]しみにしています。",
+      "exVi": "Tớ rất là mong chờ đó nha."
+    },
+    {
+      "jp": "以上です",
+      "reading": "いじょうです",
+      "vi": "Xin hết",
+      "pos": "other",
+      "ex": "私[わたし]の発表[はっぴょう]はここまで以上[いじょう]です。",
+      "exVi": "Bài phát biểu của tôi đến đây là kết thúc."
+    }
+  ]
+}

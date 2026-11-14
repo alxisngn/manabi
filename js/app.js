@@ -1,33 +1,56 @@
 import { getStore, exportBackup, importBackup } from './core/store.js';
-import { mount as mountVocab, meta as vocabMeta } from './modules/vocab/picker.js';
+import { mount as mountVocab } from './modules/vocab/picker.js';
 
-const MODULES = [
-  { ...vocabMeta, sub: 'Flashcard, Ghép thẻ, Trắc nghiệm, Phản xạ', accent: 'accent-teal', ready: true },
-  { id: 'kanji', name: 'Kanji', sub: 'Hán tự, Âm đọc & Bộ thủ', icon: '字', accent: 'accent-yellow', ready: false },
-  { id: 'grammar', name: 'Ngữ pháp', sub: 'Mẫu câu, Cách chia & Ví dụ', icon: '文', accent: 'accent-coral', ready: false }
+const LEVELS = [
+  { id: 'N5', name: 'Trình độ N5', sub: 'Sơ cấp 1 • Bài 1 – 25', icon: 'N5', accent: 'accent-teal' },
+  { id: 'N4', name: 'Trình độ N4', sub: 'Sơ cấp 2 • Bài 26 – 50', icon: 'N4', accent: 'accent-yellow' },
+  { id: 'N3', name: 'Trình độ N3', sub: 'Trung cấp nền tảng', icon: 'N3', accent: 'accent-coral' },
+  { id: 'N2', name: 'Trình độ N2', sub: 'Trung – Thượng cấp', icon: 'N2', accent: 'accent-teal' },
+  { id: 'N1', name: 'Trình độ N1', sub: 'Thượng cấp', icon: 'N1', accent: 'accent-yellow' }
 ];
 
 const appEl = document.getElementById('app');
+let levelCountsCache = null;
 
-function renderHome() {
-  const cardsHtml = MODULES.map((m) => m.ready
-    ? `<a href="#/${m.id}" class="card module-card is-active">
-        <div class="module-left">
-          <div class="module-icon ${m.accent}">${m.icon}</div>
-          <div><div class="module-title">${m.name}</div><div class="module-sub">${m.sub}</div></div>
-        </div>
-        <span class="badge badge-ready">Vào học →</span>
-      </a>`
-    : `<div class="card module-card is-disabled" aria-disabled="true">
-        <div class="module-left">
-          <div class="module-icon ${m.accent}">${m.icon}</div>
-          <div><div class="module-title">${m.name}</div><div class="module-sub">${m.sub}</div></div>
-        </div>
-        <span class="badge">Sắp có</span>
-      </div>`
-  ).join('');
+async function getLevelCounts() {
+  if (levelCountsCache) return levelCountsCache;
+  const counts = { N5: 0, N4: 0, N3: 0, N2: 0, N1: 0 };
+  try {
+    const res = await fetch('data/vocab/index.json');
+    if (res.ok) {
+      const lessons = (await res.json())?.lessons || [];
+      lessons.forEach((l) => {
+        const lv = String(l.level || (l.file?.split('/')[0]) || '').toUpperCase();
+        if (lv in counts) counts[lv]++;
+      });
+    }
+  } catch {}
+  levelCountsCache = counts;
+  return counts;
+}
 
-  appEl.innerHTML = `<p class="home-intro">Chọn học phần để bắt đầu luyện tập hôm nay:</p><section class="module-grid">${cardsHtml}</section>`;
+async function renderHome() {
+  const counts = await getLevelCounts();
+  const cardsHtml = LEVELS.map((lv) => {
+    const n = counts[lv.id] || 0;
+    return n > 0
+      ? `<a href="#/vocab?level=${lv.id}" class="card module-card is-active">
+          <div class="module-left">
+            <div class="module-icon ${lv.accent}" style="font-family:var(--font-ui);font-size:1.25rem;font-weight:800;">${lv.icon}</div>
+            <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub} • ${n} bài</div></div>
+          </div>
+          <span class="badge badge-ready">Vào học →</span>
+        </a>`
+      : `<div class="card module-card is-disabled" aria-disabled="true">
+          <div class="module-left">
+            <div class="module-icon ${lv.accent}" style="font-family:var(--font-ui);font-size:1.25rem;font-weight:800;">${lv.icon}</div>
+            <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub}</div></div>
+          </div>
+          <span class="badge">Sắp có</span>
+        </div>`;
+  }).join('');
+
+  appEl.innerHTML = `<p class="home-intro">Chọn cấp độ JLPT để bắt đầu luyện tập:</p><section class="module-grid">${cardsHtml}</section>`;
 }
 
 function router() {
@@ -54,10 +77,10 @@ function initMenu() {
 
     body.innerHTML = `
       <div style="display:flex;flex-direction:column;gap:8px;">
-        ${secLabel('Học phần')}
+        ${secLabel('Điều hướng')}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <button type="button" class="btn" data-nav="#/">🏠 Trang chủ</button>
-          <button type="button" class="btn btn-teal" data-nav="#/vocab">語 Từ vựng</button>
+          <button type="button" class="btn btn-teal" data-nav="#/vocab?level=N4">語 Từ vựng N4</button>
         </div>
       </div>
 

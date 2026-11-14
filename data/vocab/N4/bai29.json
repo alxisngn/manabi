@@ -1,0 +1,402 @@
+{
+  "lesson": {
+    "id": "b29",
+    "name": "Bài 29",
+    "type": "book"
+  },
+  "count": 49,
+  "words": [
+    {
+      "jp": "取り替えます",
+      "reading": "とりかえます",
+      "vi": "Thay",
+      "pos": "verb",
+      "ex": "電池[でんち]を取[と]り替[か]えてください。",
+      "exVi": "Hãy thay pin đi cậu."
+    },
+    {
+      "jp": "ふきます",
+      "reading": "ふきます",
+      "vi": "Lau",
+      "pos": "verb",
+      "ex": "この本[ほん]はちょっとふきます。",
+      "exVi": "Tôi lau lại cuốn sách này một chút."
+    },
+    {
+      "jp": "間違えます",
+      "reading": "まちがえます",
+      "vi": "Nhầm",
+      "pos": "verb",
+      "ex": "Aさんは会議[かいぎ]の時間[じかん]を間違[まちが]ってますよ。",
+      "exVi": "A ơi, cậu đã nhầm giờ họp rồi đấy."
+    },
+    {
+      "jp": "おちゃわん",
+      "reading": "おちゃわん",
+      "vi": "Chén, bát",
+      "pos": "noun",
+      "ex": "おちゃわんを洗[あら]ってもらえますか。",
+      "exVi": "Anh có thể rửa cái chén được không."
+    },
+    {
+      "jp": "枝",
+      "reading": "えだ",
+      "vi": "Cành cây",
+      "pos": "noun",
+      "ex": "あの木[き]の枝[えだ]に鳥[とり]がいます。",
+      "exVi": "Có con chim đậu trên cành cây kia kìa."
+    },
+    {
+      "jp": "返事(をします)",
+      "reading": "へんじ(をします)",
+      "vi": "Trả lời, hồi đáp",
+      "pos": "noun",
+      "ex": "早[はや]く返事[へんじ]をして。",
+      "exVi": "Nhanh chóng phản hồi đi."
+    },
+    {
+      "jp": "あみだな",
+      "reading": "あみだな",
+      "vi": "Giá để hành lý",
+      "pos": "noun",
+      "ex": "電車[でんしゃ]のあみだなに忘[わす]れました。",
+      "exVi": "Tôi đã để quên ở giá để hành lý trên tàu điện ạ."
+    },
+    {
+      "jp": "忘れ物",
+      "reading": "わすれもの",
+      "vi": "Đồ để quên",
+      "pos": "noun",
+      "ex": "忘[わす]れ物[もの]に気[き]を付[つ]けてください。",
+      "exVi": "Hãy chú ý đến đồ để quên."
+    },
+    {
+      "jp": "書類",
+      "reading": "しょるい",
+      "vi": "Tài liệu",
+      "pos": "noun",
+      "ex": "この書類[しょるい]は誰[だれ]が書[か]きましたか。",
+      "exVi": "Ai đã viết tài liệu này vậy?"
+    },
+    {
+      "jp": "駅員",
+      "reading": "えきいん",
+      "vi": "Nhân viên nhà ga",
+      "pos": "noun",
+      "ex": "駅員[えきいん]に聞[き]いてください。",
+      "exVi": "Hãy hỏi nhân viên nhà ga đi."
+    },
+    {
+      "jp": "コップ",
+      "reading": "コップ",
+      "vi": "Cốc",
+      "pos": "noun",
+      "ex": "かわいいコップですね。",
+      "exVi": "Chiếc cốc dễ thương nhỉ."
+    },
+    {
+      "jp": "グラス",
+      "reading": "グラス",
+      "vi": "Cốc (thủy tinh)",
+      "pos": "noun",
+      "ex": "あれ、わたしのグラスは?",
+      "exVi": "Ủa, chiếc ly cốc (thủy tinh) của tôi đâu?"
+    },
+    {
+      "jp": "お皿",
+      "reading": "おさら",
+      "vi": "Đĩa",
+      "pos": "noun",
+      "ex": "お皿[さら]が足[た]りない。",
+      "exVi": "Không đủ đĩa rồi."
+    },
+    {
+      "jp": "ポケット",
+      "reading": "ポケット",
+      "vi": "Túi (áo, quần)",
+      "pos": "noun",
+      "ex": "ポケットに入[はい]っているものを見[み]てください。",
+      "exVi": "Cho tôi xem thứ để trong túi bạn."
+    },
+    {
+      "jp": "ふくろ",
+      "reading": "ふくろ",
+      "vi": "Túi (ni lông)",
+      "pos": "noun",
+      "ex": "ふくろが要[い]りますか。",
+      "exVi": "Bạn có cần túi không?"
+    },
+    {
+      "jp": "交番",
+      "reading": "こうばん",
+      "vi": "Đồn cảnh sát",
+      "pos": "noun",
+      "ex": "早[はや]く交番[こうばん]へ行[い]かないと...",
+      "exVi": "Phải sớm đi đến đồn cảnh sát thôi."
+    },
+    {
+      "jp": "スピーチ(をします)",
+      "reading": "スピーチ(をします)",
+      "vi": "(Đọc) bài phát biểu",
+      "pos": "noun",
+      "ex": "大勢[おおぜい]の人[ひと]の前[まえ]でスピーチをします。",
+      "exVi": "Tôi sẽ có một bài phát biểu trước nhiều người."
+    },
+    {
+      "jp": "「部屋を」かたづけます",
+      "reading": "「へやを」かたづけます",
+      "vi": "Dọn (phòng)",
+      "pos": "verb",
+      "ex": "部屋[へや]を片付[かたづ]けてください。",
+      "exVi": "Hãy dọn lại phòng đi."
+    },
+    {
+      "jp": "「部屋が」かたづきます",
+      "reading": "「へやが」かたづきます",
+      "vi": "(Phòng) được dọn",
+      "pos": "verb",
+      "ex": "部屋[へや]が片付[かたづ]きましたね。",
+      "exVi": "Căn phòng đã được dọn dẹp nhỉ."
+    },
+    {
+      "jp": "「ドアを」開けます",
+      "reading": "「ドアを」あけます",
+      "vi": "Mở (cửa)",
+      "pos": "verb",
+      "ex": "ドアを開[あ]けます。",
+      "exVi": "Mở cửa."
+    },
+    {
+      "jp": "「ドアが」開きます",
+      "reading": "「ドアが」あきます",
+      "vi": "(Cửa) mở",
+      "pos": "verb",
+      "ex": "ドアが開[あ]きます。",
+      "exVi": "Cửa mở."
+    },
+    {
+      "jp": "「電気を」つけます",
+      "reading": "「でんきを」つけます",
+      "vi": "Bật (điện)",
+      "pos": "verb",
+      "ex": "電気[でんき]をつけます。",
+      "exVi": "Bật điện."
+    },
+    {
+      "jp": "「電気が」つきます",
+      "reading": "「でんきが」つきます",
+      "vi": "(Điện) Bật",
+      "pos": "verb",
+      "ex": "電気[でんき]がつきます。",
+      "exVi": "Điện bật."
+    },
+    {
+      "jp": "「ファイルを」つけます",
+      "reading": "「ファイルを」つけます",
+      "vi": "Đính kèm (file)",
+      "pos": "verb",
+      "ex": "このファイルになまえをつけてください。",
+      "exVi": "Hãy đính kèm tên vào file này."
+    },
+    {
+      "jp": "「ポケットが」つきます",
+      "reading": "「ポケットが」つきます",
+      "vi": "(Túi) Đính, gắn, dính",
+      "pos": "verb",
+      "ex": "お服[ふく]にアイスクリームがついているよ。",
+      "exVi": "Áo cậu dính kem kìa."
+    },
+    {
+      "jp": "「枝を」折ります",
+      "reading": "「えだを」おります",
+      "vi": "Bẻ gãy (cành cây)",
+      "pos": "verb",
+      "ex": "枝[えだ]を折[お]ります。",
+      "exVi": "Bẻ gãy cành cây."
+    },
+    {
+      "jp": "「枝が」折れます",
+      "reading": "「えだが」おれます",
+      "vi": "(Cành cây) Gãy",
+      "pos": "verb",
+      "ex": "枝[えだ]が折[お]れます。",
+      "exVi": "Cành cây gãy."
+    },
+    {
+      "jp": "「コップを」割ります",
+      "reading": "「コップを」わります",
+      "vi": "Làm vỡ (cốc)",
+      "pos": "verb",
+      "ex": "コップを割[わ]ります。",
+      "exVi": "Làm vỡ cốc."
+    },
+    {
+      "jp": "「コップが」割れます",
+      "reading": "「コップが」われます",
+      "vi": "(Cốc) Vỡ",
+      "pos": "verb",
+      "ex": "コップが割[わ]れます。",
+      "exVi": "Cốc bị vỡ."
+    },
+    {
+      "jp": "「紙を」破ります",
+      "reading": "「かみを」やぶります",
+      "vi": "Làm rách (giấy)",
+      "pos": "verb",
+      "ex": "紙[かみ]を破[やぶ]ります。",
+      "exVi": "Làm rách giấy."
+    },
+    {
+      "jp": "「紙が」破れます",
+      "reading": "「かみが」やぶれます",
+      "vi": "(Giấy) Bị rách",
+      "pos": "verb",
+      "ex": "袋[ふくろ]が破[やぶ]れます。",
+      "exVi": "Túi bị rách."
+    },
+    {
+      "jp": "「おもちゃを」壊します",
+      "reading": "「おもちゃを」こわします",
+      "vi": "Làm hỏng (đồ chơi)",
+      "pos": "verb",
+      "ex": "物[もの]を壊[こわ]します。",
+      "exVi": "Làm hỏng đồ vật."
+    },
+    {
+      "jp": "「パソコンが」壊れます",
+      "reading": "「パソコンが」こわれます",
+      "vi": "(Máy tính) Bị hỏng",
+      "pos": "verb",
+      "ex": "パソコンが壊[こわ]れます。",
+      "exVi": "Laptop bị hỏng."
+    },
+    {
+      "jp": "「シャツを」汚します",
+      "reading": "「シャツを」よごします",
+      "vi": "Làm bẩn (áo)",
+      "pos": "verb",
+      "ex": "本[ほん]を汚[よご]します。",
+      "exVi": "Làm bẩn sách."
+    },
+    {
+      "jp": "「シャツが」汚れます",
+      "reading": "「シャツが」よごれます",
+      "vi": "(Áo) Bị làm bẩn",
+      "pos": "verb",
+      "ex": "シャツが汚[よご]れます。",
+      "exVi": "Áo bị làm bẩn."
+    },
+    {
+      "jp": "「木を」倒します",
+      "reading": "「きを」たおします",
+      "vi": "Đốn (cây), hạ gục",
+      "pos": "verb",
+      "ex": "木[き]を倒[たお]します。",
+      "exVi": "Đốn cây."
+    },
+    {
+      "jp": "「木が」倒れます",
+      "reading": "「きが」たおれます",
+      "vi": "(Cây) Bị đổ",
+      "pos": "verb",
+      "ex": "木[き]が倒[たお]れます。",
+      "exVi": "Cây bị đổ."
+    },
+    {
+      "jp": "「メガネを」外します",
+      "reading": "「メガネを」はずします",
+      "vi": "Tháo (kính)",
+      "pos": "verb",
+      "ex": "メガネを外[はず]します。",
+      "exVi": "Tháo kính."
+    },
+    {
+      "jp": "「ボタンが」外れます",
+      "reading": "「ボタンが」はずれます",
+      "vi": "Bị tuột (nút)",
+      "pos": "verb",
+      "ex": "ボタンが外[はず]れます。",
+      "exVi": "Nút cài bị tuột ra."
+    },
+    {
+      "jp": "「窓を」閉めます",
+      "reading": "「まどを」しめます",
+      "vi": "Đóng (cửa sổ)",
+      "pos": "verb",
+      "ex": "窓[まど]を閉[し]めます。",
+      "exVi": "Đóng cửa sổ."
+    },
+    {
+      "jp": "「窓が」閉まります",
+      "reading": "「まどが」しまります",
+      "vi": "(Cửa sổ) Bị đóng",
+      "pos": "verb",
+      "ex": "窓[まど]が閉[し]まります。",
+      "exVi": "Cửa sổ đóng."
+    },
+    {
+      "jp": "「かぎを」かけます",
+      "reading": "「かぎを」かけます",
+      "vi": "Khóa (cửa)",
+      "pos": "verb",
+      "ex": "鍵[かぎ]をかけます。",
+      "exVi": "Khóa cửa."
+    },
+    {
+      "jp": "「かぎが」かかります",
+      "reading": "「かぎが」かかります",
+      "vi": "(Cửa) Bị khóa",
+      "pos": "verb",
+      "ex": "鍵[かぎ]がかかります。",
+      "exVi": "Cửa bị khóa."
+    },
+    {
+      "jp": "「車を」止めます",
+      "reading": "「くるまを」とめます",
+      "vi": "Dừng (xe)",
+      "pos": "verb",
+      "ex": "車[くるま]を止[と]めます。",
+      "exVi": "Dừng / Đỗ xe ô tô."
+    },
+    {
+      "jp": "「車が」止まります",
+      "reading": "「くるまが」とまります",
+      "vi": "(Xe) Dừng",
+      "pos": "verb",
+      "ex": "エレベーターが止[と]まります。",
+      "exVi": "Thang máy dừng lại."
+    },
+    {
+      "jp": "「さいふを」落とします",
+      "reading": "「さいふを」おとします",
+      "vi": "Đánh rơi (ví)",
+      "pos": "verb",
+      "ex": "道[みち]で財布[さいふ]を落[お]とします。",
+      "exVi": "Làm rơi ví ở trên đường."
+    },
+    {
+      "jp": "落ちます",
+      "reading": "おちます",
+      "vi": "Rơi, ngã",
+      "pos": "verb",
+      "ex": "書類[しょるい]が落[お]ちます。",
+      "exVi": "Tài liệu bị rơi."
+    },
+    {
+      "jp": "「電気を」消します",
+      "reading": "「でんきを」けします",
+      "vi": "Tắt (điện)",
+      "pos": "verb",
+      "ex": "電気[でんき]を消[け]します。",
+      "exVi": "Tắt điện."
+    },
+    {
+      "jp": "「電気が」消えます",
+      "reading": "「でんきが」きえます",
+      "vi": "(Điện) tắt",
+      "pos": "verb",
+      "ex": "電気[でんき]が消[け]えます。",
+      "exVi": "Điện tắt."
+    }
+  ]
+}

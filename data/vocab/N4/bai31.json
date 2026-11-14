@@ -1,0 +1,162 @@
+{
+  "lesson": {
+    "id": "b31",
+    "name": "Bài 31",
+    "type": "book"
+  },
+  "count": 19,
+  "words": [
+    {
+      "jp": "続けます",
+      "reading": "つづけます",
+      "vi": "Tiếp tục",
+      "pos": "verb",
+      "ex": "日本語[にほんご]の勉強[べんきょう]を続[つづ]けたいです。",
+      "exVi": "Mình muốn tiếp tục học tiếng Nhật."
+    },
+    {
+      "jp": "見つけます",
+      "reading": "みつけます",
+      "vi": "Tìm kiếm",
+      "pos": "verb",
+      "ex": "はい。一緒[いっしょ]に見[み]つけましょう。",
+      "exVi": "Ừm. Cùng nhau tìm nào."
+    },
+    {
+      "jp": "「休みを」取ります",
+      "reading": "「やすみを」とります",
+      "vi": "Xin (nghỉ)",
+      "pos": "verb",
+      "ex": "今日[きょう]は体調[たいちょう]が悪[わる]いです。休[やす]みを取[と]りたいです。",
+      "exVi": "Hôm nay tôi cảm thấy không được khỏe. Tôi muốn xin nghỉ."
+    },
+    {
+      "jp": "「試験を」受けます",
+      "reading": "「しけんを」うけます",
+      "vi": "Dự (thi)",
+      "pos": "verb",
+      "ex": "どうして日本語[にほんご]の試験[しけん]を受[う]けるんですか。",
+      "exVi": "Tại sao bạn lại tham dự kỳ thi tiếng Nhật?"
+    },
+    {
+      "jp": "申し込みます",
+      "reading": "もうしこみます",
+      "vi": "Đăng kí",
+      "pos": "verb",
+      "ex": "インターネットで申[もう]し込[こ]みますよ。",
+      "exVi": "Đăng ký trên internet đó."
+    },
+    {
+      "jp": "休憩します",
+      "reading": "きゅうけいします",
+      "vi": "Nghỉ giải lao",
+      "pos": "verb",
+      "ex": "10分[ぷん]ぐらい休憩[きゅうけい]します。",
+      "exVi": "Nghỉ giải lao khoảng 10 phút."
+    },
+    {
+      "jp": "連休",
+      "reading": "れんきゅう",
+      "vi": "Kì nghỉ dài",
+      "pos": "noun",
+      "ex": "連休[れんきゅう]にかぞくと旅行[りょこう]したいです。",
+      "exVi": "Tớ muốn đi du lịch với gia đình trong kỳ nghỉ lễ này."
+    },
+    {
+      "jp": "作文",
+      "reading": "さくぶん",
+      "vi": "Bài văn",
+      "pos": "noun",
+      "ex": "今日[きょう]の作文[さくぶん]のテーマは何[なん]ですか。",
+      "exVi": "Chủ đề của bài tập làm văn hôm nay là gì thế?"
+    },
+    {
+      "jp": "発表",
+      "reading": "はっぴょう",
+      "vi": "Phát biểu, công bố",
+      "pos": "noun",
+      "ex": "次[つぎ]の発表[はっぴょう]はBさんですね。",
+      "exVi": "Bài phát biểu tới là đến B rồi nhỉ."
+    },
+    {
+      "jp": "結婚式",
+      "reading": "けっこんしき",
+      "vi": "Lễ cưới, đám cưới",
+      "pos": "noun",
+      "ex": "結婚式[けっこんしき]のまえとてもいそがしいです。",
+      "exVi": "Trước đám cưới, mình bận quá trời luôn."
+    },
+    {
+      "jp": "葬式",
+      "reading": "そうしき",
+      "vi": "Đám tang",
+      "pos": "noun",
+      "ex": "葬式[そうしき]には黒[くろ]の服[ふく]を着[き]ていきますよね。",
+      "exVi": "Trong đám tang, trang phục của mọi người là màu đen nhỉ."
+    },
+    {
+      "jp": "教会",
+      "reading": "きょうかい",
+      "vi": "Giáo hội, nhà thờ",
+      "pos": "noun",
+      "ex": "ベトナムには教会[きょうかい]がありますか。",
+      "exVi": "Ở Việt Nam có nhà thờ nào không?"
+    },
+    {
+      "jp": "温泉",
+      "reading": "おんせん",
+      "vi": "Suối nước nóng",
+      "pos": "noun",
+      "ex": "温泉[おんせん]に行[い]きたいです。",
+      "exVi": "Mình muốn đi suối nước nóng."
+    },
+    {
+      "jp": "動物園",
+      "reading": "どうぶつえん",
+      "vi": "Sở thú",
+      "pos": "noun",
+      "ex": "うん、この動物園[どうぶつえん]はとても有名[ゆうめい]ですから。",
+      "exVi": "Ừ, bởi vì sở thú vô cùng nổi tiếng mà lại."
+    },
+    {
+      "jp": "大学院",
+      "reading": "だいがくいん",
+      "vi": "Cao học",
+      "pos": "noun",
+      "ex": "大学院[だいがくいん]の新[あたら]しい学生[がくせい]です。",
+      "exVi": "Đó là học sinh mới của trường cao học đó."
+    },
+    {
+      "jp": "本社",
+      "reading": "ほんしゃ",
+      "vi": "Trụ sở chính",
+      "pos": "noun",
+      "ex": "本社[ほんしゃ]はベトナムです。",
+      "exVi": "Trụ sở chính của chúng tôi ở Việt Nam."
+    },
+    {
+      "jp": "支店",
+      "reading": "してん",
+      "vi": "Chi nhánh",
+      "pos": "noun",
+      "ex": "外国[がいこく]には支店[してん]がありますよ。",
+      "exVi": "Họ còn có chi nhánh ở nước ngoài nữa đấy."
+    },
+    {
+      "jp": "展覧会",
+      "reading": "てんらんかい",
+      "vi": "Triển lãm",
+      "pos": "noun",
+      "ex": "あ、ピカソの展覧会[てんらんかい]がありますよ。",
+      "exVi": "À, có buổi triển lãm của Picasso ấy mà."
+    },
+    {
+      "jp": "ずっと",
+      "reading": "ずっと",
+      "vi": "Suốt",
+      "pos": "adv",
+      "ex": "ずっと待[ま]っていましたよ。",
+      "exVi": "Mình chờ bạn mãi."
+    }
+  ]
+}

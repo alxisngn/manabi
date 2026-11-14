@@ -1,0 +1,146 @@
+{
+  "lesson": {
+    "id": "b49",
+    "name": "Bài 49",
+    "type": "book"
+  },
+  "count": 17,
+  "words": [
+    {
+      "jp": "利用します",
+      "reading": "りようします",
+      "vi": "Sử dụng",
+      "pos": "verb",
+      "ex": "すみません、階段[かいだん]をご利用[りよう]ください。",
+      "exVi": "Thang máy này không hoạt động."
+    },
+    {
+      "jp": "「~社に」勤めます",
+      "reading": "「~しゃに」つとめます",
+      "vi": "Làm việc (ở công ty ~)",
+      "pos": "verb",
+      "ex": "Riki社[しゃ]に勤[つと]めている。",
+      "exVi": "Tôi đang làm việc tại công ty Riki."
+    },
+    {
+      "jp": "「いすに」かけます",
+      "reading": "「いすに」かけます",
+      "vi": "Ngồi xuống (ghế)",
+      "pos": "verb",
+      "ex": "どうぞ、この椅子[いす]に掛[か]けてください。",
+      "exVi": "Xin mời chị ngồi xuống ghế này."
+    },
+    {
+      "jp": "過ごします",
+      "reading": "すごします",
+      "vi": "Trải qua",
+      "pos": "verb",
+      "ex": "家族[かぞく]と夏休[なつやす]みを過[す]ごしたよ。",
+      "exVi": "Tớ đã trải qua kỳ nghỉ hè cùng với gia đình."
+    },
+    {
+      "jp": "挨拶します",
+      "reading": "あいさつします",
+      "vi": "Chào hỏi",
+      "pos": "verb",
+      "ex": "挨拶[あいさつ]してください。",
+      "exVi": "Chào hỏi mọi người đi."
+    },
+    {
+      "jp": "いらっしゃいます",
+      "reading": "いらっしゃいます",
+      "vi": "Ở, đi, đến (tôn kính ngữ của います、行きます、来ます)",
+      "pos": "verb",
+      "ex": "部長[ぶちょう]はどちらにいらっしゃいますか。",
+      "exVi": "Trưởng phòng đi đâu rồi vậy ạ."
+    },
+    {
+      "jp": "召し上がります",
+      "reading": "めしあがります",
+      "vi": "Ăn, uống (tôn kính ngữ của 食べます、飲みます)",
+      "pos": "verb",
+      "ex": "こちらステーキでございます。どうぞ、召[め]し上[あ]がってください。",
+      "exVi": "Đây là món bít tết. Xin mời quý khách dùng ạ."
+    },
+    {
+      "jp": "おっしゃいます",
+      "reading": "おっしゃいます",
+      "vi": "Nói (tôn kính ngữ của 言います)",
+      "pos": "verb",
+      "ex": "部長[ぶちょう]は何[なん]とおっしゃいましたか。",
+      "exVi": "Giám đốc đã nói gì?"
+    },
+    {
+      "jp": "なさいます",
+      "reading": "なさいます",
+      "vi": "Làm (tôn kính ngữ của します)",
+      "pos": "verb",
+      "ex": "暇[ひま]なとき、部長[ぶちょう]は何[なに]をなさいますか。",
+      "exVi": "Trưởng phòng khi rảnh rỗi thì sẽ làm gì ạ?"
+    },
+    {
+      "jp": "ご覧になります",
+      "reading": "ごらんになります",
+      "vi": "Xem (tôn kính ngữ của 見ます)",
+      "pos": "verb",
+      "ex": "部長[ぶちょう]もBlackPinkの新[あたら]しいMVをご覧[らん]になりましたか。",
+      "exVi": "Trưởng phòng cũng xem MV mới của BlackPink đó ạ?"
+    },
+    {
+      "jp": "ご存じです",
+      "reading": "ごぞんじです",
+      "vi": "Biết (kính ngữ của 知っています)",
+      "pos": "verb",
+      "ex": "部長[ぶちょう]、すみません、Cさんの電話番号[でんわばんごう]をご存[ぞん]じですか。",
+      "exVi": "Trưởng phòng ơi, xin lỗi chị, chị có biết số điện thoại của anh C không ạ?"
+    },
+    {
+      "jp": "旅館",
+      "reading": "りょかん",
+      "vi": "Nhà khách kiểu Nhật truyền thống",
+      "pos": "noun",
+      "ex": "ホテルにしますか、旅館[りょかん]にしますか。",
+      "exVi": "Mình chọn khách sạn hay là chọn nhà khách Nhật truyền thống?"
+    },
+    {
+      "jp": "バス停",
+      "reading": "バスてい",
+      "vi": "Bến xe buýt",
+      "pos": "noun",
+      "ex": "30分[ぷん]もバス停[てい]で待[ま]ったよ!",
+      "exVi": "Tớ đã đợi cậu ở bến xe buýt tận 30 phút rồi đó."
+    },
+    {
+      "jp": "奥様",
+      "reading": "おくさま",
+      "vi": "Vợ của người khác (kính ngữ của 奥さん)",
+      "pos": "noun",
+      "ex": "C部長[ぶちょう]の奥様[おくさま]はどうですか。",
+      "exVi": "Còn vợ của bà C thì sao?"
+    },
+    {
+      "jp": "~様",
+      "reading": "~さま",
+      "vi": "Kính ngữ của ~さん",
+      "pos": "noun",
+      "ex": "お客様[きゃくさま]、何[なに]かお探[さが]しですか。",
+      "exVi": "Xin chào quý khách! Quý khách đang tìm gì ạ?"
+    },
+    {
+      "jp": "たまに",
+      "reading": "たまに",
+      "vi": "Thi thoảng",
+      "pos": "adv",
+      "ex": "たまにどこにも行[い]かない日[ひ]があります。",
+      "exVi": "Đôi khi có những ngày tôi không đi đâu cả."
+    },
+    {
+      "jp": "どなたでも",
+      "reading": "どなたでも",
+      "vi": "Vị nào cũng (kính ngữ của 誰でも)",
+      "pos": "adv",
+      "ex": "どなたでも質問[しつもん]してくださいね。",
+      "exVi": "Bất cứ ai cũng có thể hỏi."
+    }
+  ]
+}

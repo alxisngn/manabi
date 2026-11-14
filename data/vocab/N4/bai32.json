@@ -1,0 +1,330 @@
+{
+  "lesson": {
+    "id": "b32",
+    "name": "Bài 32",
+    "type": "book"
+  },
+  "count": 40,
+  "words": [
+    {
+      "jp": "運動します",
+      "reading": "うんどうします",
+      "vi": "Vận động",
+      "pos": "verb",
+      "ex": "毎日[まいにち]運動[うんどう]してますから。",
+      "exVi": "Bởi vì mỗi ngày tớ đều vận động."
+    },
+    {
+      "jp": "試験に合格します",
+      "reading": "しけんにごうかくします",
+      "vi": "Đỗ (kì thi)",
+      "pos": "verb",
+      "ex": "日本語[にほんご]の試験[しけん]に合格[ごうかく]しました!",
+      "exVi": "Tớ đã đỗ kỳ thi tiếng Nhật rồi!"
+    },
+    {
+      "jp": "成功します",
+      "reading": "せいこうします",
+      "vi": "Thành công",
+      "pos": "verb",
+      "ex": "がんばりましたが、なかなか成功[せいこう]しません。",
+      "exVi": "Tớ đã cố gắng rồi nhưng mãi mà không thành công."
+    },
+    {
+      "jp": "試験に失敗します",
+      "reading": "しけんにしっぱいします",
+      "vi": "Thất bại, trượt (kì thi)",
+      "pos": "verb",
+      "ex": "全然[ぜんぜん]できませんでした。試験[しけん]に失敗[しっぱい]すると思[おも]います。",
+      "exVi": "Tớ hoàn toàn không thể làm được. Tớ nghĩ tớ trượt kì thi rồi."
+    },
+    {
+      "jp": "雨がやみます",
+      "reading": "あめがやみます",
+      "vi": "Tạnh (mưa)",
+      "pos": "verb",
+      "ex": "雨[あめ]がやむまで、ここで待[ま]ちましょう。",
+      "exVi": "Trước khi tạnh mưa thì mình cùng chờ ở đây đi!"
+    },
+    {
+      "jp": "晴れます",
+      "reading": "はれます",
+      "vi": "Quang đãng",
+      "pos": "verb",
+      "ex": "晴[は]れましたね。早[はや]く帰[かえ]りましょう。",
+      "exVi": "Trời quang đãng rồi nhỉ. Nhanh chân về thôi nào."
+    },
+    {
+      "jp": "曇ります",
+      "reading": "くもります",
+      "vi": "Có mây",
+      "pos": "verb",
+      "ex": "見[み]て、曇[くも]ってきました!",
+      "exVi": "Nhìn kìa, mây kéo đến rồi!"
+    },
+    {
+      "jp": "熱が続きます",
+      "reading": "ねつがつづきます",
+      "vi": "(Sốt) kéo dài/ liên tục",
+      "pos": "verb",
+      "ex": "まだ熱[ねつ]が続[つづ]いています。",
+      "exVi": "Tôi vẫn chưa hết sốt."
+    },
+    {
+      "jp": "かぜをひきます",
+      "reading": "かぜをひきます",
+      "vi": "Bị cảm",
+      "pos": "verb",
+      "ex": "風邪[かぜ]をひきますよ!",
+      "exVi": "Sẽ bị cảm đấy!"
+    },
+    {
+      "jp": "冷やします",
+      "reading": "ひやします",
+      "vi": "Làm mát, làm lạnh",
+      "pos": "verb",
+      "ex": "冷[ひ]やしましたよ!",
+      "exVi": "Đã làm lạnh rồi đấy!"
+    },
+    {
+      "jp": "道が混みます",
+      "reading": "みちがこみます",
+      "vi": "(Đường) đông",
+      "pos": "verb",
+      "ex": "きっと道[みち]が混[こ]みますよ。",
+      "exVi": "Chắc ngoài đường đông lắm."
+    },
+    {
+      "jp": "道がすきます",
+      "reading": "みちがすきます",
+      "vi": "(Đường) vắng",
+      "pos": "verb",
+      "ex": "道[みち]がすいてきました。",
+      "exVi": "Đường vắng rồi."
+    },
+    {
+      "jp": "試合/パーティーに出ます",
+      "reading": "しあい/パーティーにでます",
+      "vi": "Tham gia (trận đấu/ tiệc)",
+      "pos": "verb",
+      "ex": "すみません、サッカーの試合[しあい]に出[で]なければなりません。",
+      "exVi": "Xin lỗi cậu, tớ phải tham gia trận đấu bóng đá rồi."
+    },
+    {
+      "jp": "無理をします",
+      "reading": "むりをします",
+      "vi": "Gắng sức",
+      "pos": "verb",
+      "ex": "無理[むり]をしないでね。",
+      "exVi": "Đừng cố quá sức nhé."
+    },
+    {
+      "jp": "先生",
+      "reading": "せんせい",
+      "vi": "Bác sĩ",
+      "pos": "noun",
+      "ex": "病気[びょうき]のとき、先生[せんせい]に診[み]てもらいます。",
+      "exVi": "Khi bị ốm, mình đi khám bác sĩ."
+    },
+    {
+      "jp": "けがをします",
+      "reading": "けがをします",
+      "vi": "Bị thương",
+      "pos": "noun",
+      "ex": "すみません、足[あし]にけがをしましたから試合[しあい]に出[で]ません。",
+      "exVi": "Xin lỗi, chân tớ bị thương rồi, vì vậy không tham gia được."
+    },
+    {
+      "jp": "やけどをします",
+      "reading": "やけどをします",
+      "vi": "Bị bỏng",
+      "pos": "noun",
+      "ex": "いいえ、やけどをしました。",
+      "exVi": "Không, tớ bị bỏng."
+    },
+    {
+      "jp": "せきをします/が出ます",
+      "reading": "せきをします/がでます",
+      "vi": "Ho",
+      "pos": "noun",
+      "ex": "せきが出[で]てますので・・声[こえ]が変[へん]です。",
+      "exVi": "Vì tớ ho nên giọng bị thay đổi."
+    },
+    {
+      "jp": "胃",
+      "reading": "い",
+      "vi": "Dạ dày",
+      "pos": "noun",
+      "ex": "胃[い]がいたいですから、くすりをのみます。",
+      "exVi": "Vì bị đau dạ dày nên tôi uống thuốc."
+    },
+    {
+      "jp": "インフルエンザ",
+      "reading": "インフルエンザ",
+      "vi": "Cúm",
+      "pos": "noun",
+      "ex": "インフルエンザのとき、マスクをします。",
+      "exVi": "Khi bị cúm, tôi đeo khẩu trang."
+    },
+    {
+      "jp": "ストレス",
+      "reading": "ストレス",
+      "vi": "Stress",
+      "pos": "noun",
+      "ex": "ストレスだと思[おも]いますよ。",
+      "exVi": "Tớ nghĩ là cậu bị stress đấy."
+    },
+    {
+      "jp": "太陽",
+      "reading": "たいよう",
+      "vi": "Mặt trời",
+      "pos": "noun",
+      "ex": "晴[は]れの日[ひ]は太陽[たいよう]が見[み]えます。",
+      "exVi": "Bạn có thể nhìn thấy mặt trời vào ngày trời nắng."
+    },
+    {
+      "jp": "空",
+      "reading": "そら",
+      "vi": "Bầu trời",
+      "pos": "noun",
+      "ex": "空[そら]にはくもがあります。",
+      "exVi": "Trên trời có mây."
+    },
+    {
+      "jp": "星",
+      "reading": "ほし",
+      "vi": "Ngôi sao",
+      "pos": "noun",
+      "ex": "夜[よる]に空[そら]を見[み]ると、星[ほし]が見[み]えます。",
+      "exVi": "Buổi tối khi nhìn lên bầu trời, có thể nhìn thấy những ngôi sao."
+    },
+    {
+      "jp": "風",
+      "reading": "かぜ",
+      "vi": "Gió",
+      "pos": "noun",
+      "ex": "そとは風[かぜ]が強[つよ]いです。",
+      "exVi": "Ngoài trời gió đang thổi mạnh."
+    },
+    {
+      "jp": "東",
+      "reading": "ひがし",
+      "vi": "Đông",
+      "pos": "noun",
+      "ex": "この町[まち]の東[ひがし]には大[おお]きな本屋[ほんや]があります。",
+      "exVi": "Phía Đông của thị trấn này có một hiệu sách rất lớn."
+    },
+    {
+      "jp": "西",
+      "reading": "にし",
+      "vi": "Tây",
+      "pos": "noun",
+      "ex": "太陽[たいよう]が西[にし]に消[き]えます。",
+      "exVi": "Mặt trời biến mất ở phía Tây."
+    },
+    {
+      "jp": "南",
+      "reading": "みなみ",
+      "vi": "Nam",
+      "pos": "noun",
+      "ex": "ベトナムの南[みなみ]はあついです。",
+      "exVi": "Tiết trời ở phía Nam Việt Nam thì nóng."
+    },
+    {
+      "jp": "北",
+      "reading": "きた",
+      "vi": "Bắc",
+      "pos": "noun",
+      "ex": "北[きた]には北海道[ほっかいどう]があります。",
+      "exVi": "Hokkaidou ở phía bắc."
+    },
+    {
+      "jp": "国際",
+      "reading": "こくさい",
+      "vi": "Quốc tế",
+      "pos": "noun",
+      "ex": "ノイバイは国際[こくさい]のくうこうです。",
+      "exVi": "Nội Bài là sân bay quốc tế."
+    },
+    {
+      "jp": "水道",
+      "reading": "すいどう",
+      "vi": "Nước máy",
+      "pos": "noun",
+      "ex": "水道[すいどう]が飲[の]めますか。",
+      "exVi": "Nước máy có uống được không nhỉ?"
+    },
+    {
+      "jp": "チーム",
+      "reading": "チーム",
+      "vi": "Đội",
+      "pos": "noun",
+      "ex": "サッカーはチームのスポーツです。",
+      "exVi": "Bóng đá là môn thể thao đồng đội."
+    },
+    {
+      "jp": "エンジン",
+      "reading": "エンジン",
+      "vi": "Động cơ",
+      "pos": "noun",
+      "ex": "エンジンが壊[こわ]れていると思[おも]います。",
+      "exVi": "Tớ nghĩ là động cơ bị hỏng."
+    },
+    {
+      "jp": "今夜",
+      "reading": "こんや",
+      "vi": "Tối nay",
+      "pos": "noun",
+      "ex": "今夜[こんや]の8時[じ]です。",
+      "exVi": "8 giờ tối nay nha."
+    },
+    {
+      "jp": "夕方",
+      "reading": "ゆうがた",
+      "vi": "Chiều tối",
+      "pos": "noun",
+      "ex": "ゆうがたのご飯[はん]ののこりがありますよ。",
+      "exVi": "Có ít cơm thừa của chiều tối đó."
+    },
+    {
+      "jp": "十分",
+      "reading": "じゅうぶん",
+      "vi": "Đủ",
+      "pos": "adj",
+      "ex": "ああ、もう十分[じゅうぶん]です。お腹[なか]がいっぱいです。",
+      "exVi": "Aaa, đủ rồi. Tôi no lắm rồi."
+    },
+    {
+      "jp": "おかしい",
+      "reading": "おかしい",
+      "vi": "Lạ",
+      "pos": "adj",
+      "ex": "今日[きょう]の先生[せんせい]の声[こえ]はちょっとおかしいですね。",
+      "exVi": "Hôm nay giọng sensei hơi lạ nhỉ."
+    },
+    {
+      "jp": "うるさい",
+      "reading": "うるさい",
+      "vi": "Ồn ào",
+      "pos": "adj",
+      "ex": "外[そと]がちょっとうるさいですが、私[わたし]の声[こえ]が聞[き]こえますか。",
+      "exVi": "Bên ngoài có hơi ồn một chút, các em vẫn nghe rõ tiếng của tôi chứ?"
+    },
+    {
+      "jp": "遅く",
+      "reading": "おそく",
+      "vi": "Muộn",
+      "pos": "adv",
+      "ex": "雨[あめ]ですから、遅[おそ]くなると思[おも]います。",
+      "exVi": "Trời đang mưa, vì vậy tôi nghĩ rằng tôi sẽ bị muộn."
+    },
+    {
+      "jp": "こんなに/そんなに/あんなに",
+      "reading": "こんなに/そんなに/あんなに",
+      "vi": "Như thế này / Như thế đó / Như thế kia",
+      "pos": "adv",
+      "ex": "こんなにおいしいコーヒーを飲[の]んだことがありますか。",
+      "exVi": "Cậu đã từng uống qua cà phê ngon như thế này bao giờ chưa?"
+    }
+  ]
+}

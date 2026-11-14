@@ -1,0 +1,122 @@
+{
+  "lesson": {
+    "id": "b48",
+    "name": "Bài 48",
+    "type": "book"
+  },
+  "count": 14,
+  "words": [
+    {
+      "jp": "下ろします",
+      "reading": "おろします",
+      "vi": "Lấy xuống",
+      "pos": "verb",
+      "ex": "あの棚[たな]から本[ほん]を下[お]ろしていただけませんか。",
+      "exVi": "Phiền chị có thể lấy cho tôi quyển sách từ giá kia xuống được không?"
+    },
+    {
+      "jp": "届けます",
+      "reading": "とどけます",
+      "vi": "Đưa đến, chuyển đến",
+      "pos": "verb",
+      "ex": "この資料[しりょう]を部長[ぶちょう]に届[とど]けてください。",
+      "exVi": "Hãy đưa tài liệu này cho trưởng phòng giúp tôi."
+    },
+    {
+      "jp": "録音します",
+      "reading": "ろくおんします",
+      "vi": "Ghi âm",
+      "pos": "verb",
+      "ex": "録音[ろくおん]したの。聞[き]いてみる?",
+      "exVi": "Tôi đã ghi âm rồi đó. Cậu có muốn nghe thử không?"
+    },
+    {
+      "jp": "代わりをします",
+      "reading": "かわりをします",
+      "vi": "Thay thế",
+      "pos": "verb",
+      "ex": "すぐ他[た]の代[か]わりをします。",
+      "exVi": "Tôi sẽ thực hiện một sự thay thế khác sớm."
+    },
+    {
+      "jp": "嫌(な)",
+      "reading": "いや(な)",
+      "vi": "Chán, không thích",
+      "pos": "adj",
+      "ex": "野菜[やさい]が嫌[いや]だから。",
+      "exVi": "Vì tôi ghét rau lắm..."
+    },
+    {
+      "jp": "美しい",
+      "reading": "うつくしい",
+      "vi": "Đẹp",
+      "pos": "adj",
+      "ex": "海[うみ]が美[うつく]しいね。",
+      "exVi": "Biển thật đẹp."
+    },
+    {
+      "jp": "塾",
+      "reading": "じゅく",
+      "vi": "Lò luyện thi, nơi học thêm",
+      "pos": "noun",
+      "ex": "今日[きょう]塾[じゅく]の日[ひ]じゃないの?",
+      "exVi": "Hôm nay không đi học thêm sao?"
+    },
+    {
+      "jp": "生徒",
+      "reading": "せいと",
+      "vi": "Học sinh",
+      "pos": "noun",
+      "ex": "あなたはRikiの生徒[せいと]です。",
+      "exVi": "Bạn là học sinh của Riki."
+    },
+    {
+      "jp": "ファイル",
+      "reading": "ファイル",
+      "vi": "File tài liệu, kẹp tài liệu",
+      "pos": "noun",
+      "ex": "Bさんのレポートはこのファイルですね。",
+      "exVi": "Báo cáo của chị B là file này đúng không."
+    },
+    {
+      "jp": "スケジュール",
+      "reading": "スケジュール",
+      "vi": "Thời khóa biểu, lịch làm việc",
+      "pos": "noun",
+      "ex": "すぐスケジュールを確認[かくにん]します。",
+      "exVi": "Tôi sẽ xác nhận lại lịch làm việc ngay."
+    },
+    {
+      "jp": "姿",
+      "reading": "すがた",
+      "vi": "Bóng dáng, dáng điệu, tư thế",
+      "pos": "noun",
+      "ex": "今日[きょう]はTrungさんの姿[すがた]をみかけませんね。",
+      "exVi": "Hôm nay không thấy bóng dáng Trung đâu nhỉ."
+    },
+    {
+      "jp": "自由に",
+      "reading": "じゆうに",
+      "vi": "Một cách tự do, một cách thoải mái",
+      "pos": "adv",
+      "ex": "自由[じゆう]に意見[いけん]を出[だ]してください。",
+      "exVi": "Hãy cứ thoải mái đưa ra ý kiến của mình đi ạ."
+    },
+    {
+      "jp": "久しぶり",
+      "reading": "ひさしぶり",
+      "vi": "Lâu",
+      "pos": "adv",
+      "ex": "お久[ひさ]しぶりですね! お元気[げんき]ですか。",
+      "exVi": "Lâu lắm mới gặp lại nha! Cậu khỏe không?"
+    },
+    {
+      "jp": "かまいません",
+      "reading": "かまいません",
+      "vi": "Không sao/ Không có vấn đề gì",
+      "pos": "adv",
+      "ex": "かまいませんよ。治[なお]ったら、会社[かいしゃ]に来[き]てくださいね。",
+      "exVi": "Đó là Corona, vì vậy tôi không ngại làm việc ở nhà."
+    }
+  ]
+}

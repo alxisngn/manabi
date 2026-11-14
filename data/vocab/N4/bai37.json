@@ -1,0 +1,226 @@
+{
+  "lesson": {
+    "id": "b37",
+    "name": "Bài 37",
+    "type": "book"
+  },
+  "count": 27,
+  "words": [
+    {
+      "jp": "ほめます",
+      "reading": "ほめます",
+      "vi": "Khen",
+      "pos": "verb",
+      "ex": "先生[せんせい]は学生[がくせい]をほめます。",
+      "exVi": "Giáo viên khen học sinh."
+    },
+    {
+      "jp": "しかります",
+      "reading": "しかります",
+      "vi": "Mắng",
+      "pos": "verb",
+      "ex": "先生[せんせい]は学生[がくせい]をしかります。",
+      "exVi": "Giáo viên mắng học sinh."
+    },
+    {
+      "jp": "誘います",
+      "reading": "さそいます",
+      "vi": "Mời, rủ",
+      "pos": "verb",
+      "ex": "私[わたし]はともだちを映画[えいが]に誘[さそ]います。",
+      "exVi": "Tớ sẽ rủ bạn đi xem phim."
+    },
+    {
+      "jp": "招待します",
+      "reading": "しょうたいします",
+      "vi": "Mời",
+      "pos": "verb",
+      "ex": "このパーティに招待[しょうたい]しましたよ。",
+      "exVi": "Tớ đã mời cậu ấy đến bữa tiệc này đó."
+    },
+    {
+      "jp": "頼みます",
+      "reading": "たのみます",
+      "vi": "Nhờ",
+      "pos": "verb",
+      "ex": "すみません、部長[ぶちょう]は私[わたし]に仕事[しごと]を頼[たの]みましたから、帰[かえ]れません。",
+      "exVi": "Xin lỗi, trưởng phòng có nhờ tôi làm chút việc nên bây giờ chưa về được."
+    },
+    {
+      "jp": "注意します",
+      "reading": "ちゅういします",
+      "vi": "Nhắc nhở",
+      "pos": "verb",
+      "ex": "きのう私[わたし]はあなたにこの問題[もんだい]を注意[ちゅうい]しました。",
+      "exVi": "Hôm qua tôi đã nhắc nhở em về vấn đề này rồi."
+    },
+    {
+      "jp": "とります",
+      "reading": "とります",
+      "vi": "Lấy mất",
+      "pos": "verb",
+      "ex": "さいふをとった!",
+      "exVi": "Nó lấy mất ví của tôi rồi!"
+    },
+    {
+      "jp": "踏みます",
+      "reading": "ふみます",
+      "vi": "Giẫm đạp",
+      "pos": "verb",
+      "ex": "私[わたし]の足[あし]を踏[ふ]んだ!",
+      "exVi": "Anh giẫm vào chân tôi rồi!"
+    },
+    {
+      "jp": "壊します",
+      "reading": "こわします",
+      "vi": "Làm hỏng",
+      "pos": "verb",
+      "ex": "きのうカメラを壊[こわ]してしまった。",
+      "exVi": "Hôm qua tớ lỡ làm hỏng mất rồi."
+    },
+    {
+      "jp": "汚します",
+      "reading": "よごします",
+      "vi": "Làm dơ, bẩn",
+      "pos": "verb",
+      "ex": "Bちゃん、君[きみ]の汚[よご]したシャツを持[も]ってきてください。",
+      "exVi": "B ơi, mang cái áo bị bẩn của con qua đây nào!"
+    },
+    {
+      "jp": "行います",
+      "reading": "おこないます",
+      "vi": "Tổ chức",
+      "pos": "verb",
+      "ex": "この週末[しゅうまつ]、誕生日[たんじょうび]のパーティーを行[おこな]います。",
+      "exVi": "Cuối tuần này tớ tổ chức một bữa tiệc sinh nhật."
+    },
+    {
+      "jp": "輸出します",
+      "reading": "ゆしゅつします",
+      "vi": "Xuất khẩu",
+      "pos": "verb",
+      "ex": "日本[にほん]はベトナムにコンピューターを輸出[ゆしゅつ]します。",
+      "exVi": "Nhật Bản xuất khẩu máy tính sang Việt Nam."
+    },
+    {
+      "jp": "輸入します",
+      "reading": "ゆにゅうします",
+      "vi": "Nhập khẩu",
+      "pos": "verb",
+      "ex": "日本[にほん]はベトナムから米[こめ]を輸入[ゆにゅう]します。",
+      "exVi": "Nhật Bản nhập khẩu gạo từ Việt Nam."
+    },
+    {
+      "jp": "翻訳します",
+      "reading": "ほんやくします",
+      "vi": "Biên dịch",
+      "pos": "verb",
+      "ex": "この本[ほん]を日本語[にほんご]からベトナム語[ご]に翻訳[ほんやく]します。",
+      "exVi": "Tôi biên dịch cuốn sách này từ tiếng Nhật sang tiếng Việt."
+    },
+    {
+      "jp": "通訳します",
+      "reading": "つうやくします",
+      "vi": "Thông dịch",
+      "pos": "verb",
+      "ex": "日本人[にほんじん]の言[い]ったことをベトナム語[ご]に通訳[つうやく]します。",
+      "exVi": "Tôi phiên dịch lời nói của người Nhật sang tiếng Việt."
+    },
+    {
+      "jp": "発明します",
+      "reading": "はつめいします",
+      "vi": "Phát minh",
+      "pos": "verb",
+      "ex": "むかしの中国人[ちゅうごくじん]は紙[かみ]を発明[はつめい]しました。",
+      "exVi": "Người Trung Quốc xưa đã phát minh ra giấy."
+    },
+    {
+      "jp": "発見します",
+      "reading": "はっけんします",
+      "vi": "Phát hiện",
+      "pos": "verb",
+      "ex": "コロンブスがアメリカ大陸[たいりく]を発見[はっけん]しました。",
+      "exVi": "Colombus đã phát hiện ra châu Mỹ."
+    },
+    {
+      "jp": "米",
+      "reading": "こめ",
+      "vi": "Gạo",
+      "pos": "noun",
+      "ex": "米[こめ]でご飯[はん]を作[つく]ります。",
+      "exVi": "Tôi nấu cơm từ gạo."
+    },
+    {
+      "jp": "麦",
+      "reading": "むぎ",
+      "vi": "Lúa mạch",
+      "pos": "noun",
+      "ex": "ビールは麦[むぎ]から作[つく]られます。",
+      "exVi": "Bia được làm từ lúa mạch."
+    },
+    {
+      "jp": "石油",
+      "reading": "せきゆ",
+      "vi": "Dầu mỏ",
+      "pos": "noun",
+      "ex": "日本[にほん]はサウジアラビアから石油[せきゆ]を輸入[ゆにゅう]します。",
+      "exVi": "Nhật Bản nhập khẩu dầu mỏ từ Ả Rập Xê Út."
+    },
+    {
+      "jp": "原料",
+      "reading": "げんりょう",
+      "vi": "Nguyên liệu",
+      "pos": "noun",
+      "ex": "チョコレートの原料[げんりょう]はなんですか?",
+      "exVi": "Nguyên liệu của socola là gì?"
+    },
+    {
+      "jp": "インスタントラーメン",
+      "reading": "インスタントラーメン",
+      "vi": "Mì ăn liền",
+      "pos": "noun",
+      "ex": "インスタントラーメンは体[からだ]によくないよ。",
+      "exVi": "Mì ăn liền không tốt cho cơ thể đâu."
+    },
+    {
+      "jp": "デート",
+      "reading": "デート",
+      "vi": "Hẹn hò",
+      "pos": "noun",
+      "ex": "デートがありますから。",
+      "exVi": "Tại vì tớ có buổi hẹn hò ấy mà."
+    },
+    {
+      "jp": "泥棒",
+      "reading": "どろぼう",
+      "vi": "Kẻ trộm",
+      "pos": "noun",
+      "ex": "泥棒[どろぼう]は窓[まど]から逃[に]げました。",
+      "exVi": "Tên trộm đã trốn thoát từ cửa sổ."
+    },
+    {
+      "jp": "警官",
+      "reading": "けいかん",
+      "vi": "Cảnh sát",
+      "pos": "noun",
+      "ex": "警官[けいかん]は泥棒[どろぼう]を見[み]つけました。",
+      "exVi": "Cảnh sát đã tìm ra tên trộm."
+    },
+    {
+      "jp": "世界中",
+      "reading": "せかいじゅう",
+      "vi": "Khắp thế giới",
+      "pos": "noun",
+      "ex": "世界中[せかいじゅう]を旅行[りょこう]したいです。",
+      "exVi": "Tôi muốn đi du lịch khắp thế giới."
+    },
+    {
+      "jp": "〜世紀",
+      "reading": "〜せいき",
+      "vi": "Thế kỷ",
+      "pos": "noun",
+      "ex": "テレビは20世紀[せいき]に発明[はつめい]されました。",
+      "exVi": "TV được phát minh vào thế kỷ 20."
+    }
+  ]
+}

@@ -1,0 +1,242 @@
+{
+  "lesson": {
+    "id": "b35",
+    "name": "Bài 35",
+    "type": "book"
+  },
+  "count": 29,
+  "words": [
+    {
+      "jp": "「花が」咲きます",
+      "reading": "「はなが」さきます",
+      "vi": "(Hoa) nở",
+      "pos": "verb",
+      "ex": "桜[さくら]の花[はな]が咲[さ]いているよ。",
+      "exVi": "Hoa anh đào đang nở kìa!"
+    },
+    {
+      "jp": "「色が」変わります",
+      "reading": "「いろが」かわります",
+      "vi": "(Màu sắc) thay đổi",
+      "pos": "verb",
+      "ex": "青色[あおいろ]に変[か]わったら進[すす]むんだよね!",
+      "exVi": "Khi đèn chuyển xanh thì được đi."
+    },
+    {
+      "jp": "困ります",
+      "reading": "こまります",
+      "vi": "Khó khăn",
+      "pos": "verb",
+      "ex": "日本人[にほんじん]と相談[そうだん]するとき困[こま]ります。",
+      "exVi": "Khi bàn bạc với người Nhật thì rất khó khăn."
+    },
+    {
+      "jp": "「まるを」つけます",
+      "reading": "「まるを」つけます",
+      "vi": "Đánh (dấu tròn)",
+      "pos": "verb",
+      "ex": "答[こた]えにまるをつけてください。",
+      "exVi": "Hãy đánh dấu tròn vào câu trả lời."
+    },
+    {
+      "jp": "「病気が」治ります",
+      "reading": "「びょうきが」なおります",
+      "vi": "Khỏi (bệnh)",
+      "pos": "verb",
+      "ex": "病気[びょうき]がまだ治[なお]らないよ。",
+      "exVi": "Bệnh của tớ vẫn chưa khỏi đâu."
+    },
+    {
+      "jp": "「故障が」直ります",
+      "reading": "「こしょうが」なおります",
+      "vi": "Được sửa xong (hư hỏng)",
+      "pos": "verb",
+      "ex": "私[わたし]のパソコンは直[なお]りましたか。",
+      "exVi": "Cái laptop của tôi đã được sửa xong chưa."
+    },
+    {
+      "jp": "クリックします",
+      "reading": "クリックします",
+      "vi": "Kích chuột",
+      "pos": "verb",
+      "ex": "ここをクリックしてください。",
+      "exVi": "Cậu hãy kích chuột vào đây này."
+    },
+    {
+      "jp": "入力します",
+      "reading": "にゅうりょくします",
+      "vi": "Nhập vào",
+      "pos": "verb",
+      "ex": "コンピューターに入力[にゅうりょく]してくださいね。",
+      "exVi": "Hãy nhập nó vào máy tính giúp tôi."
+    },
+    {
+      "jp": "向こう",
+      "reading": "むこう",
+      "vi": "Đằng ấy, phía đối diện",
+      "pos": "noun",
+      "ex": "向[む]こうの店[みせ]ですよ。",
+      "exVi": "Nó là cửa hàng ở phía đối diện kìa."
+    },
+    {
+      "jp": "島",
+      "reading": "しま",
+      "vi": "Đảo",
+      "pos": "noun",
+      "ex": "ここから向[む]こうの島[しま]が見[み]えますよ。",
+      "exVi": "Từ đây có thể nhìn thấy hòn đảo phía đối diện đấy."
+    },
+    {
+      "jp": "港",
+      "reading": "みなと",
+      "vi": "Cảng",
+      "pos": "noun",
+      "ex": "船[ふね]は港[みなと]にたくさん止[と]まります。",
+      "exVi": "Tàu / Thuyền dừng lại nhiều ở cảng ạ."
+    },
+    {
+      "jp": "近所",
+      "reading": "きんじょ",
+      "vi": "Hàng xóm",
+      "pos": "noun",
+      "ex": "近所[きんじょ]は良[よ]くて、親切[しんせつ]な人[ひと]たちです。",
+      "exVi": "Hàng xóm tôi tốt và thân thiện lắm."
+    },
+    {
+      "jp": "屋上",
+      "reading": "おくじょう",
+      "vi": "Tầng thượng",
+      "pos": "noun",
+      "ex": "一緒[いっしょ]に屋上[おくじょう]に行[い]きませんか。",
+      "exVi": "Cùng đi lên sân thượng với tôi không?"
+    },
+    {
+      "jp": "海外",
+      "reading": "かいがい",
+      "vi": "Nước ngoài",
+      "pos": "noun",
+      "ex": "海外旅行[かいがいりょこう]だ。",
+      "exVi": "Du lịch nước ngoài."
+    },
+    {
+      "jp": "山登り",
+      "reading": "やまのぼり",
+      "vi": "Leo núi",
+      "pos": "noun",
+      "ex": "一緒[いっしょ]に山登[やまのぼ]りに行[い]きませんか。",
+      "exVi": "Cùng chúng tôi đi leo núi không?"
+    },
+    {
+      "jp": "歴史",
+      "reading": "れきし",
+      "vi": "Lịch sử",
+      "pos": "noun",
+      "ex": "あさって歴史[れきし]のテストがあるから...",
+      "exVi": "Vì ngày kia có bài test lịch sử mà..."
+    },
+    {
+      "jp": "機会 (=チャンス)",
+      "reading": "きかい (=チャンス)",
+      "vi": "Cơ hội",
+      "pos": "noun",
+      "ex": "もし海外旅行[かいがいりょこう]へ行[い]く機会[きかい]があったら、日本[にほん]へ行[い]きたい。",
+      "exVi": "Nếu có cơ hội đi du lịch nước ngoài, tôi muốn đến Nhật Bản."
+    },
+    {
+      "jp": "許可",
+      "reading": "きょか",
+      "vi": "Sự cho phép",
+      "pos": "noun",
+      "ex": "部長[ぶちょう]に許可[きょか]をもらったらいいですよ。",
+      "exVi": "Bạn nên được sự cho phép từ trưởng phòng."
+    },
+    {
+      "jp": "まる",
+      "reading": "まる",
+      "vi": "Hình tròn",
+      "pos": "noun",
+      "ex": "まるのお皿[さら]を取[と]ってください。",
+      "exVi": "Hãy lấy cho tôi cái đĩa hình tròn."
+    },
+    {
+      "jp": "レバー",
+      "reading": "レバー",
+      "vi": "Cần, cần gạt",
+      "pos": "noun",
+      "ex": "このレバーを押[お]してください。",
+      "exVi": "Chị hãy gạt cái cần gạt này."
+    },
+    {
+      "jp": "葉",
+      "reading": "は",
+      "vi": "Lá",
+      "pos": "noun",
+      "ex": "お城[しろ]も、木[き]の葉[は]も...",
+      "exVi": "Cả thành cũng đẹp, cả lá cây cũng đẹp..."
+    },
+    {
+      "jp": "キー",
+      "reading": "キー",
+      "vi": "Phím",
+      "pos": "noun",
+      "ex": "このキーを押[お]してください。",
+      "exVi": "Cậu hãy ấn vào phím này nhé."
+    },
+    {
+      "jp": "カーテン",
+      "reading": "カーテン",
+      "vi": "Rèm cửa",
+      "pos": "noun",
+      "ex": "カーテンを閉[し]めてくださいね。",
+      "exVi": "Vui lòng đóng rèm lại."
+    },
+    {
+      "jp": "設備",
+      "reading": "せつび",
+      "vi": "Thiết bị",
+      "pos": "noun",
+      "ex": "この工場[こうじょう]の設備[せつび]は古[ふる]くなりましたね。",
+      "exVi": "Các trang thiết bị của nhà máy này đã trở nên cũ hết rồi nhỉ."
+    },
+    {
+      "jp": "ひも",
+      "reading": "ひも",
+      "vi": "Sợi dây",
+      "pos": "noun",
+      "ex": "ひもを取[と]ってね。",
+      "exVi": "Lấy sợi dây."
+    },
+    {
+      "jp": "炊飯器",
+      "reading": "すいはんき",
+      "vi": "Nồi cơm điện",
+      "pos": "noun",
+      "ex": "この炊飯器[すいはんき]はどうですか。",
+      "exVi": "Bạn thấy nồi cơm điện này như thế nào ạ?"
+    },
+    {
+      "jp": "昔",
+      "reading": "むかし",
+      "vi": "Ngày xưa",
+      "pos": "noun",
+      "ex": "昔[むかし]も宿題[しゅくだい]は多[おお]かったよ。",
+      "exVi": "Ngày xưa cũng nhiều bài tập về nhà lắm."
+    },
+    {
+      "jp": "正しい",
+      "reading": "ただしい",
+      "vi": "Đúng",
+      "pos": "adj",
+      "ex": "正[ただ]しい答[こた]えはなんですか。",
+      "exVi": "Đáp án đúng là cái nào ạ."
+    },
+    {
+      "jp": "もっと",
+      "reading": "もっと",
+      "vi": "Hơn nữa",
+      "pos": "adv",
+      "ex": "もっと大[おお]きいかばんがありませんか。",
+      "exVi": "Bên mình có cái cặp to hơn không?"
+    }
+  ]
+}

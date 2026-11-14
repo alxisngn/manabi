@@ -1,0 +1,226 @@
+{
+  "lesson": {
+    "id": "b34",
+    "name": "Bài 34",
+    "type": "book"
+  },
+  "count": 27,
+  "words": [
+    {
+      "jp": "「歯を」磨きます",
+      "reading": "「はを」みがきます",
+      "vi": "Đánh (răng)",
+      "pos": "verb",
+      "ex": "歯[は]を磨[みが]いて、朝[あさ]ごはんを食[た]べます。",
+      "exVi": "Tớ sẽ đánh răng rồi ăn sáng."
+    },
+    {
+      "jp": "組み立てます",
+      "reading": "くみたてます",
+      "vi": "Lắp ráp",
+      "pos": "verb",
+      "ex": "自分[じぶん]で説明書[せつめいしょ]のとおりに、組[く]み立[た]てました。",
+      "exVi": "Tớ đã tự mình lắp ráp theo sách hướng dẫn đó."
+    },
+    {
+      "jp": "「紙を」折ります",
+      "reading": "「かみを」おります",
+      "vi": "Gập, bẻ (giấy)",
+      "pos": "verb",
+      "ex": "いいよ。私[わたし]の折[お]るとおりに、折[お]ってくださいね。",
+      "exVi": "Được, cậu hãy gấp theo những gì tớ sẽ làm bây giờ nhé."
+    },
+    {
+      "jp": "「忘れ物に」気がつきます",
+      "reading": "「わすれものに」きがつきます",
+      "vi": "Phát hiện, nhận ra (đồ để quên)",
+      "pos": "verb",
+      "ex": "ゴメン、忙[いそが]しくて、メッセージに気[き]が付[つ]かなかった。",
+      "exVi": "Xin lỗi, tôi bận không để ý tin nhắn của bạn."
+    },
+    {
+      "jp": "「しょうゆを」つけます",
+      "reading": "「しょうゆを」つけます",
+      "vi": "Chấm (nước tương)",
+      "pos": "verb",
+      "ex": "しょうゆをつけて、食[た]べますよ。",
+      "exVi": "Cậu cứ chấm vào nước tương rồi ăn thôi."
+    },
+    {
+      "jp": "「かぎが」見つかります",
+      "reading": "「かぎが」みつかります",
+      "vi": "Tìm ra (chìa khóa)",
+      "pos": "verb",
+      "ex": "あ〜、鍵[かぎ]が見[み]つかりました。",
+      "exVi": "À, tôi đã tìm thấy chìa khóa."
+    },
+    {
+      "jp": "質問します",
+      "reading": "しつもんします",
+      "vi": "Đặt câu hỏi",
+      "pos": "verb",
+      "ex": "分[わ]からないことがあったら質問[しつもん]してくださいね。",
+      "exVi": "Hãy đặt câu hỏi khi có cái gì không hiểu nhé."
+    },
+    {
+      "jp": "「かさを」さします",
+      "reading": "「かさを」さします",
+      "vi": "Che (ô)",
+      "pos": "verb",
+      "ex": "雨[あめ]が降[ふ]っていますから、傘[かさ]をさします。",
+      "exVi": "Trời đang mưa, vì vậy tôi sẽ lấy một chiếc ô."
+    },
+    {
+      "jp": "スポーツクラブ",
+      "reading": "スポーツクラブ",
+      "vi": "Câu lạc bộ thể thao",
+      "pos": "noun",
+      "ex": "ねえ、スポーツクラブに入[はい]っていますか。",
+      "exVi": "Này, cậu có đang tham gia vào câu lạc bộ thể thao không?"
+    },
+    {
+      "jp": "「お」しろ",
+      "reading": "「お」しろ",
+      "vi": "Thành",
+      "pos": "noun",
+      "ex": "昔[むかし]ここにおしろがありました。",
+      "exVi": "Ngày xưa ở đây có một lâu đài cổ."
+    },
+    {
+      "jp": "説明書",
+      "reading": "せつめいしょ",
+      "vi": "Sách hướng dẫn",
+      "pos": "noun",
+      "ex": "説明書[せつめいしょ]を見[み]てみたらどうですか。",
+      "exVi": "Cậu thử xem qua sách hướng dẫn xem sao."
+    },
+    {
+      "jp": "図",
+      "reading": "ず",
+      "vi": "Hình minh họa",
+      "pos": "noun",
+      "ex": "図[ず]をもらえませんか。",
+      "exVi": "Bạn có thể cho tôi một hình minh họa."
+    },
+    {
+      "jp": "線",
+      "reading": "せん",
+      "vi": "Đường kẻ",
+      "pos": "noun",
+      "ex": "線[せん]のとおりに、切[き]ります。",
+      "exVi": "Cắt dọc theo đường kẻ."
+    },
+    {
+      "jp": "矢印",
+      "reading": "やじるし",
+      "vi": "Mũi tên",
+      "pos": "noun",
+      "ex": "矢印[やじるし]のとおりに、行[い]きます。",
+      "exVi": "Đi theo mũi tên và đi."
+    },
+    {
+      "jp": "黒",
+      "reading": "くろ",
+      "vi": "Màu đen",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "青",
+      "reading": "あお",
+      "vi": "Màu xanh",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "白",
+      "reading": "しろ",
+      "vi": "Màu trắng",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "赤",
+      "reading": "あか",
+      "vi": "Màu đỏ",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "紺",
+      "reading": "こん",
+      "vi": "Màu xanh thẫm",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "黄色",
+      "reading": "きいろ",
+      "vi": "Màu vàng",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "茶色",
+      "reading": "ちゃいろ",
+      "vi": "Màu nâu",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "しょうゆ",
+      "reading": "しょうゆ",
+      "vi": "Xì dầu/ nước tương",
+      "pos": "noun",
+      "ex": "そのしょうゆを取[と]ってくれない?",
+      "exVi": "Lấy hộ chai nước tương đó giúp tớ với."
+    },
+    {
+      "jp": "ソース",
+      "reading": "ソース",
+      "vi": "Nước sốt",
+      "pos": "noun",
+      "ex": "すみません。追加[ついか]のソースをお願[ねが]いします。",
+      "exVi": "Xin lỗi, cho tôi xin thêm nước sốt."
+    },
+    {
+      "jp": "お客さん",
+      "reading": "おきゃくさん",
+      "vi": "Khách",
+      "pos": "noun",
+      "ex": "お客[きゃく]が一人[ひとり]もいなかったので、私[わたし]は早[はや]く閉店[へいてん]しました。",
+      "exVi": "Vì không có khách nên tôi đóng cửa sớm."
+    },
+    {
+      "jp": "ゆうべ",
+      "reading": "ゆうべ",
+      "vi": "Tối qua",
+      "pos": "noun",
+      "ex": "ねえ、昨夜[さくや](ゆうべ) 何[なに]を食[た]べましたか?",
+      "exVi": "Này, bạn đã ăn gì tối qua?"
+    },
+    {
+      "jp": "苦い",
+      "reading": "にがい",
+      "vi": "Đắng",
+      "pos": "adj",
+      "ex": "ゴーヤです。すごく苦[にが]いですが、体[からだ]にいいですよ。",
+      "exVi": "Quả mướp đắng. Rất đắng nhưng tốt cho sức khỏe lắm đấy."
+    },
+    {
+      "jp": "さっき",
+      "reading": "さっき",
+      "vi": "Lúc nãy",
+      "pos": "adv",
+      "ex": "Trungさんはさっきから、帰[かえ]りましたよ。",
+      "exVi": "Anh ấy vừa về từ lúc nãy rồi."
+    }
+  ]
+}

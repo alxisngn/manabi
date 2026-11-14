@@ -1,0 +1,354 @@
+{
+  "lesson": {
+    "id": "b41",
+    "name": "Bài 41",
+    "type": "book"
+  },
+  "count": 43,
+  "words": [
+    {
+      "jp": "いただきます",
+      "reading": "いただきます",
+      "vi": "Nhận (khiêm nhường ngữ của もらいます)",
+      "pos": "verb",
+      "ex": "この問題[もんだい]はあまり分[わ]からないので、教[おし]えていただけませんか。",
+      "exVi": "Câu này em không hiểu lắm, anh/chị có thể chỉ giúp em với có được không ạ?"
+    },
+    {
+      "jp": "くださいます",
+      "reading": "くださいます",
+      "vi": "Cho (Kính ngữ của くれます)",
+      "pos": "verb",
+      "ex": "先生[せんせい]がくださったんです。",
+      "exVi": "Tớ được thầy tặng cho đấy."
+    },
+    {
+      "jp": "やります",
+      "reading": "やります",
+      "vi": "Cho (dùng với người nhỏ tuổi hơn, người dưới, động thực vật)",
+      "pos": "verb",
+      "ex": "はい。すぐ、やります。",
+      "exVi": "Vâng, em cho con uống ngay đây."
+    },
+    {
+      "jp": "親切にします",
+      "reading": "しんせつにします",
+      "vi": "Thân thiện, thân thiết",
+      "pos": "verb",
+      "ex": "マルコちゃんに親切[しんせつ]にしてくださいね。",
+      "exVi": "Hãy thân thiện với Maruko nhé."
+    },
+    {
+      "jp": "かわいい",
+      "reading": "かわいい",
+      "vi": "Dễ thương",
+      "pos": "adj",
+      "ex": "かわいい猫[ねこ]ですね。",
+      "exVi": "Con mèo dễ thương quá."
+    },
+    {
+      "jp": "珍しい",
+      "reading": "めずらしい",
+      "vi": "Hiếm",
+      "pos": "adj",
+      "ex": "珍[めずら]しくて、とっても高[たか]いですよ。",
+      "exVi": "Nó hiếm và đắt lắm đó nha."
+    },
+    {
+      "jp": "優しい",
+      "reading": "やさしい",
+      "vi": "Hiền lành, dễ thương",
+      "pos": "adj",
+      "ex": "ミーちゃんはとてもやさしい人[ひと]です。",
+      "exVi": "Cậu nghĩ Mi là người như thế nào?"
+    },
+    {
+      "jp": "厳しい",
+      "reading": "きびしい",
+      "vi": "Nghiêm khắc",
+      "pos": "adj",
+      "ex": "先生[せんせい]は厳[きび]しいですから、ぜひ遅刻[ちこく]しないでくださいね。",
+      "exVi": "Giáo viên nghiêm khắc, vì vậy xin đừng đến muộn."
+    },
+    {
+      "jp": "お祝い",
+      "reading": "おいわい",
+      "vi": "Chúc mừng, quà mừng",
+      "pos": "noun",
+      "ex": "大学[だいがく]の卒業[そつぎょう]のお祝[いわ]いは何[なに]がいいかな。",
+      "exVi": "Quà mừng tốt nghiệp cái gì thì được nhỉ?"
+    },
+    {
+      "jp": "お年玉",
+      "reading": "おとしだま",
+      "vi": "Tiền mừng tuổi, lì xì",
+      "pos": "noun",
+      "ex": "今年[ことし]はまだお年玉[としだま]がもらえるかな。",
+      "exVi": "Không biết năm nay vẫn còn được nhận lì xì không nữa."
+    },
+    {
+      "jp": "[お] 見舞い",
+      "reading": "[お] みまい",
+      "vi": "Thăm hỏi, quà thăm hỏi",
+      "pos": "noun",
+      "ex": "じゃ、仕事[しごと]が終[お]わったら、お見舞[みま]いに行[い]きましょう。",
+      "exVi": "Thế xong việc chúng ta cùng nhau đi thăm ấy đi."
+    },
+    {
+      "jp": "お礼",
+      "reading": "おれい",
+      "vi": "Lời cảm ơn",
+      "pos": "noun",
+      "ex": "だれかが助[たす]けてくれたら、お礼[れい]を言[い]ってくださいね。",
+      "exVi": "Nếu ai đó giúp đỡ con thì phải nói lời cảm ơn nhé."
+    },
+    {
+      "jp": "[コンピューターに] 興味があります",
+      "reading": "[コンピューターに] きょうみがあります",
+      "vi": "Có hứng thú, quan tâm đến",
+      "pos": "noun",
+      "ex": "日本[にほん]のアニメに興味[きょうみ]があります。",
+      "exVi": "Tớ có hứng thú với Anime của Nhật Bản."
+    },
+    {
+      "jp": "情報",
+      "reading": "じょうほう",
+      "vi": "Thông tin",
+      "pos": "noun",
+      "ex": "その情報[じょうほう]はどこから聞[き]きましたか。",
+      "exVi": "Thông tin đó cậu đã nghe được từ đâu vậy?"
+    },
+    {
+      "jp": "文法",
+      "reading": "ぶんぽう",
+      "vi": "Ngữ pháp",
+      "pos": "noun",
+      "ex": "日本語[にほんご]で文法[ぶんぽう]が一番[いちばん]難[むずか]しいと思[おも]います。",
+      "exVi": "Tớ nghĩ là ngữ pháp tiếng Nhật là khó nhất."
+    },
+    {
+      "jp": "発音",
+      "reading": "はつおん",
+      "vi": "Phát âm",
+      "pos": "noun",
+      "ex": "私[わたし]は、なかなか「つ」の発音[はつおん]ができないよ。どうしよう。",
+      "exVi": "Mãi mà tớ chẳng thế nào phát âm được âm \"TSU\", làm sao bây giờ?"
+    },
+    {
+      "jp": "猿",
+      "reading": "さる",
+      "vi": "Con khỉ",
+      "pos": "noun",
+      "ex": "猿[さる]はバナナが好[す]きです。",
+      "exVi": "Khỉ thích chuối."
+    },
+    {
+      "jp": "えさ",
+      "reading": "えさ",
+      "vi": "Thức ăn (cho động vật)",
+      "pos": "noun",
+      "ex": "ワンちゃんに餌[えさ]をやりましたか。",
+      "exVi": "Này em cho cún ăn chưa đấy."
+    },
+    {
+      "jp": "亀",
+      "reading": "かめ",
+      "vi": "Con rùa",
+      "pos": "noun",
+      "ex": "この海[うみ]には亀[かめ]がたくさんいます。",
+      "exVi": "Có rất nhiều rùa ở vùng biển này."
+    },
+    {
+      "jp": "幼稚園",
+      "reading": "ようちえん",
+      "vi": "Trường mẫu giáo",
+      "pos": "noun",
+      "ex": "幼稚園[ようちえん]に行[い]きたくない。",
+      "exVi": "Con không muốn đến trường mẫu giáo đâu."
+    },
+    {
+      "jp": "絵葉書",
+      "reading": "えはがき",
+      "vi": "Bưu thiếp tranh",
+      "pos": "noun",
+      "ex": "私[わたし]はこれらの絵葉書[えはがき]を友達[ともだち]に見[み]せた。",
+      "exVi": "Tôi đã cho bạn bè xem những tấm bưu thiếp này."
+    },
+    {
+      "jp": "絵本",
+      "reading": "えほん",
+      "vi": "Truyện tranh",
+      "pos": "noun",
+      "ex": "絵本[えほん]とかおもちゃはどう?",
+      "exVi": "Truyện tranh hoặc đồ chơi thì sao?"
+    },
+    {
+      "jp": "おもちゃ",
+      "reading": "おもちゃ",
+      "vi": "Đồ chơi",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "靴下",
+      "reading": "くつした",
+      "vi": "Vớ",
+      "pos": "noun",
+      "ex": "寒[さむ]くなってきたから、今晩[こんばん]、新[あたら]しい靴下[くつした]と手袋[てぶくろ]を買[か]いに行[い]きたい。",
+      "exVi": "Bởi vì trời trở lạnh, nên tối nay tớ muốn đi mua găng tay và tất mới."
+    },
+    {
+      "jp": "手袋",
+      "reading": "てぶくろ",
+      "vi": "Găng tay",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "ハンカチ",
+      "reading": "ハンカチ",
+      "vi": "Khăn tay",
+      "pos": "noun",
+      "ex": "かわいいハンカチですね。",
+      "exVi": "Cái khăn tay của cậu, dễ thương quá."
+    },
+    {
+      "jp": "ドライバー",
+      "reading": "ドライバー",
+      "vi": "Tuốc-nơ-vít",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "暖房",
+      "reading": "だんぼう",
+      "vi": "Máy sưởi",
+      "pos": "noun",
+      "ex": "寒[さむ]いですから、暖房[だんぼう]をつけましょうか。",
+      "exVi": "Vì trời lạnh nên chúng ta bật lò sưởi nhé."
+    },
+    {
+      "jp": "温度",
+      "reading": "おんど",
+      "vi": "Nhiệt độ",
+      "pos": "noun",
+      "ex": "温度[おんど]を下[さ]げてくれない?",
+      "exVi": "Bạn có thể giảm nhiệt độ xuống không?"
+    },
+    {
+      "jp": "冷房",
+      "reading": "れいぼう",
+      "vi": "Máy lạnh",
+      "pos": "noun",
+      "ex": "暑[あつ]い? 冷房[れいぼう]がついているよ。",
+      "exVi": "Nóng á hả, đang bật máy lạnh đó."
+    },
+    {
+      "jp": "祖父",
+      "reading": "そふ",
+      "vi": "Ông",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "おじいさん",
+      "reading": "おじいさん",
+      "vi": "Ông",
+      "pos": "noun",
+      "ex": "あなたのおじいさんとおばあさんはまだ、お元気[げんき]ですか。",
+      "exVi": "Ông và bà của bạn vẫn khỏe chứ?"
+    },
+    {
+      "jp": "祖母",
+      "reading": "そぼ",
+      "vi": "Bà",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "おばあさん",
+      "reading": "おばあさん",
+      "vi": "Bà",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "孫",
+      "reading": "まご",
+      "vi": "Cháu",
+      "pos": "noun",
+      "ex": "日高[ひだか]さん、孫[まご]がいますか。",
+      "exVi": "Ông Hidaka, ông có cháu nào không?"
+    },
+    {
+      "jp": "お孫さん",
+      "reading": "おまごさん",
+      "vi": "Cháu",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "おじ",
+      "reading": "おじ",
+      "vi": "Chú, bác, cậu",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "おじさん",
+      "reading": "おじさん",
+      "vi": "Chú, bác, cậu",
+      "pos": "noun",
+      "ex": "ねえ、おじさん、どうして今日[きょう]のパーティーにおばさんは来[こ]ないんですか。",
+      "exVi": "Chú ơi, tại sao bữa tiệc hôm nay dì lại không đến vậy ạ?"
+    },
+    {
+      "jp": "おば",
+      "reading": "おば",
+      "vi": "Cô, dì",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "おばさん",
+      "reading": "おばさん",
+      "vi": "Cô, dì",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "管理人",
+      "reading": "かんりにん",
+      "vi": "Người quản lý",
+      "pos": "noun",
+      "ex": "管理人[かんりにん]がいらっしゃいますか。",
+      "exVi": "Người quản lý có ở đây không ạ?"
+    },
+    {
+      "jp": "この間",
+      "reading": "このあいだ",
+      "vi": "Vừa rồi, hôm nọ",
+      "pos": "adv",
+      "ex": "どうしてこの間[あいだ]、日本語[にほんご]の授業[じゅぎょう]を休[やす]みましたか。",
+      "exVi": "Tại sao hôm nọ cậu lại nghỉ học tiết tiếng Nhật vậy?"
+    },
+    {
+      "jp": "〜ずつ",
+      "reading": "〜ずつ",
+      "vi": "Từng~",
+      "pos": "adv",
+      "ex": "今[いま]から一人[ひとり]ずつ名前[なまえ]を呼[よ]びますから、呼[よ]ばれたら返事[へんじ]をしてくださいね。",
+      "exVi": "Bây giờ thầy sẽ gọi tên từng người một, ai được gọi tên thì lên tiếng cho thầy biết nhé."
+    }
+  ]
+}

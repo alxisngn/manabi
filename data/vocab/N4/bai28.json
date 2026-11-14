@@ -1,0 +1,322 @@
+{
+  "lesson": {
+    "id": "b28",
+    "name": "Bài 28",
+    "type": "book"
+  },
+  "count": 39,
+  "words": [
+    {
+      "jp": "「パンが」売れます",
+      "reading": "「パンが」うれます",
+      "vi": "(Bánh mì) bán chạy, bán được",
+      "pos": "verb",
+      "ex": "この店[みせ]のパンは安[やす]くて、美味[おい]しいからよく売[う]れるんだ。",
+      "exVi": "Bánh mì của tiệm này rẻ còn ngon nên bán chạy lắm."
+    },
+    {
+      "jp": "踊ります",
+      "reading": "おどります",
+      "vi": "Nhảy múa",
+      "pos": "verb",
+      "ex": "あれは盆踊[ぼんおど]りですか。踊[おど]りましょう!",
+      "exVi": "Kia có phải là điệu Múa Bon không? Chúng ta cùng múa thôi nào."
+    },
+    {
+      "jp": "「ガムを」かみます",
+      "reading": "「ガムを」かみます",
+      "vi": "Cắn, nhai (kẹo cao su)",
+      "pos": "verb",
+      "ex": "教室[きょうしつ]でガムをかんではいけませんよ。",
+      "exVi": "Không được nhai kẹo cao su trong lớp đâu."
+    },
+    {
+      "jp": "「大学に」通います",
+      "reading": "「だいがくに」かよいます",
+      "vi": "Đi đi về về (việc đi đi về về giữa trường học và nhà)",
+      "pos": "verb",
+      "ex": "ハノイ大学[だいがく]に通[かよ]っています。",
+      "exVi": "Tôi đang đi học ở Đại học Hà Nội."
+    },
+    {
+      "jp": "選びます",
+      "reading": "えらびます",
+      "vi": "Lựa chọn",
+      "pos": "verb",
+      "ex": "コーヒーとジュースとどちらを選[えら]びますか。",
+      "exVi": "Cà phê với nước ép bạn chọn cái nào?"
+    },
+    {
+      "jp": "メモします",
+      "reading": "メモします",
+      "vi": "Ghi chú",
+      "pos": "verb",
+      "ex": "これはテストに出[で]ますから、ちゃんとノートにメモしてくださいね。",
+      "exVi": "Cái này sẽ có trong bài kiểm tra, vì vậy hãy ghi chú vào sổ tay của bạn."
+    },
+    {
+      "jp": "景色",
+      "reading": "けしき",
+      "vi": "Phong cảnh",
+      "pos": "noun",
+      "ex": "ここでの景色[けしき]はどうですか。",
+      "exVi": "Cậu thấy phong cảnh ở đây như thế nào?"
+    },
+    {
+      "jp": "美容院",
+      "reading": "びよういん",
+      "vi": "Hiệu làm đẹp",
+      "pos": "noun",
+      "ex": "美容院[びよういん]に行[い]ったらいいですよ。",
+      "exVi": "Hay là cậu đến hiệu làm đẹp thử xem."
+    },
+    {
+      "jp": "台所",
+      "reading": "だいどころ",
+      "vi": "Nhà bếp (kiểu Nhật)",
+      "pos": "noun",
+      "ex": "台所[だいどころ]はどこ?",
+      "exVi": "Nhà bếp ở đâu vậy?"
+    },
+    {
+      "jp": "経験",
+      "reading": "けいけん",
+      "vi": "Kinh nghiệm",
+      "pos": "noun",
+      "ex": "レストランの仕事[しごと]の経験[けいけん]がありますか。",
+      "exVi": "Bạn có kinh nghiệm trong công việc nhà hàng chưa?"
+    },
+    {
+      "jp": "力",
+      "reading": "ちから",
+      "vi": "Sức mạnh",
+      "pos": "noun",
+      "ex": "すごい力[ちから]だね。",
+      "exVi": "Cậu khỏe thật đấy."
+    },
+    {
+      "jp": "人気がある",
+      "reading": "にんきがある",
+      "vi": "Nổi tiếng, được yêu thích",
+      "pos": "noun",
+      "ex": "Monoさんの音楽[おんがく]は女性[じょせい]に人気[にんき]がありますね。",
+      "exVi": "Nhạc của anh Mono được nữ giới yêu thích lắm đấy nhỉ."
+    },
+    {
+      "jp": "形",
+      "reading": "かたち",
+      "vi": "Hình dạng",
+      "pos": "noun",
+      "ex": "この雲[くも]の形[かたち]は変[へん]ですね。",
+      "exVi": "Hình dạng của đám mây này lạ quá nhỉ."
+    },
+    {
+      "jp": "色",
+      "reading": "いろ",
+      "vi": "Màu sắc",
+      "pos": "noun",
+      "ex": "Bさんの好[す]きな色[いろ]は黒[くろ]ですね。",
+      "exVi": "Màu yêu thích của B là màu đen nhỉ."
+    },
+    {
+      "jp": "味",
+      "reading": "あじ",
+      "vi": "Vị",
+      "pos": "noun",
+      "ex": "この料理[りょうり]の味[あじ]はどう?",
+      "exVi": "Vị của món ăn này như thế nào?"
+    },
+    {
+      "jp": "ガム",
+      "reading": "ガム",
+      "vi": "Kẹo cao su",
+      "pos": "noun",
+      "ex": "このガムは美味[おい]しいよ。",
+      "exVi": "Kẹo cao su này ngon lắm đấy."
+    },
+    {
+      "jp": "品物",
+      "reading": "しなもの",
+      "vi": "Hàng hóa",
+      "pos": "noun",
+      "ex": "品物[しなもの]が多[おお]くて安[やす]いです。",
+      "exVi": "Hàng hóa nhiều và rẻ đó."
+    },
+    {
+      "jp": "値段",
+      "reading": "ねだん",
+      "vi": "Giá cả",
+      "pos": "noun",
+      "ex": "この店[みせ]の服[ふく]は値段[ねだん]が高[たか]いですね。",
+      "exVi": "Quần áo của cửa hàng này có giá cả đắt đỏ nhỉ."
+    },
+    {
+      "jp": "給料",
+      "reading": "きゅうりょう",
+      "vi": "Lương",
+      "pos": "noun",
+      "ex": "給料[きゅうりょう]をもらいましたか。",
+      "exVi": "Cậu đã nhận lương chưa?"
+    },
+    {
+      "jp": "ボーナス",
+      "reading": "ボーナス",
+      "vi": "Tiền thưởng",
+      "pos": "noun",
+      "ex": "ボーナスもありますか。",
+      "exVi": "Cậu có được thưởng không?"
+    },
+    {
+      "jp": "ゲーム",
+      "reading": "ゲーム",
+      "vi": "Game",
+      "pos": "noun",
+      "ex": "ゲームの時間[じかん]は終[お]わりよ。",
+      "exVi": "Hết giờ chơi game rồi đấy."
+    },
+    {
+      "jp": "番組",
+      "reading": "ばんぐみ",
+      "vi": "Chương trình truyền hình",
+      "pos": "noun",
+      "ex": "音楽番組[おんがくばんぐみ]は何時[なんじ]に始[はじ]まる?",
+      "exVi": "Mấy giờ chương trình ca nhạc bắt đầu?"
+    },
+    {
+      "jp": "ドラマ",
+      "reading": "ドラマ",
+      "vi": "Phim truyền hình",
+      "pos": "noun",
+      "ex": "中国[ちゅうごく]ドラマのほうが好[す]き。",
+      "exVi": "Tôi thích phim truyền hình Trung Quốc hơn."
+    },
+    {
+      "jp": "歌手",
+      "reading": "かしゅ",
+      "vi": "Ca sĩ",
+      "pos": "noun",
+      "ex": "有名[ゆうめい]な歌手[かしゅ]のコンサートがありますよ。",
+      "exVi": "Có một buổi hòa nhạc của một ca sĩ nổi tiếng."
+    },
+    {
+      "jp": "小説",
+      "reading": "しょうせつ",
+      "vi": "Tiểu thuyết",
+      "pos": "noun",
+      "ex": "とても面白[おもしろ]い小説[しょうせつ]ですよ。",
+      "exVi": "Đó là một cuốn tiểu thuyết rất thú vị."
+    },
+    {
+      "jp": "小説家",
+      "reading": "しょうせつか",
+      "vi": "Tiểu thuyết gia",
+      "pos": "noun",
+      "ex": "将来[しょうらい]、小説家[しょうせつか]になりたいですから。",
+      "exVi": "Vì tương lai tôi muốn trở thành tiểu thuyết gia mà."
+    },
+    {
+      "jp": "自分",
+      "reading": "じぶん",
+      "vi": "Bản thân, mình",
+      "pos": "noun",
+      "ex": "ここは自分[じぶん]の部屋[へや]ですよ。",
+      "exVi": "Đây là phòng của mình đấy."
+    },
+    {
+      "jp": "将来",
+      "reading": "しょうらい",
+      "vi": "Tương lai",
+      "pos": "noun",
+      "ex": "将来[しょうらい]、何[なに]をする?",
+      "exVi": "Bạn sẽ làm gì trong tương lai?"
+    },
+    {
+      "jp": "娘",
+      "reading": "むすめ",
+      "vi": "Con gái",
+      "pos": "noun",
+      "ex": "私[わたし]の娘[むすめ]はCです。",
+      "exVi": "Con gái tôi là C."
+    },
+    {
+      "jp": "息子",
+      "reading": "むすこ",
+      "vi": "Con trai",
+      "pos": "noun",
+      "ex": "私[わたし]の息子[むすこ]はDです。",
+      "exVi": "Con trai tôi là D."
+    },
+    {
+      "jp": "まじめ(な)",
+      "reading": "まじめ(な)",
+      "vi": "Nghiêm túc, ngoan, chăm chỉ",
+      "pos": "adj",
+      "ex": "真面目[まじめ]な人[ひと]ですね。",
+      "exVi": "Quả là một người nghiêm túc, chăm chỉ nhỉ."
+    },
+    {
+      "jp": "熱心(な)",
+      "reading": "ねっしん(な)",
+      "vi": "Nhiệt tình",
+      "pos": "adj",
+      "ex": "Cくんはとても熱心[ねっしん]ですね。",
+      "exVi": "Cậu C ấy đúng là rất nhiệt tình nhỉ."
+    },
+    {
+      "jp": "えらい",
+      "reading": "えらい",
+      "vi": "Siêu, giỏi, đáng ngưỡng mộ",
+      "pos": "adj",
+      "ex": "Bさんのテストはいつも100点[てん]! えらい!",
+      "exVi": "Bài kiểm tra của B lúc nào cũng 100 điểm! Siêu thật đấy!"
+    },
+    {
+      "jp": "ちょうどいい",
+      "reading": "ちょうどいい",
+      "vi": "Vừa vặn",
+      "pos": "adj",
+      "ex": "ちょうどいいですね。",
+      "exVi": "Vừa vặn thật đấy nhỉ."
+    },
+    {
+      "jp": "しばらく",
+      "reading": "しばらく",
+      "vi": "Một lúc, một chút",
+      "pos": "adv",
+      "ex": "しばらく待[ま]ってくださいね。",
+      "exVi": "Chờ tôi một lúc nhé."
+    },
+    {
+      "jp": "たいてい",
+      "reading": "たいてい",
+      "vi": "Thường thường",
+      "pos": "adv",
+      "ex": "たいてい家[いえ]で好[す]きなドラマを見[み]ています。",
+      "exVi": "Tôi thường hay xem phim truyền hình yêu thích ở nhà."
+    },
+    {
+      "jp": "それに",
+      "reading": "それに",
+      "vi": "Thêm nữa, hơn nữa",
+      "pos": "adv",
+      "ex": "先生[せんせい]が上手[じょうず]で、親切[しんせつ]です。それに、オンラインコースが便利[べんり]ですから。",
+      "exVi": "Vì giáo viên giỏi, thân thiện. Hơn nữa, khóa học Online còn rất tiện nữa."
+    },
+    {
+      "jp": "それで",
+      "reading": "それで",
+      "vi": "Chính vì vậy",
+      "pos": "adv",
+      "ex": "それで、ThangLong大学[だいがく]を選[えら]んだんですね。",
+      "exVi": "Vì thế mà cậu đã chọn Trường ĐH Thăng Long nhỉ."
+    },
+    {
+      "jp": "ちょっとお願いがあるんですが、...",
+      "reading": "ちょっとおねがいがあるんですが、...",
+      "vi": "Tôi có việc muốn nhờ, ...",
+      "pos": "other",
+      "ex": "ちょっとお願[ねが]いがあるんですが、...",
+      "exVi": "Tôi có việc muốn nhờ,..."
+    }
+  ]
+}

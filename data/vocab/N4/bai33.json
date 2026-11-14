@@ -1,0 +1,290 @@
+{
+  "lesson": {
+    "id": "b33",
+    "name": "Bài 33",
+    "type": "book"
+  },
+  "count": 35,
+  "words": [
+    {
+      "jp": "逃げます",
+      "reading": "にげます",
+      "vi": "Chạy trốn",
+      "pos": "verb",
+      "ex": "津波[つなみ]から逃[に]げます。",
+      "exVi": "Chạy trốn khỏi cơn sóng thần."
+    },
+    {
+      "jp": "騒ぎます",
+      "reading": "さわぎます",
+      "vi": "Làm ồn",
+      "pos": "verb",
+      "ex": "騒[さわ]がないで、勉強[べんきょう]しているのよ。",
+      "exVi": "Này, đừng làm ồn, tớ đang học đấy."
+    },
+    {
+      "jp": "あきらめます",
+      "reading": "あきらめます",
+      "vi": "Từ bỏ, bỏ cuộc",
+      "pos": "verb",
+      "ex": "最後[さいご]まであきらめないでください。",
+      "exVi": "Đừng bỏ cuộc cho đến cùng."
+    },
+    {
+      "jp": "投げます",
+      "reading": "なげます",
+      "vi": "Ném",
+      "pos": "verb",
+      "ex": "こっちに、そのボールを投[な]げてくれない。",
+      "exVi": "Ném quả bóng đó qua đây giúp tớ với."
+    },
+    {
+      "jp": "「規則を」守ります",
+      "reading": "「きそくを」まもります",
+      "vi": "Tuân thủ (quy tắc)",
+      "pos": "verb",
+      "ex": "必[かなら]ず時間[じかん]を守[まも]ってください。",
+      "exVi": "Nhớ tuân thủ thời gian nha."
+    },
+    {
+      "jp": "「約束を」守ります",
+      "reading": "「やくそくを」まもります",
+      "vi": "Giữ (lời hứa)",
+      "pos": "verb",
+      "ex": "いつも約束[やくそく]を守[まも]るすてきなだと思[おも]う。",
+      "exVi": "Tôi nghĩ thật tốt khi bạn luôn giữ lời hứa của mình."
+    },
+    {
+      "jp": "リサイクルします",
+      "reading": "リサイクルします",
+      "vi": "Tái chế",
+      "pos": "verb",
+      "ex": "リサイクルするために、大切[たいせつ]なことは何[なん]ですか。",
+      "exVi": "Để tái chế thì chúng ta cần phải làm gì?"
+    },
+    {
+      "jp": "伝えます",
+      "reading": "つたえます",
+      "vi": "Truyền đạt",
+      "pos": "verb",
+      "ex": "すみませんが、Cさんに「後[あと]で電話[でんわ]をください」と伝[つた]えて頂[いただ]けませんか。",
+      "exVi": "Xin lỗi, nhờ cậu nhắn với C là gọi điện thoại lại cho tớ giúp tớ với được không."
+    },
+    {
+      "jp": "「車に」注意します",
+      "reading": "「くるまに」ちゅういします",
+      "vi": "Chú ý (xe)",
+      "pos": "verb",
+      "ex": "危[あぶ]ないですよ。車[くるま]に注意[ちゅうい]してください。",
+      "exVi": "Nguy hiểm. Hãy chú ý với xe ô tô."
+    },
+    {
+      "jp": "「会議が」始まります",
+      "reading": "「かいぎが」はじまります",
+      "vi": "(Cuộc họp) Bắt đầu",
+      "pos": "verb",
+      "ex": "明日[あした]の会議[かいぎ]は何時[なんじ]に始[はじ]まりますか。",
+      "exVi": "Cuộc họp ngày mai bắt đầu từ mấy giờ thế nhỉ?"
+    },
+    {
+      "jp": "「会議に」出席します",
+      "reading": "「かいぎに」しゅっせきします",
+      "vi": "Tham gia (cuộc họp)",
+      "pos": "verb",
+      "ex": "明日[あした]の会議[かいぎ]に出席[しゅっせき]しますか。",
+      "exVi": "Cậu có tham gia cuộc họp ngày mai không?"
+    },
+    {
+      "jp": "「席を」外します",
+      "reading": "「せきを」はずします",
+      "vi": "Rời (ghế) (hiện đang không có mặt)",
+      "pos": "verb",
+      "ex": "今[いま]、席[せき]をはずしているんですが・・・",
+      "exVi": "Hiện anh ấy đang không có mặt ở đây."
+    },
+    {
+      "jp": "戻ります",
+      "reading": "もどります",
+      "vi": "Trở lại, quay trở lại",
+      "pos": "verb",
+      "ex": "いつベトナムに戻[もど]りますか。",
+      "exVi": "Bao giờ cậu quay lại Việt Nam."
+    },
+    {
+      "jp": "ボール",
+      "reading": "ボール",
+      "vi": "Quả bóng",
+      "pos": "noun",
+      "ex": "こっちに、そのボールを投[な]げてくれない。",
+      "exVi": "Ném quả bóng đó qua đây giúp tớ với."
+    },
+    {
+      "jp": "出口",
+      "reading": "でぐち",
+      "vi": "Lối ra",
+      "pos": "noun",
+      "ex": "出口[でぐち]はどちらですか。",
+      "exVi": "Lối ra ở đâu?"
+    },
+    {
+      "jp": "入口",
+      "reading": "いりぐち",
+      "vi": "Lối vào",
+      "pos": "noun",
+      "ex": "荷物[にもつ]は入口[いりぐち]の前[まえ]に置[お]かないでください。",
+      "exVi": "Xin đừng để hành lý ngay trước lối vào."
+    },
+    {
+      "jp": "警察",
+      "reading": "けいさつ",
+      "vi": "Cảnh sát",
+      "pos": "noun",
+      "ex": "警察官[けいさつかん]になりたいです。",
+      "exVi": "Tớ muốn trở thành cảnh sát."
+    },
+    {
+      "jp": "マーク",
+      "reading": "マーク",
+      "vi": "Kí hiệu",
+      "pos": "noun",
+      "ex": "マークは可愛[かわい]いいいい。",
+      "exVi": "Kí hiệu thật dễ thương."
+    },
+    {
+      "jp": "使用禁止",
+      "reading": "しようきんし",
+      "vi": "Cấm sử dụng",
+      "pos": "noun",
+      "ex": "あそこに「使用禁止[しようきんし]」と書[か]いてありますよ。",
+      "exVi": "Ở đằng kia có ghi chữ \"Cấm sử dụng\" đó."
+    },
+    {
+      "jp": "立ち入り禁止",
+      "reading": "たちいりきんし",
+      "vi": "Cấm vào",
+      "pos": "noun",
+      "ex": "「立ち入り禁止[たちいりきんし]」はどういう意味[いみ]ですか。",
+      "exVi": "「立ち入り禁止」 có nghĩa là gì?"
+    },
+    {
+      "jp": "無料",
+      "reading": "むりょう",
+      "vi": "Miễn phí",
+      "pos": "noun",
+      "ex": "Lサイズピザを買[か]うとMサイズピザ2枚[まい]無料[むりょう]。",
+      "exVi": "Hễ mua bánh pizza size L thì sẽ được miễn phí 2 cái size M."
+    },
+    {
+      "jp": "規則",
+      "reading": "きそく",
+      "vi": "Quy tắc",
+      "pos": "noun",
+      "ex": "会社[かいしゃ]の規則[きそく]ですから、守[まも]ってください。",
+      "exVi": "Vì đây là quy tắc của công ty nên nhất định hãy tuân thủ nhé."
+    },
+    {
+      "jp": "締め切り",
+      "reading": "しめきり",
+      "vi": "Hạn chót, hạn cuối",
+      "pos": "noun",
+      "ex": "ねえ、レポートの締[し]め切[き]りはいつですか。",
+      "exVi": "Này hạn chót của báo cáo là bao giờ ấy nhỉ?"
+    },
+    {
+      "jp": "非常口",
+      "reading": "ひじょうぐち",
+      "vi": "Lối thoát hiểm",
+      "pos": "noun",
+      "ex": "その建物[たてもの]には非常口[ひじょうぐち]がない。",
+      "exVi": "Tòa nhà kia không có lối thoát hiểm."
+    },
+    {
+      "jp": "徐行",
+      "reading": "じょこう",
+      "vi": "Chạy chậm, đi chậm",
+      "pos": "noun",
+      "ex": "「徐行[じょこう]」はどういう意味[いみ]ですか。",
+      "exVi": "「徐行」có nghĩa là gì?"
+    },
+    {
+      "jp": "割引",
+      "reading": "わりびき",
+      "vi": "Giảm giá",
+      "pos": "noun",
+      "ex": "5時[じ]半[はん]から、割引[わりびき]になる食[た]べ物[もの]がいっぱいあるから5時[じ]から行[い]きましょう。",
+      "exVi": "Vì từ 5:30 sẽ có nhiều đồ ăn được giảm giá, nên 5h rồi đi nha."
+    },
+    {
+      "jp": "〜中(募集中、使用中)",
+      "reading": "〜ちゅう(ぼしゅうちゅう、しようちゅう)",
+      "vi": "Đang (đang tuyển, đang sử dụng)",
+      "pos": "noun",
+      "ex": "申[もう]し訳[わけ]ございません。準備中[じゅんびちゅう]なので、少々[しょうしょう]お待[ま]ちください。",
+      "exVi": "Rất xin lỗi quý khách, hiện tại vẫn đang trong thời gian chuẩn bị, quý khách vui lòng đợi một chút ạ."
+    },
+    {
+      "jp": "食べ放題",
+      "reading": "たべほうだい",
+      "vi": "Buffet đồ ăn",
+      "pos": "noun",
+      "ex": "単品[たんぴん]と食[た]べ放題[ほうだい]、どっちがいいですか。",
+      "exVi": "Gọi món và Buffet thì cậu chọn cái nào?"
+    },
+    {
+      "jp": "飲み放題",
+      "reading": "のみほうだい",
+      "vi": "Buffet đồ uống",
+      "pos": "noun",
+      "ex": "あの店[みせ]に「飲[の]み放題[ほうだい]」とかいてあります。",
+      "exVi": "Ở quán kia có viết “Buffet đồ uống” đấy."
+    },
+    {
+      "jp": "だめ(な)",
+      "reading": "だめ(な)",
+      "vi": "Không được",
+      "pos": "adj",
+      "ex": "明日[あした]、テストがあるから、今晩[こんばん]はゲームをしてはだめですよ。",
+      "exVi": "Vì ngày mai có bài kiểm tra nên tối nay không được chơi game đâu đấy."
+    },
+    {
+      "jp": "危険(な)",
+      "reading": "きけん(な)",
+      "vi": "Nguy hiểm",
+      "pos": "adj",
+      "ex": "危険[きけん]な虫[むし]だよ。触[さわ]らないで。",
+      "exVi": "Nó nguy hiểm lắm đấy. Đừng chạm vào."
+    },
+    {
+      "jp": "同じ",
+      "reading": "おなじ",
+      "vi": "Giống",
+      "pos": "adj",
+      "ex": "同[おな]じクラスだね。嬉[うれ]しい。",
+      "exVi": "Chúng ta cùng chung 1 lớp rồi. Vui quá."
+    },
+    {
+      "jp": "もう",
+      "reading": "もう",
+      "vi": "Nữa (dùng với thể phủ định)",
+      "pos": "adv",
+      "ex": "疲[つか]れて、もう歩[ある]けません。",
+      "exVi": "Tớ mệt lắm rồi, không thể đi bộ được nữa."
+    },
+    {
+      "jp": "あと〜",
+      "reading": "あと〜",
+      "vi": "Còn ~",
+      "pos": "adv",
+      "ex": "先生[せんせい]、あと何分[なんふん]ですか?",
+      "exVi": "Thưa thầy còn mấy phút nữa ạ?"
+    },
+    {
+      "jp": "〜ほど",
+      "reading": "〜ほど",
+      "vi": "Khoảng ~",
+      "pos": "adv",
+      "ex": "あと10分[ふん]ほどで終[お]わります。",
+      "exVi": "Còn khoảng 10 phút nữa."
+    }
+  ]
+}

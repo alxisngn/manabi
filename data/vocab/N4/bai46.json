@@ -1,0 +1,154 @@
+{
+  "lesson": {
+    "id": "b46",
+    "name": "Bài 46",
+    "type": "book"
+  },
+  "count": 18,
+  "words": [
+    {
+      "jp": "渡します",
+      "reading": "わたします",
+      "vi": "Đưa, trao",
+      "pos": "verb",
+      "ex": "先生[せんせい]に渡[わた]しましたよ。",
+      "exVi": "Tớ đã nộp cho giáo viên rồi."
+    },
+    {
+      "jp": "帰ってきます",
+      "reading": "かえってきます",
+      "vi": "Trở về",
+      "pos": "verb",
+      "ex": "早[はや]く帰[かえ]ってきてね。",
+      "exVi": "Nhớ về sớm đấy."
+    },
+    {
+      "jp": "「バスが」出ます",
+      "reading": "「バスが」でます",
+      "vi": "(Xe buýt) xuất phát, rời bến",
+      "pos": "verb",
+      "ex": "バスが出[で]ます。",
+      "exVi": "Xe buýt sẽ rời bến."
+    },
+    {
+      "jp": "「荷物が」届きます",
+      "reading": "「にもつが」とどきます",
+      "vi": "(Hành lý) đến",
+      "pos": "verb",
+      "ex": "お客[きゃく]さんの荷物[にもつ]が届[とど]いてます。",
+      "exVi": "Hành lý của quý khách đang đến rồi."
+    },
+    {
+      "jp": "「大学に」入学します",
+      "reading": "「だいがくに」にゅうがくします",
+      "vi": "Nhập học (đại học)",
+      "pos": "verb",
+      "ex": "いつ入学[にゅうがく]しますか。",
+      "exVi": "Bao giờ cậu nhập học thế?"
+    },
+    {
+      "jp": "「大学を」卒業します",
+      "reading": "「だいがくを」そつぎょうします",
+      "vi": "Tốt nghiệp (đại học)",
+      "pos": "verb",
+      "ex": "卒業[そつぎょう]したら、どんな予定[よてい]がありますか。",
+      "exVi": "Sau khi tốt nghiệp thì cậu có dự định gì?"
+    },
+    {
+      "jp": "「肉、パンを」焼きます",
+      "reading": "「にく、パンを」やきます",
+      "vi": "Nướng (thịt, bánh mì)",
+      "pos": "verb",
+      "ex": "肉[にく]を焼[や]きましょうか。",
+      "exVi": "Nướng thịt ăn không?"
+    },
+    {
+      "jp": "「肉、パンが」焼けます",
+      "reading": "「にく、パンが」やけます",
+      "vi": "(Thịt, bánh mì) nướng chín",
+      "pos": "verb",
+      "ex": "パンが焼[や]けたよ。",
+      "exVi": "Bánh mì đã được nướng chín rồi đấy."
+    },
+    {
+      "jp": "留守",
+      "reading": "るす",
+      "vi": "Vắng nhà, đi vắng",
+      "pos": "noun",
+      "ex": "今[いま]父[ちち]は留守[るす]です。",
+      "exVi": "Bây giờ bố cháu đang đi vắng ạ."
+    },
+    {
+      "jp": "宅配便",
+      "reading": "たくはいびん",
+      "vi": "Hàng được chuyển phát tận nhà",
+      "pos": "noun",
+      "ex": "宅配便[たくはいびん]のサービスはどう?",
+      "exVi": "Thử dùng dịch vụ chuyển phát tận nhà xem?"
+    },
+    {
+      "jp": "原因",
+      "reading": "げんいん",
+      "vi": "Nguyên nhân",
+      "pos": "noun",
+      "ex": "まず原因[げんいん]を探[さが]したほうがいいと思[おも]います。",
+      "exVi": "Tớ nghĩ đầu tiên cậu nên tìm hiểu nguyên nhân xem sao."
+    },
+    {
+      "jp": "半年",
+      "reading": "はんとし",
+      "vi": "Nửa năm",
+      "pos": "noun",
+      "ex": "あの二人[ふたり]はつき合[あ]って半年[はんとし]ですが、もう結婚[けっこん]しますよ。",
+      "exVi": "Hai người đó mới hẹn hò được nửa năm nhưng đã kết hôn rồi đấy."
+    },
+    {
+      "jp": "ちょうど",
+      "reading": "ちょうど",
+      "vi": "Vừa đúng, đúng",
+      "pos": "adv",
+      "ex": "ちょうど9時[じ]です。",
+      "exVi": "Đúng 9 giờ."
+    },
+    {
+      "jp": "たった今",
+      "reading": "たったいま",
+      "vi": "Vừa mới",
+      "pos": "adv",
+      "ex": "すみません、たった今[いま]つきました。すぐいきますか。",
+      "exVi": "Xin lỗi, tôi vừa mới đến. Giờ đi luôn hả."
+    },
+    {
+      "jp": "今いいですか。",
+      "reading": "いまいいですか。",
+      "vi": "Bây giờ có nói chuyện được không?",
+      "pos": "other",
+      "ex": "先生[せんせい]、今[いま]いいですか。",
+      "exVi": "Thưa cô, bây giờ cô có thời gian cho em không ạ?"
+    },
+    {
+      "jp": "お待たせしました。",
+      "reading": "おまたせしました。",
+      "vi": "Xin lỗi để anh/chị đợi lâu.",
+      "pos": "other",
+      "ex": "すみません、お待[ま]たせしました。",
+      "exVi": "Xin lỗi, đã để cậu phải chờ lâu rồi."
+    },
+    {
+      "jp": "申し訳ありません",
+      "reading": "もうしわけありません",
+      "vi": "Thật lòng xin lỗi",
+      "pos": "other",
+      "ex": "申[もう]し訳[わけ]ありませんが、チケットは全部[ぜんぶ]売[う]れてしまいました。",
+      "exVi": "Thành thật xin lỗi, chúng tôi đã bán hết tất cả vé rồi."
+    },
+    {
+      "jp": "どちら様でしょうか",
+      "reading": "どちらさまでしょうか",
+      "vi": "Ai đấy ạ",
+      "pos": "other",
+      "ex": "どちら様[さま]でしょうか。",
+      "exVi": "Xin hỏi là vị nào thế ạ?"
+    }
+  ]
+}

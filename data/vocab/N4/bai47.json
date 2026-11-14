@@ -1,0 +1,274 @@
+{
+  "lesson": {
+    "id": "b47",
+    "name": "Bài 47",
+    "type": "book"
+  },
+  "count": 33,
+  "words": [
+    {
+      "jp": "「風が」吹きます",
+      "reading": "「かぜが」ふきます",
+      "vi": "(Gió) thổi",
+      "pos": "verb",
+      "ex": "強[つよ]い風[かぜ]が吹[ふ]いています。",
+      "exVi": "Vì gió đang thổi rất mạnh."
+    },
+    {
+      "jp": "「ゴミが」燃えます",
+      "reading": "「ゴミが」もえます",
+      "vi": "(Rác) cháy",
+      "pos": "verb",
+      "ex": "とつぜん、ゴミが燃[も]えます。",
+      "exVi": "Đột nhiên, rác bốc cháy."
+    },
+    {
+      "jp": "亡くなります",
+      "reading": "なくなります",
+      "vi": "Qua đời",
+      "pos": "verb",
+      "ex": "中村[なかむら]さんのお爺[じい]さんは病気[びょうき]で亡[な]くなったそうです。",
+      "exVi": "Này, nghe nói là ông của anh Nakamura vì bị ốm mà đã qua đời rồi."
+    },
+    {
+      "jp": "「人が」集まります",
+      "reading": "「ひとが」あつまります",
+      "vi": "(Người) tập trung",
+      "pos": "verb",
+      "ex": "全員[ぜんいん]、集[あつ]まりましたか。",
+      "exVi": "Mọi người đã tập hợp đông đủ chưa nhỉ?"
+    },
+    {
+      "jp": "「人が」別れます",
+      "reading": "「ひとが」わかれます",
+      "vi": "Chia tay (với ai đó)",
+      "pos": "verb",
+      "ex": "あの二人[ふたり]は考[かんが]え方[かた]が違[ちが]ったから、別[わか]れたそうです。",
+      "exVi": "Nghe nói họ chia tay vì bất đồng quan điểm."
+    },
+    {
+      "jp": "「意見に」賛成します",
+      "reading": "「いけんに」さんせいします",
+      "vi": "Tán thành (ý kiến)",
+      "pos": "verb",
+      "ex": "皆[みな]さん、高橋[たかはし]さんの意見[いけん]に賛成[さんせい]しますか。",
+      "exVi": "Mọi người có đồng ý với ý kiến của anh Takahashi không nhỉ?"
+    },
+    {
+      "jp": "「意見に」反対します",
+      "reading": "「いけんに」はんたいします",
+      "vi": "Phản đối",
+      "pos": "verb",
+      "ex": "いいえ、反対[はんたい]します。",
+      "exVi": "Không, tôi phản đối."
+    },
+    {
+      "jp": "「においが」します",
+      "reading": "「においが」します",
+      "vi": "Có (mùi)",
+      "pos": "verb",
+      "ex": "いいにおいがしますね。",
+      "exVi": "Có mùi gì thơm thế nhỉ."
+    },
+    {
+      "jp": "「音/声が」します",
+      "reading": "「おと/こえが」します",
+      "vi": "Có (tiếng/ âm thanh)",
+      "pos": "verb",
+      "ex": "何[なに]か変[へん]な音[おと]がする。",
+      "exVi": "Có cái tiếng gì thế nhỉ."
+    },
+    {
+      "jp": "「味が」します",
+      "reading": "「あじが」します",
+      "vi": "Có (vị)",
+      "pos": "verb",
+      "ex": "変[へん]な味[あじ]がします。",
+      "exVi": "Sao vị lạ thế nhỉ?"
+    },
+    {
+      "jp": "世話をします",
+      "reading": "せわをします",
+      "vi": "Chăm sóc",
+      "pos": "verb",
+      "ex": "猫[ねこ]がとてもかわいいですが、世話[せわ]をするのは大変[たいへん]です。",
+      "exVi": "Con mèo dễ thương quá nhưng mà chăm sóc nó cũng vất vả lắm nhé."
+    },
+    {
+      "jp": "知り合います",
+      "reading": "しりあいます",
+      "vi": "Quen biết",
+      "pos": "verb",
+      "ex": "私[わたし]たちは仕事[しごと]で知[し]り合[あ]いました。",
+      "exVi": "Chúng tớ quen biết qua công việc."
+    },
+    {
+      "jp": "化粧をします",
+      "reading": "けしょうをします",
+      "vi": "Trang điểm",
+      "pos": "verb",
+      "ex": "最近[さいきん]、女[おんな]の人[ひと]だけじゃなくて、男[おとこ]の人[ひと]も化粧[けしょう]をしますよ。",
+      "exVi": "Gần đây, không chỉ mỗi con gái mà hội con trai cũng trang điểm nhỉ?"
+    },
+    {
+      "jp": "厳しい",
+      "reading": "きびしい",
+      "vi": "Nghiêm khắc",
+      "pos": "adj",
+      "ex": "新[あたら]しい先生[せんせい]はとても厳[きび]しいよ。",
+      "exVi": "Giáo viên mới rất nghiêm khắc."
+    },
+    {
+      "jp": "ひどい",
+      "reading": "ひどい",
+      "vi": "Khủng khiếp",
+      "pos": "adj",
+      "ex": "その言[い]い方[かた]、ひどいよ。",
+      "exVi": "Uầy, cái cách nói của cậu vô duyên lắm nhé."
+    },
+    {
+      "jp": "怖い",
+      "reading": "こわい",
+      "vi": "Sợ, đáng sợ",
+      "pos": "adj",
+      "ex": "へえ! 怖[こわ]い! やめてください。",
+      "exVi": "Nè! Đáng sợ lắm đó! Dừng lại đi."
+    },
+    {
+      "jp": "実験",
+      "reading": "じっけん",
+      "vi": "Thí nghiệm, thực nghiệm",
+      "pos": "noun",
+      "ex": "昨日[きのう]物理[ぶつり]の実験[じっけん]はどうでしたか。",
+      "exVi": "Buổi thí nghiệm vật lý ngày hôm qua thế nào?"
+    },
+    {
+      "jp": "データ",
+      "reading": "データ",
+      "vi": "Dữ liệu",
+      "pos": "noun",
+      "ex": "レポートのためにデータをまとめている。",
+      "exVi": "Tớ đang tập hợp dữ liệu để làm báo cáo."
+    },
+    {
+      "jp": "匂い",
+      "reading": "におい",
+      "vi": "Mùi",
+      "pos": "noun",
+      "ex": "いい匂[にお]いがしますね。",
+      "exVi": "Nó có mùi thơm, phải không?"
+    },
+    {
+      "jp": "人口",
+      "reading": "じんこう",
+      "vi": "Dân số",
+      "pos": "noun",
+      "ex": "今年[ことし]の世界[せかい]の人口[じんこう]は80億人[おくにん]ぐらいですよ。",
+      "exVi": "Dân số thế giới năm nay đã lên đến khoảng 8 tỷ dân rồi đó."
+    },
+    {
+      "jp": "科学",
+      "reading": "かがく",
+      "vi": "Khoa học",
+      "pos": "noun",
+      "ex": "昔[むかし]より、科学[かがく]が発達[はったつ]して、生活[せいかつ]がすごく便利[べんり]になった。",
+      "exVi": "So với ngày xưa thì vì khoa học phát triển, nên cuộc sống bây giờ đã tiện lợi hơn rất nhiều rồi."
+    },
+    {
+      "jp": "医学",
+      "reading": "いがく",
+      "vi": "Y học",
+      "pos": "noun",
+      "ex": "医学[いがく]を学[まな]んでいます。",
+      "exVi": "Tớ đang học ngành Y."
+    },
+    {
+      "jp": "文学",
+      "reading": "ぶんがく",
+      "vi": "Văn học",
+      "pos": "noun",
+      "ex": "文学[ぶんがく]が好[す]きです。",
+      "exVi": "Tôi thích văn học."
+    },
+    {
+      "jp": "大統領",
+      "reading": "だいとうりょう",
+      "vi": "Tổng thống",
+      "pos": "noun",
+      "ex": "今[いま]のアメリカの大統領[だいとうりょう]はだれか知[し]っている?",
+      "exVi": "Cậu có biết hiện tại ai là tổng thống của nước Mỹ không?"
+    },
+    {
+      "jp": "女性",
+      "reading": "じょせい",
+      "vi": "Nữ giới, phụ nữ",
+      "pos": "noun",
+      "ex": "最近[さいきん]、男性[だんせい]だけじゃなくて、女性[じょせい]もタバコを吸[す]っているね。",
+      "exVi": "Gần đây không chỉ đàn ông mà phụ nữ hút thuốc cũng rất nhiều nhỉ."
+    },
+    {
+      "jp": "男性",
+      "reading": "だんせい",
+      "vi": "Nam giới, đàn ông",
+      "pos": "noun",
+      "ex": "日本語[にほんご]のクラスは男性[だんせい]が女性[じょせい]より多[おお]いです。",
+      "exVi": "Có nhiều đàn ông hơn phụ nữ trong lớp học tiếng Nhật."
+    },
+    {
+      "jp": "関係",
+      "reading": "かんけい",
+      "vi": "Quan hệ",
+      "pos": "noun",
+      "ex": "ベトナムと日本[にほん]の関係[かんけい]はいつも良[よ]いです。",
+      "exVi": "Mối quan hệ giữa Việt Nam và Nhật Bản lúc nào cũng rất tốt đẹp nhỉ."
+    },
+    {
+      "jp": "恋人",
+      "reading": "こいびと",
+      "vi": "Người yêu",
+      "pos": "noun",
+      "ex": "仕事[しごと]が忙[いそが]しすぎて、恋人[こいびと]ができません。",
+      "exVi": "Vì công việc quá bận nên tớ chưa có người yêu."
+    },
+    {
+      "jp": "相手",
+      "reading": "あいて",
+      "vi": "Đối phương, hôn phu",
+      "pos": "noun",
+      "ex": "話[はな]すとき、相手[あいて]の目[め]を見[み]ますか。",
+      "exVi": "Khi nói chuyện cậu có nhìn vào mắt đối phương không?"
+    },
+    {
+      "jp": "パトカー",
+      "reading": "パトカー",
+      "vi": "Xe cảnh sát",
+      "pos": "noun",
+      "ex": "見[み]て。パトカーが来[き]たよ。",
+      "exVi": "Nhìn kìa. Xe cảnh sát đấy."
+    },
+    {
+      "jp": "救急車",
+      "reading": "きゅうきゅうしゃ",
+      "vi": "Xe cấp cứu",
+      "pos": "noun",
+      "ex": "日本[にほん]で救急車[きゅうきゅうしゃ]を呼[よ]んだら、いくらかかりますか。",
+      "exVi": "Chi phí gọi xe cứu thương ở Nhật Bản là bao nhiêu?"
+    },
+    {
+      "jp": "消防車",
+      "reading": "しょうぼうしゃ",
+      "vi": "Xe chữa cháy",
+      "pos": "noun",
+      "ex": "消防車[しょうぼうしゃ]が4台[だい]も来[き]た。",
+      "exVi": "Tận 4 chiếc xe chữa cháy đã tới."
+    },
+    {
+      "jp": "~によると",
+      "reading": "~によると",
+      "vi": "Theo ~ (biểu thị nguồn thông tin)",
+      "pos": "adv",
+      "ex": "天気予報[てんきよほう]によると、今日[きょう]の午後[ごご]は大雨[おおあめ]が降[ふ]るそうよ。",
+      "exVi": "Theo dự báo thời tiết, chiều nay trời sẽ mưa to."
+    }
+  ]
+}

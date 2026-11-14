@@ -1,0 +1,242 @@
+{
+  "lesson": {
+    "id": "b44",
+    "name": "Bài 44",
+    "type": "book"
+  },
+  "count": 29,
+  "words": [
+    {
+      "jp": "泣きます",
+      "reading": "なきます",
+      "vi": "Khóc",
+      "pos": "verb",
+      "ex": "どうして泣[な]くの?",
+      "exVi": "Tại sao mà cậu lại khóc thế?"
+    },
+    {
+      "jp": "滑ります",
+      "reading": "すべります",
+      "vi": "Trượt",
+      "pos": "verb",
+      "ex": "今朝[けさ]、道[みち]で滑[すべ]りました。",
+      "exVi": "Sáng nay tôi đã trượt ngã ở trên đường."
+    },
+    {
+      "jp": "笑います",
+      "reading": "わらいます",
+      "vi": "Cười",
+      "pos": "verb",
+      "ex": "どうしてそんなに笑[わら]っているの?",
+      "exVi": "Tại sao cậu cười to thế?"
+    },
+    {
+      "jp": "調節します",
+      "reading": "ちょうせつします",
+      "vi": "Điều chỉnh",
+      "pos": "verb",
+      "ex": "エアコンのおんどを調節[ちょうせつ]していただけませんか。",
+      "exVi": "Cậu có thể chỉnh giúp tôi nhiệt độ của điều hòa có được không?"
+    },
+    {
+      "jp": "眠ります",
+      "reading": "ねむります",
+      "vi": "Ngủ",
+      "pos": "verb",
+      "ex": "長[なが]い時間[じかん]働[はたら]いて、ねむります。",
+      "exVi": "Tôi làm việc nhiều giờ và ngủ."
+    },
+    {
+      "jp": "「シャツが」乾きます",
+      "reading": "「シャツが」かわきます",
+      "vi": "(Áo sơ mi) khô",
+      "pos": "verb",
+      "ex": "乾[かわ]いたからすぐかたづける。",
+      "exVi": "Vì nó đã khô hết rồi nên con sẽ lấy vào ngay."
+    },
+    {
+      "jp": "「シャツが」濡れます",
+      "reading": "「シャツが」ぬれます",
+      "vi": "(Áo sơ mi) ướt",
+      "pos": "verb",
+      "ex": "シャツがまだ濡[ぬ]れているんだ。",
+      "exVi": "Áo sơ mi thì vẫn còn ướt."
+    },
+    {
+      "jp": "「事故が」起きます",
+      "reading": "「じこが」おきます",
+      "vi": "(Tai nạn) xảy ra",
+      "pos": "verb",
+      "ex": "多分[たぶん]事故[じこ]が起[お]きたと思[おも]うよ。",
+      "exVi": "Chắc là có tai nạn xảy ra đấy."
+    },
+    {
+      "jp": "安全[な]",
+      "reading": "あんぜん[な]",
+      "vi": "An toàn",
+      "pos": "adj",
+      "ex": "ここは危[あぶ]ないから、すぐ安全[あんぜん]な所[ところ]へ行[い]こう!",
+      "exVi": "Nơi đây nguy hiểm lắm nên chúng ta nhanh chóng đi tới nơi an toàn thôi."
+    },
+    {
+      "jp": "危険 [な]",
+      "reading": "きけん [な]",
+      "vi": "Nguy hiểm",
+      "pos": "adj",
+      "ex": "ここは今[いま]工事中[こうじちゅう]ですから、とても危険[きけん]です。",
+      "exVi": "Nơi đây bây giờ đang thi công công trình nên rất nguy hiểm."
+    },
+    {
+      "jp": "安心 「な」",
+      "reading": "あんしん 「な」",
+      "vi": "An tâm",
+      "pos": "adj",
+      "ex": "ゆうべ全部[ぜんぶ]復習[ふくしゅう]したら、私[わたし]は安心[あんしん]だ。",
+      "exVi": "Vì tối qua tôi ôn hết rồi mà nên bây giờ tôi an tâm lắm."
+    },
+    {
+      "jp": "濃い",
+      "reading": "こい",
+      "vi": "Đặc, đậm",
+      "pos": "adj",
+      "ex": "濃[こ]い色[いろ]のシャツがいいよ。",
+      "exVi": "Cái áo màu đậm thì được đấy."
+    },
+    {
+      "jp": "薄い",
+      "reading": "うすい",
+      "vi": "Loãng, nhạt",
+      "pos": "adj",
+      "ex": "薄[うす]い色[いろ]のズボンがいいよ。",
+      "exVi": "Cái quần màu nhạt thì được đấy."
+    },
+    {
+      "jp": "厚い",
+      "reading": "あつい",
+      "vi": "Dày",
+      "pos": "adj",
+      "ex": "この本[ほん]は分厚[ぶあつ]いね。",
+      "exVi": "Cuốn sách này dày thật đấy nhỉ."
+    },
+    {
+      "jp": "薄い",
+      "reading": "うすい",
+      "vi": "Mỏng",
+      "pos": "adj",
+      "ex": "この薄[うす]い本[ほん]は何[なん]の本[ほん]?",
+      "exVi": "Quyển sách mỏng này là sách gì?"
+    },
+    {
+      "jp": "太い",
+      "reading": "ふとい",
+      "vi": "Béo/ dày/ to/ đậm",
+      "pos": "adj",
+      "ex": "こんなにたくさん食[た]べると、太[ふと]くなりますよ。",
+      "exVi": "Cậu mà cứ ăn nhiều như thế này thì sẽ béo lên đấy."
+    },
+    {
+      "jp": "細い",
+      "reading": "ほそい",
+      "vi": "Gầy/ mảnh mai",
+      "pos": "adj",
+      "ex": "目標[もくひょう]は細[ほそ]くなることです。",
+      "exVi": "Mục tiêu là gầy đi."
+    },
+    {
+      "jp": "空気",
+      "reading": "くうき",
+      "vi": "Không khí",
+      "pos": "noun",
+      "ex": "ここの空気[くうき]は綺麗[きれい]だね。",
+      "exVi": "Không khí nơi đây trong lành quá nhỉ."
+    },
+    {
+      "jp": "涙",
+      "reading": "なみだ",
+      "vi": "Nước mắt",
+      "pos": "noun",
+      "ex": "どうして涙[なみだ]が出[で]てるの?",
+      "exVi": "Tại sao bạn khóc?"
+    },
+    {
+      "jp": "和食",
+      "reading": "わしょく",
+      "vi": "Món ăn kiểu Nhật",
+      "pos": "noun",
+      "ex": "和食[わしょく]はありますか?",
+      "exVi": "Có món ăn kiểu Nhật không?"
+    },
+    {
+      "jp": "洋食",
+      "reading": "ようしょく",
+      "vi": "Món ăn kiểu Tây",
+      "pos": "noun",
+      "ex": "洋食[ようしょく]はありますか?",
+      "exVi": "Có món ăn kiểu Tây không?"
+    },
+    {
+      "jp": "おかず",
+      "reading": "おかず",
+      "vi": "Thức ăn/ đồ ăn kèm",
+      "pos": "noun",
+      "ex": "Linhちゃんのお弁当[べんとう]はおかずがたくさんあるね。",
+      "exVi": "Hộp của Linh ít cơm nhưng nhiều thức ăn nhỉ."
+    },
+    {
+      "jp": "洗濯物",
+      "reading": "せんたくもの",
+      "vi": "Quần áo giặt",
+      "pos": "noun",
+      "ex": "洗濯物[せんたくもの]をクリーニングへ持[も]って行[い]ってくれない。",
+      "exVi": "Con hãy mang quần áo cần giặt này tới tiệm giặt ủi giúp mẹ nhé."
+    },
+    {
+      "jp": "シングル",
+      "reading": "シングル",
+      "vi": "Phòng đơn",
+      "pos": "noun",
+      "ex": "シングルお願[ねが]いします。",
+      "exVi": "Cho tôi phòng đơn."
+    },
+    {
+      "jp": "ツイン",
+      "reading": "ツイン",
+      "vi": "Phòng đôi",
+      "pos": "noun",
+      "ex": "ツインお願[ねが]いします。",
+      "exVi": "Cho tôi phòng đôi."
+    },
+    {
+      "jp": "量",
+      "reading": "りょう",
+      "vi": "Lượng",
+      "pos": "noun",
+      "ex": "塩[しお]の量[りょう]を半分[はんぶん]にして。",
+      "exVi": "Giảm một nửa lượng muối."
+    },
+    {
+      "jp": "~倍",
+      "reading": "~ばい",
+      "vi": "Gấp ~ lần",
+      "pos": "noun",
+      "ex": "Aちゃんの家賃[やちん]は私[わたし]の2倍[ばい]ですね。",
+      "exVi": "Tiền thuê nhà của A gấp đôi so với tôi luôn nhỉ."
+    },
+    {
+      "jp": "たとえば",
+      "reading": "たとえば",
+      "vi": "Ví dụ",
+      "pos": "noun",
+      "ex": "Hmm...ヨーロッパの国[くに]へ旅行[りょこう]に行[い]きたい。例[たと]えば、イタリア、ドイツやフランスなど...",
+      "exVi": "Hmm... Tớ muốn đi các nước Châu Âu để du lịch. Ví dụ như là Ý, Đức, Pháp... chẳng hạn."
+    },
+    {
+      "jp": "また",
+      "reading": "また",
+      "vi": "Thêm nữa, hơn nữa",
+      "pos": "adv",
+      "ex": "Linhさんは教師[きょうし]であり、またお母[かあ]さんでもある。",
+      "exVi": "Linh là giáo viên, thêm nữa, còn là một người mẹ."
+    }
+  ]
+}

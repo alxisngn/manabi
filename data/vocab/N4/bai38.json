@@ -1,0 +1,210 @@
+{
+  "lesson": {
+    "id": "b38",
+    "name": "Bài 38",
+    "type": "book"
+  },
+  "count": 25,
+  "words": [
+    {
+      "jp": "「旅行に」参加します",
+      "reading": "「りょこうに」さんかします",
+      "vi": "Tham gia (đi du lịch)",
+      "pos": "verb",
+      "ex": "ともだちと旅行[りょこう]に参加[さんか]します。",
+      "exVi": "Tôi đi du lịch với bạn bè."
+    },
+    {
+      "jp": "「子供を」育てます",
+      "reading": "「こどもを」そだてます",
+      "vi": "Nuôi, chăm sóc (con cái)",
+      "pos": "verb",
+      "ex": "子供[こども]を育[そだ]てることは大変[たいへん]です。",
+      "exVi": "Nuôi dưỡng con cái là việc rất vất vả."
+    },
+    {
+      "jp": "運びます",
+      "reading": "はこびます",
+      "vi": "Vận chuyển, chở",
+      "pos": "verb",
+      "ex": "うん、ものを新[あたら]しいアパートに運[はこ]びます。",
+      "exVi": "Ừ, tớ đang chuyển đồ sang căn hộ mới."
+    },
+    {
+      "jp": "入院します",
+      "reading": "にゅういんします",
+      "vi": "Nhập viện",
+      "pos": "verb",
+      "ex": "いいえ、父[ちち]はけがをして、昨日[きのう]から入院[にゅういん]しているんです。",
+      "exVi": "Không, hôm qua bố tớ bị thương nên đã nhập viện."
+    },
+    {
+      "jp": "退院します",
+      "reading": "たいいんします",
+      "vi": "Xuất viện",
+      "pos": "verb",
+      "ex": "今日[きょう]は退院[たいいん]しました。",
+      "exVi": "Hôm nay đã được xuất viện."
+    },
+    {
+      "jp": "「電源を」入れます",
+      "reading": "「でんげんを」いれます",
+      "vi": "Bật (nguồn, công tắc điện)",
+      "pos": "verb",
+      "ex": "部屋[へや]は暗[くら]いですから、電源[でんげん]を入[い]れます。",
+      "exVi": "Căn phòng tối om, nên bật điện lên."
+    },
+    {
+      "jp": "「電源を」切ります",
+      "reading": "「でんげんを」きります",
+      "vi": "Tắt (nguồn, công tắc điện)",
+      "pos": "verb",
+      "ex": "部屋[へや]を出[で]る前[まえ]に、電源[でんげん]を切[き]ります。",
+      "exVi": "Tắt điện trước khi ra khỏi phòng."
+    },
+    {
+      "jp": "「カギを」かけます",
+      "reading": "「カギを」かけます",
+      "vi": "Khóa (ổ khóa)",
+      "pos": "verb",
+      "ex": "学校[がっこう]へ行[い]く前[まえ]に、カギをかけてくださいね!",
+      "exVi": "Trước khi đi học, con nhớ khóa cửa đấy nhé!"
+    },
+    {
+      "jp": "「うそを」つきます",
+      "reading": "「うそを」つきます",
+      "vi": "Nói dối",
+      "pos": "verb",
+      "ex": "うそをつくと、はなが長[なが]くなりますよ!",
+      "exVi": "Khi con nói dối, mũi của con sẽ dài ra đó!"
+    },
+    {
+      "jp": "気持ちがいい",
+      "reading": "きもちがいい",
+      "vi": "Tâm trạng sảng khoái, tốt",
+      "pos": "noun",
+      "ex": "いい結果[けっか]ですから、今[いま]気持[きも]ちがいいです。",
+      "exVi": "Vì đạt kết quả tốt nên giờ tớ đang thấy sảng khoái lắm."
+    },
+    {
+      "jp": "気持ちが悪い",
+      "reading": "きもちがわるい",
+      "vi": "Tâm trạng không tốt",
+      "pos": "noun",
+      "ex": "えーっと、気持[きも]ちが悪[わる]いですから、ちょっと。。。",
+      "exVi": "À thì, tâm trạng tớ đang không được tốt, nên là..."
+    },
+    {
+      "jp": "赤ちゃん",
+      "reading": "あかちゃん",
+      "vi": "Em bé",
+      "pos": "noun",
+      "ex": "先週[せんしゅう]、姉[あね]が赤[あか]ちゃんを産[う]みました。",
+      "exVi": "Chị gái tôi đã sinh em bé vào tuần trước."
+    },
+    {
+      "jp": "小学校",
+      "reading": "しょうがっこう",
+      "vi": "Trường tiểu học, trường cấp 1",
+      "pos": "noun",
+      "ex": "小学校[しょうがっこう]へ妹[いもうと]を迎[むか]えに行[い]きます。",
+      "exVi": "Tớ đến trường tiểu học để đón em gái."
+    },
+    {
+      "jp": "中学校",
+      "reading": "ちゅうがっこう",
+      "vi": "Trường trung học cơ sở, trường cấp 2",
+      "pos": "noun",
+      "ex": "弟[おとうと]は中学校[ちゅうがっこう]の学生[がくせい]です。",
+      "exVi": "Em trai tôi là học sinh cấp 2."
+    },
+    {
+      "jp": "高校",
+      "reading": "こうこう",
+      "vi": "Trường trung học phổ thông, trường cấp 3",
+      "pos": "noun",
+      "ex": "こちらは高校[こうこう]のともだち、Bさんです。",
+      "exVi": "Đây là B, bạn học cùng cấp 3 với con ạ."
+    },
+    {
+      "jp": "駅前",
+      "reading": "えきまえ",
+      "vi": "Trước nhà ga",
+      "pos": "noun",
+      "ex": "駅前[えきまえ]に人[ひと]が多[おお]いね。",
+      "exVi": "Trước nhà ga đông người ghê nhỉ."
+    },
+    {
+      "jp": "海岸",
+      "reading": "かいがん",
+      "vi": "Bờ biển",
+      "pos": "noun",
+      "ex": "海岸[かいがん]の散歩[さんぽ]が好[す]きですから。",
+      "exVi": "Vì tớ thích đi dạo quanh bờ biển."
+    },
+    {
+      "jp": "工場",
+      "reading": "こうじょう",
+      "vi": "Nhà máy, xí nghiệp",
+      "pos": "noun",
+      "ex": "前[まえ]の工場[こうじょう]の音[おと]ですよ。",
+      "exVi": "Tiếng từ nhà máy phía trước đó."
+    },
+    {
+      "jp": "村",
+      "reading": "むら",
+      "vi": "Làng",
+      "pos": "noun",
+      "ex": "静[しず]かな村[むら]です。",
+      "exVi": "Là một ngôi làng yên bình."
+    },
+    {
+      "jp": "指輪",
+      "reading": "ゆびわ",
+      "vi": "Nhẫn",
+      "pos": "noun",
+      "ex": "この指輪[ゆびわ]、きれいですね。",
+      "exVi": "Cái nhẫn này đẹp thế!"
+    },
+    {
+      "jp": "電源",
+      "reading": "でんげん",
+      "vi": "Nguồn điện",
+      "pos": "noun",
+      "ex": "あれ? パソコンの電源[でんげん]ボタンはどこ?",
+      "exVi": "Ơ kìa, Nút nguồn điện của máy tính ở đâu?"
+    },
+    {
+      "jp": "習慣",
+      "reading": "しゅうかん",
+      "vi": "Thói quen, tập quán",
+      "pos": "noun",
+      "ex": "ベトナム人[じん]はテトにお寺[てら]に行[い]く習慣[しゅうかん]があります。",
+      "exVi": "Người Việt Nam có thói quen đi chùa vào dịp Tết."
+    },
+    {
+      "jp": "健康",
+      "reading": "けんこう",
+      "vi": "Sức khỏe",
+      "pos": "noun",
+      "ex": "でもインスタントラーメンは健康[けんこう]に悪[わる]いですよ。",
+      "exVi": "Nhưng mì ăn liền không tốt cho sức khỏe đâu."
+    },
+    {
+      "jp": "大きな〜",
+      "reading": "おおきな〜",
+      "vi": "~ lớn, ~ to",
+      "pos": "adj",
+      "ex": "大[おお]きなケーキがほしいです。",
+      "exVi": "Tôi muốn cái bánh to cơ."
+    },
+    {
+      "jp": "小さな〜",
+      "reading": "ちいさな〜",
+      "vi": "~ bé, ~ nhỏ",
+      "pos": "adj",
+      "ex": "すみません、今[いま]小[ちい]さなケーキしかありません。",
+      "exVi": "Xin lỗi, bây giờ chúng tôi không có bánh nhỏ ạ."
+    }
+  ]
+}

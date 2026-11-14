@@ -1,0 +1,298 @@
+{
+  "lesson": {
+    "id": "b39",
+    "name": "Bài 39",
+    "type": "book"
+  },
+  "count": 36,
+  "words": [
+    {
+      "jp": "「質問に」答えます",
+      "reading": "「しつもんに」こたえます",
+      "vi": "Trả lời (câu hỏi)",
+      "pos": "verb",
+      "ex": "Bさん、この質問[しつもん]に答[こた]えてください。",
+      "exVi": "B, em hãy trả lời câu hỏi này đi."
+    },
+    {
+      "jp": "「ビルが」倒れます",
+      "reading": "「ビルが」たおれます",
+      "vi": "(Tòa nhà) bị đổ, ngã",
+      "pos": "verb",
+      "ex": "大雨[おおあめ]でたくさんの木[き]が倒[たお]れます。",
+      "exVi": "Rất nhiều cây bị đổ vì mưa lớn."
+    },
+    {
+      "jp": "「道を」通ります",
+      "reading": "「みちを」とおります",
+      "vi": "Đi (xuyên) qua (đường)",
+      "pos": "verb",
+      "ex": "通[とお]りましょう。",
+      "exVi": "Đi nào."
+    },
+    {
+      "jp": "死にます",
+      "reading": "しにます",
+      "vi": "Chết",
+      "pos": "verb",
+      "ex": "きのう私[わたし]の猫[ねこ]が死[し]にました。",
+      "exVi": "Con mèo của tớ đã chết vào ngày hôm qua rồi."
+    },
+    {
+      "jp": "びっくりします",
+      "reading": "びっくりします",
+      "vi": "Giật mình",
+      "pos": "verb",
+      "ex": "わー、びっくりしました!",
+      "exVi": "Á, giật cả mình!"
+    },
+    {
+      "jp": "がっかりします",
+      "reading": "がっかりします",
+      "vi": "Thất vọng",
+      "pos": "verb",
+      "ex": "がっかりしないで!",
+      "exVi": "Đừng thất vọng!"
+    },
+    {
+      "jp": "安心します",
+      "reading": "あんしんします",
+      "vi": "Yên tâm",
+      "pos": "verb",
+      "ex": "よくなりましたから、安心[あんしん]してください!",
+      "exVi": "Đã tốt hơn nhiều rồi nên anh cứ yên tâm nhé!"
+    },
+    {
+      "jp": "けんかします",
+      "reading": "けんかします",
+      "vi": "Cãi nhau",
+      "pos": "verb",
+      "ex": "近所[きんじょ]の二人[ふたり]がけんかしていますよ。",
+      "exVi": "Hàng xóm đang cãi nhau đó."
+    },
+    {
+      "jp": "離婚します",
+      "reading": "りこんします",
+      "vi": "Ly hôn",
+      "pos": "verb",
+      "ex": "うん、きのうもけんかしてましたから、たぶんあの二人[ふたり]は離婚[りこん]すると思[おも]う。",
+      "exVi": "Ừ, hôm qua cũng cãi nhau nên chắc hôm nay hai người họ sẽ ly hôn đó."
+    },
+    {
+      "jp": "太ります",
+      "reading": "ふとります",
+      "vi": "Béo ra",
+      "pos": "verb",
+      "ex": "うん、太[ふと]っていますから。",
+      "exVi": "Ừ, tại tớ thấy mình đang béo lên."
+    },
+    {
+      "jp": "やせます",
+      "reading": "やせます",
+      "vi": "Gầy đi",
+      "pos": "verb",
+      "ex": "あなたは太[ふと]ってない、やせていますよ。",
+      "exVi": "Cậu không phải là đang béo lên mà là đang gầy đi đó!"
+    },
+    {
+      "jp": "複雑 [な]",
+      "reading": "ふくざつ [な]",
+      "vi": "Phức tạp",
+      "pos": "adj",
+      "ex": "その質問[しつもん]は複雑[ふくざつ]ですから、まだできません。",
+      "exVi": "Vì câu ấy khó quá nên tớ vẫn chưa trả lời được."
+    },
+    {
+      "jp": "じゃま [な]",
+      "reading": "じゃま [な]",
+      "vi": "Vướng, vướng víu, ngáng đường",
+      "pos": "adj",
+      "ex": "妹[いもうと]のおもちゃはちょっとじゃまですね、かたづけます。",
+      "exVi": "Vì đồ chơi của em gái tớ có hơi vướng víu nên tớ sẽ thu dọn nó."
+    },
+    {
+      "jp": "硬い",
+      "reading": "かたい",
+      "vi": "Cứng",
+      "pos": "adj",
+      "ex": "あ、このパンは硬[かた]い!",
+      "exVi": "Á, cái bánh mì này cứng quá!"
+    },
+    {
+      "jp": "柔らかい",
+      "reading": "やわらかい",
+      "vi": "Mềm",
+      "pos": "adj",
+      "ex": "この布団[ふとん]は柔[やわ]らかいね。",
+      "exVi": "Cái chăn này mềm thật."
+    },
+    {
+      "jp": "汚い",
+      "reading": "きたない",
+      "vi": "Bẩn",
+      "pos": "adj",
+      "ex": "お母[かあ]ちゃん、私[わたし]の服[ふく]は汚[きたな]くなった!",
+      "exVi": "Mẹ ơi, quần áo của con bẩn mất rồi!"
+    },
+    {
+      "jp": "恥ずかしい",
+      "reading": "はずかしい",
+      "vi": "Xấu hổ, ngượng",
+      "pos": "adj",
+      "ex": "でも恥[は]ずかしいだから、何[なに]も言[い]えなかった。",
+      "exVi": "Nhưng vì tớ xấu hổ quá nên chẳng nói được gì cả."
+    },
+    {
+      "jp": "嬉しい",
+      "reading": "うれしい",
+      "vi": "Vui",
+      "pos": "adj",
+      "ex": "天気[てんき]が良[よ]かったから、うれしかったです。",
+      "exVi": "Vì thời tiết rất đẹp nên tớ đã rất vui."
+    },
+    {
+      "jp": "悲しい",
+      "reading": "かなしい",
+      "vi": "Buồn",
+      "pos": "adj",
+      "ex": "私[わたし]の猫[ねこ]が死[し]んだので、悲[かな]しいです。",
+      "exVi": "Vì con mèo của tớ mất rồi nên tớ đang buồn."
+    },
+    {
+      "jp": "津波",
+      "reading": "つなみ",
+      "vi": "Sóng thần",
+      "pos": "noun",
+      "ex": "つなみでたくさんの車[くるま]が壊[こわ]れた。",
+      "exVi": "Rất nhiều xe ô tô đã bị hỏng vì trận sóng thần."
+    },
+    {
+      "jp": "火事",
+      "reading": "かじ",
+      "vi": "Hỏa hoạn",
+      "pos": "noun",
+      "ex": "夏[なつ]に火事[かじ]が多[おお]いです。",
+      "exVi": "Mùa hè có rất nhiều vụ hỏa hoạn."
+    },
+    {
+      "jp": "雷",
+      "reading": "かみなり",
+      "vi": "Sấm",
+      "pos": "noun",
+      "ex": "雨[あめ]の前[まえ]に、雷[かみなり]がなります。",
+      "exVi": "Trước khi mưa, trời có sấm."
+    },
+    {
+      "jp": "地震",
+      "reading": "じしん",
+      "vi": "Động đất",
+      "pos": "noun",
+      "ex": "地震[じしん]が起[お]こったら、机[つくえ]の下[した]にかくれてください。",
+      "exVi": "Khi động đất xảy ra, hãy trốn dưới gầm bàn."
+    },
+    {
+      "jp": "事故",
+      "reading": "じこ",
+      "vi": "Tai nạn, sự cố",
+      "pos": "noun",
+      "ex": "今朝[けさ]この道[みち]で事故[じこ]に会[あ]った。",
+      "exVi": "Sáng nay tôi đã gặp tai nạn trên con đường này."
+    },
+    {
+      "jp": "台風",
+      "reading": "たいふう",
+      "vi": "Bão",
+      "pos": "noun",
+      "ex": "台風[たいふう]の日[ひ]に学校[がっこう]へ行[い]きたくない。",
+      "exVi": "Tôi không muốn đi học vào ngày bão bùng."
+    },
+    {
+      "jp": "会場",
+      "reading": "かいじょう",
+      "vi": "Hội trường",
+      "pos": "noun",
+      "ex": "2階[かい]の会場[かいじょう]です。",
+      "exVi": "Ở hội trường tầng 2 nhé."
+    },
+    {
+      "jp": "首相",
+      "reading": "しゅしょう",
+      "vi": "Thủ tướng",
+      "pos": "noun",
+      "ex": "きのう日本[にほん]の首相[しゅしょう]がベトナムに来[き]ました。",
+      "exVi": "Ngày hôm qua, thủ tướng Nhật Bản đã đến Việt Nam."
+    },
+    {
+      "jp": "大勢",
+      "reading": "おおぜい",
+      "vi": "Nhiều (người)",
+      "pos": "noun",
+      "ex": "だから、毎日[まいにち]大勢[おおぜい]の人[ひと]が来[き]ていますよ。",
+      "exVi": "Nên mỗi ngày đều có rất nhiều người đến đây đó."
+    },
+    {
+      "jp": "フロント",
+      "reading": "フロント",
+      "vi": "Lễ tân",
+      "pos": "noun",
+      "ex": "フロントに置[お]きましたから、あそこに行[い]ってください。",
+      "exVi": "Vì tôi đã để nó ở chỗ lễ tân rồi nên anh hãy qua đó nhé."
+    },
+    {
+      "jp": "ハイキング",
+      "reading": "ハイキング",
+      "vi": "Dã ngoại",
+      "pos": "noun",
+      "ex": "家族[かぞく]とハイキングをする予定[よてい]があります。",
+      "exVi": "Tớ thì có dự định đi dã ngoại với gia đình."
+    },
+    {
+      "jp": "[お] 見合い",
+      "reading": "[お] みあい",
+      "vi": "Xem mắt (để kết hôn)",
+      "pos": "noun",
+      "ex": "えーっと、お見合[みあ]い相手[あいて]です。",
+      "exVi": "À thì, đó là đối tượng xem mắt ý mà."
+    },
+    {
+      "jp": "タオル",
+      "reading": "タオル",
+      "vi": "Khăn tắm",
+      "pos": "noun",
+      "ex": "このタオルは柔[やわ]らかいです。",
+      "exVi": "Khăn tắm này rất mềm mại."
+    },
+    {
+      "jp": "せっけん",
+      "reading": "せっけん",
+      "vi": "Xà phòng",
+      "pos": "noun",
+      "ex": "せっけんで体[からだ]をきれいにします。",
+      "exVi": "Tôi làm sạch cơ thể bằng xà phòng."
+    },
+    {
+      "jp": "操作(をします)",
+      "reading": "そうさ(をします)",
+      "vi": "Thực hiện thao tác",
+      "pos": "noun",
+      "ex": "操作[そうさ]はかんたんですね。",
+      "exVi": "Thao tác đơn giản quá nhỉ."
+    },
+    {
+      "jp": "~代",
+      "reading": "~だい",
+      "vi": "Phí ~, tiền ~",
+      "pos": "noun",
+      "ex": "宿代[やどだい]は2000円[えん]です。",
+      "exVi": "Tiền thuê phòng của anh là 2000 yên ạ."
+    },
+    {
+      "jp": "~屋",
+      "reading": "~や",
+      "vi": "Người bán ~",
+      "pos": "noun",
+      "ex": "豆腐屋[とうふや]は私[わたし]の近所[きんじょ]です。",
+      "exVi": "Người bán đậu phụ là hàng xóm của tôi."
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "lesson": {
+    "id": "b40",
+    "name": "Bài 40",
+    "type": "book"
+  },
+  "count": 33,
+  "words": [
+    {
+      "jp": "数えます",
+      "reading": "かぞえます",
+      "vi": "Đếm",
+      "pos": "verb",
+      "ex": "今[いま]何人[なんにん]いるか数[かぞ]えてください。",
+      "exVi": "Em đếm xem hiện tại lớp có bao nhiêu người."
+    },
+    {
+      "jp": "[長さを] 測ります",
+      "reading": "[ながさを] はかります",
+      "vi": "Đo (chiều dài)",
+      "pos": "verb",
+      "ex": "高[たか]さを測[はか]ってみます。",
+      "exVi": "Đo chiều cao."
+    },
+    {
+      "jp": "[重さを] 量ります",
+      "reading": "[おもさを] はかります",
+      "vi": "Cân (nặng)",
+      "pos": "verb",
+      "ex": "ねえ、象[ぞう]の体重[たいじゅう]はどうやって、量[はか]るか知[し]っていますか。",
+      "exVi": "Này, cậu có biết làm sao để đo được cân nặng của một con voi không?"
+    },
+    {
+      "jp": "確かめます",
+      "reading": "たしかめます",
+      "vi": "Xác nhận",
+      "pos": "verb",
+      "ex": "すみません、銀行[ぎんこう]口座[こうざ]の残高[ざんだか]を確[たし]かめる方法[ほうほう]を教[おし]えてくれませんか。",
+      "exVi": "Xin lỗi, cậu có thể chỉ cách xác nhận (kiểm tra) số dư tài khoản của ngân hàng giúp tớ được không?"
+    },
+    {
+      "jp": "「サイズが」合います",
+      "reading": "「サイズが」あいます",
+      "vi": "(Kích cỡ) vừa",
+      "pos": "verb",
+      "ex": "サイズが合[あ]うかどうか、着[き]てみます。",
+      "exVi": "Tôi sẽ thử nó để xem nếu nó phù hợp."
+    },
+    {
+      "jp": "「問題が」出ます",
+      "reading": "「もんだいが」でます",
+      "vi": "Có, ra (nội dung câu hỏi thi)",
+      "pos": "verb",
+      "ex": "昨日[きのう]のテストは第[だい]40課[か]の問題[もんだい]が出[で]ましたか。",
+      "exVi": "Này, bài kiểm tra hôm qua có xuất hiện nội dung của bài 40 không?"
+    },
+    {
+      "jp": "酔います",
+      "reading": "よいます",
+      "vi": "Say rượu, say tàu, xe,...",
+      "pos": "verb",
+      "ex": "車[くるま]に酔[よ]いますから、遠[とお]くまで車[くるま]で遊[あそ]びに行[い]けません。",
+      "exVi": "Vì tớ say xe lắm nên không thể đi chơi xa bằng ô tô được."
+    },
+    {
+      "jp": "出発します",
+      "reading": "しゅっぱつします",
+      "vi": "Xuất phát",
+      "pos": "verb",
+      "ex": "明日[あした]、何時[なんじ]に出発[しゅっぱつ]しますか。",
+      "exVi": "Mai mấy giờ xuất phát ấy nhỉ?"
+    },
+    {
+      "jp": "到着します",
+      "reading": "とうちゃくします",
+      "vi": "Đến",
+      "pos": "verb",
+      "ex": "到着[とうちゃく]したら連絡[れんらく]してくださいね。",
+      "exVi": "Đến nơi nhớ liên lạc cho tớ nhé."
+    },
+    {
+      "jp": "上手くいきます",
+      "reading": "うまくいきます",
+      "vi": "Thuận lợi",
+      "pos": "verb",
+      "ex": "新[あたら]しい仕事[しごと]は上手[うま]くいっています。",
+      "exVi": "Công việc mới của tôi đang tiến triển tốt."
+    },
+    {
+      "jp": "相談します",
+      "reading": "そうだんします",
+      "vi": "Nói chuyện, thảo luận",
+      "pos": "verb",
+      "ex": "困[こま]ったことがあれば、すぐ相談[そうだん]してくださいね。",
+      "exVi": "Nếu gặp rắc rối gì thì nhanh chóng trao đổi với mình nhé."
+    },
+    {
+      "jp": "必要 [な]",
+      "reading": "ひつよう [な]",
+      "vi": "Cần thiết",
+      "pos": "adj",
+      "ex": "日本[にほん]へ働[はたら]きに行[い]く前[まえ]に、何[なに]を準備[じゅんび]することが必要[ひつよう]ですか?",
+      "exVi": "Trước khi qua Nhật làm việc thì cần chuẩn bị những gì nhỉ?"
+    },
+    {
+      "jp": "新年会",
+      "reading": "しんねんかい",
+      "vi": "Tiệc đầu năm",
+      "pos": "noun",
+      "ex": "今晩[こんばん]の新年会[しんねんかい]に行[い]きます。",
+      "exVi": "Tôi sẽ đến bữa tiệc năm mới tối nay."
+    },
+    {
+      "jp": "忘年会",
+      "reading": "ぼうねんかい",
+      "vi": "Tiệc cuối năm, tiệc tất niên",
+      "pos": "noun",
+      "ex": "今晩[こんばん]の忘年会[ぼうねんかい]に行[い]きます。",
+      "exVi": "Tôi sẽ đến bữa tiệc cuối năm tối nay."
+    },
+    {
+      "jp": "二次会",
+      "reading": "にじかい",
+      "vi": "Đi tăng hai",
+      "pos": "noun",
+      "ex": "二次会[にじかい]も参加[さんか]します。",
+      "exVi": "Tớ tham gia cả tăng hai luôn."
+    },
+    {
+      "jp": "マラソン",
+      "reading": "マラソン",
+      "vi": "Ma-ra-tông",
+      "pos": "noun",
+      "ex": "学校[がっこう]でマラソン大会[たいかい]に参加[さんか]しますか。",
+      "exVi": "Cậu sẽ tham gia đại hội ma-ra-tông ở trường chứ."
+    },
+    {
+      "jp": "発表会",
+      "reading": "はっぴょうかい",
+      "vi": "Buổi phát biểu",
+      "pos": "noun",
+      "ex": "ねえ、昨日[きのう]の発表会[はっぴょうかい]はどうだった?",
+      "exVi": "Này, buổi phát biểu hôm qua thế nào?"
+    },
+    {
+      "jp": "コンテスト",
+      "reading": "コンテスト",
+      "vi": "Cuộc thi",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "大会",
+      "reading": "たいかい",
+      "vi": "Hội thi",
+      "pos": "noun",
+      "ex": "昨日[きのう]、学校[がっこう]の体育大会[たいいくたいかい]はどうだった?",
+      "exVi": "Đại hội thể thao ở trường hôm qua thế nào?"
+    },
+    {
+      "jp": "表",
+      "reading": "おもて",
+      "vi": "Mặt phải, mặt trước",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "裏",
+      "reading": "うら",
+      "vi": "Mặt trái, mặt sau",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "間違い",
+      "reading": "まちがい",
+      "vi": "Sai sót",
+      "pos": "noun",
+      "ex": "日本語[にほんご]の間違い[まちがい]があったら、教[おし]えてもらいたいです。",
+      "exVi": "Nếu có sai sót gì về tiếng Nhật tớ muốn cậu chỉ giúp tớ với."
+    },
+    {
+      "jp": "傷",
+      "reading": "きず",
+      "vi": "Vết thương, vết trầy, vết xước",
+      "pos": "noun",
+      "ex": "あれ、その傷[きず]、どうしたの?",
+      "exVi": "Ô, cậu có vết xước kìa. Có chuyện gì thế."
+    },
+    {
+      "jp": "[お] 年寄り",
+      "reading": "[お] としより",
+      "vi": "Người già, người cao tuổi",
+      "pos": "noun",
+      "ex": "Cさんはいつも、お年寄[としよ]りに親切[しんせつ]ですね。",
+      "exVi": "Anh C lúc nào cũng rất thân thiện với người già nhỉ?"
+    },
+    {
+      "jp": "ズボン",
+      "reading": "ズボン",
+      "vi": "Quần",
+      "pos": "noun",
+      "ex": "このズボンはどうですか?",
+      "exVi": "Cái quần đó thế nào?"
+    },
+    {
+      "jp": "様子",
+      "reading": "ようす",
+      "vi": "Tình trạng, bộ dạng",
+      "pos": "noun",
+      "ex": "最近[さいきん]、田中[たなか]くんの様子[ようす]がちょっと変[へん]だよ。心配[しんぱい]だわ。",
+      "exVi": "Gần đây nhìn bộ dạng của Tanaka cứ sao sao ấy nhỉ. Lo quá."
+    },
+    {
+      "jp": "急に",
+      "reading": "きゅうに",
+      "vi": "Đột ngột, đột nhiên",
+      "pos": "adv",
+      "ex": "外[そと]、急[きゅう]に雨[あめ]が降[ふ]り始[はじ]めた。",
+      "exVi": "Bên ngoài trời đột nhiên đổ mưa."
+    },
+    {
+      "jp": "長さ",
+      "reading": "ながさ",
+      "vi": "Chiều dài",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "重さ",
+      "reading": "おもさ",
+      "vi": "Trọng lượng",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "高さ",
+      "reading": "たかさ",
+      "vi": "Chiều cao",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "大きさ",
+      "reading": "おおきさ",
+      "vi": "Kích thước, độ lớn",
+      "pos": "noun",
+      "ex": "",
+      "exVi": ""
+    },
+    {
+      "jp": "以上",
+      "reading": "いじょう",
+      "vi": "Trên~",
+      "pos": "noun",
+      "ex": "レポートは3時間[じかん]以上[いじょう]かかりますよ。",
+      "exVi": "Báo cáo sẽ mất hơn 3 giờ."
+    },
+    {
+      "jp": "以下",
+      "reading": "いか",
+      "vi": "Dưới~",
+      "pos": "noun",
+      "ex": "3時間[じかん]以下[いか]です。",
+      "exVi": "Khoảng dưới 3 tiếng."
+    }
+  ]
+}

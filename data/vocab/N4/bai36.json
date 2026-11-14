@@ -1,0 +1,178 @@
+{
+  "lesson": {
+    "id": "b36",
+    "name": "Bài 36",
+    "type": "book"
+  },
+  "count": 21,
+  "words": [
+    {
+      "jp": "「事故に」あいます",
+      "reading": "「じこに」あいます",
+      "vi": "Gặp (tai nạn)",
+      "pos": "verb",
+      "ex": "今朝[けさ]、学校[がっこう]へ行[い]っているとき、事故[じこ]にあったんだ...",
+      "exVi": "Sáng nay, khi con đang đi đến trường thì đã gặp tai nạn..."
+    },
+    {
+      "jp": "貯金します",
+      "reading": "ちょきんします",
+      "vi": "Tiết kiệm tiền",
+      "pos": "verb",
+      "ex": "これから貯金[ちょきん]します。",
+      "exVi": "Từ bây giờ, tớ sẽ tiết kiệm tiền."
+    },
+    {
+      "jp": "「10時を」過ぎます",
+      "reading": "「10じを」すぎます",
+      "vi": "Quá (10 giờ)",
+      "pos": "verb",
+      "ex": "午後[ごご]6時[じ]を過[す]ぎましたよ。",
+      "exVi": "Đã quá 6h tối rồi đó."
+    },
+    {
+      "jp": "「仕事に」慣れます",
+      "reading": "「しごとに」なれます",
+      "vi": "Quen với (công việc)",
+      "pos": "verb",
+      "ex": "Bさんはまだ仕事[しごと]に慣[な]れましたか。",
+      "exVi": "Cô B coi bộ vẫn chưa quen với công việc nhỉ."
+    },
+    {
+      "jp": "「食べ物が」腐ります",
+      "reading": "「たべものが」くさります",
+      "vi": "Bị hỏng, bị thiu",
+      "pos": "verb",
+      "ex": "食[た]べ物[もの]が腐[くさ]ったら、捨[す]てて新[あたら]しいのを買[か]ったほうがいいですよ。",
+      "exVi": "Nếu đồ ăn bị thiu thì cậu nên vứt rồi mua đồ ăn mới đi."
+    },
+    {
+      "jp": "剣道",
+      "reading": "けんどう",
+      "vi": "Kiếm đạo",
+      "pos": "noun",
+      "ex": "剣道[けんどう]を習[なら]いたい。",
+      "exVi": "Tôi muốn học kiếm đạo."
+    },
+    {
+      "jp": "柔道",
+      "reading": "じゅうどう",
+      "vi": "Judo",
+      "pos": "noun",
+      "ex": "柔道[じゅうどう]も習[なら]いたい。",
+      "exVi": "Tôi muốn học Judo."
+    },
+    {
+      "jp": "ラッシュ",
+      "reading": "ラッシュ",
+      "vi": "Tắc đường giờ cao điểm",
+      "pos": "noun",
+      "ex": "今[いま]きたくラッシュで渋滞[じゅうたい]してて...",
+      "exVi": "Đường bây giờ đang là giờ cao điểm, đang tắc cho nên..."
+    },
+    {
+      "jp": "宇宙",
+      "reading": "うちゅう",
+      "vi": "Vũ trụ",
+      "pos": "noun",
+      "ex": "宇宙[うちゅう]には星[ほし]がたくさんありますからね。",
+      "exVi": "Vì trong vũ trụ này có nhiều ngôi sao..."
+    },
+    {
+      "jp": "曲",
+      "reading": "きょく",
+      "vi": "Ca khúc, bản nhạc (Không lời)",
+      "pos": "noun",
+      "ex": "この曲[きょく]知[し]っている。",
+      "exVi": "Bản nhạc này tôi biết này..."
+    },
+    {
+      "jp": "毎週",
+      "reading": "まいしゅう",
+      "vi": "Hàng tuần",
+      "pos": "noun",
+      "ex": "毎週[まいしゅう]かくレポートはいつ部長[ぶちょう]に出[だ]しますか。",
+      "exVi": "Mình sẽ nộp báo cáo hàng tuần cho trưởng phòng vào lúc nào nhỉ?"
+    },
+    {
+      "jp": "毎月",
+      "reading": "まいつき",
+      "vi": "Hàng tháng",
+      "pos": "noun",
+      "ex": "毎月[まいつき]のレポートはいつ出[だ]しますか。",
+      "exVi": "Báo cáo hàng tháng thì nộp lúc nào."
+    },
+    {
+      "jp": "毎年",
+      "reading": "まいねん/まいとし",
+      "vi": "Hàng năm",
+      "pos": "noun",
+      "ex": "Riki会社[かいしゃ]は毎年[まいねん]の終[お]わりに大[おお]きいパーティーを開[ひら]いていますよ。",
+      "exVi": "Công ty Riki luôn mở tiệc lớn vào cuối mỗi năm đó."
+    },
+    {
+      "jp": "このごろ",
+      "reading": "このごろ",
+      "vi": "Dạo này",
+      "pos": "adv",
+      "ex": "Bさんはこのごろよく遅[おく]れますね。",
+      "exVi": "Chị B dạo này hay đi muộn lắm nha."
+    },
+    {
+      "jp": "やっと",
+      "reading": "やっと",
+      "vi": "Cuối cùng thì cũng",
+      "pos": "adv",
+      "ex": "やっとN1に合格[ごうかく]できた!",
+      "exVi": "Cuối cùng tôi đã có thể đỗ bằng N1 rồi."
+    },
+    {
+      "jp": "かなり",
+      "reading": "かなり",
+      "vi": "Khá là",
+      "pos": "adv",
+      "ex": "薬[くすり]を飲[の]んで、ゆっくり休[やす]んだら、熱[ねつ]がかなり下[さ]がりました。",
+      "exVi": "Sau khi uống thuốc và nghỉ ngơi thì tôi cũng kha khá hạ được sốt rồi."
+    },
+    {
+      "jp": "必ず",
+      "reading": "かならず",
+      "vi": "Nhất định",
+      "pos": "adv",
+      "ex": "私[わたし]は必[かなら]ず日本[にほん]へ行[い]くよ。",
+      "exVi": "Tôi nhất định sẽ đi Nhật."
+    },
+    {
+      "jp": "絶対に",
+      "reading": "ぜったいに",
+      "vi": "Tuyệt đối",
+      "pos": "adv",
+      "ex": "絶対[ぜったい]に美術館[びじゅつかん]でタバコを吸[す]わないでください。",
+      "exVi": "Tuyệt đối đừng hút thuốc lá ở trong bảo tàng mỹ thuật."
+    },
+    {
+      "jp": "上手に",
+      "reading": "じょうずに",
+      "vi": "Giỏi",
+      "pos": "adv",
+      "ex": "Bさん、英語[えいご]が上手[じょうず]に話[はな]せるね。",
+      "exVi": "Anh B nói tiếng Anh giỏi nhỉ."
+    },
+    {
+      "jp": "できるだけ",
+      "reading": "できるだけ",
+      "vi": "Trong khả năng có thể",
+      "pos": "adv",
+      "ex": "できるだけはやく帰[かえ]ります。",
+      "exVi": "Tôi sẽ về nhanh nhất có thể nhé."
+    },
+    {
+      "jp": "ほとんど",
+      "reading": "ほとんど",
+      "vi": "Hầu hết, phần lớn, hầu như",
+      "pos": "adv",
+      "ex": "見[み]たいテレビ番組[ばんぐみ]がほとんどないなあ...",
+      "exVi": "TV tối nay hầu như chả có chương trình nào mình muốn xem cả...."
+    }
+  ]
+}

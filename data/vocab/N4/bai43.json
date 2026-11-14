@@ -1,0 +1,178 @@
+{
+  "lesson": {
+    "id": "b43",
+    "name": "Bài 43",
+    "type": "book"
+  },
+  "count": 21,
+  "words": [
+    {
+      "jp": "「輸出が」増えます",
+      "reading": "「ゆしゅつが」ふえます",
+      "vi": "(Xuất khẩu) tăng",
+      "pos": "verb",
+      "ex": "輸出[ゆしゅつ]が増[ふ]えていますね。",
+      "exVi": "Lượng xuất khẩu đang tăng lên."
+    },
+    {
+      "jp": "「輸出が」減ります",
+      "reading": "「ゆしゅつが」へります",
+      "vi": "(Xuất khẩu) giảm",
+      "pos": "verb",
+      "ex": "輸出[ゆしゅつ]が減[へ]っていますね。",
+      "exVi": "Lượng xuất khẩu đang giảm xuống."
+    },
+    {
+      "jp": "「値段が」上がります",
+      "reading": "「ねだんが」あがります",
+      "vi": "(Giá cả) tăng",
+      "pos": "verb",
+      "ex": "値段[ねだん]が上[あ]がってしまった。",
+      "exVi": "Giá đã tăng rồi này."
+    },
+    {
+      "jp": "「値段が」下がります",
+      "reading": "「ねだんが」さがります",
+      "vi": "(Giá cả) giảm",
+      "pos": "verb",
+      "ex": "値段[ねだん]が下[さ]がったよ。",
+      "exVi": "Giá đã giảm rồi này."
+    },
+    {
+      "jp": "「ひもが」切れます",
+      "reading": "「ひもが」きれます",
+      "vi": "(Sợi dây) bị đứt",
+      "pos": "verb",
+      "ex": "マスクのひもが切[き]れました。",
+      "exVi": "Dây khẩu trang đã bị đứt rồi."
+    },
+    {
+      "jp": "「ボタンが」とれます",
+      "reading": "「ボタンが」とれます",
+      "vi": "(Cúc áo) bị đứt, rời hẳn ra khỏi áo",
+      "pos": "verb",
+      "ex": "シャツのボタンがもうすぐとれそうです。",
+      "exVi": "Cúc áo sơ mi của cậu có vẻ sắp bung ra rồi kìa."
+    },
+    {
+      "jp": "「荷物が」落ちます",
+      "reading": "「にもつが」おちます",
+      "vi": "(Hành lý) bị rơi",
+      "pos": "verb",
+      "ex": "スマホが落[お]ちてしまいました。",
+      "exVi": "Điện thoại tôi bị rơi rồi."
+    },
+    {
+      "jp": "「ガソリンが」無くなります",
+      "reading": "「ガソリンが」なくなります",
+      "vi": "Hết (xăng), mất",
+      "pos": "verb",
+      "ex": "水[みず]がなくなりました。",
+      "exVi": "Nước hết rồi."
+    },
+    {
+      "jp": "変(な)",
+      "reading": "へん(な)",
+      "vi": "Lạ",
+      "pos": "adj",
+      "ex": "変[へん]な音[おと]が聞[き]こえる。",
+      "exVi": "Tôi nghe thấy có tiếng lạ."
+    },
+    {
+      "jp": "幸せ(な)",
+      "reading": "しあわせ(な)",
+      "vi": "Hạnh phúc",
+      "pos": "adj",
+      "ex": "いつも恋人[こいびと]に会[あ]って幸[しあわ]せだね。",
+      "exVi": "Lúc nào cũng hạnh phúc khi gặp người yêu nhỉ."
+    },
+    {
+      "jp": "楽(な)",
+      "reading": "らく(な)",
+      "vi": "Nhàn, nhàn nhã",
+      "pos": "adj",
+      "ex": "今日[きょう]は楽[らく]です。",
+      "exVi": "Hôm nay nhàn nhã lắm."
+    },
+    {
+      "jp": "うまい",
+      "reading": "うまい",
+      "vi": "(Đồ ăn) ngon, ngọt; (Kỹ năng) khéo, giỏi; (Tình huống) may mắn",
+      "pos": "adj",
+      "ex": "Linhちゃん、ダンスはうまいですね。",
+      "exVi": "Linh nhảy giỏi quá!"
+    },
+    {
+      "jp": "まずい",
+      "reading": "まずい",
+      "vi": "(Đồ ăn) dở; (Tình huống) hỏng rồi, xong rồi",
+      "pos": "adj",
+      "ex": "この食[た]べ物[もの]はまずい!",
+      "exVi": "Món ăn này dở quá!"
+    },
+    {
+      "jp": "つまらない",
+      "reading": "つまらない",
+      "vi": "Chán, không hay",
+      "pos": "adj",
+      "ex": "この映画[えいが]...つまらないな... 時間[じかん]が無駄[むだ]だ。",
+      "exVi": "Bộ phim này chán thật đấy nhỉ... Đúng là phí thời gian."
+    },
+    {
+      "jp": "ガソリン",
+      "reading": "ガソリン",
+      "vi": "Xăng",
+      "pos": "noun",
+      "ex": "ガソリンがなくなったんだ。",
+      "exVi": "Hết xăng mất rồi."
+    },
+    {
+      "jp": "火",
+      "reading": "ひ",
+      "vi": "Lửa",
+      "pos": "noun",
+      "ex": "火[ひ]が出[で]ない!",
+      "exVi": "Không ra lửa à!"
+    },
+    {
+      "jp": "パンフレット",
+      "reading": "パンフレット",
+      "vi": "Tờ rơi quảng cáo",
+      "pos": "noun",
+      "ex": "このパンフレットをもらってもいいですか。",
+      "exVi": "Em có thể nhận tờ quảng cáo này không ạ."
+    },
+    {
+      "jp": "バラ",
+      "reading": "バラ",
+      "vi": "Hoa hồng",
+      "pos": "noun",
+      "ex": "バラはきれいだね。",
+      "exVi": "Hoa hồng đẹp thật nhỉ."
+    },
+    {
+      "jp": "ドライブ",
+      "reading": "ドライブ",
+      "vi": "Lái xe hơi (theo sở thích)",
+      "pos": "noun",
+      "ex": "私[わたし]は週末[しゅうまつ]好[す]きな所[ところ]を自分[じぶん]でドライブしたいです。",
+      "exVi": "Tôi muốn tự mình lái xe đến bất cứ nơi nào tôi muốn vào cuối tuần."
+    },
+    {
+      "jp": "理由",
+      "reading": "りゆう",
+      "vi": "Lí do",
+      "pos": "noun",
+      "ex": "遅[おく]れた理由[りゆう]は何[なん]ですか。",
+      "exVi": "Thế lý do đi muộn của em là gì đây."
+    },
+    {
+      "jp": "今にも",
+      "reading": "いまにも",
+      "vi": "Bất kỳ lúc nào, ngay, sắp sửa (dùng khi miêu tả trạng thái trước khi sự biến đổi xảy ra)",
+      "pos": "adv",
+      "ex": "今[いま]にも雨[あめ]が降[ふ]りますよ。",
+      "exVi": "Sắp mưa rồi đấy."
+    }
+  ]
+}

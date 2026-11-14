@@ -1,0 +1,274 @@
+{
+  "lesson": {
+    "id": "b42",
+    "name": "Bài 42",
+    "type": "book"
+  },
+  "count": 33,
+  "words": [
+    {
+      "jp": "包みます",
+      "reading": "つつみます",
+      "vi": "Gói, bọc, bao",
+      "pos": "verb",
+      "ex": "プレゼントを包[つつ]んでいるよ。",
+      "exVi": "Tớ đang gói quà."
+    },
+    {
+      "jp": "沸かします",
+      "reading": "わかします",
+      "vi": "Đun sôi",
+      "pos": "verb",
+      "ex": "お湯[ゆ]を沸[わ]かしてね。",
+      "exVi": "Cậu hãy đun sôi nước đi nhé."
+    },
+    {
+      "jp": "混ぜます",
+      "reading": "まぜます",
+      "vi": "Trộn, khuấy",
+      "pos": "verb",
+      "ex": "コーヒーにミルクを混[ま]ぜたら、甘[あま]くなるよ。",
+      "exVi": "Này, nếu cậu trộn sữa vào cà phê thì sẽ ngọt hơn đấy."
+    },
+    {
+      "jp": "計算します",
+      "reading": "けいさんします",
+      "vi": "Tính, tính toán",
+      "pos": "verb",
+      "ex": "今月[こんげつ]の給料[きゅうりょう]を計算[けいさん]していますよ。",
+      "exVi": "Tôi đang tính tiền lương tháng này đây."
+    },
+    {
+      "jp": "並びます",
+      "reading": "ならびます",
+      "vi": "Xếp hàng",
+      "pos": "verb",
+      "ex": "並[なら]んでください。",
+      "exVi": "Vui lòng xếp hàng ạ."
+    },
+    {
+      "jp": "丈夫[な]",
+      "reading": "じょうぶ[な]",
+      "vi": "Bền, chắc chắn",
+      "pos": "adj",
+      "ex": "このスマホは丈夫[じょうぶ]ですね。",
+      "exVi": "Cái điện thoại này bền thật đấy nhỉ."
+    },
+    {
+      "jp": "アパート",
+      "reading": "アパート",
+      "vi": "Căn hộ cho thuê, phòng trọ",
+      "pos": "noun",
+      "ex": "アパートを探[さが]していますか。",
+      "exVi": "Cháu đang tìm căn hộ cho thuê à?"
+    },
+    {
+      "jp": "子供たち",
+      "reading": "こどもたち",
+      "vi": "Những đứa trẻ, bọn trẻ",
+      "pos": "noun",
+      "ex": "家[いえ]の子供[こども]たちに何[なに]を買[か]ってあげますか。",
+      "exVi": "Bạn định mua gì cho lũ trẻ ở nhà?"
+    },
+    {
+      "jp": "弁護士",
+      "reading": "べんごし",
+      "vi": "Luật sư",
+      "pos": "noun",
+      "ex": "将来[しょうらい]、僕[ぼく]も弁護士[べんごし]になりたいよ。",
+      "exVi": "Tương lai tớ cũng muốn trở thành luật sư đấy."
+    },
+    {
+      "jp": "音楽家",
+      "reading": "おんがくか",
+      "vi": "Nhạc sĩ, người hoạt động trong lĩnh vực âm nhạc",
+      "pos": "noun",
+      "ex": "「TienQuanCa」の歌[うた]を書[か]いた音楽家[おんがくか]はどなたですか。",
+      "exVi": "Các em, nhạc sĩ đã viết nên bài hát \"Tiến Quân Ca\" là ai?"
+    },
+    {
+      "jp": "自然",
+      "reading": "しぜん",
+      "vi": "Tự nhiên",
+      "pos": "noun",
+      "ex": "Bさんの日本語[にほんご]は自然[しぜん]ですね。",
+      "exVi": "Tiếng Nhật của anh B tự nhiên thật đấy nhỉ."
+    },
+    {
+      "jp": "教育",
+      "reading": "きょういく",
+      "vi": "Giáo dục",
+      "pos": "noun",
+      "ex": "日本[にほん]の教育[きょういく]は世界中[せかいじゅう]で一番[いちばん]いいだから。",
+      "exVi": "Giáo dục Nhật Bản là tốt nhất trên thế giới."
+    },
+    {
+      "jp": "文化",
+      "reading": "ぶんか",
+      "vi": "Văn hóa",
+      "pos": "noun",
+      "ex": "日本[にほん]の文化[ぶんか]に興味[きょうみ]があるね。",
+      "exVi": "Tôi quan tâm đến văn hóa Nhật Bản."
+    },
+    {
+      "jp": "政治",
+      "reading": "せいじ",
+      "vi": "Chính trị",
+      "pos": "noun",
+      "ex": "政治[せいじ]はすべての国[くに]の問題[もんだい]ですね。",
+      "exVi": "Chính trị là vấn đề của tất cả các nước nhỉ."
+    },
+    {
+      "jp": "法律",
+      "reading": "ほうりつ",
+      "vi": "Pháp luật",
+      "pos": "noun",
+      "ex": "すみません、法律本[ほうりつほん]を探[さが]しているんですが、...",
+      "exVi": "Xin lỗi nhưng mà hiện giờ tôi đang tìm sách pháp luật..."
+    },
+    {
+      "jp": "目的",
+      "reading": "もくてき",
+      "vi": "Mục đích",
+      "pos": "noun",
+      "ex": "Bさんが日本語[にほんご]を勉強[べんきょう]する目的[もくてき]は何[なに]?",
+      "exVi": "Mục đích B học tiếng Nhật là gì?"
+    },
+    {
+      "jp": "戦争",
+      "reading": "せんそう",
+      "vi": "Chiến tranh",
+      "pos": "noun",
+      "ex": "フランスやアメリカなどと戦争[せんそう]をしていました。",
+      "exVi": "Chúng ta đã từng chiến tranh với Pháp và Mỹ."
+    },
+    {
+      "jp": "平和",
+      "reading": "へいわ",
+      "vi": "Hòa bình",
+      "pos": "noun",
+      "ex": "平和[へいわ]になりましたね。",
+      "exVi": "Đã hòa bình rồi nhỉ."
+    },
+    {
+      "jp": "論文",
+      "reading": "ろんぶん",
+      "vi": "Luận văn",
+      "pos": "noun",
+      "ex": "来週[らいしゅう]の木曜日[もくようび]までに論文[ろんぶん]を出[だ]してください。",
+      "exVi": "Hãy nộp lại bài luận văn của các em trước thứ 5 tuần sau nhé."
+    },
+    {
+      "jp": "楽しみ",
+      "reading": "たのしみ",
+      "vi": "Niềm vui",
+      "pos": "noun",
+      "ex": "おかあちゃん、暇[ひま]なときにゲームをするのはこどもの楽[たの]しみだから...",
+      "exVi": "Mẹ ơi, chơi game lúc rảnh rỗi là niềm vui của con..."
+    },
+    {
+      "jp": "ふた",
+      "reading": "ふた",
+      "vi": "Nắp nồi",
+      "pos": "noun",
+      "ex": "鍋[なべ]のふたをしないと...",
+      "exVi": "Phải đóng nắp nồi lại..."
+    },
+    {
+      "jp": "ミキサー",
+      "reading": "ミキサー",
+      "vi": "Máy xay",
+      "pos": "noun",
+      "ex": "このミキサーは小[ちい]さいし、安[やす]いし、いいですよ。",
+      "exVi": "Chiếc máy xay này vừa nhỏ vừa rẻ, tốt lắm ạ."
+    },
+    {
+      "jp": "やかん",
+      "reading": "やかん",
+      "vi": "Ấm đun nước",
+      "pos": "noun",
+      "ex": "やかんはあそこですよ。",
+      "exVi": "Ấm đun nước ở chỗ kia kìa."
+    },
+    {
+      "jp": "栓抜き",
+      "reading": "せんぬき",
+      "vi": "Cái bật nắp chai",
+      "pos": "noun",
+      "ex": "これは栓抜[せんぬ]きです。",
+      "exVi": "Đây là cái mở nắp chai."
+    },
+    {
+      "jp": "缶切り",
+      "reading": "かんきり",
+      "vi": "Cái mở nắp hộp",
+      "pos": "noun",
+      "ex": "缶切[かんき]りを取[と]ってください。",
+      "exVi": "Cậu hãy lấy giúp tôi cái mở nắp hộp với."
+    },
+    {
+      "jp": "缶詰",
+      "reading": "かんづめ",
+      "vi": "Đồ hộp, thực phẩm đóng hộp",
+      "pos": "noun",
+      "ex": "このスーパーは缶詰[かんづめ]がたくさんあるの。",
+      "exVi": "Siêu thị này nhiều thực phẩm đóng hộp quá."
+    },
+    {
+      "jp": "体温計",
+      "reading": "たいおんけい",
+      "vi": "Nhiệt kế",
+      "pos": "noun",
+      "ex": "体温計[たいおんけい]で測[はか]ってみるね。",
+      "exVi": "Tôi sẽ thử với nhiệt kế."
+    },
+    {
+      "jp": "ふろしき",
+      "reading": "ふろしき",
+      "vi": "Khăn vuông dùng để gói đồ kiểu Nhật",
+      "pos": "noun",
+      "ex": "「ふろしき」は荷物[にもつ]を包[つつ]むものだ。",
+      "exVi": "\"Furoshiki\" được dùng để bọc hành lý."
+    },
+    {
+      "jp": "のし袋",
+      "reading": "のしぶくろ",
+      "vi": "Phong bì dùng để bỏ tiền mừng",
+      "pos": "noun",
+      "ex": "「のし袋[ぶくろ]」を探[さが]しています。",
+      "exVi": "Tôi đang tìm mua phong bì dùng để bỏ tiền mừng."
+    },
+    {
+      "jp": "材料",
+      "reading": "ざいりょう",
+      "vi": "Vật liệu",
+      "pos": "noun",
+      "ex": "木[き]は机[つくえ]の材料[ざいりょう]です。",
+      "exVi": "Gỗ là vật liệu của cái bàn."
+    },
+    {
+      "jp": "ある〜",
+      "reading": "ある〜",
+      "vi": "Một ~ nọ",
+      "pos": "adv",
+      "ex": "昔々[むかしむかし]、ある国[くに]には不思議[ふしぎ]な猫[ねこ]がいる...",
+      "exVi": "Ngày xửa ngày xưa, tại 1 vương quốc nọ, có 1 chú mèo kỳ lạ...."
+    },
+    {
+      "jp": "一生懸命",
+      "reading": "いっしょうけんめい",
+      "vi": "Chăm chỉ, gắng hết sức",
+      "pos": "adv",
+      "ex": "いつも一生懸命[いっしょうけんめい]勉強[べんきょう]しているBさんはきっと合格[ごうかく]できるでしょう。",
+      "exVi": "Chắc chắn là 1 người lúc nào cũng chăm chỉ học tập như em B thì kiểu gì cũng đỗ thôi."
+    },
+    {
+      "jp": "なぜ",
+      "reading": "なぜ",
+      "vi": "Tại sao",
+      "pos": "other",
+      "ex": "なぜコーヒーを飲[の]まないんですか。",
+      "exVi": "Tại sao lại không uống cà phê thế?"
+    }
+  ]
+}
