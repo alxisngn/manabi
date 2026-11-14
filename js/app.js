@@ -1,11 +1,10 @@
 import { exportBackup, importBackup } from './core/store.js';
+import { mount as mountVocab, meta as vocabMeta } from './modules/vocab/picker.js';
 
 const MODULES = [
   {
-    id: 'vocab',
-    name: 'Từ vựng',
+    ...vocabMeta,
     sub: 'Flashcard, Ghép thẻ, Trắc nghiệm, Phản xạ',
-    icon: '語',
     accent: 'accent-teal',
     ready: true
   },
@@ -65,20 +64,10 @@ function renderHome() {
   `;
 }
 
-function renderVocabPlaceholder() {
-  appEl.innerHTML = `
-    <section class="card placeholder-box">
-      <h1 class="module-title">Module Từ vựng — đang xây</h1>
-      <p class="module-sub">Các chế độ chọn bài, Flashcard, Match, Quiz và Reflex sẽ được gắn vào đây ở phase tiếp theo.</p>
-      <a href="#/" class="btn btn-teal">← Về trang chủ</a>
-    </section>
-  `;
-}
-
 function router() {
   const hash = window.location.hash || '#/';
   if (hash.startsWith('#/vocab')) {
-    renderVocabPlaceholder();
+    mountVocab(appEl);
   } else {
     renderHome();
   }
