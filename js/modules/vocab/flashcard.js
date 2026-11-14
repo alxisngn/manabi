@@ -48,7 +48,7 @@ export function mountFlashcard(container, words = [], onBack) {
       <div id="fc-card" class="card" style="min-height:330px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;user-select:none;position:relative;padding:20px;box-shadow:6px 7px 0 var(--shadow);">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
           <span style="padding:4px 14px;border-radius:999px;font-size:0.85rem;font-weight:700;border:2px solid var(--teal);color:var(--teal);background:rgba(91,192,190,0.1);">${flipped ? 'Mặt sau' : 'Mặt trước'}</span>
-          <button type="button" id="fc-bookmark" class="btn btn-icon" title="Lưu vào Từ đã sai / Đã lưu" aria-label="Lưu từ" style="width:44px;height:44px;border-radius:14px;background:${saved ? 'rgba(245,200,79,0.18)' : 'var(--bg-elevated)'};border-color:${saved ? 'var(--yellow)' : 'var(--border)'};color:${saved ? 'var(--yellow)' : 'var(--text)'};">
+          <button type="button" id="fc-bookmark" class="btn btn-icon" title="Lưu vào Từ cần ôn lại" aria-label="Lưu từ" style="width:44px;height:44px;border-radius:14px;background:${saved ? 'rgba(245,200,79,0.18)' : 'var(--bg-elevated)'};border-color:${saved ? 'var(--yellow)' : 'var(--border)'};color:${saved ? 'var(--yellow)' : 'var(--text)'};">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="${saved ? 'currentColor' : 'none'}" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path></svg>
           </button>
         </div>

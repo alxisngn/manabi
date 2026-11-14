@@ -3,6 +3,8 @@ import { shuffle, escapeHtml } from '../../core/util.js';
 import { mountFlashcard } from './flashcard.js';
 import { mountImporter } from './importer.js';
 import { mountQuiz } from './quiz.js';
+import { mountMatch } from './match.js';
+import { mountReflex } from './reflex.js';
 
 export const meta = { id: 'vocab', name: 'Từ vựng', icon: '語' };
 export const vocabSession = { words: [], lessonIds: [], lessonNames: [] };
@@ -12,9 +14,9 @@ const DEFAULT_STORE = { selectedIds: [], customLessons: [], openWords: [], weakW
 
 const MODES = [
   { id: 'flashcard', name: 'Học từ mới', sub: 'Lật thẻ Flashcard & nghe phát âm', icon: '🃏', accent: 'accent-teal', ready: true },
-  { id: 'match', name: 'Ghép thẻ', sub: 'Nối nhanh từ tiếng Nhật và nghĩa', icon: '🧩', accent: 'accent-yellow', ready: false },
-  { id: 'quiz', name: 'Kiểm tra', sub: 'Trắc nghiệm, Đúng/Sai, Nối cặp & lưu từ đã sai', icon: '📝', accent: 'accent-coral', ready: true },
-  { id: 'reflex', name: 'Luyện phản xạ', sub: 'Đếm ngược tốc độ cao từng từ', icon: '⚡', accent: 'accent-teal', ready: false }
+  { id: 'match', name: 'Trò chơi ghép thẻ', sub: 'Nối nhanh từ tiếng Nhật và nghĩa theo đồng hồ', icon: '🧩', accent: 'accent-yellow', ready: true },
+  { id: 'quiz', name: 'Kiểm tra', sub: 'Trắc nghiệm, Đúng/Sai, Nối cặp & lưu từ cần ôn', icon: '📝', accent: 'accent-coral', ready: true },
+  { id: 'reflex', name: 'Luyện phản xạ', sub: 'Nghe hiểu & Thử thách tốc độ 5 giây/câu', icon: '⚡', accent: 'accent-teal', ready: true }
 ];
 
 let repoLessonsCache = null;
@@ -31,12 +33,12 @@ async function fetchRepoLessons() {
 }
 
 function buildAllLessons(repoLessons, store) {
-  const list = repoLessons.map((l) => ({ id: l.id, name: l.name, file: l.file, count: Number(l.count) || 0, source: 'repo' }));
-  if (Array.isArray(store.openWords) && store.openWords.length > 0) {
-    list.push({ id: 'user:open', name: 'Bài mở (từ ngoài sách)', count: store.openWords.length, words: store.openWords, source: 'local' });
-  }
+  const list = [];
   if (Array.isArray(store.weakWords) && store.weakWords.length > 0) {
-    list.push({ id: 'user:weak', name: 'Từ đã sai / Đã lưu', count: store.weakWords.length, words: store.weakWords, source: 'local' });
+    list.push({ id: 'user:weak', name: '📌 Từ cần ôn lại', count: store.weakWords.length, words: store.weakWords, source: 'local' });
+  }
+  if (Array.isArray(store.openWords) && store.openWords.length > 0) {
+    list.push({ id: 'user:open', name: '📖 Từ mở rộng', count: store.openWords.length, words: store.openWords, source: 'local' });
   }
   if (Array.isArray(store.customLessons)) {
     store.customLessons.forEach((cl) => {
@@ -45,6 +47,9 @@ function buildAllLessons(repoLessons, store) {
       }
     });
   }
+  repoLessons.forEach((l) => {
+    list.push({ id: l.id, name: l.name, file: l.file, count: Number(l.count) || 0, source: 'repo' });
+  });
   return list;
 }
 
@@ -73,16 +78,34 @@ export async function mount(container) {
   let lessons = buildAllLessons(repoLessons, store);
 
   const validSavedIds = (store.selectedIds || []).filter((id) => lessons.some((l) => l.id === id));
-  const selectedSet = new Set(validSavedIds.length ? validSavedIds : (lessons[0] ? [lessons[0].id] : []));
+  const defaultLesson = lessons.find((l) => l.source === 'repo') || lessons[0];
+  const selectedSet = new Set(validSavedIds.length ? validSavedIds : (defaultLesson ? [defaultLesson.id] : []));
 
-  let step = 'pick', importerTab = 'upload', importerTarget = 'user:open';
+  let step = 'pick', importerTab = 'upload', importerTarget = 'user:weak', weakDirect = false;
   let isLoadingWords = false, errorMsg = '';
 
   const query = window.location.hash.split('?')[1] || '';
   const viewParam = new URLSearchParams(query).get('view');
-  if (viewParam === 'weak') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:weak'; }
-  else if (viewParam === 'open') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:open'; }
-  else if (viewParam === 'manage') { step = 'importer'; importerTab = 'manage'; importerTarget = 'user:open'; }
+  if (viewParam === 'study-weak' && (store.weakWords || []).length > 0) {
+    vocabSession.words = shuffle(store.weakWords);
+    vocabSession.lessonIds = ['user:weak'];
+    vocabSession.lessonNames = ['Từ cần ôn lại'];
+    weakDirect = true;
+    step = 'quiz';
+  } else if (viewParam === 'study-open' && (store.openWords || []).length > 0) {
+    vocabSession.words = shuffle(store.openWords);
+    vocabSession.lessonIds = ['user:open'];
+    vocabSession.lessonNames = ['Từ mở rộng'];
+    step = 'modes';
+  } else if (viewParam === 'weak') {
+    step = 'importer'; importerTab = 'manage'; importerTarget = 'user:weak';
+  } else if (viewParam === 'open') {
+    step = 'importer'; importerTab = 'manage'; importerTarget = 'user:open';
+  } else if (viewParam === 'manage') {
+    step = 'importer'; importerTab = 'manage'; importerTarget = 'user:weak';
+  } else if (viewParam === 'add') {
+    step = 'importer'; importerTab = 'upload';
+  }
 
   function refreshLessonsFromStore() {
     store = getStore(STORE_KEY, DEFAULT_STORE);
@@ -102,40 +125,59 @@ export async function mount(container) {
     return { picked, totalWords: picked.reduce((sum, l) => sum + l.count, 0) };
   }
 
+  function clearViewParam() {
+    if (window.location.hash.includes('?')) history.replaceState(null, '', '#/vocab');
+  }
+
   function render() {
-    if (step === 'flashcard') {
-      mountFlashcard(container, vocabSession.words, () => { refreshLessonsFromStore(); step = 'modes'; render(); });
-    } else if (step === 'quiz') {
-      mountQuiz(container, vocabSession.words, () => { refreshLessonsFromStore(); step = 'modes'; render(); });
-    } else if (step === 'importer') {
+    const backToModes = () => {
+      refreshLessonsFromStore();
+      if (weakDirect) {
+        weakDirect = false;
+        clearViewParam();
+        step = 'pick';
+      } else {
+        step = 'modes';
+      }
+      render();
+    };
+    if (step === 'flashcard') mountFlashcard(container, vocabSession.words, backToModes);
+    else if (step === 'match') mountMatch(container, vocabSession.words, backToModes);
+    else if (step === 'quiz') mountQuiz(container, vocabSession.words, backToModes, { weakReview: weakDirect });
+    else if (step === 'reflex') mountReflex(container, vocabSession.words, backToModes);
+    else if (step === 'importer') {
       mountImporter(container, () => {
-        if (window.location.hash.includes('?')) history.replaceState(null, '', '#/vocab');
+        clearViewParam();
         refreshLessonsFromStore(); saveSelection(); step = 'pick'; render();
       }, { tab: importerTab, manageTarget: importerTarget });
-    } else if (step === 'modes') {
-      renderModeMenu();
-    } else {
-      renderLessonPicker();
-    }
+    } else if (step === 'modes') renderModeMenu();
+    else renderLessonPicker();
+  }
+
+  function renderLessonItem(l) {
+    const checked = selectedSet.has(l.id);
+    return `
+      <label class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;cursor:pointer;border-color:${checked ? 'var(--teal)' : 'var(--border)'};">
+        <span style="display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.05rem;">
+          <input type="checkbox" class="lesson-cb" value="${escapeHtml(l.id)}" ${checked ? 'checked' : ''} style="width:22px;height:22px;accent-color:var(--teal);cursor:pointer;">
+          <span>${escapeHtml(l.name)}</span>
+        </span>
+        <span class="badge ${checked ? 'badge-ready' : ''}">${l.count} từ</span>
+      </label>`;
   }
 
   function renderLessonPicker() {
     const { picked, totalWords } = getSelectedStats();
     const allChecked = lessons.length > 0 && selectedSet.size === lessons.length;
+    const personal = lessons.filter((l) => l.source === 'local');
+    const textbook = lessons.filter((l) => l.source === 'repo');
 
-    const listHtml = lessons.length === 0
+    const sectionsHtml = lessons.length === 0
       ? `<p class="module-sub">Chưa có bài học nào. Bấm "+ Thêm từ" để tải lên hoặc nhập từ mới.</p>`
-      : lessons.map((l) => {
-          const checked = selectedSet.has(l.id);
-          return `
-            <label class="card" style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;cursor:pointer;border-color:${checked ? 'var(--teal)' : 'var(--border)'};">
-              <span style="display:flex;align-items:center;gap:12px;font-weight:700;font-size:1.05rem;">
-                <input type="checkbox" class="lesson-cb" value="${escapeHtml(l.id)}" ${checked ? 'checked' : ''} style="width:22px;height:22px;accent-color:var(--teal);cursor:pointer;">
-                <span>${escapeHtml(l.name)}</span>
-              </span>
-              <span class="badge ${checked ? 'badge-ready' : ''}">${l.count} từ</span>
-            </label>`;
-        }).join('');
+      : `
+        ${personal.length ? `<div style="font-size:0.8rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-top:2px;">Cá nhân</div><div class="module-grid">${personal.map(renderLessonItem).join('')}</div>` : ''}
+        ${textbook.length ? `<div style="font-size:0.8rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-top:8px;">Giáo trình</div><div class="module-grid">${textbook.map(renderLessonItem).join('')}</div>` : ''}
+      `;
 
     container.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:14px;flex-wrap:wrap;">
@@ -153,7 +195,7 @@ export async function mount(container) {
         <button type="button" id="btn-start" class="btn btn-teal" ${picked.length === 0 || isLoadingWords ? 'disabled' : ''}>${isLoadingWords ? 'Đang nạp...' : 'Bắt đầu →'}</button>
       </div>
       ${errorMsg ? `<p style="color:var(--red);font-weight:700;margin-bottom:12px;">${escapeHtml(errorMsg)}</p>` : ''}
-      <div class="module-grid">${listHtml}</div>
+      ${sectionsHtml}
     `;
 
     container.querySelector('#btn-open-importer')?.addEventListener('click', () => { importerTab = 'upload'; step = 'importer'; render(); });
@@ -176,7 +218,9 @@ export async function mount(container) {
       vocabSession.words = words;
       vocabSession.lessonIds = picked.map((l) => l.id);
       vocabSession.lessonNames = picked.map((l) => l.name);
-      step = 'modes'; render();
+      weakDirect = picked.length === 1 && picked[0].id === 'user:weak';
+      step = weakDirect ? 'quiz' : 'modes';
+      render();
     });
   }
 
@@ -201,10 +245,12 @@ export async function mount(container) {
       </div>
       <div class="module-grid">${modesHtml}</div>
     `;
-    container.querySelector('#btn-back-pick')?.addEventListener('click', () => { refreshLessonsFromStore(); step = 'pick'; render(); });
+    container.querySelector('#btn-back-pick')?.addEventListener('click', () => {
+      clearViewParam(); refreshLessonsFromStore(); step = 'pick'; render();
+    });
     container.querySelectorAll('.module-card.is-active').forEach((card) => {
       card.addEventListener('click', () => {
-        if (card.dataset.mode === 'flashcard' || card.dataset.mode === 'quiz') { step = card.dataset.mode; render(); }
+        if (['flashcard', 'match', 'quiz', 'reflex'].includes(card.dataset.mode)) { step = card.dataset.mode; render(); }
       });
     });
   }

@@ -55,7 +55,7 @@ function parseFileText(filename, text) {
 export function mountImporter(container, onBack, init = {}) {
   let tab = init.tab || 'upload', msg = '', isErr = false;
   let preview = [], lessonName = '', conflictName = '';
-  let manageTarget = init.manageTarget || 'user:open';
+  let manageTarget = init.manageTarget || 'user:weak', confirmClear = false;
 
   const getVocabStore = () => getStore(STORE_KEY, { customLessons: [], openWords: [], weakWords: [] });
   const setStatus = (t, err = false) => { msg = t; isErr = err; };
@@ -85,11 +85,11 @@ export function mountImporter(container, onBack, init = {}) {
 
   function renderUpload() {
     const rows = preview.map((w, i) => `
-      <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:6px;">
+      <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:8px;">
         <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;">
           <input class="inp p-inp" data-i="${i}" data-k="jp" value="${escapeHtml(w.jp)}" placeholder="Từ JP *">
           <input class="inp p-inp" data-i="${i}" data-k="reading" value="${escapeHtml(w.reading)}" placeholder="Cách đọc">
-          <button type="button" class="btn btn-icon p-del" data-i="${i}" style="min-height:36px;min-width:36px;color:var(--red);">✕</button>
+          <button type="button" class="btn btn-icon p-del" data-i="${i}" style="color:var(--red);">✕</button>
         </div>
         <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
           <input class="inp p-inp" data-i="${i}" data-k="vi" value="${escapeHtml(w.vi)}" placeholder="Nghĩa tiếng Việt *">
@@ -123,12 +123,12 @@ export function mountImporter(container, onBack, init = {}) {
 
   function renderManual(st) {
     const opts = [
-      `<option value="user:open">Bài mở (từ ngoài sách)</option>`,
+      `<option value="user:open">Từ mở rộng (ngoài giáo trình)</option>`,
       ...(st.customLessons || []).map(l => `<option value="${escapeHtml(l.id)}">${escapeHtml(l.name)}</option>`)
     ].join('');
     return `
       <form id="form-manual" class="card" style="display:flex;flex-direction:column;gap:10px;">
-        <label style="font-size:0.88rem;color:var(--text-muted);font-weight:700;">Thêm vào bài</label>
+        <label style="font-size:0.88rem;color:var(--text-muted);font-weight:700;">Lưu vào nhóm</label>
         <select name="target" class="inp">${opts}</select>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <input name="jp" class="inp" placeholder="Từ tiếng Nhật *" required>
@@ -146,21 +146,23 @@ export function mountImporter(container, onBack, init = {}) {
 
   function renderManage(st) {
     const targets = [
-      { id: 'user:weak', name: `Từ đã sai / Đã lưu (${(st.weakWords || []).length} từ)`, words: st.weakWords || [], canDelLesson: false },
-      { id: 'user:open', name: `Bài mở (${(st.openWords || []).length} từ)`, words: st.openWords || [], canDelLesson: false },
-      ...(st.customLessons || []).map(l => ({ id: l.id, name: `${l.name} (${l.words.length} từ)`, words: l.words, canDelLesson: true }))
+      { id: 'user:weak', name: `📌 Từ cần ôn lại (${(st.weakWords || []).length} từ)`, words: st.weakWords || [], isCustom: false },
+      { id: 'user:open', name: `📖 Từ mở rộng (${(st.openWords || []).length} từ)`, words: st.openWords || [], isCustom: false },
+      ...(st.customLessons || []).map(l => ({ id: l.id, name: `${l.name} (${l.words.length} từ)`, words: l.words, isCustom: true }))
     ];
     if (!targets.some(t => t.id === manageTarget)) manageTarget = 'user:weak';
     const cur = targets.find(t => t.id === manageTarget) || targets[0];
+    const showBulkBtn = cur.isCustom || cur.words.length > 0;
+    const bulkLabel = confirmClear ? 'Xác nhận?' : (cur.isCustom ? 'Xóa bài' : 'Xóa hết');
 
     const listHtml = !cur.words.length
       ? `<p class="module-sub">Danh sách này đang trống.</p>`
       : cur.words.map((w, i) => `
-        <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:6px;">
+        <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:8px;">
           <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;">
             <input class="inp m-inp" data-i="${i}" data-k="jp" value="${escapeHtml(w.jp)}">
             <input class="inp m-inp" data-i="${i}" data-k="reading" value="${escapeHtml(w.reading)}" placeholder="Cách đọc">
-            <button type="button" class="btn btn-icon m-del" data-i="${i}" style="min-height:36px;min-width:36px;color:var(--red);">🗑</button>
+            <button type="button" class="btn btn-icon m-del" data-i="${i}" style="color:var(--red);" title="Xóa từ này">🗑</button>
           </div>
           <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
             <input class="inp m-inp" data-i="${i}" data-k="vi" value="${escapeHtml(w.vi)}">
@@ -176,9 +178,9 @@ export function mountImporter(container, onBack, init = {}) {
           <select id="m-target" class="inp" style="flex:1;">
             ${targets.map(t => `<option value="${escapeHtml(t.id)}" ${t.id === manageTarget ? 'selected' : ''}>${escapeHtml(t.name)}</option>`).join('')}
           </select>
-          ${cur.canDelLesson ? `<button type="button" id="m-del-lesson" class="btn btn-coral">Xóa bài</button>` : ''}
+          ${showBulkBtn ? `<button type="button" id="m-bulk-del" class="btn" style="${confirmClear ? 'background:var(--red);color:#fff;border-color:#101320;' : 'color:var(--red);'}">${bulkLabel}</button>` : ''}
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;max-height:340px;overflow-y:auto;">${listHtml}</div>
+        <div style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;">${listHtml}</div>
         <div style="padding-top:10px;border-top:1.5px dashed var(--border);display:flex;gap:8px;flex-wrap:wrap;">
           <button type="button" id="m-export" class="btn" style="flex:1;">⬇ Xuất Backup</button>
           <label class="btn" style="flex:1;">⬆ Nhập Backup<input type="file" id="m-import" accept="application/json" hidden></label>
@@ -198,22 +200,22 @@ export function mountImporter(container, onBack, init = {}) {
   function render() {
     const st = getVocabStore();
     container.innerHTML = `
-      <style>.inp{width:100%;min-height:40px;padding:6px 10px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:0.95rem;}</style>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+      <style>.inp{width:100%;min-height:44px;padding:8px 10px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:0.95rem;}</style>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
         <button type="button" id="imp-back" class="btn">← Quay lại</button>
-        <div class="module-title">Quản lý & Thêm từ</div>
+        <div class="module-title">Quản lý từ vựng</div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
-        <button type="button" class="btn ${tab === 'upload' ? 'btn-teal' : ''}" data-tab="upload">1. Upload</button>
+        <button type="button" class="btn ${tab === 'upload' ? 'btn-teal' : ''}" data-tab="upload">1. Tải file</button>
         <button type="button" class="btn ${tab === 'manual' ? 'btn-teal' : ''}" data-tab="manual">2. Nhập tay</button>
-        <button type="button" class="btn ${tab === 'manage' ? 'btn-teal' : ''}" data-tab="manage">3. Quản lý</button>
+        <button type="button" class="btn ${tab === 'manage' ? 'btn-teal' : ''}" data-tab="manage">3. Kho từ</button>
       </div>
       ${msg ? `<div class="card" style="padding:10px 14px;margin-bottom:12px;border-color:${isErr ? 'var(--red)' : 'var(--green)'};color:${isErr ? 'var(--red)' : 'var(--green)'};font-weight:700;">${escapeHtml(msg)}</div>` : ''}
       ${tab === 'upload' ? renderUpload() : tab === 'manual' ? renderManual(st) : renderManage(st)}
     `;
 
     container.querySelector('#imp-back').onclick = () => onBack && onBack();
-    container.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { tab = b.dataset.tab; msg = ''; render(); });
+    container.querySelectorAll('[data-tab]').forEach(b => b.onclick = () => { tab = b.dataset.tab; msg = ''; confirmClear = false; render(); });
 
     container.querySelector('#up-file')?.addEventListener('change', (e) => {
       const f = e.target.files?.[0];
@@ -223,7 +225,7 @@ export function mountImporter(container, onBack, init = {}) {
         try {
           const res = parseFileText(f.name, String(reader.result));
           preview = res.words; lessonName = res.name; conflictName = '';
-          setStatus(`Đã đọc ${preview.length} từ. Bạn có thể sửa trực tiếp bên dưới trước khi lưu.`);
+          setStatus(`Đã đọc ${preview.length} từ. Sửa trực tiếp bên dưới trước khi lưu.`);
         } catch (err) { preview = []; setStatus(err.message, true); }
         render();
       };
@@ -231,12 +233,8 @@ export function mountImporter(container, onBack, init = {}) {
     });
 
     container.querySelector('#up-name')?.addEventListener('input', (e) => { lessonName = e.target.value; conflictName = ''; });
-    container.querySelectorAll('.p-inp').forEach(el => el.addEventListener('input', (e) => {
-      preview[Number(e.target.dataset.i)][e.target.dataset.k] = e.target.value;
-    }));
-    container.querySelectorAll('.p-del').forEach(el => el.addEventListener('click', () => {
-      preview.splice(Number(el.dataset.i), 1); render();
-    }));
+    container.querySelectorAll('.p-inp').forEach(el => el.addEventListener('input', (e) => { preview[Number(e.target.dataset.i)][e.target.dataset.k] = e.target.value; }));
+    container.querySelectorAll('.p-del').forEach(el => el.addEventListener('click', () => { preview.splice(Number(el.dataset.i), 1); render(); }));
     container.querySelector('#btn-save-up')?.addEventListener('click', () => saveUploaded('new'));
     container.querySelector('#btn-merge')?.addEventListener('click', () => saveUploaded('merge'));
     container.querySelector('#btn-replace')?.addEventListener('click', () => saveUploaded('replace'));
@@ -256,7 +254,7 @@ export function mountImporter(container, onBack, init = {}) {
       render();
     });
 
-    container.querySelector('#m-target')?.addEventListener('change', (e) => { manageTarget = e.target.value; msg = ''; render(); });
+    container.querySelector('#m-target')?.addEventListener('change', (e) => { manageTarget = e.target.value; msg = ''; confirmClear = false; render(); });
     container.querySelectorAll('.m-inp').forEach(el => el.addEventListener('change', (e) => {
       const idx = Number(e.target.dataset.i), key = e.target.dataset.k;
       mutateTargetWords(list => { if (list[idx]) list[idx] = norm({ ...list[idx], [key]: e.target.value }); return list; });
@@ -264,11 +262,18 @@ export function mountImporter(container, onBack, init = {}) {
     }));
     container.querySelectorAll('.m-del').forEach(el => el.addEventListener('click', () => {
       mutateTargetWords(list => (list.splice(Number(el.dataset.i), 1), list));
-      setStatus('Đã xóa từ vựng.'); render();
+      setStatus('Đã xóa từ.'); render();
     }));
-    container.querySelector('#m-del-lesson')?.addEventListener('click', () => {
-      updateStore(STORE_KEY, cur => ({ ...cur, customLessons: (cur.customLessons || []).filter(l => l.id !== manageTarget) }));
-      manageTarget = 'user:weak'; setStatus('Đã xóa bài học.'); render();
+    container.querySelector('#m-bulk-del')?.addEventListener('click', () => {
+      if (!confirmClear) { confirmClear = true; render(); return; }
+      confirmClear = false;
+      if (manageTarget === 'user:weak') updateStore(STORE_KEY, cur => ({ ...cur, weakWords: [] }));
+      else if (manageTarget === 'user:open') updateStore(STORE_KEY, cur => ({ ...cur, openWords: [] }));
+      else {
+        updateStore(STORE_KEY, cur => ({ ...cur, customLessons: (cur.customLessons || []).filter(l => l.id !== manageTarget) }));
+        manageTarget = 'user:weak';
+      }
+      setStatus('Đã xóa xong!'); render();
     });
     container.querySelector('#m-export')?.addEventListener('click', () => { exportBackup(); setStatus('Đã tải file backup JSON!'); render(); });
     container.querySelector('#m-import')?.addEventListener('change', async (e) => {

@@ -21,11 +21,13 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  min-width: 0;
   -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
   width: 100%;
+  max-width: 100%;
   min-height: 100dvh;
   overflow-x: hidden;
   background-color: var(--bg);
@@ -50,29 +52,29 @@ ruby rt {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  padding: 14px 16px 36px;
+  padding: 12px 12px 36px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .topbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 6px 4px;
+  padding: 4px 2px;
 }
 
 .brand {
   display: inline-flex;
   align-items: baseline;
-  gap: 10px;
+  gap: 8px;
   text-decoration: none;
   color: var(--text);
 }
 
 .brand-title {
-  font-size: 1.85rem;
+  font-size: 1.75rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   color: var(--teal);
@@ -81,7 +83,7 @@ ruby rt {
 
 .brand-jp {
   font-family: var(--font-jp);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 700;
   padding: 2px 10px;
   background: var(--bg-elevated);
@@ -93,13 +95,14 @@ ruby rt {
 
 .btn {
   min-height: 44px;
-  padding: 8px 16px;
+  min-width: 44px;
+  padding: 8px 14px;
   border-radius: var(--radius-md);
   border: 2px solid var(--border);
   background: var(--bg-card);
   color: var(--text);
   font-family: var(--font-ui);
-  font-size: 1rem;
+  font-size: 0.98rem;
   font-weight: 700;
   cursor: pointer;
   display: inline-flex;
@@ -123,9 +126,11 @@ ruby rt {
 }
 
 .btn-icon {
-  min-width: 44px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   font-size: 1.2rem;
+  flex-shrink: 0;
 }
 
 .btn-teal {
@@ -147,35 +152,36 @@ ruby rt {
 }
 
 .card {
+  width: 100%;
   background: var(--bg-card);
   border: 2.5px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 18px;
+  padding: 16px;
   box-shadow: 4px 5px 0 var(--shadow);
 }
 
 .home-intro {
   margin-bottom: 4px;
   color: var(--text-muted);
-  font-size: 0.98rem;
+  font-size: 0.96rem;
 }
 
 .module-grid {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 12px;
 }
 
 .module-card {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 14px;
+  gap: 10px;
   width: 100%;
   text-align: left;
   text-decoration: none;
   color: var(--text);
-  min-height: 92px;
+  min-height: 88px;
 }
 
 .module-card.is-active {
@@ -197,19 +203,20 @@ ruby rt {
 .module-left {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
+  flex: 1;
 }
 
 .module-icon {
-  width: 54px;
-  height: 54px;
-  border-radius: 16px;
+  width: 50px;
+  height: 50px;
+  border-radius: 15px;
   border: 2px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: var(--font-jp);
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   font-weight: 700;
   flex-shrink: 0;
   box-shadow: 2px 3px 0 var(--shadow);
@@ -220,25 +227,26 @@ ruby rt {
 .accent-coral { background: rgba(240, 143, 122, 0.18); color: var(--coral); border-color: var(--coral); }
 
 .module-title {
-  font-size: 1.25rem;
+  font-size: 1.18rem;
   font-weight: 800;
   line-height: 1.2;
 }
 
 .module-sub {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
   margin-top: 2px;
 }
 
 .badge {
-  padding: 5px 11px;
+  padding: 4px 10px;
   border-radius: 999px;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   font-weight: 700;
   border: 2px solid var(--border);
   background: var(--bg-elevated);
   white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .badge-ready {
@@ -247,16 +255,9 @@ ruby rt {
   border-color: #101320;
 }
 
-.placeholder-box {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 14px;
-}
-
 .modal {
   margin: auto;
-  width: calc(100% - 32px);
+  width: calc(100% - 24px);
   max-width: 400px;
   border: none;
   background: transparent;
@@ -271,7 +272,7 @@ ruby rt {
   background: var(--bg-card);
   border: 2.5px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 18px;
+  padding: 16px;
   box-shadow: 5px 6px 0 var(--shadow);
   display: flex;
   flex-direction: column;
@@ -284,8 +285,5 @@ ruby rt {
   justify-content: space-between;
 }
 
-.modal-title { font-size: 1.25rem; }
-.modal-desc { font-size: 0.92rem; color: var(--text-muted); }
-.modal-actions { display: flex; flex-direction: column; gap: 10px; }
-.file-label { width: 100%; }
+.modal-title { font-size: 1.2rem; }
 .backup-msg { font-size: 0.9rem; font-weight: 600; color: var(--green); }

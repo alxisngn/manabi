@@ -1,0 +1,25 @@
+{
+  "name": "Manabi 学び — Học tiếng Nhật",
+  "short_name": "Manabi",
+  "description": "Ứng dụng học từ vựng, Kanji và ngữ pháp tiếng Nhật mobile-first.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1B1D2B",
+  "theme_color": "#1B1D2B",
+  "icons": [
+    {
+      "src": "icons/icon-192.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
