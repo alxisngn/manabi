@@ -36,13 +36,19 @@ export async function mount(container) {
       const isOpen = Boolean(openState[cat.id]);
       let passedCount = 0;
 
+      const formatDate = (val) => {
+        if (!val) return '—';
+        const d = new Date(val);
+        return Number.isNaN(d.getTime()) ? String(val) : d.toLocaleDateString('vi-VN');
+      };
+
       const cardsHtml = lessons.map((les) => {
         const prog = getLessonProgress(level, cat.id, les.id) || {};
         const passed = prog.status === 'done';
         const inProgress = !passed && prog.status === 'learning';
-        const best = Number(prog.best ?? prog.score ?? 0);
-        const attempts = Number(prog.attempts ?? prog.tries ?? 0);
-        const dateStr = prog.lastDate || prog.updatedAt || '—';
+        const best = Number(prog.bestPct ?? prog.bestScore ?? prog.highScore ?? prog.best ?? prog.score ?? prog.pct ?? 0);
+        const attempts = Number(prog.attempts ?? prog.tries ?? prog.count ?? 0);
+        const dateStr = formatDate(prog.lastDate || prog.updatedAt || prog.date);
 
         if (passed) passedCount++;
 
