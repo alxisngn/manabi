@@ -464,6 +464,13 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       const inp = container.querySelector('#kr-type-inp');
       if (inp && !q.answered) {
         inp.focus();
+        inp.onkeydown = (e) => {
+          if (e.key === '?' || (e.shiftKey && e.key === 'Enter')) {
+            e.preventDefault();
+            e.stopPropagation();
+            container.querySelector('#kr-dont-know')?.click();
+          }
+        };
         inp.oninput = () => {
           const converted = romajiToContextKana(inp.value, false, q.correctReading);
           if (converted !== inp.value) {
