@@ -1,52 +1,74 @@
 // Chạy: node tools/build-index.js
-// Quét data/vocab/<cấp>/bai*.json (n5, n4, n3...), kiểm tra, rồi tạo lại data/vocab/index.json
-// File bai*.json nằm thẳng trong data/vocab (không có thư mục cấp) được coi là N4.
+// Cấu trúc dữ liệu:  data/<cấp>/<kỹ năng>/bai<số>.json   (vd data/n4/vocab/bai26.json)
+// Script kiểm tra dữ liệu rồi tự tạo:
+//   data/<cấp>/<kỹ năng>/index.json   danh sách bài của kỹ năng đó
+//   data/curriculum.json              tổng hợp: cấp nào có kỹ năng nào, bao nhiêu bài/mục
+//   data/files.json                   danh sách file dữ liệu (để service worker cache offline)
 const fs = require("fs"), path = require("path");
-const root = path.join(__dirname, "..", "data", "vocab");
+const DATA = path.join(__dirname, "..", "data");
+const LEVELS = ["n5", "n4", "n3", "n2", "n1"];
+const SKILLS = ["vocab", "kanji", "grammar", "reading", "listening"];
 const POS = ["verb", "noun", "adv", "adj", "other"];
 const num = f => parseInt(f.match(/\d+/)[0]);
 const isBai = f => /^bai\d+\.json$/.test(f);
+const exists = p => fs.existsSync(p) && fs.statSync(p).isDirectory();
+const write = (p, o) => fs.writeFileSync(p, JSON.stringify(o, null, 1));
 
-// danh sách [cấp, tên file, đường dẫn tương đối so với data/vocab]
-const items = [];
-for (const f of fs.readdirSync(root)) {
-  const p = path.join(root, f);
-  if (fs.statSync(p).isDirectory()) {
-    if (!/^n\d$/i.test(f)) continue;
-    for (const g of fs.readdirSync(p).filter(isBai)) items.push({ level: f.toLowerCase(), file: g, rel: `${f}/${g}` });
-  } else if (isBai(f)) items.push({ level: "n4", file: f, rel: f });
-}
-const order = { n5: 0, n4: 1, n3: 2, n2: 3, n1: 4 };
-items.sort((a, b) => (order[a.level] ?? 9) - (order[b.level] ?? 9) || num(a.file) - num(b.file));
+const curriculum = { levels: [] };
+const allFiles = [];
+let errors = 0, warns = 0;
 
-const lessons = []; let bad = 0;
-for (const it of items) {
-  const n = num(it.file);
-  // n4 giữ id cũ "b26" để không mất dữ liệu đã lưu; các cấp khác dạng "n5-b1"
-  const id = it.level === "n4" ? "b" + n : `${it.level}-b${n}`;
-  let d;
-  try { d = JSON.parse(fs.readFileSync(path.join(root, it.rel), "utf8")); }
-  catch (e) { console.log(`❌ ${it.rel}: JSON lỗi cú pháp - ${e.message}`); bad++; continue; }
-  const w = d.words || [];
-  const probs = [];
-  if (d.lesson?.id !== id) probs.push(`lesson.id phải là "${id}" (đang là "${d.lesson?.id}")`);
-  if (d.count != null && d.count !== w.length) probs.push(`count=${d.count} nhưng có ${w.length} từ`);
-  const seen = new Set();
-  w.forEach((x, i) => {
-    for (const k of ["jp", "reading", "vi", "ex", "exVi"])
-      if (!x[k] || !String(x[k]).trim()) probs.push(`từ #${i + 1} (${x.jp || "?"}) thiếu "${k}"`);
-    if (!POS.includes(x.pos)) probs.push(`từ #${i + 1} (${x.jp}) pos="${x.pos}" không hợp lệ`);
-    if (seen.has(x.jp)) probs.push(`từ #${i + 1} trùng "${x.jp}"`);
-    seen.add(x.jp);
-    if (/\[[^\]]*$|^[^\[]*\]/.test(x.ex || "")) probs.push(`từ #${i + 1} (${x.jp}) ngoặc [] trong ex bị lệch`);
-  });
-  if (w.length < 15 || w.length > 60) probs.push(`số từ ${w.length} bất thường (bài thường 25-40)`);
-  console.log(probs.length ? `⚠️  ${it.rel}: ${w.length} từ` : `✅ ${it.rel}: ${w.length} từ`);
-  probs.forEach(p => console.log("     - " + p));
-  lessons.push({ id, name: `Bài ${n} (${it.level.toUpperCase()})`, level: it.level.toUpperCase(), file: it.rel, count: w.length });
+for (const lv of LEVELS) {
+  const lvDir = path.join(DATA, lv);
+  if (!exists(lvDir)) continue;
+  const entry = { id: lv.toUpperCase(), skills: {} };
+  for (const sk of SKILLS) {
+    const skDir = path.join(lvDir, sk);
+    if (!exists(skDir)) continue;
+    const files = fs.readdirSync(skDir).filter(isBai).sort((a, b) => num(a) - num(b));
+    if (!files.length) continue;
+    const lessons = []; let items = 0;
+    for (const f of files) {
+      const n = num(f), rel = `${lv}/${sk}/${f}`;
+      // n4/vocab giữ id cũ "b26" để không mất dữ liệu đã lưu
+      const id = lv === "n4" && sk === "vocab" ? "b" + n : `${lv}-${sk}-b${n}`;
+      let d;
+      try { d = JSON.parse(fs.readFileSync(path.join(skDir, f), "utf8")); }
+      catch (e) { console.log(`❌ ${rel}: JSON lỗi cú pháp - ${e.message}`); errors++; continue; }
+      const w = d.words || d.items || [];
+      const probs = [];
+      if (d.lesson?.id !== id) probs.push(`lesson.id phải là "${id}" (đang là "${d.lesson?.id}")`);
+      if (d.count != null && d.count !== w.length) probs.push(`count=${d.count} nhưng có ${w.length} mục`);
+      if (sk === "vocab") {
+        const seen = new Set();
+        w.forEach((x, i) => {
+          for (const k of ["jp", "reading", "vi"])
+            if (!x[k] || !String(x[k]).trim()) probs.push(`từ #${i + 1} (${x.jp || "?"}) thiếu "${k}"`);
+          if (!POS.includes(x.pos)) probs.push(`từ #${i + 1} (${x.jp}) pos="${x.pos}" không hợp lệ`);
+          if (seen.has(x.jp)) probs.push(`từ #${i + 1} trùng "${x.jp}"`);
+          seen.add(x.jp);
+          if (/\[[^\]]*$|^[^\[]*\]/.test(x.ex || "")) probs.push(`từ #${i + 1} (${x.jp}) ngoặc [] trong ex bị lệch`);
+          if ((x.ex && !x.exVi) || (!x.ex && x.exVi)) probs.push(`từ #${i + 1} (${x.jp}) ex và exVi phải đi cùng nhau`);
+        });
+        if (w.length < 10 || w.length > 60) probs.push(`số từ ${w.length} bất thường`);
+      }
+      console.log(probs.length ? `⚠️  ${rel}: ${w.length} mục` : `✅ ${rel}: ${w.length} mục`);
+      probs.forEach(p => console.log("     - " + p));
+      if (probs.length) warns++;
+      lessons.push({ id, name: `Bài ${n}`, file: f, count: w.length });
+      items += w.length; allFiles.push(`data/${rel}`);
+    }
+    write(path.join(skDir, "index.json"), { level: entry.id, skill: sk, lessons });
+    allFiles.push(`data/${lv}/${sk}/index.json`);
+    entry.skills[sk] = { lessons: lessons.length, items };
+  }
+  if (Object.keys(entry.skills).length) curriculum.levels.push(entry);
 }
-fs.writeFileSync(path.join(root, "index.json"), JSON.stringify({ lessons }, null, 1));
-const have = new Set(items.filter(i => i.level === "n4").map(i => num(i.file)));
-const missing = []; for (let i = 26; i <= 50; i++) if (!have.has(i)) missing.push(i);
-console.log(`\nĐã ghi index.json: ${lessons.length} bài. N4 còn thiếu (26-50): ${missing.length ? missing.join(", ") : "không"}.`);
-if (bad) console.log(`${bad} file lỗi cú pháp bị bỏ qua.`);
+write(path.join(DATA, "curriculum.json"), curriculum);
+allFiles.push("data/curriculum.json");
+write(path.join(DATA, "files.json"), { files: allFiles });
+
+console.log("\n=== Tổng hợp ===");
+curriculum.levels.forEach(l => Object.entries(l.skills).forEach(([k, v]) =>
+  console.log(`${l.id} ${k}: ${v.lessons} bài, ${v.items} mục`)));
+console.log(`${errors} file lỗi cú pháp, ${warns} file có cảnh báo.`);

@@ -4,7 +4,7 @@
     "name": "Bài 44",
     "type": "book"
   },
-  "count": 29,
+  "count": 28,
   "words": [
     {
       "jp": "泣きます",
@@ -103,12 +103,12 @@
       "exVi": "Cái áo màu đậm thì được đấy."
     },
     {
-      "jp": "薄い",
+      "jp": "薄い", 
       "reading": "うすい",
-      "vi": "Loãng, nhạt",
+      "vi": "Nhạt, loãng (màu); mỏng (sách)",
       "pos": "adj",
-      "ex": "薄[うす]い色[いろ]のズボンがいいよ。",
-      "exVi": "Cái quần màu nhạt thì được đấy."
+      "ex": "薄[うす]い色[いろ]のズボンがいいよ。この薄[うす]い本[ほん]は何[なん]の本[ほん]？",
+      "exVi": "Cái quần màu nhạt thì được đấy. Quyển sách mỏng này là sách gì?" 
     },
     {
       "jp": "厚い",
@@ -117,14 +117,6 @@
       "pos": "adj",
       "ex": "この本[ほん]は分厚[ぶあつ]いね。",
       "exVi": "Cuốn sách này dày thật đấy nhỉ."
-    },
-    {
-      "jp": "薄い",
-      "reading": "うすい",
-      "vi": "Mỏng",
-      "pos": "adj",
-      "ex": "この薄[うす]い本[ほん]は何[なん]の本[ほん]?",
-      "exVi": "Quyển sách mỏng này là sách gì?"
     },
     {
       "jp": "太い",
