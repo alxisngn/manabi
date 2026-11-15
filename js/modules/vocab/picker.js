@@ -11,7 +11,8 @@ import { mountKanjiRead } from './kanji-read.js';
 
 export const meta = { id: 'vocab', name: 'Từ vựng', icon: '語' };
 export const vocabSession = { words: [], lessonIds: [], lessonNames: [] };
-
+let mixFromIdx = 0;
+let mixToIdx = 4;
 const STORE_KEY = 'vocab';
 const DEFAULT_STORE = { selectedIds: [], customLessons: [], openWords: [], weakWords: [] };
 const MODES = [
@@ -270,7 +271,13 @@ export async function mount(container, { level, query } = {}) {
     const picked = lessons.filter((l) => selectedSet.has(l.id));
     const totalAvail = picked.reduce((s, l) => s + l.count, 0);
     const effectiveLimit = useAllWords || wordLimit >= totalAvail ? totalAvail : wordLimit;
-    const rangeOpts = repoList.map((l, idx) => `<option value="${idx}">${escapeHtml(l.name)}</option>`).join('');
+
+    const maxIdx = Math.max(0, repoList.length - 1);
+    const safeFrom = Math.min(mixFromIdx, maxIdx);
+    const safeTo = Math.min(mixToIdx, maxIdx);
+    const fromOpts = repoList.map((l, idx) => `<option value="${idx}" ${idx === safeFrom ? 'selected' : ''}>${escapeHtml(l.name)}</option>`).join('');
+    const toOpts = repoList.map((l, idx) => `<option value="${idx}" ${idx === safeTo ? 'selected' : ''}>${escapeHtml(l.name)}</option>`).join('');
+
     const pillsHtml = repoList.map((l) => {
       const on = selectedSet.has(l.id);
       return `<button type="button" class="mix-pill" data-id="${escapeHtml(l.id)}" style="min-height:44px;padding:6px 4px;border-radius:12px;border:2px solid ${on ? 'var(--teal)' : 'var(--border)'};background:${on ? 'var(--teal)' : 'var(--bg-elevated)'};color:${on ? '#101320' : 'var(--text)'};font-family:var(--font-ui);font-weight:800;font-size:0.95rem;cursor:pointer;">${escapeHtml(l.name.replace(/^Bài\s*/i, ''))}</button>`;
@@ -290,7 +297,7 @@ export async function mount(container, { level, query } = {}) {
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;">
         <div class="module-title">${isKanjiDirect ? `Chọn bài luyện đọc Kanji (${escapeHtml(activeLevel)})` : `Chọn nhanh khoảng bài (${escapeHtml(activeLevel)})`}</div>
-        ${repoList.length ? `<div style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:6px;align-items:center;"><select id="rng-from" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${rangeOpts}</select><span style="color:var(--text-muted);font-weight:800;">→</span><select id="rng-to" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${rangeOpts}</select><button type="button" id="rng-apply" class="btn btn-teal" style="padding:6px 12px;">Áp dụng</button></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">${pillsHtml}</div>` : ''}
+        ${repoList.length ? `<div style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:6px;align-items:center;"><select id="rng-from" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${fromOpts}</select><span style="color:var(--text-muted);font-weight:800;">→</span><select id="rng-to" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${toOpts}</select><button type="button" id="rng-apply" class="btn btn-teal" style="padding:6px 12px;">Áp dụng</button></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">${pillsHtml}</div>` : ''}
         ${localList.length ? `<div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:6px;border-top:1.5px dashed var(--border);">${localHtml}</div>` : ''}
       </div>
       <div class="card" style="display:flex;flex-direction:column;gap:12px;">
@@ -303,13 +310,15 @@ export async function mount(container, { level, query } = {}) {
         <button type="button" id="mix-go" class="btn ${isKanjiDirect ? 'btn-yellow' : 'btn-teal'}" style="width:100%;font-size:1.05rem;" ${!picked.length || loading ? 'disabled' : ''}>${loading ? 'Đang tải dữ liệu...' : isKanjiDirect ? `Bắt đầu luyện đọc Kanji →` : `Bắt đầu ôn ${effectiveLimit} từ →`}</button>
       </div>`;
 
-    const toSel = container.querySelector('#rng-to');
-    if (toSel && repoList.length) toSel.selectedIndex = Math.min(repoList.length - 1, 4);
     container.querySelector('#mix-back').onclick = () => { mixDirectMode = null; step = 'list'; render(); };
     container.querySelector('#mix-all').onclick = () => { lessons.forEach((l) => selectedSet.add(l.id)); saveSel(); renderMix(); };
     container.querySelector('#mix-none').onclick = () => { selectedSet.clear(); saveSel(); renderMix(); };
+    container.querySelector('#rng-from')?.addEventListener('change', (e) => { mixFromIdx = Number(e.target.value); });
+    container.querySelector('#rng-to')?.addEventListener('change', (e) => { mixToIdx = Number(e.target.value); });
     container.querySelector('#rng-apply')?.addEventListener('click', () => {
       const a = Number(container.querySelector('#rng-from').value), b = Number(container.querySelector('#rng-to').value);
+      mixFromIdx = a;
+      mixToIdx = b;
       const [lo, hi] = a <= b ? [a, b] : [b, a];
       selectedSet.clear(); for (let i = lo; i <= hi; i++) selectedSet.add(repoList[i].id);
       saveSel(); renderMix();

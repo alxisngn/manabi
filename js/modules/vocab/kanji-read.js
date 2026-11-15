@@ -7,7 +7,7 @@ const STORE_KEY = 'vocab';
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF'];
 const HAS_KANJI = /[\u4E00-\u9FAF]/;
 const KATAKANA_CHAR = /[\u30A1-\u30F6]/;
-const STRIP_PUNCT = /[「」『』（）()［］\[\]・〜～、。！？!?\s]+/g;
+const STRIP_PUNCT = /[^\p{L}\p{N}ー]+/gu;
 
 const DAKUTEN_MAP = {
   か: 'が', き: 'ぎ', く: 'ぐ', け: 'げ', こ: 'ご',
