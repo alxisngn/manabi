@@ -1,5 +1,6 @@
 import { getStore, updateStore, exportBackup, importBackup } from '../../core/store.js';
 import { uid, escapeHtml } from '../../core/util.js';
+import { getWeak, addWeak, clearWeak } from '../../core/weak.js';
 
 const STORE_KEY = 'vocab';
 const POS = ['noun', 'verb', 'adj', 'adv', 'other'];
@@ -57,7 +58,7 @@ export function mountImporter(container, onBack, init = {}) {
   let preview = [], lessonName = '', conflictName = '';
   let manageTarget = init.manageTarget || 'user:weak', confirmClear = false;
 
-  const getVocabStore = () => getStore(STORE_KEY, { customLessons: [], openWords: [], weakWords: [] });
+  const getVocabStore = () => getStore(STORE_KEY, { customLessons: [], openWords: [] });
   const setStatus = (t, err = false) => { msg = t; isErr = err; };
   const posOpts = (val) => POS.map(p => `<option value="${p}" ${p === val ? 'selected' : ''}>${p}</option>`).join('');
 
@@ -145,8 +146,9 @@ export function mountImporter(container, onBack, init = {}) {
   }
 
   function renderManage(st) {
+    const weakWords = getWeak();
     const targets = [
-      { id: 'user:weak', name: `📌 Từ cần ôn lại (${(st.weakWords || []).length} từ)`, words: st.weakWords || [], isCustom: false },
+      { id: 'user:weak', name: `📌 Từ cần ôn lại (${weakWords.length} từ)`, words: weakWords, isCustom: false },
       { id: 'user:open', name: `📖 Từ mở rộng (${(st.openWords || []).length} từ)`, words: st.openWords || [], isCustom: false },
       ...(st.customLessons || []).map(l => ({ id: l.id, name: `${l.name} (${l.words.length} từ)`, words: l.words, isCustom: true }))
     ];
@@ -189,9 +191,14 @@ export function mountImporter(container, onBack, init = {}) {
   }
 
   function mutateTargetWords(mutator) {
+    if (manageTarget === 'user:weak') {
+      const next = mutator(getWeak());
+      clearWeak();
+      next.forEach((w) => addWeak(w));
+      return;
+    }
     updateStore(STORE_KEY, (cur) => {
       if (manageTarget === 'user:open') return { ...cur, openWords: mutator([...(cur.openWords || [])]) };
-      if (manageTarget === 'user:weak') return { ...cur, weakWords: mutator([...(cur.weakWords || [])]) };
       const customLessons = (cur.customLessons || []).map(l => l.id === manageTarget ? { ...l, words: mutator([...l.words]) } : l);
       return { ...cur, customLessons };
     });
@@ -267,7 +274,7 @@ export function mountImporter(container, onBack, init = {}) {
     container.querySelector('#m-bulk-del')?.addEventListener('click', () => {
       if (!confirmClear) { confirmClear = true; render(); return; }
       confirmClear = false;
-      if (manageTarget === 'user:weak') updateStore(STORE_KEY, cur => ({ ...cur, weakWords: [] }));
+      if (manageTarget === 'user:weak') clearWeak();
       else if (manageTarget === 'user:open') updateStore(STORE_KEY, cur => ({ ...cur, openWords: [] }));
       else {
         updateStore(STORE_KEY, cur => ({ ...cur, customLessons: (cur.customLessons || []).filter(l => l.id !== manageTarget) }));

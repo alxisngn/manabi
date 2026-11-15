@@ -1,19 +1,9 @@
-import { updateStore } from '../../core/store.js';
 import { shuffle, pickN, escapeHtml } from '../../core/util.js';
 import { speakJP } from '../../core/tts.js';
+import { addWeak, isSameWord } from '../../core/weak.js';
 
-const STORE_KEY = 'vocab';
 const TIME_LIMIT = 5000;
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF'];
-
-function saveWrongWord(word) {
-  if (!word?.jp) return;
-  updateStore(STORE_KEY, (cur) => {
-    const list = Array.isArray(cur.weakWords) ? [...cur.weakWords] : [];
-    if (!list.some((w) => w.jp === word.jp && w.vi === word.vi)) list.push(word);
-    return { ...cur, weakWords: list };
-  }, { weakWords: [] });
-}
 
 function buildRounds(pool, allWords, count) {
   const targets = shuffle(pool).slice(0, count);
@@ -47,8 +37,8 @@ export function mountReflex(container, allWords = [], onBack) {
   }
 
   function recordWrong(w) {
-    saveWrongWord(w);
-    if (!wrongWords.some((x) => x.jp === w.jp && x.vi === w.vi)) wrongWords.push(w);
+    addWeak(w);
+    if (!wrongWords.some((x) => isSameWord(x, w))) wrongWords.push(w);
   }
 
   function handleAnswer(chosenIdx) {
@@ -57,7 +47,7 @@ export function mountReflex(container, allWords = [], onBack) {
     clearTimers();
     q.chosenIdx = chosenIdx;
     const picked = chosenIdx >= 0 ? q.options[chosenIdx] : null;
-    const isRight = Boolean(picked && picked.jp === q.word.jp && picked.vi === q.word.vi);
+    const isRight = isSameWord(picked, q.word);
 
     if (isRight) {
       q.status = 'correct';
@@ -150,7 +140,7 @@ export function mountReflex(container, allWords = [], onBack) {
     const cardBorder = q.status === 'correct' ? 'var(--green)' : q.status === 'wrong' ? 'var(--red)' : 'var(--border)';
 
     const optsHtml = q.options.map((opt, i) => {
-      const isAns = opt.jp === q.word.jp && opt.vi === q.word.vi;
+      const isAns = isSameWord(opt, q.word);
       let bd = 'var(--border)', bg = 'var(--bg-card)';
       if (answered) {
         if (isAns) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.28)'; }

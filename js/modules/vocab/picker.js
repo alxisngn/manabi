@@ -2,6 +2,7 @@ import { getStore, updateStore } from '../../core/store.js';
 import { getLevel, setSession } from '../../core/nav.js';
 import { getLessonProgress, markStudied } from '../../core/progress.js';
 import { shuffle, escapeHtml } from '../../core/util.js';
+import { getWeak } from '../../core/weak.js';
 import { mountFlashcard } from './flashcard.js';
 import { mountImporter } from './importer.js';
 import { mountQuiz } from './quiz.js';
@@ -38,7 +39,8 @@ const cleanName = (n) => String(n || '').replace(/\s*\(N[1-5]\)\s*/gi, '').trim(
 
 function buildLessons(repo, st, activeLevel) {
   const list = [];
-  if (st.weakWords?.length) list.push({ id: 'user:weak', name: '📌 Từ cần ôn lại', count: st.weakWords.length, words: st.weakWords, source: 'local' });
+  const weakWords = getWeak();
+  if (weakWords.length) list.push({ id: 'user:weak', name: '📌 Từ cần ôn lại', count: weakWords.length, words: weakWords, source: 'local' });
   if (st.openWords?.length) list.push({ id: 'user:open', name: '📖 Từ mở rộng', count: st.openWords.length, words: st.openWords, source: 'local' });
   (st.customLessons || []).forEach((cl) => {
     if (cl?.id && cl.words?.length) list.push({ id: String(cl.id), name: cleanName(cl.name || 'Bài tự thêm'), count: cl.words.length, words: cl.words, source: 'local' });
@@ -154,9 +156,9 @@ export async function mount(container, { level, query } = {}) {
         step = weakDirect ? 'quiz' : 'modes';
       }
     }
-  } else if (viewParam === 'study-weak' && store.weakWords?.length) {
+  } else if (viewParam === 'study-weak' && getWeak().length) {
     await ensureDistractorPool();
-    vocabSession.words = shuffle(store.weakWords); vocabSession.lessonIds = []; vocabSession.lessonNames = ['Từ cần ôn lại'];
+    vocabSession.words = shuffle(getWeak()); vocabSession.lessonIds = []; vocabSession.lessonNames = ['Từ cần ôn lại'];
     weakDirect = true; step = 'quiz';
   } else if (viewParam === 'study-open' && store.openWords?.length) {
     vocabSession.words = shuffle(store.openWords); vocabSession.lessonIds = []; vocabSession.lessonNames = ['Từ mở rộng']; step = 'modes';

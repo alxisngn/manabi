@@ -1,18 +1,8 @@
-import { updateStore } from '../../core/store.js';
 import { shuffle, escapeHtml } from '../../core/util.js';
 import { speakJP } from '../../core/tts.js';
+import { addWeak, isSameWord } from '../../core/weak.js';
 
-const STORE_KEY = 'vocab';
 const ROUND_SIZE = 10;
-
-function saveWrongWord(word) {
-  if (!word?.jp) return;
-  updateStore(STORE_KEY, (cur) => {
-    const list = Array.isArray(cur.weakWords) ? [...cur.weakWords] : [];
-    if (!list.some((w) => w.jp === word.jp && w.vi === word.vi)) list.push(word);
-    return { ...cur, weakWords: list };
-  }, { weakWords: [] });
-}
 
 function buildRounds(words) {
   const pool = shuffle(words);
@@ -147,7 +137,7 @@ export function mountMatch(container, allWords = [], onBack) {
 
       const first = selected;
       selected = null; locked = true;
-      const isMatch = first.pairId === card.pairId || (first.word.jp === card.word.jp && first.word.vi === card.word.vi);
+      const isMatch = first.pairId === card.pairId || isSameWord(first.word, card.word);
 
       if (isMatch) {
         first.state = 'matched'; card.state = 'matched';
@@ -166,7 +156,7 @@ export function mountMatch(container, allWords = [], onBack) {
         }, 320);
       } else {
         mistakes++;
-        saveWrongWord(first.kind === 'jp' ? first.word : card.word);
+        addWeak(first.kind === 'jp' ? first.word : card.word);
         first.state = 'wrong'; card.state = 'wrong';
         syncCardDom(first); syncCardDom(card);
         setTimeout(() => {

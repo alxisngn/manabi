@@ -1,13 +1,11 @@
-import { updateStore } from '../../core/store.js';
 import { shuffle, pickN, escapeHtml } from '../../core/util.js';
 import { parseRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
+import { STRIP_PUNCT, romajiToContextKana, isKanaMatch } from '../../core/kana.js';
+import { addWeak, isSameWord } from '../../core/weak.js';
 
-const STORE_KEY = 'vocab';
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF'];
 const HAS_KANJI = /[\u4E00-\u9FAF]/;
-const KATAKANA_CHAR = /[\u30A1-\u30F6]/;
-const STRIP_PUNCT = /[^\p{L}\p{N}ー]+/gu;
 
 const DAKUTEN_MAP = {
   か: 'が', き: 'ぎ', く: 'ぐ', け: 'げ', こ: 'ご',
@@ -19,159 +17,6 @@ const DAKUTEN_MAP = {
   だ: 'た', ぢ: 'ち', づ: 'つ', で: 'て', ど: 'と',
   ば: 'は', び: 'ひ', ぶ: 'ぶ', べ: 'へ', ぼ: 'ほ'
 };
-
-const ROMAJI_TABLE = {
-  ltsu: 'っ', xtsu: 'っ',
-  sha: 'しゃ', shi: 'し', shu: 'しゅ', sho: 'しょ',
-  sya: 'しゃ', syu: 'しゅ', syo: 'しょ',
-  cha: 'ちゃ', chi: 'ち', chu: 'ちゅ', cho: 'ちょ',
-  tya: 'ちゃ', tyu: 'ちゅ', tyo: 'ちょ',
-  tsu: 'つ',
-  kya: 'きゃ', kyu: 'きゅ', kyo: 'きょ',
-  gya: 'ぎゃ', gyu: 'ぎゅ', gyo: 'ぎょ',
-  nya: 'にゃ', nyu: 'にゅ', nyo: 'にょ',
-  hya: 'ひゃ', hyu: 'ひゅ', hyo: 'ひょ',
-  bya: 'びゃ', byu: 'びゅ', byo: 'びょ',
-  pya: 'ぴゃ', pyu: 'ぴゅ', pyo: 'ぴょ',
-  mya: 'みゃ', myu: 'みゅ', myo: 'みょ',
-  rya: 'りゃ', ryu: 'りゅ', ryo: 'りょ',
-  jya: 'じゃ', jyu: 'じゅ', jyo: 'じょ',
-  zya: 'じゃ', zyu: 'じゅ', zyo: 'じょ',
-  dya: 'ぢゃ', dyu: 'ぢゅ', dyo: 'ぢょ',
-  fya: 'ふゃ', fyu: 'ふゅ', fyo: 'ふょ',
-  lya: 'ゃ', lyu: 'ゅ', lyo: 'ょ',
-  xya: 'ゃ', xyu: 'ゅ', xyo: 'ょ',
-  ja: 'じゃ', ju: 'じゅ', jo: 'じょ', ji: 'じ',
-  ka: 'か', ki: 'き', ku: 'く', ke: 'け', ko: 'こ',
-  ga: 'が', gi: 'ぎ', gu: 'ぐ', ge: 'げ', go: 'ご',
-  sa: 'さ', si: 'し', su: 'す', se: 'せ', so: 'そ',
-  za: 'ざ', zi: 'じ', zu: 'ず', ze: 'ぜ', zo: 'ぞ',
-  ta: 'た', ti: 'ち', tu: 'つ', te: 'て', to: 'と',
-  da: 'だ', di: 'ぢ', du: 'づ', de: 'で', do: 'ど',
-  na: 'な', ni: 'に', nu: 'ぬ', ne: 'ね', no: 'の',
-  ha: 'は', hi: 'ひ', hu: 'ふ', fu: 'ふ', he: 'へ', ho: 'ほ',
-  ba: 'ば', bi: 'び', bu: 'ぶ', be: 'べ', bo: 'ぼ',
-  pa: 'ぱ', pi: 'ぴ', pu: 'ぷ', pe: 'ぺ', po: 'ぽ',
-  ma: 'ま', mi: 'み', mu: 'む', me: 'め', mo: 'も',
-  ya: 'や', yu: 'ゆ', yo: 'よ',
-  ra: 'ら', ri: 'り', ru: 'る', re: 'れ', ro: 'ろ',
-  wa: 'わ', wo: 'を', nn: 'ん', "n'": 'ん',
-  fa: 'ふぁ', fi: 'ふぃ', fe: 'ふぇ', fo: 'ふぉ',
-  la: 'ぁ', li: 'ぃ', lu: 'ぅ', le: 'ぇ', lo: 'ぉ',
-  xa: 'ぁ', xi: 'ぃ', xu: 'ぅ', xe: 'ぇ', xo: 'ぉ',
-  a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お', '-': 'ー'
-};
-
-const toHiraganaChar = (str) =>
-  str.replace(/[\u30A1-\u30F6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
-
-const toKatakanaChar = (str) =>
-  str.replace(/[\u3041-\u3096]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0x60));
-
-function romajiToContextKana(input, flushEnd = false, targetReading = '') {
-  const raw = String(input || '');
-  const s = raw.toLowerCase();
-
-  const fullTarget = String(targetReading || '').replace(STRIP_PUNCT, '');
-  const coreTarget = String(targetReading || '')
-    .replace(/[「（(][^」）)]*[」）)]/g, '')
-    .replace(STRIP_PUNCT, '');
-  const fullHira = toHiraganaChar(fullTarget);
-  const coreHira = toHiraganaChar(coreTarget);
-
-  let out = '';
-  let i = 0;
-
-  const formatSyllable = (kana, origChunk) => {
-    const pos = out.length;
-    const prefixHira = toHiraganaChar(out);
-    let expectKata = false;
-
-    if (fullTarget && fullHira.startsWith(prefixHira) && KATAKANA_CHAR.test(fullTarget[pos] || '')) {
-      expectKata = true;
-    } else if (coreTarget && coreHira.startsWith(prefixHira) && KATAKANA_CHAR.test(coreTarget[pos] || '')) {
-      expectKata = true;
-    } else if (/[A-Z]/.test(origChunk)) {
-      expectKata = true;
-    }
-
-    return expectKata ? toKatakanaChar(kana) : kana;
-  };
-
-  while (i < s.length) {
-    const ch = s[i];
-    if (!/[a-z'-]/.test(ch)) {
-      out += raw[i];
-      i++;
-      continue;
-    }
-
-    if (i + 1 < s.length && ch === s[i + 1] && /[bcdfghjklmpqrstvwxyz]/.test(ch)) {
-      out += formatSyllable('っ', raw[i]);
-      i++;
-      continue;
-    }
-
-    if (ch === 'n' && i + 1 < s.length) {
-      const next = s[i + 1];
-      if (next === "'" || next === 'n') {
-        out += formatSyllable('ん', raw.slice(i, i + 2));
-        i += 2;
-        continue;
-      }
-      if (!/[aiueoy]/.test(next)) {
-        out += formatSyllable('ん', raw[i]);
-        i++;
-        continue;
-      }
-    }
-
-    let matched = false;
-    for (let len = 4; len >= 1; len--) {
-      if (i + len <= s.length) {
-        const chunk = s.slice(i, i + len);
-        if (ROMAJI_TABLE[chunk]) {
-          out += formatSyllable(ROMAJI_TABLE[chunk], raw.slice(i, i + len));
-          i += len;
-          matched = true;
-          break;
-        }
-      }
-    }
-
-    if (!matched) {
-      if (flushEnd && ch === 'n' && i === s.length - 1) {
-        out += formatSyllable('ん', raw[i]);
-      } else {
-        out += raw[i];
-      }
-      i++;
-    }
-  }
-  return out;
-}
-
-function normalizeKana(str) {
-  return toHiraganaChar(romajiToContextKana(String(str || '').trim(), true))
-    .replace(STRIP_PUNCT, '');
-}
-
-function isReadingMatch(userInput, targetReading) {
-  const u = normalizeKana(userInput);
-  if (!u) return false;
-  const full = normalizeKana(targetReading);
-  const coreOnly = normalizeKana(String(targetReading || '').replace(/[「（(][^」）)]*[」）)]/g, ''));
-  return u === full || (coreOnly.length > 0 && u === coreOnly);
-}
-
-function saveWrongWord(word) {
-  if (!word?.jp) return;
-  updateStore(STORE_KEY, (cur) => {
-    const list = Array.isArray(cur.weakWords) ? [...cur.weakWords] : [];
-    if (!list.some((w) => w.jp === word.jp && w.vi === word.vi)) list.push(word);
-    return { ...cur, weakWords: list };
-  }, { weakWords: [] });
-}
 
 function makeTrickyReadings(reading) {
   const r = String(reading || '').trim();
@@ -261,7 +106,6 @@ export function mountKanjiRead(container, allWords = [], onBack) {
   let queue = shuffle(kanjiWords).map((w) => createQuestion(w, allWords, false));
   let qIdx = 0, firstPassCorrect = 0, soundOn = true, wrongWords = [], finished = false;
   let feedbackAnim = '';
-  const wordKey = (w) => `${w.jp}|${w.vi}`;
 
   const onKeyDown = (e) => {
     if (!document.body.contains(container)) return document.removeEventListener('keydown', onKeyDown);
@@ -303,8 +147,8 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     if (isCorrect) {
       if (!q.isRetry) firstPassCorrect++;
     } else {
-      saveWrongWord(q.word);
-      if (!wrongWords.some((x) => wordKey(x) === wordKey(q.word))) wrongWords.push(q.word);
+      addWeak(q.word);
+      if (!wrongWords.some((x) => isSameWord(x, q.word))) wrongWords.push(q.word);
       const insertAt = Math.min(queue.length, qIdx + 4);
       queue.splice(insertAt, 0, createQuestion(q.word, allWords, true));
     }
@@ -484,7 +328,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
         if (q.answered) return;
         const displayKana = romajiToContextKana(inp?.value || '', true, q.correctReading).replace(STRIP_PUNCT, '');
         if (!displayKana) return;
-        submitAnswer(q, isReadingMatch(inp?.value || '', q.correctReading), { typedVal: displayKana });
+        submitAnswer(q, isKanaMatch(inp?.value || '', q.correctReading, { includeJp: false }), { typedVal: displayKana });
       });
       container.querySelector('#kr-dont-know')?.addEventListener('click', () => {
         if (!q.answered) submitAnswer(q, false, { typedVal: '(Bỏ qua)' });

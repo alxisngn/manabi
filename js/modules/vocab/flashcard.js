@@ -1,11 +1,9 @@
-import { getStore, updateStore } from '../../core/store.js';
 import { escapeHtml } from '../../core/util.js';
 import { parseRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
+import { isWeak, addWeak, removeWeak } from '../../core/weak.js';
 
-const STORE_KEY = 'vocab';
 const POS_LABELS = { verb: 'Động từ', noun: 'Danh từ', adj: 'Tính từ', adv: 'Trạng từ', other: 'Từ vựng' };
-const isSameWord = (a, b) => a && b && a.jp === b.jp && a.vi === b.vi;
 
 export function mountFlashcard(container, words = [], onBack) {
   if (!Array.isArray(words) || words.length === 0) return onBack && onBack();
@@ -36,22 +34,11 @@ const onFlashKey = (e) => {
   document.addEventListener('keydown', onFlashKey);
   let index = 0, flipped = false, touchStartX = 0, touchStartY = 0;
 
-  const isBookmarked = (word) => (getStore(STORE_KEY, { weakWords: [] }).weakWords || []).some((w) => isSameWord(w, word));
-
-  function toggleBookmark(word) {
-    updateStore(STORE_KEY, (cur) => {
-      const list = Array.isArray(cur.weakWords) ? [...cur.weakWords] : [];
-      const idx = list.findIndex((w) => isSameWord(w, word));
-      if (idx >= 0) list.splice(idx, 1); else list.push(word);
-      return { ...cur, weakWords: list };
-    }, { weakWords: [] });
-  }
-
   function render() {
     const word = words[index];
     const total = words.length;
     const progressPct = Math.max(4, Math.round(((index + 1) / total) * 100));
-    const saved = isBookmarked(word);
+    const saved = isWeak(word);
     const posText = POS_LABELS[word.pos] || '';
 
     const centerContent = !flipped
@@ -99,7 +86,7 @@ const onFlashKey = (e) => {
 
     const cardEl = container.querySelector('#fc-card');
     cardEl.onclick = () => { flipped = !flipped; render(); };
-    container.querySelector('#fc-bookmark').onclick = (e) => { e.stopPropagation(); toggleBookmark(word); render(); };
+    container.querySelector('#fc-bookmark').onclick = (e) => { e.stopPropagation(); if (isWeak(word)) removeWeak(word); else addWeak(word); render(); };
     container.querySelector('#fc-speak').onclick = (e) => { e.stopPropagation(); speakJP(word.reading || word.jp); };
     container.querySelector('#fc-prev').onclick = () => { if (index > 0) { index--; flipped = false; render(); } };
     container.querySelector('#fc-next').onclick = () => { if (index < total - 1) { index++; flipped = false; render(); } };
