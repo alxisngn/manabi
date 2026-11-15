@@ -19,9 +19,7 @@ const DAKUTEN_MAP = {
 };
 
 const ROMAJI_TABLE = {
-  // 4 chars
   ltsu: 'っ', xtsu: 'っ',
-  // 3 chars
   sha: 'しゃ', shi: 'し', shu: 'しゅ', sho: 'しょ',
   sya: 'しゃ', syu: 'しゅ', syo: 'しょ',
   cha: 'ちゃ', chi: 'ち', chu: 'ちゅ', cho: 'ちょ',
@@ -41,7 +39,6 @@ const ROMAJI_TABLE = {
   fya: 'ふゃ', fyu: 'ふゅ', fyo: 'ふょ',
   lya: 'ゃ', lyu: 'ゅ', lyo: 'ょ',
   xya: 'ゃ', xyu: 'ゅ', xyo: 'ょ',
-  // 2 chars
   ja: 'じゃ', ju: 'じゅ', jo: 'じょ', ji: 'じ',
   ka: 'か', ki: 'き', ku: 'く', ke: 'け', ko: 'こ',
   ga: 'が', gi: 'ぎ', gu: 'ぐ', ge: 'げ', go: 'ご',
@@ -60,7 +57,6 @@ const ROMAJI_TABLE = {
   fa: 'ふぁ', fi: 'ふぃ', fe: 'ふぇ', fo: 'ふぉ',
   la: 'ぁ', li: 'ぃ', lu: 'ぅ', le: 'ぇ', lo: 'ぉ',
   xa: 'ぁ', xi: 'ぃ', xu: 'ぅ', xe: 'ぇ', xo: 'ぉ',
-  // 1 char
   a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お', '-': 'ー'
 };
 
@@ -77,14 +73,12 @@ function romajiToHiragana(input, flushEnd = false) {
       continue;
     }
 
-    // Xúc âm っ khi gõ phụ âm đôi (trừ n)
     if (i + 1 < s.length && ch === s[i + 1] && /[bcdfghjklmpqrstvwxyz]/.test(ch)) {
       out += 'っ';
       i++;
       continue;
     }
 
-    // Âm mũi ん khi n đứng trước phụ âm (khác y và nguyên âm)
     if (ch === 'n' && i + 1 < s.length) {
       const next = s[i + 1];
       if (next === "'" || next === 'n') {
@@ -127,7 +121,15 @@ function romajiToHiragana(input, flushEnd = false) {
 function normalizeKana(str) {
   return romajiToHiragana(String(str || '').trim(), true)
     .replace(/[\u30A1-\u30F6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
-    .replace(/\s+/g, '');
+    .replace(/[「」『』（）()［］\[\]・〜～、。！？!?\s]+/g, '');
+}
+
+function isReadingMatch(userInput, targetReading) {
+  const u = normalizeKana(userInput);
+  if (!u) return false;
+  const full = normalizeKana(targetReading);
+  const coreOnly = normalizeKana(String(targetReading || '').replace(/[「（(][^」）)]*[」）)]/g, ''));
+  return u === full || (coreOnly.length > 0 && u === coreOnly);
 }
 
 function saveWrongWord(word) {
@@ -165,7 +167,6 @@ function createQuestion(word, allWords, isRetry = false) {
   const distractorSet = new Set();
   const targetKanjis = [...word.jp].filter((c) => HAS_KANJI.test(c));
 
-  // 1. Ưu tiên từ có chung chữ Kanji trong bài (bẫy nhầm âm On/Kun)
   const sharedKanjiPeers = allWords.filter(
     (w) => w.reading && w.reading.trim() !== correctReading && [...w.jp].some((c) => targetKanjis.includes(c))
   );
@@ -173,12 +174,10 @@ function createQuestion(word, allWords, isRetry = false) {
     if (distractorSet.size < 2) distractorSet.add(p.reading.trim());
   }
 
-  // 2. Bẫy biến âm / trường âm / xúc âm
   for (const trap of makeTrickyReadings(correctReading)) {
     if (distractorSet.size < 2) distractorSet.add(trap);
   }
 
-  // 3. Bù bằng từ cùng độ dài trong bài
   const sameLenPool = allWords.filter(
     (w) => w.reading && w.reading.trim() !== correctReading && Math.abs(w.reading.trim().length - correctReading.length) <= 1
   );
@@ -186,7 +185,6 @@ function createQuestion(word, allWords, isRetry = false) {
     if (distractorSet.size < 3 && p.reading.trim() !== correctReading) distractorSet.add(p.reading.trim());
   }
 
-  // 4. Fallback bất kỳ từ nào khác
   if (distractorSet.size < 3) {
     for (const o of pickN(allWords.filter((w) => w.reading && w.reading.trim() !== correctReading), 3, word, (w) => w.reading)) {
       if (distractorSet.size < 3) distractorSet.add(o.reading.trim());
@@ -219,7 +217,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     return;
   }
 
-  let inputMode = 'mcq'; // 'mcq' (Trắc nghiệm) | 'type' (Gõ Hiragana)
+  let inputMode = 'mcq';
   let queue = shuffle(kanjiWords).map((w) => createQuestion(w, allWords, false));
   let qIdx = 0, firstPassCorrect = 0, soundOn = true, wrongWords = [], finished = false;
   const wordKey = (w) => `${w.jp}|${w.vi}`;
@@ -261,7 +259,6 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     } else {
       saveWrongWord(q.word);
       if (!wrongWords.some((x) => wordKey(x) === wordKey(q.word))) wrongWords.push(q.word);
-      // Nhồi lại câu sai sau 3–4 lượt trong cùng phiên
       const insertAt = Math.min(queue.length, qIdx + 4);
       queue.splice(insertAt, 0, createQuestion(q.word, allWords, true));
     }
@@ -418,8 +415,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
         if (q.answered) return;
         const userKana = normalizeKana(inp?.value || '');
         if (!userKana) return;
-        const targetKana = normalizeKana(q.correctReading);
-        submitAnswer(q, userKana === targetKana, { typedVal: userKana });
+        submitAnswer(q, isReadingMatch(inp?.value || '', q.correctReading), { typedVal: userKana });
       });
       container.querySelector('#kr-dont-know')?.addEventListener('click', () => {
         if (!q.answered) submitAnswer(q, false, { typedVal: '(Bỏ qua)' });
