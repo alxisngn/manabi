@@ -533,10 +533,6 @@ body[data-onboard="1"] .app-shell {
   animation: popIn 0.28s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.main-view > * {
-  animation: fadeSlideUp 0.22s ease-out;
-}
-
 /* Smooth interactive transitions & Flashcard motion */
 .card, .btn, .nav-tab, .level-opt, .mix-pill, .qz-opt, .kr-opt {
   transition: transform 0.14s cubic-bezier(0.22, 1, 0.36, 1),
@@ -819,12 +815,8 @@ body[data-onboard="1"] .app-shell {
     left: -10px;
   }
 
-  /* Center active study workspace vertically at eye level */
   body[data-session="1"] .main-view {
-    min-height: calc(100dvh - 115px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding-top: 24px;
   }
 
   /* Separate lesson cards cleanly */

@@ -32,24 +32,47 @@ function removeWeakWord(word) {
 function buildQuestions(pool, allWords, count) {
   const targets = shuffle(pool).slice(0, count);
   const src = allWords.length >= 4 ? allWords : pool;
-  return targets.map((word) => {
-    const types = src.length >= 6 ? ['mcq', 'tf', 'match'] : ['mcq', 'tf'];
-    const type = types[Math.floor(Math.random() * types.length)];
-    if (type === 'mcq') {
-      const dist = pickN(src, 3, word, (w) => `${w.jp}|${w.vi}`);
-      return { type, dir: 'jp-vi', word, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
-    }
-    if (type === 'tf') {
-      const isTrue = Math.random() < 0.5 || sourcePoolLength(src) < 2;
-      const other = isTrue ? word : (pickN(src, 1, word, (w) => w.vi)[0] || word);
-      return { type, word, shownVi: other.vi, isMatch: other.vi === word.vi, answered: false, correct: false, clearedWeak: false, chosenVal: null };
-    }
-    const pairs = shuffle([word, ...pickN(src, 5, word, (w) => `${w.jp}|${w.vi}`)]);
-    return { type: 'match', word, left: shuffle(pairs), right: shuffle(pairs), matchedIds: [], wrongLeftIdx: -1, wrongRightIdx: -1, selLeft: -1, hadMistake: false, answered: false, correct: false };
-  });
-}
+  const qs = [];
+  let i = 0;
 
-const sourcePoolLength = (src) => src.length;
+  while (i < targets.length) {
+    const rem = targets.length - i;
+    const canMatch = src.length >= 6 && rem >= 6;
+    const types = canMatch ? ['mcq', 'tf', 'match'] : ['mcq', 'tf'];
+    const type = types[Math.floor(Math.random() * types.length)];
+
+    if (type === 'match') {
+      const pairs = targets.slice(i, i + 6);
+      qs.push({
+        type: 'match',
+        word: pairs[0],
+        weight: pairs.length,
+        left: shuffle(pairs),
+        right: shuffle(pairs),
+        matchedIds: [],
+        mistakeIds: [],
+        wrongLeftIdx: -1,
+        wrongRightIdx: -1,
+        selLeft: -1,
+        selRight: -1,
+        answered: false,
+        correct: false
+      });
+      i += pairs.length;
+    } else {
+      const word = targets[i++];
+      if (type === 'mcq') {
+        const dist = pickN(src, 3, word, (w) => `${w.jp}|${w.vi}`);
+        qs.push({ type: 'mcq', dir: 'jp-vi', word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 });
+      } else {
+        const isTrue = Math.random() < 0.5 || src.length < 2;
+        const other = isTrue ? word : (pickN(src, 1, word, (w) => w.vi)[0] || word);
+        qs.push({ type: 'tf', word, weight: 1, shownVi: other.vi, isMatch: other.vi === word.vi, answered: false, correct: false, clearedWeak: false, chosenVal: null });
+      }
+    }
+  }
+  return qs;
+}
 
 function buildGateQuestions(lessonWords, poolWords, priorityWrong = []) {
   const wrongSet = new Set(priorityWrong.map((w) => `${w.jp}|${w.vi}`));
@@ -70,7 +93,7 @@ function buildGateQuestions(lessonWords, poolWords, priorityWrong = []) {
       const extraValid = poolWords.filter((w) => isValidDist(w) && !usedKeys.has(dir === 'jp-vi' ? normVi(w.vi) : w.jp));
       dist = [...dist, ...pickN(extraValid, 3 - dist.length, word, (w) => (dir === 'jp-vi' ? normVi(w.vi) : w.jp))];
     }
-    return { type: 'mcq', dir, word, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
+    return { type: 'mcq', dir, word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
   });
 }
 
@@ -85,6 +108,7 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   let qIdx = 0, score = 0, clearedCount = 0, wrongWords = [], gateResult = null;
   let feedbackAnim = '';
 
+  const getTotalItems = () => questions.reduce((sum, item) => sum + (item.weight || 1), 0);
   const maybeSpeak = (w, q) => { if (soundOn && w && (!q || q.dir !== 'vi-jp')) speakJP(w.reading || w.jp); };
 
   const onKeyDown = (e) => {
@@ -129,8 +153,8 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         </div>
         <div class="card" style="display:flex;flex-direction:column;gap:14px;">
           <div class="module-title">Thiết lập bài Kiểm tra</div>
-          <p class="module-sub">Trộn ngẫu nhiên: Trắc nghiệm (phím tắt 1–4), Đúng / Sai và Nối 6 cặp. Từ làm sai tự động lưu vào Từ cần ôn lại.</p>
-          <label style="font-weight:700;font-size:0.95rem;">Số câu hỏi (1 – ${maxQ}):</label>
+          <p class="module-sub">Mỗi từ tương ứng 1 câu hỏi (trộn Trắc nghiệm 1–4, Đúng / Sai và Nối cặp 2 chiều). Từ làm sai tự động lưu vào Từ cần ôn lại.</p>
+          <label style="font-weight:700;font-size:0.95rem;">Số câu hỏi / số từ (1 – ${maxQ}):</label>
           <div style="display:flex;gap:8px;flex-wrap:wrap;">${presets.map((n) => `<button type="button" class="btn qz-preset ${n === numQ ? 'btn-teal' : ''}" data-n="${n}" style="flex:1;">${n === maxQ ? `Tất cả (${n})` : `${n} câu`}</button>`).join('')}</div>
           <input type="number" id="qz-num" min="1" max="${maxQ}" value="${numQ}" style="width:100%;min-height:44px;padding:8px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:1.05rem;font-weight:700;">
           <button type="button" id="qz-go" class="btn btn-yellow" style="width:100%;font-size:1.1rem;">🚀 Bắt đầu kiểm tra</button>
@@ -165,7 +189,13 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   }
 
   function renderPlay() {
-    const q = questions[qIdx], total = questions.length, pct = Math.max(3, Math.round(((qIdx + 1) / total) * 100));
+    const q = questions[qIdx];
+    const total = getTotalItems();
+    const doneBefore = questions.slice(0, qIdx).reduce((sum, item) => sum + (item.weight || 1), 0);
+    const currentStep = q.type === 'match'
+      ? Math.min(doneBefore + q.matchedIds.length + 1, doneBefore + q.weight)
+      : doneBefore + 1;
+    const pct = Math.max(3, Math.round((currentStep / total) * 100));
     const currentAnim = feedbackAnim;
     feedbackAnim = '';
 
@@ -230,12 +260,12 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         </div>`;
     } else {
       const rowsHtml = q.left.map((lw, i) => {
-        const rw = q.right[i], lM = q.matchedIds.includes(lw.jp), rM = q.matchedIds.includes(rw.jp), lS = q.selLeft === i, lW = q.wrongLeftIdx === i, rW = q.wrongRightIdx === i;
-        return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><button type="button" class="qz-m-left ${lW ? 'anim-shake' : ''}" data-i="${i}" ${lM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${lW ? 'var(--red)' : lM ? 'var(--green)' : lS ? 'var(--teal)' : 'var(--border)'};background:${lW ? 'rgba(217,72,59,0.25)' : lM ? 'rgba(76,175,106,0.22)' : lS ? 'rgba(91,192,190,0.2)' : 'var(--bg-elevated)'};color:var(--text);font-family:var(--font-jp);font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(lw.jp)}</span></button><button type="button" class="qz-m-right ${rW ? 'anim-shake' : ''}" data-i="${i}" ${rM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${rW ? 'var(--red)' : rM ? 'var(--green)' : '#574F35'};background:${rW ? 'rgba(217,72,59,0.25)' : rM ? 'rgba(76,175,106,0.22)' : '#2A261B'};color:var(--text);font-family:var(--font-ui);font-size:0.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(rw.vi)}</span></button></div>`;
+        const rw = q.right[i], lM = q.matchedIds.includes(lw.jp), rM = q.matchedIds.includes(rw.jp), lS = q.selLeft === i, rS = q.selRight === i, lW = q.wrongLeftIdx === i, rW = q.wrongRightIdx === i;
+        return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><button type="button" class="qz-m-left ${lW ? 'anim-shake' : ''}" data-i="${i}" ${lM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${lW ? 'var(--red)' : lM ? 'var(--green)' : lS ? 'var(--teal)' : 'var(--border)'};background:${lW ? 'rgba(217,72,59,0.25)' : lM ? 'rgba(76,175,106,0.22)' : lS ? 'rgba(91,192,190,0.2)' : 'var(--bg-elevated)'};color:var(--text);font-family:var(--font-jp);font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(lw.jp)}</span></button><button type="button" class="qz-m-right ${rW ? 'anim-shake' : ''}" data-i="${i}" ${rM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${rW ? 'var(--red)' : rM ? 'var(--green)' : rS ? 'var(--teal)' : '#574F35'};background:${rW ? 'rgba(217,72,59,0.25)' : rM ? 'rgba(76,175,106,0.22)' : rS ? 'rgba(91,192,190,0.2)' : '#2A261B'};color:var(--text);font-family:var(--font-ui);font-size:0.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(rw.vi)}</span></button></div>`;
       }).join('');
       mainHtml = `
         <div class="card" style="padding:14px;max-width:680px;margin:0 auto;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--border);color:var(--text);background:var(--bg-elevated);">Nối cặp</span><span style="font-size:0.86rem;color:var(--text-muted);font-weight:600;">Nối thuật ngữ với nghĩa</span></div><span style="font-weight:800;font-size:0.88rem;">${q.matchedIds.length} / 6 cặp</span></div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--border);color:var(--text);background:var(--bg-elevated);">Nối cặp</span><span style="font-size:0.86rem;color:var(--text-muted);font-weight:600;">Chọn bên nào trước cũng được</span></div><span id="qz-m-count" style="font-weight:800;font-size:0.88rem;">${q.matchedIds.length} / ${q.weight} cặp</span></div>
           <div style="display:flex;flex-direction:column;gap:8px;">${rowsHtml}</div>
           ${renderExplanation(q, currentAnim)}
         </div>`;
@@ -248,9 +278,9 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         <div style="flex:1;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
             <span style="font-size:1.12rem;font-weight:800;letter-spacing:0.3px;">${titleText}</span>
-            <span style="padding:2px 10px;border-radius:999px;background:#CBECEB;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${qIdx + 1}/${total}</span>
+            <span id="qz-step-badge" style="padding:2px 10px;border-radius:999px;background:#CBECEB;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${currentStep}/${total}</span>
           </div>
-          <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:#187E78;border-radius:999px;transition:width 0.25s ease;"></div></div>
+          <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div id="qz-progress-bar" style="width:${pct}%;height:100%;background:#187E78;border-radius:999px;transition:width 0.25s ease;"></div></div>
         </div>
         <div style="display:flex;gap:8px;flex-shrink:0;">
           <button type="button" id="qz-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
@@ -266,7 +296,7 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
       if (qIdx < questions.length - 1) { qIdx++; renderPlay(); maybeSpeak(questions[qIdx]?.word, questions[qIdx]); }
       else {
         if (gate) {
-          const rawPct = (score / questions.length) * 100;
+          const rawPct = (score / total) * 100;
           gateResult = { pct: Math.round(rawPct), passed: rawPct >= PASS_RATE * 100 };
           recordTest(gate.level, 'vocab', gate.lessonId, gateResult.pct);
         }
@@ -289,24 +319,94 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         renderPlay();
       };
     });
-    container.querySelectorAll('.qz-m-left').forEach((btn) => { btn.onclick = () => { q.selLeft = Number(btn.dataset.i); q.wrongLeftIdx = -1; q.wrongRightIdx = -1; maybeSpeak(q.left[q.selLeft]); renderPlay(); }; });
-    container.querySelectorAll('.qz-m-right').forEach((btn) => {
-      btn.onclick = () => {
-        if (q.selLeft < 0) return;
-        const rIdx = Number(btn.dataset.i), lw = q.left[q.selLeft], rw = q.right[rIdx];
-        if (sameWord(lw, rw)) {
-          q.matchedIds.push(lw.jp); q.selLeft = -1; removeWeakWord(lw);
-          if (q.matchedIds.length === q.left.length) { q.answered = true; q.correct = !q.hadMistake; if (q.correct) { score++; feedbackAnim = 'anim-pop'; } }
+
+    const syncMatchUI = () => {
+      const lBtns = container.querySelectorAll('.qz-m-left');
+      const rBtns = container.querySelectorAll('.qz-m-right');
+      lBtns.forEach((b, i) => {
+        const lw = q.left[i], m = q.matchedIds.includes(lw.jp), s = q.selLeft === i, w = q.wrongLeftIdx === i;
+        b.disabled = m || q.answered;
+        b.classList.toggle('anim-shake', w);
+        b.style.borderColor = w ? 'var(--red)' : m ? 'var(--green)' : s ? 'var(--teal)' : 'var(--border)';
+        b.style.background = w ? 'rgba(217,72,59,0.25)' : m ? 'rgba(76,175,106,0.22)' : s ? 'rgba(91,192,190,0.2)' : 'var(--bg-elevated)';
+      });
+      rBtns.forEach((b, i) => {
+        const rw = q.right[i], m = q.matchedIds.includes(rw.jp), s = q.selRight === i, w = q.wrongRightIdx === i;
+        b.disabled = m || q.answered;
+        b.classList.toggle('anim-shake', w);
+        b.style.borderColor = w ? 'var(--red)' : m ? 'var(--green)' : s ? 'var(--teal)' : '#574F35';
+        b.style.background = w ? 'rgba(217,72,59,0.25)' : m ? 'rgba(76,175,106,0.22)' : s ? 'rgba(91,192,190,0.2)' : '#2A261B';
+      });
+      const cntEl = container.querySelector('#qz-m-count');
+      if (cntEl) cntEl.textContent = `${q.matchedIds.length} / ${q.weight} cặp`;
+
+      const stepNow = Math.min(doneBefore + q.matchedIds.length + 1, doneBefore + q.weight);
+      const badgeEl = container.querySelector('#qz-step-badge');
+      const barEl = container.querySelector('#qz-progress-bar');
+      if (badgeEl) badgeEl.textContent = `Câu ${stepNow}/${total}`;
+      if (barEl) barEl.style.width = `${Math.max(3, Math.round((stepNow / total) * 100))}%`;
+    };
+
+    const checkMatchPair = (lIdx, rIdx) => {
+      const lw = q.left[lIdx], rw = q.right[rIdx];
+      if (sameWord(lw, rw)) {
+        q.matchedIds.push(lw.jp);
+        q.selLeft = -1;
+        q.selRight = -1;
+        if (!q.mistakeIds.includes(lw.jp)) {
+          score++;
+          if (!gate && removeWeakWord(lw)) clearedCount++;
+        }
+        if (q.matchedIds.length === q.left.length) {
+          q.answered = true;
+          q.correct = q.mistakeIds.length === 0;
+          if (q.correct) feedbackAnim = 'anim-pop';
           renderPlay();
         } else {
-          q.hadMistake = true; q.wrongLeftIdx = q.selLeft; q.wrongRightIdx = rIdx; recordWrong(lw); renderPlay();
-          setTimeout(() => { q.wrongLeftIdx = -1; q.wrongRightIdx = -1; q.selLeft = -1; renderPlay(); }, 550);
+          syncMatchUI();
         }
+      } else {
+        if (!q.mistakeIds.includes(lw.jp)) q.mistakeIds.push(lw.jp);
+        q.wrongLeftIdx = lIdx;
+        q.wrongRightIdx = rIdx;
+        recordWrong(lw);
+        syncMatchUI();
+        setTimeout(() => {
+          q.wrongLeftIdx = -1;
+          q.wrongRightIdx = -1;
+          q.selLeft = -1;
+          q.selRight = -1;
+          syncMatchUI();
+        }, 450);
+      }
+    };
+
+    container.querySelectorAll('.qz-m-left').forEach((btn) => {
+      btn.onclick = () => {
+        const lIdx = Number(btn.dataset.i);
+        q.wrongLeftIdx = -1;
+        q.wrongRightIdx = -1;
+        maybeSpeak(q.left[lIdx]);
+        if (q.selRight >= 0) return checkMatchPair(lIdx, q.selRight);
+        q.selLeft = q.selLeft === lIdx ? -1 : lIdx;
+        syncMatchUI();
+      };
+    });
+
+    container.querySelectorAll('.qz-m-right').forEach((btn) => {
+      btn.onclick = () => {
+        const rIdx = Number(btn.dataset.i);
+        q.wrongLeftIdx = -1;
+        q.wrongRightIdx = -1;
+        if (q.selLeft >= 0) return checkMatchPair(q.selLeft, rIdx);
+        q.selRight = q.selRight === rIdx ? -1 : rIdx;
+        syncMatchUI();
       };
     });
   }
 
   function renderResult() {
+    const total = getTotalItems();
     if (gate) {
       const { passed } = gateResult || { passed: false };
       const reqPct = Math.round(PASS_RATE * 100);
@@ -319,7 +419,7 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
       container.innerHTML = `
         <div class="card ${passed ? 'anim-pop' : 'anim-shake'}" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:28px 20px;max-width:540px;margin:0 auto;">
           <div class="module-title" style="font-size:1.45rem;color:${passed ? 'var(--green)' : 'var(--coral)'};">
-            ${passed ? `Hoàn thành ${escapeHtml(gate.lessonName)} 🎉` : `Đúng ${score}/${questions.length} — cần ${reqPct}%`}
+            ${passed ? `Hoàn thành ${escapeHtml(gate.lessonName)} 🎉` : `Đúng ${score}/${total} — cần ${reqPct}%`}
           </div>
           <p class="module-sub">${passed ? 'Bạn đã vượt qua bài kiểm tra!' : 'Các từ trả lời sai đã được lưu vào Từ cần ôn lại.'}</p>
           ${!passed && wrongWords.length ? `<div style="display:flex;flex-direction:column;gap:6px;">${wrongListHtml}</div>` : ''}
@@ -335,12 +435,12 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
       return;
     }
 
-    const pct = Math.round((score / questions.length) * 100);
+    const pct = Math.round((score / total) * 100);
     const summaryMsg = [clearedCount ? `Đã xóa ${clearedCount} từ thuộc khỏi Từ cần ôn lại.` : '', wrongWords.length ? `Còn ${wrongWords.length} từ sai cần ôn tiếp.` : 'Không còn từ sai nào!'].filter(Boolean).join(' ');
     container.innerHTML = `
       <div class="card anim-pop" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:28px 20px;max-width:540px;margin:0 auto;">
         <div class="module-title" style="font-size:1.5rem;">${isWeakReview ? 'Hoàn thành Ôn tập!' : 'Hoàn thành Kiểm tra!'}</div>
-        <div style="font-size:2.5rem;font-weight:800;color:var(--teal);">${score} / ${questions.length} <span style="font-size:1.2rem;color:var(--yellow);">(${pct}%)</span></div>
+        <div style="font-size:2.5rem;font-weight:800;color:var(--teal);">${score} / ${total} <span style="font-size:1.2rem;color:var(--yellow);">(${pct}%)</span></div>
         <p class="module-sub">${summaryMsg}</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px;">
           ${wrongWords.length ? `<button type="button" id="qz-retry-wrong" class="btn btn-coral">🔥 Ôn tiếp ${wrongWords.length} từ sai</button>` : ''}
