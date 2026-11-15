@@ -853,3 +853,35 @@ body[data-onboard="1"] .app-shell {
     justify-content: center;
   }
 }
+/* === Fix Mobile Bottom Nav & iOS Safe Area === */
+@media (max-width: 767px) {
+  .sidebar-head {
+    display: none !important;
+  }
+
+  .bottom-nav {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    align-items: center;
+    justify-content: space-around;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+
+  .bottom-nav .nav-tab {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 6px 2px;
+  }
+
+  /* Tránh tai thỏ / Dynamic Island khi mở PWA trên iPhone */
+  header,
+  .top-bar,
+  .app-header {
+    padding-top: max(12px, env(safe-area-inset-top)) !important;
+  }
+
+  body {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: calc(74px + env(safe-area-inset-bottom));
+  }
+}
