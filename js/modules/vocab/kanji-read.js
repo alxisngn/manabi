@@ -235,6 +235,14 @@ function createQuestion(word, allWords, isRetry = false) {
   };
 }
 
+function formatPromptJP(jp) {
+  const escaped = escapeHtml(jp);
+  return escaped.replace(
+    /^(「[^」]+」)\s*(.+)$/,
+    '<span style="font-size:0.72em;color:var(--text-muted);font-weight:600;">$1</span> <span style="display:inline-block;">$2</span>'
+  );
+}
+
 export function mountKanjiRead(container, allWords = [], onBack) {
   const kanjiWords = allWords.filter((w) => w?.jp && w?.reading && HAS_KANJI.test(w.jp) && w.jp.trim() !== w.reading.trim());
 
@@ -414,7 +422,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
               <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">${inputMode === 'mcq' ? 'Nhận diện' : 'Tự nhớ chủ động'}</span>
               <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${inputMode === 'mcq' ? 'Chọn cách đọc đúng' : 'Gõ cách đọc của từ này'}</span>
             </div>
-            <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:36px 14px;text-align:center;font-size:clamp(2rem,5vw,2.8rem);font-weight:700;">${escapeHtml(q.word.jp)}</div>
+            <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:36px 16px;text-align:center;font-size:clamp(1.65rem,3.4vw,2.5rem);font-weight:700;word-break:keep-all;overflow-wrap:break-word;">${formatPromptJP(q.word.jp)}</div>
           </div>
         </div>
 
