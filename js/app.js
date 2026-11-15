@@ -1,4 +1,5 @@
 import { getStore, exportBackup, importBackup } from './core/store.js';
+import { getLevel, setLevel, setSession } from './core/nav.js';
 import { mount as mountVocab } from './modules/vocab/picker.js';
 
 const LEVELS = [
@@ -16,12 +17,15 @@ async function getLevelCounts() {
   if (levelCountsCache) return levelCountsCache;
   const counts = { N5: 0, N4: 0, N3: 0, N2: 0, N1: 0 };
   try {
-    const res = await fetch('data/vocab/index.json');
+    const res = await fetch('data/curriculum.json');
     if (res.ok) {
-      const lessons = (await res.json())?.lessons || [];
-      lessons.forEach((l) => {
-        const lv = String(l.level || (l.file?.split('/')[0]) || '').toUpperCase();
-        if (lv in counts) counts[lv]++;
+      const levels = (await res.json())?.levels || [];
+      levels.forEach((item) => {
+        const lv = String(item.id || item.level || '').toUpperCase();
+        const lessons = item?.skills?.vocab?.lessons;
+        if (lv in counts) {
+          counts[lv] = Array.isArray(lessons) ? lessons.length : (Number(lessons) || 0);
+        }
       });
     }
   } catch {}
@@ -30,11 +34,12 @@ async function getLevelCounts() {
 }
 
 async function renderHome() {
+  setSession(false);
   const counts = await getLevelCounts();
   const cardsHtml = LEVELS.map((lv) => {
     const n = counts[lv.id] || 0;
     return n > 0
-      ? `<a href="#/vocab?level=${lv.id}" class="card module-card is-active">
+      ? `<a href="#/${lv.id.toLowerCase()}/vocab" class="card module-card is-active">
           <div class="module-left">
             <div class="module-icon ${lv.accent}" style="font-family:var(--font-ui);font-size:1.25rem;font-weight:800;">${lv.icon}</div>
             <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub} • ${n} bài</div></div>
@@ -53,15 +58,41 @@ async function renderHome() {
   appEl.innerHTML = `<p class="home-intro">Chọn cấp độ JLPT để bắt đầu luyện tập:</p><section class="module-grid">${cardsHtml}</section>`;
 }
 
-function router() {
-  const hash = window.location.hash || '#/';
-  if (hash.startsWith('#/vocab')) mountVocab(appEl);
-  else renderHome();
+function navigateTo(hash) {
+  if (window.location.hash === hash) {
+    router();
+  } else {
+    window.location.hash = hash;
+  }
 }
 
-function navigateTo(hash) {
-  history.replaceState(null, '', hash);
-  router();
+function router() {
+  const rawHash = window.location.hash || '#/';
+  const [pathPart, queryPart = ''] = rawHash.split('?');
+  const params = new URLSearchParams(queryPart);
+
+  // Chuyển đổi route cũ "#/vocab?..." sang "#/<level>/vocab?..."
+  if (pathPart === '#/vocab' || pathPart.startsWith('#/vocab/')) {
+    const legacyLv = (params.get('level') || getLevel()).toUpperCase();
+    params.delete('level');
+    const qs = params.toString();
+    const targetHash = `#/${legacyLv.toLowerCase()}/vocab${qs ? `?${qs}` : ''}`;
+    navigateTo(targetHash);
+    return;
+  }
+
+  // Khớp route mới "#/<cấp>/<kỹ năng>"
+  const match = pathPart.match(/^#\/(n[1-5])\/([a-z0-9_-]+)$/i);
+  if (match) {
+    const level = setLevel(match[1].toUpperCase());
+    const skill = match[2].toLowerCase();
+    if (skill === 'vocab') {
+      mountVocab(appEl, { level, query: params });
+      return;
+    }
+  }
+
+  renderHome();
 }
 
 function initMenu() {
@@ -74,13 +105,15 @@ function initMenu() {
     const weakCount = (st.weakWords || []).length;
     const openCount = (st.openWords || []).length;
     const customCount = (st.customLessons || []).length;
+    const curLv = getLevel();
+    const baseVocab = `#/${curLv.toLowerCase()}/vocab`;
 
     body.innerHTML = `
       <div style="display:flex;flex-direction:column;gap:8px;">
         ${secLabel('Điều hướng')}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <button type="button" class="btn" data-nav="#/">🏠 Trang chủ</button>
-          <button type="button" class="btn btn-teal" data-nav="#/vocab?level=N4">語 Từ vựng N4</button>
+          <button type="button" class="btn btn-teal" data-nav="${baseVocab}">語 Từ vựng ${curLv}</button>
         </div>
       </div>
 
@@ -96,8 +129,8 @@ function initMenu() {
             <span class="badge">${weakCount} từ</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button type="button" class="btn btn-coral" data-nav="#/vocab?view=study-weak" ${weakCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Ôn ngay</button>
-            <button type="button" class="btn" data-nav="#/vocab?view=weak" style="font-size:0.9rem;">Xem / Xóa</button>
+            <button type="button" class="btn btn-coral" data-nav="${baseVocab}?view=study-weak" ${weakCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Ôn ngay</button>
+            <button type="button" class="btn" data-nav="${baseVocab}?view=weak" style="font-size:0.9rem;">Xem / Xóa</button>
           </div>
         </div>
 
@@ -110,8 +143,8 @@ function initMenu() {
             <span class="badge">${openCount} từ</span>
           </div>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button type="button" class="btn btn-teal" data-nav="#/vocab?view=study-open" ${openCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Học ngay</button>
-            <button type="button" class="btn" data-nav="#/vocab?view=open" style="font-size:0.9rem;">Xem / Sửa</button>
+            <button type="button" class="btn btn-teal" data-nav="${baseVocab}?view=study-open" ${openCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Học ngay</button>
+            <button type="button" class="btn" data-nav="${baseVocab}?view=open" style="font-size:0.9rem;">Xem / Sửa</button>
           </div>
         </div>
       </div>
@@ -119,8 +152,8 @@ function initMenu() {
       <div style="display:flex;flex-direction:column;gap:8px;padding-top:10px;border-top:1.5px dashed var(--border);">
         ${secLabel('Kho từ & Sao lưu')}
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button type="button" class="btn btn-yellow" data-nav="#/vocab?view=add" style="font-size:0.92rem;">＋ Thêm từ</button>
-          <button type="button" class="btn" data-nav="#/vocab?view=manage" style="font-size:0.92rem;">🗂 Kho từ (${customCount})</button>
+          <button type="button" class="btn btn-yellow" data-nav="${baseVocab}?view=add" style="font-size:0.92rem;">＋ Thêm từ</button>
+          <button type="button" class="btn" data-nav="${baseVocab}?view=manage" style="font-size:0.92rem;">🗂 Kho từ (${customCount})</button>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
           <button type="button" id="btn-export" class="btn" style="font-size:0.92rem;">⬇ Xuất backup</button>

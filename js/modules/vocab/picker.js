@@ -1,4 +1,5 @@
 import { getStore, updateStore } from '../../core/store.js';
+import { getLevel, setSession } from '../../core/nav.js';
 import { shuffle, escapeHtml } from '../../core/util.js';
 import { mountFlashcard } from './flashcard.js';
 import { mountImporter } from './importer.js';
@@ -18,20 +19,22 @@ const MODES = [
   { id: 'reflex', name: 'Luyện phản xạ', sub: 'Nghe hiểu & Thử thách tốc độ 5 giây/câu', icon: '⚡', accent: 'accent-teal' }
 ];
 
-let repoCache = null;
-async function fetchRepo() {
-  if (repoCache) return repoCache;
+const repoCacheByLevel = {};
+async function fetchRepo(level) {
+  const lvLower = level.toLowerCase();
+  if (repoCacheByLevel[lvLower]) return repoCacheByLevel[lvLower];
   try {
-    const res = await fetch('data/vocab/index.json');
-    repoCache = res.ok ? ((await res.json())?.lessons || []) : [];
-  } catch { repoCache = []; }
-  return repoCache;
+    const res = await fetch(`data/${lvLower}/vocab/index.json`);
+    repoCacheByLevel[lvLower] = res.ok ? ((await res.json())?.lessons || []) : [];
+  } catch {
+    repoCacheByLevel[lvLower] = [];
+  }
+  return repoCacheByLevel[lvLower];
 }
 
-const detectLevel = (l) => String(l.level || (l.file?.split('/')[0]) || 'N4').toUpperCase();
 const cleanName = (name) => String(name || '').replace(/\s*\(N[1-5]\)\s*/gi, '').trim();
 
-function buildLessons(repo, st, levelFilter) {
+function buildLessons(repo, st, activeLevel) {
   const list = [];
   if (st.weakWords?.length) list.push({ id: 'user:weak', name: '📌 Từ cần ôn lại', count: st.weakWords.length, words: st.weakWords, source: 'local' });
   if (st.openWords?.length) list.push({ id: 'user:open', name: '📖 Từ mở rộng', count: st.openWords.length, words: st.openWords, source: 'local' });
@@ -39,18 +42,15 @@ function buildLessons(repo, st, levelFilter) {
     if (cl?.id && cl.words?.length) list.push({ id: String(cl.id), name: cleanName(cl.name || 'Bài tự thêm'), count: cl.words.length, words: cl.words, source: 'local' });
   });
   repo.forEach((l) => {
-    const lv = detectLevel(l);
-    if (!levelFilter || lv === levelFilter) {
-      list.push({ id: l.id, level: lv, name: cleanName(l.name), file: l.file, count: Number(l.count) || 0, source: 'repo' });
-    }
+    list.push({ id: l.id, level: activeLevel, name: cleanName(l.name), file: l.file, count: Number(l.count) || 0, source: 'repo' });
   });
   return list;
 }
 
-async function fetchWords(item) {
+async function fetchWords(item, level) {
   if (item.source === 'local') return [...(item.words || [])];
   try {
-    const res = await fetch(`data/vocab/${item.file}`);
+    const res = await fetch(`data/${level.toLowerCase()}/vocab/${item.file}`);
     return res.ok ? ((await res.json())?.words || []) : [];
   } catch { return []; }
 }
@@ -68,13 +68,13 @@ function sampleBalanced(buckets, limit) {
   return shuffle(out);
 }
 
-export async function mount(container) {
+export async function mount(container, { level, query } = {}) {
   container.innerHTML = `<div class="card"><p class="module-sub">Đang tải danh sách bài học...</p></div>`;
-  const params = new URLSearchParams(window.location.hash.split('?')[1] || '');
-  const activeLevel = (params.get('level') || 'N4').toUpperCase();
+  const activeLevel = (level || getLevel()).toUpperCase();
+  const params = query instanceof URLSearchParams ? query : new URLSearchParams(query || '');
   const viewParam = params.get('view');
 
-  const repo = await fetchRepo();
+  const repo = await fetchRepo(activeLevel);
   let store = getStore(STORE_KEY, DEFAULT_STORE);
   let lessons = buildLessons(repo, store, activeLevel);
 
@@ -92,15 +92,23 @@ export async function mount(container) {
     step = 'importer'; impTab = 'manage'; impTarget = viewParam === 'open' ? 'user:open' : 'user:weak';
   } else if (viewParam === 'add') { step = 'importer'; impTab = 'upload'; }
 
+  const baseRoute = `#/${activeLevel.toLowerCase()}/vocab`;
   const refresh = () => {
     store = getStore(STORE_KEY, DEFAULT_STORE);
     lessons = buildLessons(repo, store, activeLevel);
     for (const id of [...selectedSet]) if (!lessons.some((l) => l.id === id)) selectedSet.delete(id);
   };
   const saveSel = () => updateStore(STORE_KEY, (c) => ({ ...c, selectedIds: [...selectedSet] }), DEFAULT_STORE);
-  const backToLevel = () => { history.replaceState(null, '', `#/vocab?level=${activeLevel}`); };
+  const backToLevel = () => {
+    if (window.location.hash !== baseRoute) {
+      window.location.hash = baseRoute;
+    }
+  };
 
   function render() {
+    const inActiveSession = ['flashcard', 'match', 'quiz', 'reflex'].includes(step);
+    setSession(inActiveSession);
+
     const backModes = () => { refresh(); if (weakDirect) { weakDirect = false; backToLevel(); step = 'list'; } else step = 'modes'; render(); };
     if (step === 'flashcard') return mountFlashcard(container, vocabSession.words, backModes);
     if (step === 'match') return mountMatch(container, vocabSession.words, backModes);
@@ -148,7 +156,7 @@ export async function mount(container) {
         const l = lessons.find((x) => x.id === btn.dataset.id);
         if (!l) return;
         btn.disabled = true;
-        const words = shuffle(await fetchWords(l));
+        const words = shuffle(await fetchWords(l, activeLevel));
         if (!words.length) { btn.disabled = false; return; }
         vocabSession.words = words; vocabSession.lessonIds = [l.id]; vocabSession.lessonNames = [l.name];
         weakDirect = l.id === 'user:weak'; step = weakDirect ? 'quiz' : 'modes'; render();
@@ -242,7 +250,7 @@ export async function mount(container) {
     container.querySelector('#mix-go').onclick = async () => {
       if (!picked.length) return;
       loading = true; errMsg = ''; renderMix();
-      const buckets = await Promise.all(picked.map(fetchWords));
+      const buckets = await Promise.all(picked.map((item) => fetchWords(item, activeLevel)));
       loading = false;
       const mixed = sampleBalanced(buckets, useAllWords ? 0 : wordLimit);
       if (!mixed.length) { errMsg = 'Các bài đã chọn chưa có dữ liệu từ vựng.'; renderMix(); return; }
