@@ -6,6 +6,8 @@ import { speakJP } from '../../core/tts.js';
 const STORE_KEY = 'vocab';
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF'];
 const HAS_KANJI = /[\u4E00-\u9FAF]/;
+const KATAKANA_CHAR = /[\u30A1-\u30F6]/;
+const STRIP_PUNCT = /[「」『』（）()［］\[\]・〜～、。！？!?\s]+/g;
 
 const DAKUTEN_MAP = {
   か: 'が', き: 'ぎ', く: 'ぐ', け: 'げ', こ: 'ご',
@@ -60,21 +62,52 @@ const ROMAJI_TABLE = {
   a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お', '-': 'ー'
 };
 
-function romajiToHiragana(input, flushEnd = false) {
-  const s = String(input || '').toLowerCase();
+const toHiraganaChar = (str) =>
+  str.replace(/[\u30A1-\u30F6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+
+const toKatakanaChar = (str) =>
+  str.replace(/[\u3041-\u3096]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0x60));
+
+function romajiToContextKana(input, flushEnd = false, targetReading = '') {
+  const raw = String(input || '');
+  const s = raw.toLowerCase();
+
+  const fullTarget = String(targetReading || '').replace(STRIP_PUNCT, '');
+  const coreTarget = String(targetReading || '')
+    .replace(/[「（(][^」）)]*[」）)]/g, '')
+    .replace(STRIP_PUNCT, '');
+  const fullHira = toHiraganaChar(fullTarget);
+  const coreHira = toHiraganaChar(coreTarget);
+
   let out = '';
   let i = 0;
+
+  const formatSyllable = (kana, origChunk) => {
+    const pos = out.length;
+    const prefixHira = toHiraganaChar(out);
+    let expectKata = false;
+
+    if (fullTarget && fullHira.startsWith(prefixHira) && KATAKANA_CHAR.test(fullTarget[pos] || '')) {
+      expectKata = true;
+    } else if (coreTarget && coreHira.startsWith(prefixHira) && KATAKANA_CHAR.test(coreTarget[pos] || '')) {
+      expectKata = true;
+    } else if (/[A-Z]/.test(origChunk)) {
+      expectKata = true;
+    }
+
+    return expectKata ? toKatakanaChar(kana) : kana;
+  };
 
   while (i < s.length) {
     const ch = s[i];
     if (!/[a-z'-]/.test(ch)) {
-      out += s[i];
+      out += raw[i];
       i++;
       continue;
     }
 
     if (i + 1 < s.length && ch === s[i + 1] && /[bcdfghjklmpqrstvwxyz]/.test(ch)) {
-      out += 'っ';
+      out += formatSyllable('っ', raw[i]);
       i++;
       continue;
     }
@@ -82,12 +115,12 @@ function romajiToHiragana(input, flushEnd = false) {
     if (ch === 'n' && i + 1 < s.length) {
       const next = s[i + 1];
       if (next === "'" || next === 'n') {
-        out += 'ん';
+        out += formatSyllable('ん', raw.slice(i, i + 2));
         i += 2;
         continue;
       }
       if (!/[aiueoy]/.test(next)) {
-        out += 'ん';
+        out += formatSyllable('ん', raw[i]);
         i++;
         continue;
       }
@@ -98,7 +131,7 @@ function romajiToHiragana(input, flushEnd = false) {
       if (i + len <= s.length) {
         const chunk = s.slice(i, i + len);
         if (ROMAJI_TABLE[chunk]) {
-          out += ROMAJI_TABLE[chunk];
+          out += formatSyllable(ROMAJI_TABLE[chunk], raw.slice(i, i + len));
           i += len;
           matched = true;
           break;
@@ -108,9 +141,9 @@ function romajiToHiragana(input, flushEnd = false) {
 
     if (!matched) {
       if (flushEnd && ch === 'n' && i === s.length - 1) {
-        out += 'ん';
+        out += formatSyllable('ん', raw[i]);
       } else {
-        out += s[i];
+        out += raw[i];
       }
       i++;
     }
@@ -119,9 +152,8 @@ function romajiToHiragana(input, flushEnd = false) {
 }
 
 function normalizeKana(str) {
-  return romajiToHiragana(String(str || '').trim(), true)
-    .replace(/[\u30A1-\u30F6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60))
-    .replace(/[「」『』（）()［］\[\]・〜～、。！？!?\s]+/g, '');
+  return toHiraganaChar(romajiToContextKana(String(str || '').trim(), true))
+    .replace(STRIP_PUNCT, '');
 }
 
 function isReadingMatch(userInput, targetReading) {
@@ -220,6 +252,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
   let inputMode = 'mcq';
   let queue = shuffle(kanjiWords).map((w) => createQuestion(w, allWords, false));
   let qIdx = 0, firstPassCorrect = 0, soundOn = true, wrongWords = [], finished = false;
+  let feedbackAnim = '';
   const wordKey = (w) => `${w.jp}|${w.vi}`;
 
   const onKeyDown = (e) => {
@@ -246,6 +279,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     firstPassCorrect = 0;
     wrongWords = [];
     finished = false;
+    feedbackAnim = '';
     render();
   }
 
@@ -253,6 +287,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     q.answered = true;
     q.correct = isCorrect;
     Object.assign(q, extra);
+    feedbackAnim = isCorrect ? 'anim-pop' : 'anim-shake';
 
     if (isCorrect) {
       if (!q.isRetry) firstPassCorrect++;
@@ -272,9 +307,9 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       const totalUnique = kanjiWords.length;
       const pct = Math.min(100, Math.round((firstPassCorrect / totalUnique) * 100));
       container.innerHTML = `
-        <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:24px 16px;">
-          <div class="module-title" style="font-size:1.45rem;">Hoàn thành Đọc Kanji! 🎉</div>
-          <div style="font-size:2.4rem;font-weight:800;color:var(--teal);">${firstPassCorrect} / ${totalUnique} <span style="font-size:1.1rem;color:var(--yellow);">đúng ngay lần đầu (${pct}%)</span></div>
+        <div class="card anim-pop" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:28px 20px;max-width:520px;margin:0 auto;">
+          <div class="module-title" style="font-size:1.5rem;">Hoàn thành Đọc Kanji! 🎉</div>
+          <div style="font-size:2.5rem;font-weight:800;color:var(--teal);">${firstPassCorrect} / ${totalUnique} <span style="font-size:1.1rem;color:var(--yellow);">đúng ngay lần đầu (${pct}%)</span></div>
           <p class="module-sub">${wrongWords.length ? `Đã ôn lại trong phiên & lưu ${wrongWords.length} từ từng sai vào Từ cần ôn lại.` : 'Bạn đọc chuẩn ngay từ đầu tất cả chữ Hán!'}</p>
           <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
             ${wrongWords.length ? `<button type="button" id="kr-retry-wrong" class="btn btn-coral">🔥 Luyện lại ${wrongWords.length} từ từng sai</button>` : ''}
@@ -290,18 +325,27 @@ export function mountKanjiRead(container, allWords = [], onBack) {
 
     const q = queue[qIdx];
     const pct = Math.max(3, Math.round(((qIdx + 1) / queue.length) * 100));
+    const currentAnim = feedbackAnim;
+    feedbackAnim = '';
 
     let answerAreaHtml = '';
     if (inputMode === 'mcq') {
       const optsHtml = q.options.map((opt, i) => {
         const isAns = opt === q.correctReading;
-        let bd = 'var(--border)', bg = 'var(--bg-card)';
+        let bd = 'var(--border)', bg = 'var(--bg-card)', animCls = '';
         if (q.answered) {
-          if (isAns) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.2)'; }
-          else if (i === q.chosenIdx) { bd = 'var(--red)'; bg = 'rgba(217,72,59,0.22)'; }
+          if (isAns) {
+            bd = 'var(--green)';
+            bg = 'rgba(76,175,106,0.2)';
+            if (i === q.chosenIdx) animCls = currentAnim;
+          } else if (i === q.chosenIdx) {
+            bd = 'var(--red)';
+            bg = 'rgba(217,72,59,0.22)';
+            animCls = currentAnim;
+          }
         }
         return `
-          <button type="button" class="card kr-opt" data-i="${i}" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-color:${bd};background:${bg};text-align:left;min-height:58px;">
+          <button type="button" class="card kr-opt ${animCls}" data-i="${i}" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-color:${bd};background:${bg};text-align:left;min-height:58px;">
             <span style="width:32px;height:32px;border-radius:10px;background:${BADGE_COLORS[i]};color:#101320;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">${i + 1}</span>
             <span class="jp" style="flex:1;font-weight:700;font-size:1.2rem;color:var(--text);text-align:center;padding-right:16px;">${escapeHtml(opt)}</span>
           </button>`;
@@ -309,22 +353,23 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       answerAreaHtml = `<div class="kr-grid">${optsHtml}</div>`;
     } else {
       const bd = q.answered ? (q.correct ? 'var(--green)' : 'var(--red)') : 'var(--teal)';
+      const inpAnim = q.answered ? currentAnim : '';
       answerAreaHtml = `
         <form id="kr-type-form" style="display:flex;flex-direction:column;gap:10px;">
-          <input type="text" id="kr-type-inp" class="jp" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            placeholder="Gõ romaji (vd: tabemasu) hoặc hiragana..."
+          <input type="text" id="kr-type-inp" class="jp ${inpAnim}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+            placeholder="Gõ romaji (tự chuyển Hiragana / Katakana)..."
             value="${escapeHtml(q.typedVal)}" ${q.answered ? 'disabled' : ''}
-            style="width:100%;min-height:56px;padding:10px 14px;border-radius:14px;border:2.5px solid ${bd};background:var(--bg-card);color:var(--text);font-size:1.35rem;font-weight:700;text-align:center;">
+            style="width:100%;min-height:58px;padding:10px 14px;border-radius:14px;border:2.5px solid ${bd};background:var(--bg-card);color:var(--text);font-size:1.35rem;font-weight:700;text-align:center;">
           ${!q.answered ? `
             <div style="display:grid;grid-template-columns:1fr auto;gap:8px;">
-              <button type="submit" class="btn btn-teal" style="font-size:1.05rem;">Kiểm tra ↵</button>
+              <button type="submit" class="btn btn-teal" style="font-size:1.05rem;">Kiểm tra <span class="kbd-hint">Enter ↵</span></button>
               <button type="button" id="kr-dont-know" class="btn">Không nhớ</button>
             </div>` : ''}
         </form>`;
     }
 
     const explainHtml = q.answered ? `
-      <div class="card" style="margin-top:14px;border-color:${q.correct ? 'var(--green)' : 'var(--red)'};display:flex;flex-direction:column;gap:8px;">
+      <div class="card ${currentAnim}" style="margin-top:14px;border-color:${q.correct ? 'var(--green)' : 'var(--red)'};display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
           <span style="font-weight:800;color:${q.correct ? 'var(--green)' : 'var(--red)'};font-size:1.02rem;">
             ${q.correct ? '✓ Đọc chính xác!' : '✕ Sai rồi — sẽ hỏi lại sau vài câu nữa'}
@@ -337,7 +382,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
           <span style="color:var(--yellow);font-weight:800;font-size:1.1rem;">— ${escapeHtml(q.word.vi)}</span>
         </div>
         ${q.word.ex ? `<div style="padding-top:8px;border-top:1.5px dashed var(--border);"><div class="jp" style="font-size:0.98rem;line-height:1.7;">${parseRuby(q.word.ex)}</div>${q.word.exVi ? `<div style="font-size:0.88rem;color:var(--text-muted);">${escapeHtml(q.word.exVi)}</div>` : ''}</div>` : ''}
-        <button type="button" id="kr-next" class="btn btn-yellow" style="width:100%;margin-top:4px;">${qIdx < queue.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả 🏁'}</button>
+        <button type="button" id="kr-next" class="btn btn-yellow" style="width:100%;margin-top:4px;">${qIdx < queue.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả 🏁'} <span class="kbd-hint">Enter ↵</span></button>
       </div>` : '';
 
     container.innerHTML = `
@@ -349,7 +394,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
             <span style="padding:2px 10px;border-radius:999px;background:#F5C84F;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${qIdx + 1}/${queue.length}</span>
             ${q.isRetry ? `<span style="padding:2px 8px;border-radius:999px;background:rgba(240,143,122,0.22);color:var(--coral);border:1px solid var(--coral);font-weight:800;font-size:0.75rem;">Ôn lại</span>` : ''}
           </div>
-          <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--yellow);border-radius:999px;transition:width 0.2s;"></div></div>
+          <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--yellow);border-radius:999px;transition:width 0.25s ease;"></div></div>
         </div>
         <div style="display:flex;gap:8px;flex-shrink:0;">
           <button type="button" id="kr-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
@@ -357,21 +402,27 @@ export function mountKanjiRead(container, allWords = [], onBack) {
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:12px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;max-width:420px;">
         <button type="button" class="btn kr-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq" style="min-height:38px;padding:4px 8px;font-size:0.86rem;">🔘 Trắc nghiệm</button>
-        <button type="button" class="btn kr-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:38px;padding:4px 8px;font-size:0.86rem;">⌨️ Tự gõ Hiragana</button>
+        <button type="button" class="btn kr-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:38px;padding:4px 8px;font-size:0.86rem;">⌨️ Tự gõ Kana</button>
       </div>
 
-      <div class="card" style="padding:16px;margin-bottom:14px;">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-          <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">${inputMode === 'mcq' ? 'Nhận diện' : 'Tự nhớ chủ động'}</span>
-          <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${inputMode === 'mcq' ? 'Chọn cách đọc đúng' : 'Gõ cách đọc của chữ Hán này'}</span>
+      <div class="study-split">
+        <div class="study-left">
+          <div class="card" style="padding:16px;margin-bottom:14px;">
+            <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+              <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">${inputMode === 'mcq' ? 'Nhận diện' : 'Tự nhớ chủ động'}</span>
+              <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${inputMode === 'mcq' ? 'Chọn cách đọc đúng' : 'Gõ cách đọc của từ này'}</span>
+            </div>
+            <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:36px 14px;text-align:center;font-size:clamp(2rem,5vw,2.8rem);font-weight:700;">${escapeHtml(q.word.jp)}</div>
+          </div>
         </div>
-        <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:30px 12px;text-align:center;font-size:clamp(2rem,7vw,2.8rem);font-weight:700;">${escapeHtml(q.word.jp)}</div>
-      </div>
 
-      ${answerAreaHtml}
-      ${explainHtml}
+        <div class="study-right">
+          ${answerAreaHtml}
+          ${explainHtml}
+        </div>
+      </div>
     `;
 
     container.querySelector('#kr-mute').onclick = () => { soundOn = !soundOn; render(); };
@@ -403,7 +454,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       if (inp && !q.answered) {
         inp.focus();
         inp.oninput = () => {
-          const converted = romajiToHiragana(inp.value, false);
+          const converted = romajiToContextKana(inp.value, false, q.correctReading);
           if (converted !== inp.value) {
             inp.value = converted;
           }
@@ -413,9 +464,9 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       container.querySelector('#kr-type-form')?.addEventListener('submit', (e) => {
         e.preventDefault();
         if (q.answered) return;
-        const userKana = normalizeKana(inp?.value || '');
-        if (!userKana) return;
-        submitAnswer(q, isReadingMatch(inp?.value || '', q.correctReading), { typedVal: userKana });
+        const displayKana = romajiToContextKana(inp?.value || '', true, q.correctReading).replace(STRIP_PUNCT, '');
+        if (!displayKana) return;
+        submitAnswer(q, isReadingMatch(inp?.value || '', q.correctReading), { typedVal: displayKana });
       });
       container.querySelector('#kr-dont-know')?.addEventListener('click', () => {
         if (!q.answered) submitAnswer(q, false, { typedVal: '(Bỏ qua)' });
