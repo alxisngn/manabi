@@ -9,7 +9,31 @@ const isSameWord = (a, b) => a && b && a.jp === b.jp && a.vi === b.vi;
 
 export function mountFlashcard(container, words = [], onBack) {
   if (!Array.isArray(words) || words.length === 0) return onBack && onBack();
+const onFlashKey = (e) => {
+    if (!document.body.contains(container)) return document.removeEventListener('keydown', onFlashKey);
+    if (document.querySelector('dialog[open]') || ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
 
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      const cardEl = container.querySelector('.flashcard, .fc-card, [data-flashcard], #fc-card, #flashcard');
+      if (cardEl) cardEl.click();
+    } else if (e.key === 'ArrowRight') {
+      e.preventDefault();
+      const btns = [...container.querySelectorAll('button')];
+      const nextBtn = container.querySelector('#fc-next, [data-action="next"]') || btns.find((b) => /tiếp|sau|→|›/i.test(b.textContent));
+      nextBtn?.click();
+    } else if (e.key === 'ArrowLeft') {
+      e.preventDefault();
+      const btns = [...container.querySelectorAll('button')];
+      const prevBtn = container.querySelector('#fc-prev, [data-action="prev"]') || btns.find((b) => /trước|lùi|←|‹/i.test(b.textContent) && !/đổi|chế độ|quay/i.test(b.textContent));
+      prevBtn?.click();
+    } else if (e.key.toLowerCase() === 's' || e.key.toLowerCase() === 'r') {
+      const btns = [...container.querySelectorAll('button')];
+      const speakBtn = container.querySelector('#fc-speak, [data-action="speak"]') || btns.find((b) => /🔊|nghe/i.test(b.textContent));
+      speakBtn?.click();
+    }
+  };
+  document.addEventListener('keydown', onFlashKey);
   let index = 0, flipped = false, touchStartX = 0, touchStartY = 0;
 
   const isBookmarked = (word) => (getStore(STORE_KEY, { weakWords: [] }).weakWords || []).some((w) => isSameWord(w, word));

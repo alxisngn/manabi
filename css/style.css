@@ -707,3 +707,157 @@ body[data-onboard="1"] .app-shell {
     top: 20px;
   }
 }
+/* === Manabi v7: Sleek Collapsible Sidebar, Separated Lessons & Facing Cards === */
+.kr-inp::placeholder {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.v-row {
+  padding: 14px 16px;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 0 var(--shadow);
+}
+
+@media (min-width: 768px) {
+  body:not([data-onboard="1"]) {
+    padding-left: 232px;
+    transition: padding-left 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  body.nav-collapsed:not([data-onboard="1"]) {
+    padding-left: 78px;
+  }
+
+  /* Keep sidebar visible at all times, including during study sessions */
+  body[data-session="1"] .bottom-nav {
+    display: flex !important;
+  }
+
+  .bottom-nav {
+    width: 232px;
+    padding: 18px 12px;
+    gap: 6px;
+    background: linear-gradient(180deg, var(--bg-card) 0%, #141726 100%);
+    border-right: 2px solid var(--border);
+    box-shadow: 4px 0 20px rgba(0, 0, 0, 0.28);
+    transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1), padding 0.22s ease;
+  }
+
+  .sidebar-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px 14px;
+    margin-bottom: 6px;
+    border-bottom: 1.5px dashed rgba(69, 73, 106, 0.7);
+  }
+
+  .sidebar-brand {
+    font-weight: 800;
+    font-size: 1.05rem;
+    color: var(--teal);
+    letter-spacing: 0.3px;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+
+  .nav-tab {
+    position: relative;
+    border-radius: 14px;
+    padding: 11px 14px;
+    min-height: 46px;
+    gap: 12px;
+    border: 1.5px solid transparent;
+    color: var(--text-muted);
+  }
+
+  .nav-tab.is-active {
+    background: rgba(245, 200, 79, 0.13);
+    border-color: rgba(245, 200, 79, 0.5);
+    color: var(--yellow);
+    box-shadow: 0 3px 0 rgba(16, 19, 32, 0.6);
+  }
+
+  .nav-tab.is-active::before {
+    content: "";
+    position: absolute;
+    left: -12px;
+    top: 10px;
+    bottom: 10px;
+    width: 4px;
+    border-radius: 0 4px 4px 0;
+    background: var(--yellow);
+  }
+
+  /* Collapsed Icon-Rail State */
+  body.nav-collapsed .bottom-nav {
+    width: 78px;
+    padding: 18px 10px;
+    align-items: center;
+  }
+
+  body.nav-collapsed .sidebar-head {
+    justify-content: center;
+    padding-bottom: 12px;
+  }
+
+  body.nav-collapsed .sidebar-brand,
+  body.nav-collapsed .nav-lbl {
+    display: none;
+  }
+
+  body.nav-collapsed .nav-tab {
+    width: 50px;
+    height: 50px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  body.nav-collapsed .nav-tab.is-active::before {
+    left: -10px;
+  }
+
+  /* Center active study workspace vertically at eye level */
+  body[data-session="1"] .main-view {
+    min-height: calc(100dvh - 115px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  /* Separate lesson cards cleanly */
+  .module-grid {
+    grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+    gap: 16px;
+  }
+
+  .v-row {
+    border: 2.5px solid var(--border);
+    background: var(--bg-card);
+  }
+}
+
+@media (min-width: 880px) {
+  .study-split {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 20px;
+    align-items: stretch;
+  }
+
+  .study-left,
+  .study-right {
+    position: static;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .study-card-match {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

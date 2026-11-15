@@ -271,6 +271,9 @@ export function mountKanjiRead(container, allWords = [], onBack) {
     if (!q.answered) {
       if (inputMode === 'mcq' && ['1', '2', '3', '4'].includes(e.key)) {
         container.querySelector(`.kr-opt[data-i="${Number(e.key) - 1}"]`)?.click();
+      } else if (inputMode === 'type' && (e.key === '?' || (e.shiftKey && e.key === 'Enter'))) {
+        e.preventDefault();
+        container.querySelector('#kr-dont-know')?.click();
       }
     } else if (e.key === 'Enter' || (inputMode === 'mcq' && e.key === ' ')) {
       e.preventDefault();
@@ -353,7 +356,7 @@ export function mountKanjiRead(container, allWords = [], onBack) {
           }
         }
         return `
-          <button type="button" class="card kr-opt ${animCls}" data-i="${i}" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-color:${bd};background:${bg};text-align:left;min-height:58px;">
+          <button type="button" class="card kr-opt ${animCls}" data-i="${i}" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-color:${bd};background:${bg};text-align:left;min-height:60px;">
             <span style="width:32px;height:32px;border-radius:10px;background:${BADGE_COLORS[i]};color:#101320;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">${i + 1}</span>
             <span class="jp" style="flex:1;font-weight:700;font-size:1.2rem;color:var(--text);text-align:center;padding-right:16px;">${escapeHtml(opt)}</span>
           </button>`;
@@ -363,17 +366,20 @@ export function mountKanjiRead(container, allWords = [], onBack) {
       const bd = q.answered ? (q.correct ? 'var(--green)' : 'var(--red)') : 'var(--teal)';
       const inpAnim = q.answered ? currentAnim : '';
       answerAreaHtml = `
-        <form id="kr-type-form" style="display:flex;flex-direction:column;gap:10px;">
-          <input type="text" id="kr-type-inp" class="jp ${inpAnim}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
-            placeholder="Gõ romaji (tự chuyển Hiragana / Katakana)..."
-            value="${escapeHtml(q.typedVal)}" ${q.answered ? 'disabled' : ''}
-            style="width:100%;min-height:58px;padding:10px 14px;border-radius:14px;border:2.5px solid ${bd};background:var(--bg-card);color:var(--text);font-size:1.35rem;font-weight:700;text-align:center;">
-          ${!q.answered ? `
-            <div style="display:grid;grid-template-columns:1fr auto;gap:8px;">
-              <button type="submit" class="btn btn-teal" style="font-size:1.05rem;">Kiểm tra <span class="kbd-hint">Enter ↵</span></button>
-              <button type="button" id="kr-dont-know" class="btn">Không nhớ</button>
-            </div>` : ''}
-        </form>`;
+        <div class="card study-card-match" style="padding:18px;">
+          <div style="font-size:0.86rem;color:var(--text-muted);font-weight:700;margin-bottom:10px;">Nhập cách đọc (Romaji → Hiragana / Katakana)</div>
+          <form id="kr-type-form" style="display:flex;flex-direction:column;gap:12px;">
+            <input type="text" id="kr-type-inp" class="jp kr-inp ${inpAnim}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+              placeholder="Gõ romaji (vd: warimasu)..."
+              value="${escapeHtml(q.typedVal)}" ${q.answered ? 'disabled' : ''}
+              style="width:100%;min-height:60px;padding:10px 14px;border-radius:14px;border:2.5px solid ${bd};background:var(--bg-elevated);color:var(--text);font-size:1.45rem;font-weight:700;text-align:center;">
+            ${!q.answered ? `
+              <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:8px;">
+                <button type="submit" class="btn btn-teal" style="font-size:1rem;">Kiểm tra <span class="kbd-hint">Enter ↵</span></button>
+                <button type="button" id="kr-dont-know" class="btn" style="font-size:0.95rem;">Không nhớ <span class="kbd-hint">Shift ↵</span></button>
+              </div>` : ''}
+          </form>
+        </div>`;
     }
 
     const explainHtml = q.answered ? `
@@ -395,8 +401,8 @@ export function mountKanjiRead(container, allWords = [], onBack) {
 
     container.innerHTML = `
       <style>.kr-grid{display:grid;grid-template-columns:1fr;gap:10px;}@media(min-width:420px){.kr-grid{grid-template-columns:1fr 1fr;}}</style>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px;">
-        <div style="flex:1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
             <span style="font-size:1.12rem;font-weight:800;">ĐỌC KANJI</span>
             <span style="padding:2px 10px;border-radius:999px;background:#F5C84F;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${qIdx + 1}/${queue.length}</span>
@@ -404,25 +410,22 @@ export function mountKanjiRead(container, allWords = [], onBack) {
           </div>
           <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:var(--yellow);border-radius:999px;transition:width 0.25s ease;"></div></div>
         </div>
-        <div style="display:flex;gap:8px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+          <button type="button" class="btn kr-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">🔘 Trắc nghiệm</button>
+          <button type="button" class="btn kr-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">⌨️ Tự gõ Kana</button>
           <button type="button" id="kr-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
           <button type="button" id="kr-quit" class="btn btn-icon" style="background:var(--red);color:#fff;border-color:#101320;" title="Thoát">⏻</button>
         </div>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:14px;max-width:420px;">
-        <button type="button" class="btn kr-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq" style="min-height:38px;padding:4px 8px;font-size:0.86rem;">🔘 Trắc nghiệm</button>
-        <button type="button" class="btn kr-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:38px;padding:4px 8px;font-size:0.86rem;">⌨️ Tự gõ Kana</button>
-      </div>
-
       <div class="study-split">
         <div class="study-left">
-          <div class="card" style="padding:16px;margin-bottom:14px;">
+          <div class="card study-card-match" style="padding:18px;">
             <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
               <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">${inputMode === 'mcq' ? 'Nhận diện' : 'Tự nhớ chủ động'}</span>
               <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${inputMode === 'mcq' ? 'Chọn cách đọc đúng' : 'Gõ cách đọc của từ này'}</span>
             </div>
-            <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:36px 16px;text-align:center;font-size:clamp(1.65rem,3.4vw,2.5rem);font-weight:700;word-break:keep-all;overflow-wrap:break-word;">${formatPromptJP(q.word.jp)}</div>
+            <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:38px 16px;text-align:center;font-size:clamp(1.65rem,3.4vw,2.5rem);font-weight:700;word-break:keep-all;overflow-wrap:break-word;">${formatPromptJP(q.word.jp)}</div>
           </div>
         </div>
 

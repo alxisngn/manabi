@@ -188,3 +188,30 @@ window.addEventListener('DOMContentLoaded', () => {
   router();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
 });
+(() => {
+  const nav = document.getElementById('bottom-nav') || document.querySelector('.bottom-nav');
+  if (!nav || nav.querySelector('.sidebar-head')) return;
+
+  if (localStorage.getItem('manabi:navCollapsed') === '1') {
+    document.body.classList.add('nav-collapsed');
+  }
+
+  const head = document.createElement('div');
+  head.className = 'sidebar-head';
+  head.innerHTML = `
+    <span class="sidebar-brand">MENU</span>
+    <button type="button" id="nav-collapse-btn" class="btn btn-icon" title="Thu gọn / Mở rộng menu" style="min-width:38px;min-height:38px;padding:0;">☰</button>
+  `;
+  nav.prepend(head);
+
+  // Add hover tooltips when collapsed
+  nav.querySelectorAll('.nav-tab').forEach((tab) => {
+    const label = tab.querySelector('.nav-lbl')?.textContent?.trim();
+    if (label && !tab.title) tab.title = label;
+  });
+
+  head.querySelector('#nav-collapse-btn').onclick = () => {
+    const collapsed = document.body.classList.toggle('nav-collapsed');
+    localStorage.setItem('manabi:navCollapsed', collapsed ? '1' : '0');
+  };
+})();
