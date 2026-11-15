@@ -109,7 +109,22 @@ export async function mount(container, { level, query } = {}) {
       words,
       poolWords,
       nextLesson,
-      onNextLesson: nextLesson ? () => launchGate(nextLesson) : null
+      onNextLesson: nextLesson ? async () => {
+        const nextWords = shuffle(await fetchWords(nextLesson, activeLevel));
+        gateCfg = null;
+        weakDirect = false;
+        mixDirectMode = null;
+        if (window.location.hash.includes('gate=')) backToLevel();
+        if (!nextWords.length) {
+          step = 'list';
+          return render();
+        }
+        vocabSession.words = nextWords;
+        vocabSession.lessonIds = [nextLesson.id];
+        vocabSession.lessonNames = [nextLesson.name];
+        step = 'modes';
+        render();
+      } : null
     };
     step = 'gate';
     render();
