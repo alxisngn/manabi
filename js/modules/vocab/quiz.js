@@ -1,16 +1,18 @@
 import { updateStore } from '../../core/store.js';
+import { PASS_RATE, recordTest } from '../../core/progress.js';
 import { shuffle, pickN, escapeHtml } from '../../core/util.js';
 import { parseRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
 
 const STORE_KEY = 'vocab';
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF', '#A78BFA', '#F472B6'];
+const sameWord = (a, b) => a && b && a.jp === b.jp && a.vi === b.vi;
 
 function saveWrongWord(word) {
   if (!word?.jp) return;
   updateStore(STORE_KEY, (cur) => {
     const list = Array.isArray(cur.weakWords) ? [...cur.weakWords] : [];
-    if (!list.some((w) => w.jp === word.jp && w.vi === word.vi)) list.push(word);
+    if (!list.some((w) => sameWord(w, word))) list.push(word);
     return { ...cur, weakWords: list };
   }, { weakWords: [] });
 }
@@ -20,7 +22,7 @@ function removeWeakWord(word) {
   let removed = false;
   updateStore(STORE_KEY, (cur) => {
     const list = Array.isArray(cur.weakWords) ? cur.weakWords : [];
-    const next = list.filter((w) => !(w.jp === word.jp && w.vi === word.vi));
+    const next = list.filter((w) => !sameWord(w, word));
     if (next.length < list.length) removed = true;
     return { ...cur, weakWords: next };
   }, { weakWords: [] });
@@ -29,84 +31,87 @@ function removeWeakWord(word) {
 
 function buildQuestions(pool, allWords, count) {
   const targets = shuffle(pool).slice(0, count);
-  const sourcePool = allWords.length >= 4 ? allWords : pool;
-
+  const src = allWords.length >= 4 ? allWords : pool;
   return targets.map((word) => {
-    const types = ['mcq', 'tf'];
-    if (sourcePool.length >= 6) types.push('match');
+    const types = src.length >= 6 ? ['mcq', 'tf', 'match'] : ['mcq', 'tf'];
     const type = types[Math.floor(Math.random() * types.length)];
-
     if (type === 'mcq') {
-      const distractors = pickN(sourcePool, 3, word, (w) => `${w.jp}|${w.vi}`);
-      return { type, word, options: shuffle([word, ...distractors]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
+      const dist = pickN(src, 3, word, (w) => `${w.jp}|${w.vi}`);
+      return { type, dir: 'jp-vi', word, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
     }
     if (type === 'tf') {
-      const isTrue = Math.random() < 0.5 || sourcePool.length < 2;
-      const other = isTrue ? word : (pickN(sourcePool, 1, word, (w) => w.vi)[0] || word);
+      const isTrue = Math.random() < 0.5 || src.length < 2;
+      const other = isTrue ? word : (pickN(src, 1, word, (w) => w.vi)[0] || word);
       return { type, word, shownVi: other.vi, isMatch: other.vi === word.vi, answered: false, correct: false, clearedWeak: false, chosenVal: null };
     }
-    const others = pickN(sourcePool, 5, word, (w) => `${w.jp}|${w.vi}`);
-    const pairs = shuffle([word, ...others]);
-    return {
-      type: 'match', word, left: shuffle(pairs), right: shuffle(pairs),
-      matchedIds: [], wrongLeftIdx: -1, wrongRightIdx: -1, selLeft: -1, hadMistake: false, answered: false, correct: false
-    };
+    const pairs = shuffle([word, ...pickN(src, 5, word, (w) => `${w.jp}|${w.vi}`)]);
+    return { type: 'match', word, left: shuffle(pairs), right: shuffle(pairs), matchedIds: [], wrongLeftIdx: -1, wrongRightIdx: -1, selLeft: -1, hadMistake: false, answered: false, correct: false };
+  });
+}
+
+function buildGateQuestions(lessonWords, poolWords, priorityWrong = []) {
+  const wrongSet = new Set(priorityWrong.map((w) => `${w.jp}|${w.vi}`));
+  const head = shuffle(lessonWords.filter((w) => wrongSet.has(`${w.jp}|${w.vi}`)));
+  const tail = shuffle(lessonWords.filter((w) => !wrongSet.has(`${w.jp}|${w.vi}`)));
+  const ordered = [...head, ...tail];
+  const half = Math.ceil(ordered.length / 2);
+  const dirs = shuffle(ordered.map((_, i) => (i < half ? 'jp-vi' : 'vi-jp')));
+
+  return ordered.map((word, idx) => {
+    const dir = dirs[idx];
+    const normVi = (v) => String(v || '').trim().toLowerCase();
+    const isValidDist = (cand) => !sameWord(cand, word) && normVi(cand.vi) !== normVi(word.vi) && (dir === 'jp-vi' || cand.jp !== word.jp);
+    const sameLessonValid = lessonWords.filter(isValidDist);
+    let dist = pickN(sameLessonValid, 3, word, (w) => (dir === 'jp-vi' ? normVi(w.vi) : w.jp));
+    if (dist.length < 3 && poolWords?.length) {
+      const usedKeys = new Set(dist.map((w) => (dir === 'jp-vi' ? normVi(w.vi) : w.jp)));
+      const extraValid = poolWords.filter((w) => isValidDist(w) && !usedKeys.has(dir === 'jp-vi' ? normVi(w.vi) : w.jp));
+      dist = [...dist, ...pickN(extraValid, 3 - dist.length, word, (w) => (dir === 'jp-vi' ? normVi(w.vi) : w.jp))];
+    }
+    return { type: 'mcq', dir, word, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
   });
 }
 
 export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   if (!allWords.length) return onBack && onBack();
 
+  const gate = opts.gate || null;
   const isWeakReview = Boolean(opts.weakReview);
-  let step = isWeakReview ? 'play' : 'setup';
+  let step = gate || isWeakReview ? 'play' : 'setup';
   let maxQ = allWords.length, numQ = maxQ, soundOn = true;
-  let questions = isWeakReview ? buildQuestions(allWords, allWords, maxQ) : [];
-  let qIdx = 0, score = 0, clearedCount = 0, wrongWords = [];
+  let questions = gate ? buildGateQuestions(gate.words, gate.poolWords) : isWeakReview ? buildQuestions(allWords, allWords, maxQ) : [];
+  let qIdx = 0, score = 0, clearedCount = 0, wrongWords = [], gateResult = null;
 
-  const maybeSpeak = (w) => { if (soundOn && w) speakJP(w.reading || w.jp); };
+  const maybeSpeak = (w, q) => { if (soundOn && w && (!q || q.dir !== 'vi-jp')) speakJP(w.reading || w.jp); };
 
   const onKeyDown = (e) => {
     if (!document.body.contains(container)) return document.removeEventListener('keydown', onKeyDown);
-    if (step !== 'play' || document.querySelector('dialog[open]')) return;
-    if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
+    if (step !== 'play' || document.querySelector('dialog[open]') || ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
     const q = questions[qIdx];
     if (!q) return;
     if (!q.answered) {
-      if (q.type === 'mcq' && ['1', '2', '3', '4'].includes(e.key)) {
-        container.querySelector(`.qz-opt[data-i="${Number(e.key) - 1}"]`)?.click();
-      } else if (q.type === 'tf' && (e.key === '1' || e.key === '2')) {
-        container.querySelector(`.qz-tf[data-v="${e.key === '1' ? 'true' : 'false'}"]`)?.click();
-      }
-    } else if (e.key === 'Enter' || e.key === ' ') {
-      e.preventDefault();
-      container.querySelector('#qz-next')?.click();
-    }
+      if (q.type === 'mcq' && ['1', '2', '3', '4'].includes(e.key)) container.querySelector(`.qz-opt[data-i="${Number(e.key) - 1}"]`)?.click();
+      else if (q.type === 'tf' && (e.key === '1' || e.key === '2')) container.querySelector(`.qz-tf[data-v="${e.key === '1' ? 'true' : 'false'}"]`)?.click();
+    } else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.querySelector('#qz-next')?.click(); }
   };
   document.addEventListener('keydown', onKeyDown);
 
-  const exitQuiz = () => {
-    document.removeEventListener('keydown', onKeyDown);
-    if (onBack) onBack();
-  };
+  const exitQuiz = () => { document.removeEventListener('keydown', onKeyDown); if (onBack) onBack(); };
 
   function startQuiz(pool, count) {
-    questions = buildQuestions(pool, allWords, count);
-    qIdx = 0; score = 0; clearedCount = 0; wrongWords = []; step = 'play';
-    render();
-    maybeSpeak(questions[0]?.word);
+    questions = gate ? buildGateQuestions(gate.words, gate.poolWords, wrongWords) : buildQuestions(pool, allWords, count);
+    qIdx = 0; score = 0; clearedCount = 0; wrongWords = []; gateResult = null; step = 'play';
+    render(); maybeSpeak(questions[0]?.word, questions[0]);
   }
 
   function handleCorrect(q) {
     score++;
-    if (removeWeakWord(q.word)) {
-      q.clearedWeak = true;
-      clearedCount++;
-    }
+    if (!gate && removeWeakWord(q.word)) { q.clearedWeak = true; clearedCount++; }
   }
 
   function recordWrong(w) {
     saveWrongWord(w);
-    if (!wrongWords.some((x) => x.jp === w.jp && x.vi === w.vi)) wrongWords.push(w);
+    if (!wrongWords.some((x) => sameWord(x, w))) wrongWords.push(w);
   }
 
   function renderSetup() {
@@ -120,20 +125,14 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         <div class="module-title">Thiết lập bài Kiểm tra</div>
         <p class="module-sub">Trộn ngẫu nhiên: Trắc nghiệm (phím tắt 1–4), Đúng / Sai và Nối 6 cặp. Từ làm sai tự động lưu vào Từ cần ôn lại.</p>
         <label style="font-weight:700;font-size:0.95rem;">Số câu hỏi (1 – ${maxQ}):</label>
-        <div style="display:flex;gap:8px;flex-wrap:wrap;">
-          ${presets.map((n) => `<button type="button" class="btn qz-preset ${n === numQ ? 'btn-teal' : ''}" data-n="${n}" style="flex:1;">${n === maxQ ? `Tất cả (${n})` : `${n} câu`}</button>`).join('')}
-        </div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">${presets.map((n) => `<button type="button" class="btn qz-preset ${n === numQ ? 'btn-teal' : ''}" data-n="${n}" style="flex:1;">${n === maxQ ? `Tất cả (${n})` : `${n} câu`}</button>`).join('')}</div>
         <input type="number" id="qz-num" min="1" max="${maxQ}" value="${numQ}" style="width:100%;min-height:44px;padding:8px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:1.05rem;font-weight:700;">
         <button type="button" id="qz-go" class="btn btn-yellow" style="width:100%;font-size:1.1rem;">🚀 Bắt đầu kiểm tra</button>
-      </div>
-    `;
+      </div>`;
     container.querySelector('#qz-back').onclick = exitQuiz;
     container.querySelectorAll('.qz-preset').forEach((b) => { b.onclick = () => { numQ = Number(b.dataset.n); renderSetup(); }; });
     container.querySelector('#qz-num').onchange = (e) => { numQ = Math.max(1, Math.min(maxQ, Number(e.target.value) || 1)); };
-    container.querySelector('#qz-go').onclick = () => {
-      numQ = Math.max(1, Math.min(maxQ, Number(container.querySelector('#qz-num').value) || maxQ));
-      startQuiz(allWords, numQ);
-    };
+    container.querySelector('#qz-go').onclick = () => { numQ = Math.max(1, Math.min(maxQ, Number(container.querySelector('#qz-num').value) || maxQ)); startQuiz(allWords, numQ); };
   }
 
   function renderExplanation(q) {
@@ -141,15 +140,11 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
     const nextLabel = qIdx < questions.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả 🏁';
     if (q.type === 'match') return `<button type="button" id="qz-next" class="btn btn-yellow" style="width:100%;margin-top:14px;">${nextLabel}</button>`;
     const w = q.word;
-    const statusText = q.correct
-      ? (q.clearedWeak ? '✓ Đúng rồi! Đã xóa khỏi Từ cần ôn lại' : '✓ Chính xác!')
-      : '✕ Chưa đúng (đã lưu vào Từ cần ôn lại)';
+    const statusText = q.correct ? (q.clearedWeak ? '✓ Đúng rồi! Đã xóa khỏi Từ cần ôn lại' : '✓ Chính xác!') : '✕ Chưa đúng (đã lưu vào Từ cần ôn lại)';
     return `
       <div class="card" style="margin-top:14px;border-color:${q.correct ? 'var(--green)' : 'var(--red)'};display:flex;flex-direction:column;gap:8px;">
         <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <span style="font-weight:800;color:${q.correct ? 'var(--green)' : 'var(--red)'};font-size:1.02rem;">
-            ${statusText}
-          </span>
+          <span style="font-weight:800;color:${q.correct ? 'var(--green)' : 'var(--red)'};font-size:1.02rem;">${statusText}</span>
           <button type="button" id="qz-speak" class="btn" style="padding:4px 12px;font-size:0.9rem;">🔊 Nghe</button>
         </div>
         <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
@@ -159,56 +154,42 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         </div>
         ${w.ex ? `<div style="padding-top:8px;border-top:1.5px dashed var(--border);"><div class="jp" style="font-size:0.98rem;line-height:1.7;">${parseRuby(w.ex)}</div>${w.exVi ? `<div style="font-size:0.88rem;color:var(--text-muted);">${escapeHtml(w.exVi)}</div>` : ''}</div>` : ''}
         <button type="button" id="qz-next" class="btn btn-yellow" style="width:100%;margin-top:4px;">${nextLabel}</button>
-      </div>
-    `;
+      </div>`;
   }
 
   function renderPlay() {
-    const q = questions[qIdx];
-    const total = questions.length;
-    const pct = Math.max(3, Math.round(((qIdx + 1) / total) * 100));
-
+    const q = questions[qIdx], total = questions.length, pct = Math.max(3, Math.round(((qIdx + 1) / total) * 100));
     let bodyHtml = '';
     if (q.type === 'mcq') {
+      const isViJp = q.dir === 'vi-jp';
       const optsHtml = q.options.map((opt, i) => {
-        const isAns = opt.jp === q.word.jp && opt.vi === q.word.vi;
+        const isAns = sameWord(opt, q.word);
         let bd = 'var(--border)', bg = 'var(--bg-card)';
-        if (q.answered) {
-          if (isAns) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.2)'; }
-          else if (i === q.chosenIdx) { bd = 'var(--red)'; bg = 'rgba(217,72,59,0.22)'; }
-        }
+        if (q.answered) { if (isAns) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.2)'; } else if (i === q.chosenIdx) { bd = 'var(--red)'; bg = 'rgba(217,72,59,0.22)'; } }
         return `
           <button type="button" class="card qz-opt" data-i="${i}" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;gap:12px;padding:12px 14px;cursor:pointer;border-color:${bd};background:${bg};text-align:left;min-height:58px;">
             <span style="width:32px;height:32px;border-radius:10px;background:${BADGE_COLORS[i]};color:#101320;font-weight:800;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;">${i + 1}</span>
-            <span style="flex:1;font-weight:700;font-size:1.02rem;color:var(--text);text-align:center;padding-right:16px;">${escapeHtml(opt.vi)}</span>
+            <span class="${isViJp ? 'jp' : ''}" style="flex:1;font-weight:700;font-size:${isViJp ? '1.18rem' : '1.02rem'};color:var(--text);text-align:center;padding-right:16px;">${escapeHtml(isViJp ? opt.jp : opt.vi)}</span>
           </button>`;
       }).join('');
-
       bodyHtml = `
         <div class="card" style="padding:16px;margin-bottom:14px;">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-            <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--teal);color:var(--teal);background:rgba(91,192,190,0.12);">Chọn đáp án</span>
-            <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">Hãy chọn đáp án đúng</span>
+            <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--teal);color:var(--teal);background:rgba(91,192,190,0.12);">${isViJp ? 'Việt → Nhật' : 'Nhật → Việt'}</span>
+            <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${isViJp ? 'Chọn từ tiếng Nhật tương ứng' : 'Hãy chọn nghĩa đúng'}</span>
           </div>
-          <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:30px 12px;text-align:center;font-size:clamp(1.85rem,6vw,2.6rem);font-weight:700;">${escapeHtml(q.word.jp)}</div>
+          <div class="${isViJp ? '' : 'jp'}" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:30px 12px;text-align:center;font-size:${isViJp ? 'clamp(1.35rem,4.8vw,1.9rem)' : 'clamp(1.85rem,6vw,2.6rem)'};font-weight:700;">${escapeHtml(isViJp ? q.word.vi : q.word.jp)}</div>
         </div>
-        <div class="qz-grid">${optsHtml}</div>
-      `;
+        <div class="qz-grid">${optsHtml}</div>`;
     } else if (q.type === 'tf') {
       const btnStyle = (val) => {
         let bd = 'var(--border)', bg = 'var(--bg-card)';
-        if (q.answered) {
-          if (val === q.isMatch) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.2)'; }
-          else if (val === q.chosenVal) { bd = 'var(--red)'; bg = 'rgba(217,72,59,0.22)'; }
-        }
+        if (q.answered) { if (val === q.isMatch) { bd = 'var(--green)'; bg = 'rgba(76,175,106,0.2)'; } else if (val === q.chosenVal) { bd = 'var(--red)'; bg = 'rgba(217,72,59,0.22)'; } }
         return `border-color:${bd};background:${bg};`;
       };
       bodyHtml = `
         <div class="card" style="padding:16px;margin-bottom:14px;">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
-            <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">Đúng / Sai</span>
-            <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">Thuật ngữ và nghĩa dưới đây có khớp nhau không?</span>
-          </div>
+          <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;"><span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--yellow);color:var(--yellow);background:rgba(245,200,79,0.12);">Đúng / Sai</span><span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">Thuật ngữ và nghĩa dưới đây có khớp nhau không?</span></div>
           <div class="qz-tf-wrap" style="display:grid;gap:10px;">
             <div class="jp" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:14px;padding:24px 12px;text-align:center;font-size:1.7rem;font-weight:700;display:flex;align-items:center;justify-content:center;">${escapeHtml(q.word.jp)}</div>
             <div style="width:36px;height:36px;border-radius:50%;background:var(--yellow);color:#101320;font-weight:800;display:flex;align-items:center;justify-content:center;margin:auto;border:2px solid #101320;">=</div>
@@ -218,40 +199,22 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         <div class="qz-grid">
           <button type="button" class="card qz-tf" data-v="true" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;cursor:pointer;${btnStyle(true)}"><span style="width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">✓</span><span style="font-size:1.1rem;font-weight:800;color:var(--text);">Đúng</span></button>
           <button type="button" class="card qz-tf" data-v="false" ${q.answered ? 'disabled' : ''} style="display:flex;align-items:center;justify-content:center;gap:10px;padding:14px;cursor:pointer;${btnStyle(false)}"><span style="width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:800;">✕</span><span style="font-size:1.1rem;font-weight:800;color:var(--text);">Sai</span></button>
-        </div>
-      `;
+        </div>`;
     } else {
       const rowsHtml = q.left.map((lw, i) => {
-        const rw = q.right[i];
-        const lMatched = q.matchedIds.includes(lw.jp), rMatched = q.matchedIds.includes(rw.jp);
-        const lSel = q.selLeft === i, lWrong = q.wrongLeftIdx === i, rWrong = q.wrongRightIdx === i;
-        return `
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button type="button" class="qz-m-left" data-i="${i}" ${lMatched || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${lWrong ? 'var(--red)' : lMatched ? 'var(--green)' : lSel ? 'var(--teal)' : 'var(--border)'};background:${lWrong ? 'rgba(217,72,59,0.25)' : lMatched ? 'rgba(76,175,106,0.22)' : lSel ? 'rgba(91,192,190,0.2)' : 'var(--bg-elevated)'};color:var(--text);font-family:var(--font-jp);font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(lw.jp)}</span></button>
-            <button type="button" class="qz-m-right" data-i="${i}" ${rMatched || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${rWrong ? 'var(--red)' : rMatched ? 'var(--green)' : '#574F35'};background:${rWrong ? 'rgba(217,72,59,0.25)' : rMatched ? 'rgba(76,175,106,0.22)' : '#2A261B'};color:var(--text);font-family:var(--font-ui);font-size:0.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(rw.vi)}</span></button>
-          </div>`;
+        const rw = q.right[i], lM = q.matchedIds.includes(lw.jp), rM = q.matchedIds.includes(rw.jp), lS = q.selLeft === i, lW = q.wrongLeftIdx === i, rW = q.wrongRightIdx === i;
+        return `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><button type="button" class="qz-m-left" data-i="${i}" ${lM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${lW ? 'var(--red)' : lM ? 'var(--green)' : lS ? 'var(--teal)' : 'var(--border)'};background:${lW ? 'rgba(217,72,59,0.25)' : lM ? 'rgba(76,175,106,0.22)' : lS ? 'rgba(91,192,190,0.2)' : 'var(--bg-elevated)'};color:var(--text);font-family:var(--font-jp);font-size:1rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(lw.jp)}</span></button><button type="button" class="qz-m-right" data-i="${i}" ${rM || q.answered ? 'disabled' : ''} style="min-height:48px;padding:8px;border-radius:12px;border:2px solid ${rW ? 'var(--red)' : rM ? 'var(--green)' : '#574F35'};background:${rW ? 'rgba(217,72,59,0.25)' : rM ? 'rgba(76,175,106,0.22)' : '#2A261B'};color:var(--text);font-family:var(--font-ui);font-size:0.92rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;"><span>${escapeHtml(rw.vi)}</span></button></div>`;
       }).join('');
-
-      bodyHtml = `
-        <div class="card" style="padding:14px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;">
-            <div style="display:flex;align-items:center;gap:8px;">
-              <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--border);color:var(--text);background:var(--bg-elevated);">Nối cặp</span>
-              <span style="font-size:0.86rem;color:var(--text-muted);font-weight:600;">Nối thuật ngữ với nghĩa</span>
-            </div>
-            <span style="font-weight:800;font-size:0.88rem;">${q.matchedIds.length} / 6 cặp</span>
-          </div>
-          <div style="display:flex;flex-direction:column;gap:8px;">${rowsHtml}</div>
-        </div>
-      `;
+      bodyHtml = `<div class="card" style="padding:14px;"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:10px;flex-wrap:wrap;"><div style="display:flex;align-items:center;gap:8px;"><span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--border);color:var(--text);background:var(--bg-elevated);">Nối cặp</span><span style="font-size:0.86rem;color:var(--text-muted);font-weight:600;">Nối thuật ngữ với nghĩa</span></div><span style="font-weight:800;font-size:0.88rem;">${q.matchedIds.length} / 6 cặp</span></div><div style="display:flex;flex-direction:column;gap:8px;">${rowsHtml}</div></div>`;
     }
 
+    const titleText = gate ? `QUA BÀI: ${escapeHtml(gate.lessonName)}` : isWeakReview ? 'ÔN TẬP TỪ SAI' : 'KIỂM TRA';
     container.innerHTML = `
       <style>.qz-grid{display:grid;grid-template-columns:1fr;gap:10px;}@media(min-width:420px){.qz-grid{grid-template-columns:1fr 1fr;}.qz-tf-wrap{grid-template-columns:1fr auto 1fr;}}</style>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;">
         <div style="flex:1;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
-            <span style="font-size:1.2rem;font-weight:800;letter-spacing:0.4px;">${isWeakReview ? 'ÔN TẬP TỪ SAI' : 'KIỂM TRA'}</span>
+            <span style="font-size:1.12rem;font-weight:800;letter-spacing:0.3px;">${titleText}</span>
             <span style="padding:2px 10px;border-radius:999px;background:#CBECEB;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${qIdx + 1}/${total}</span>
           </div>
           <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div style="width:${pct}%;height:100%;background:#187E78;border-radius:999px;transition:width 0.2s;"></div></div>
@@ -262,20 +225,26 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         </div>
       </div>
       ${bodyHtml}
-      ${renderExplanation(q)}
-    `;
+      ${renderExplanation(q)}`;
 
     container.querySelector('#qz-mute').onclick = () => { soundOn = !soundOn; renderPlay(); };
     container.querySelector('#qz-quit').onclick = exitQuiz;
     container.querySelector('#qz-speak')?.addEventListener('click', () => speakJP(q.word.reading || q.word.jp));
     container.querySelector('#qz-next')?.addEventListener('click', () => {
-      if (qIdx < questions.length - 1) { qIdx++; renderPlay(); maybeSpeak(questions[qIdx]?.word); }
-      else { step = 'result'; render(); }
+      if (qIdx < questions.length - 1) { qIdx++; renderPlay(); maybeSpeak(questions[qIdx]?.word, questions[qIdx]); }
+      else {
+        if (gate) {
+          const rawPct = (score / questions.length) * 100;
+          gateResult = { pct: Math.round(rawPct), passed: rawPct >= PASS_RATE * 100 };
+          recordTest(gate.level, 'vocab', gate.lessonId, gateResult.pct);
+        }
+        step = 'result'; render();
+      }
     });
     container.querySelectorAll('.qz-opt').forEach((btn) => {
       btn.onclick = () => {
-        const idx = Number(btn.dataset.i), picked = q.options[idx];
-        q.chosenIdx = idx; q.answered = true; q.correct = picked.jp === q.word.jp && picked.vi === q.word.vi;
+        const idx = Number(btn.dataset.i);
+        q.chosenIdx = idx; q.answered = true; q.correct = sameWord(q.options[idx], q.word);
         if (q.correct) handleCorrect(q); else recordWrong(q.word);
         renderPlay();
       };
@@ -288,14 +257,12 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         renderPlay();
       };
     });
-    container.querySelectorAll('.qz-m-left').forEach((btn) => {
-      btn.onclick = () => { q.selLeft = Number(btn.dataset.i); q.wrongLeftIdx = -1; q.wrongRightIdx = -1; maybeSpeak(q.left[q.selLeft]); renderPlay(); };
-    });
+    container.querySelectorAll('.qz-m-left').forEach((btn) => { btn.onclick = () => { q.selLeft = Number(btn.dataset.i); q.wrongLeftIdx = -1; q.wrongRightIdx = -1; maybeSpeak(q.left[q.selLeft]); renderPlay(); }; });
     container.querySelectorAll('.qz-m-right').forEach((btn) => {
       btn.onclick = () => {
         if (q.selLeft < 0) return;
         const rIdx = Number(btn.dataset.i), lw = q.left[q.selLeft], rw = q.right[rIdx];
-        if (lw.jp === rw.jp && lw.vi === rw.vi) {
+        if (sameWord(lw, rw)) {
           q.matchedIds.push(lw.jp); q.selLeft = -1; removeWeakWord(lw);
           if (q.matchedIds.length === q.left.length) { q.answered = true; q.correct = !q.hadMistake; if (q.correct) score++; }
           renderPlay();
@@ -308,12 +275,36 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   }
 
   function renderResult() {
-    const pct = Math.round((score / questions.length) * 100);
-    const summaryMsg = [
-      clearedCount ? `Đã xóa ${clearedCount} từ thuộc khỏi Từ cần ôn lại.` : '',
-      wrongWords.length ? `Còn ${wrongWords.length} từ sai cần ôn tiếp.` : 'Không còn từ sai nào!'
-    ].filter(Boolean).join(' ');
+    if (gate) {
+      const { passed } = gateResult || { passed: false };
+      const reqPct = Math.round(PASS_RATE * 100);
+      const wrongListHtml = wrongWords.map((w) => `
+        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;padding:8px 10px;border-radius:10px;background:var(--bg-elevated);border:1.5px solid var(--border);text-align:left;flex-wrap:wrap;">
+          <div><span class="jp" style="font-weight:700;font-size:1.05rem;">${escapeHtml(w.jp)}</span>${w.reading ? ` <span class="jp" style="color:var(--teal);font-size:0.88rem;">(${escapeHtml(w.reading)})</span>` : ''}</div>
+          <span style="color:var(--yellow);font-weight:700;font-size:0.92rem;">${escapeHtml(w.vi)}</span>
+        </div>`).join('');
 
+      container.innerHTML = `
+        <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:24px 16px;">
+          <div class="module-title" style="font-size:1.45rem;color:${passed ? 'var(--green)' : 'var(--coral)'};">
+            ${passed ? `Hoàn thành ${escapeHtml(gate.lessonName)} 🎉` : `Đúng ${score}/${questions.length} — cần ${reqPct}%`}
+          </div>
+          <p class="module-sub">${passed ? 'Bạn đã vượt qua bài kiểm tra!' : 'Các từ trả lời sai đã được lưu vào Từ cần ôn lại.'}</p>
+          ${!passed && wrongWords.length ? `<div style="display:flex;flex-direction:column;gap:6px;">${wrongListHtml}</div>` : ''}
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px;">
+            ${passed && gate.onNextLesson ? `<button type="button" id="gt-next-lesson" class="btn btn-teal">Bài tiếp theo (${escapeHtml(gate.nextLesson.name)}) →</button>` : ''}
+            ${!passed ? `<button type="button" id="gt-retry" class="btn btn-yellow">↻ Làm lại</button>` : ''}
+            <button type="button" id="qz-done" class="btn">← Về danh sách</button>
+          </div>
+        </div>`;
+      container.querySelector('#gt-next-lesson')?.addEventListener('click', () => { document.removeEventListener('keydown', onKeyDown); gate.onNextLesson(); });
+      container.querySelector('#gt-retry')?.addEventListener('click', () => startQuiz(gate.words, gate.words.length));
+      container.querySelector('#qz-done').onclick = exitQuiz;
+      return;
+    }
+
+    const pct = Math.round((score / questions.length) * 100);
+    const summaryMsg = [clearedCount ? `Đã xóa ${clearedCount} từ thuộc khỏi Từ cần ôn lại.` : '', wrongWords.length ? `Còn ${wrongWords.length} từ sai cần ôn tiếp.` : 'Không còn từ sai nào!'].filter(Boolean).join(' ');
     container.innerHTML = `
       <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:24px 16px;">
         <div class="module-title" style="font-size:1.5rem;">${isWeakReview ? 'Hoàn thành Ôn tập!' : 'Hoàn thành Kiểm tra!'}</div>
@@ -324,19 +315,13 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
           ${!isWeakReview ? `<button type="button" id="qz-retry-all" class="btn btn-teal">↻ Làm đề mới</button>` : ''}
           <button type="button" id="qz-done" class="btn">← Quay lại</button>
         </div>
-      </div>
-    `;
+      </div>`;
     container.querySelector('#qz-retry-wrong')?.addEventListener('click', () => startQuiz([...wrongWords], wrongWords.length));
     container.querySelector('#qz-retry-all')?.addEventListener('click', () => { step = 'setup'; render(); });
     container.querySelector('#qz-done').onclick = exitQuiz;
   }
 
-  function render() {
-    if (step === 'setup') renderSetup();
-    else if (step === 'play') renderPlay();
-    else renderResult();
-  }
-
+  function render() { if (step === 'setup') renderSetup(); else if (step === 'play') renderPlay(); else renderResult(); }
   render();
-  if (isWeakReview) maybeSpeak(questions[0]?.word);
+  if (gate || isWeakReview) maybeSpeak(questions[0]?.word, questions[0]);
 }
