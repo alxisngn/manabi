@@ -6,7 +6,129 @@ import { speakJP } from '../../core/tts.js';
 
 const STORE_KEY = 'vocab';
 const BADGE_COLORS = ['#18B899', '#F5C84F', '#F08F7A', '#8AE1DF', '#A78BFA', '#F472B6'];
+const KATAKANA_CHAR = /[\u30A1-\u30F6]/;
+const STRIP_PUNCT = /[^\p{L}\p{N}ー]+/gu;
 const sameWord = (a, b) => a && b && a.jp === b.jp && a.vi === b.vi;
+
+const ROMAJI_TABLE = {
+  ltsu: 'っ', xtsu: 'っ',
+  sha: 'しゃ', shi: 'し', shu: 'しゅ', sho: 'しょ',
+  sya: 'しゃ', syu: 'しゅ', syo: 'しょ',
+  cha: 'ちゃ', chi: 'ち', chu: 'ちゅ', cho: 'ちょ',
+  tya: 'ちゃ', tyu: 'ちゅ', tyo: 'ちょ',
+  tsu: 'つ',
+  kya: 'きゃ', kyu: 'きゅ', kyo: 'きょ',
+  gya: 'ぎゃ', gyu: 'ぎゅ', gyo: 'ぎょ',
+  nya: 'にゃ', nyu: 'にゅ', nyo: 'にょ',
+  hya: 'ひゃ', hyu: 'ひゅ', hyo: 'ひょ',
+  bya: 'びゃ', byu: 'びゅ', byo: 'びょ',
+  pya: 'ぴゃ', pyu: 'ぴゅ', pyo: 'ぴょ',
+  mya: 'みゃ', myu: 'みゅ', myo: 'みょ',
+  rya: 'りゃ', ryu: 'りゅ', ryo: 'りょ',
+  jya: 'じゃ', jyu: 'じゅ', jyo: 'じょ',
+  zya: 'じゃ', zyu: 'じゅ', zyo: 'じょ',
+  dya: 'ぢゃ', dyu: 'ぢゅ', dyo: 'ぢょ',
+  fya: 'ふゃ', fyu: 'ふゅ', fyo: 'ふょ',
+  lya: 'ゃ', lyu: 'ゅ', lyo: 'ょ',
+  xya: 'ゃ', xyu: 'ゅ', xyo: 'ょ',
+  ja: 'じゃ', ju: 'じゅ', jo: 'じょ', ji: 'じ',
+  ka: 'か', ki: 'き', ku: 'く', ke: 'け', ko: 'こ',
+  ga: 'が', gi: 'ぎ', gu: 'ぐ', ge: 'げ', go: 'ご',
+  sa: 'さ', si: 'し', su: 'す', se: 'せ', so: 'そ',
+  za: 'ざ', zi: 'じ', zu: 'ず', ze: 'ぜ', zo: 'ぞ',
+  ta: 'た', ti: 'ち', tu: 'つ', te: 'て', to: 'と',
+  da: 'だ', di: 'ぢ', du: 'づ', de: 'で', do: 'ど',
+  na: 'な', ni: 'に', nu: 'ぬ', ne: 'ね', no: 'の',
+  ha: 'は', hi: 'ひ', hu: 'ふ', fu: 'ふ', he: 'へ', ho: 'ほ',
+  ba: 'ば', bi: 'び', bu: 'ぶ', be: 'べ', bo: 'ぼ',
+  pa: 'ぱ', pi: 'ぴ', pu: 'ぷ', pe: 'ぺ', po: 'ぽ',
+  ma: 'ま', mi: 'み', mu: 'む', me: 'め', mo: 'も',
+  ya: 'や', yu: 'ゆ', yo: 'よ',
+  ra: 'ら', ri: 'り', ru: 'る', re: 'れ', ro: 'ろ',
+  wa: 'わ', wo: 'を', nn: 'ん', "n'": 'ん',
+  fa: 'ふぁ', fi: 'ふぃ', fe: 'ふぇ', fo: 'ふぉ',
+  la: 'ぁ', li: 'ぃ', lu: 'ぅ', le: 'ぇ', lo: 'ぉ',
+  xa: 'ぁ', xi: 'ぃ', xu: 'ぅ', xe: 'ぇ', xo: 'ぉ',
+  a: 'あ', i: 'い', u: 'う', e: 'え', o: 'お', '-': 'ー'
+};
+
+const toHiraganaChar = (str) =>
+  str.replace(/[\u30A1-\u30F6]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0x60));
+
+const toKatakanaChar = (str) =>
+  str.replace(/[\u3041-\u3096]/g, (c) => String.fromCharCode(c.charCodeAt(0) + 0x60));
+
+function romajiToContextKana(input, flushEnd = false, targetReading = '') {
+  const raw = String(input || '');
+  const s = raw.toLowerCase();
+  const fullTarget = String(targetReading || '').replace(STRIP_PUNCT, '');
+  const coreTarget = String(targetReading || '').replace(/[「（(][^」）)]*[」）)]/g, '').replace(STRIP_PUNCT, '');
+  const fullHira = toHiraganaChar(fullTarget);
+  const coreHira = toHiraganaChar(coreTarget);
+
+  let out = '';
+  let i = 0;
+
+  const formatSyllable = (kana, origChunk) => {
+    const pos = out.length;
+    const prefixHira = toHiraganaChar(out);
+    let expectKata = false;
+    if (fullTarget && fullHira.startsWith(prefixHira) && KATAKANA_CHAR.test(fullTarget[pos] || '')) expectKata = true;
+    else if (coreTarget && coreHira.startsWith(prefixHira) && KATAKANA_CHAR.test(coreTarget[pos] || '')) expectKata = true;
+    else if (/[A-Z]/.test(origChunk)) expectKata = true;
+    return expectKata ? toKatakanaChar(kana) : kana;
+  };
+
+  while (i < s.length) {
+    const ch = s[i];
+    if (!/[a-z'-]/.test(ch)) { out += raw[i]; i++; continue; }
+    if (i + 1 < s.length && ch === s[i + 1] && /[bcdfghjklmpqrstvwxyz]/.test(ch)) {
+      out += formatSyllable('っ', raw[i]); i++; continue;
+    }
+    if (ch === 'n' && i + 1 < s.length) {
+      const next = s[i + 1];
+      if (next === "'" || next === 'n') { out += formatSyllable('ん', raw.slice(i, i + 2)); i += 2; continue; }
+      if (!/[aiueoy]/.test(next)) { out += formatSyllable('ん', raw[i]); i++; continue; }
+    }
+    let matched = false;
+    for (let len = 4; len >= 1; len--) {
+      if (i + len <= s.length) {
+        const chunk = s.slice(i, i + len);
+        if (ROMAJI_TABLE[chunk]) { out += formatSyllable(ROMAJI_TABLE[chunk], raw.slice(i, i + len)); i += len; matched = true; break; }
+      }
+    }
+    if (!matched) {
+      if (flushEnd && ch === 'n' && i === s.length - 1) out += formatSyllable('ん', raw[i]);
+      else out += raw[i];
+      i++;
+    }
+  }
+  return out;
+}
+
+function normalizeKana(str) {
+  return toHiraganaChar(romajiToContextKana(String(str || '').trim(), true)).replace(STRIP_PUNCT, '');
+}
+
+function isVocabTypedMatch(userInput, word) {
+  const u = normalizeKana(userInput);
+  if (!u) return false;
+  const targets = [word.reading, word.jp].filter(Boolean);
+  for (const t of targets) {
+    const full = normalizeKana(t);
+    const coreOnly = normalizeKana(String(t).replace(/[「（(][^」）)]*[」）)]/g, ''));
+    if (u === full || (coreOnly.length > 0 && u === coreOnly)) return true;
+  }
+  return false;
+}
+
+function formatPromptJP(jp) {
+  const escaped = escapeHtml(jp);
+  return escaped.replace(
+    /^(「[^」]+」)\s*(.+)$/,
+    '<span style="font-size:0.72em;color:var(--text-muted);font-weight:600;">$1</span> <span style="display:inline-block;">$2</span>'
+  );
+}
 
 function saveWrongWord(word) {
   if (!word?.jp) return;
@@ -29,7 +151,7 @@ function removeWeakWord(word) {
   return removed;
 }
 
-function buildQuestions(pool, allWords, count) {
+function buildQuestions(pool, allWords, count, forceMcqOnly = false) {
   const targets = shuffle(pool).slice(0, count);
   const src = allWords.length >= 4 ? allWords : pool;
   const qs = [];
@@ -37,8 +159,8 @@ function buildQuestions(pool, allWords, count) {
 
   while (i < targets.length) {
     const rem = targets.length - i;
-    const canMatch = src.length >= 6 && rem >= 6;
-    const types = canMatch ? ['mcq', 'tf', 'match'] : ['mcq', 'tf'];
+    const canMatch = !forceMcqOnly && src.length >= 6 && rem >= 6;
+    const types = forceMcqOnly ? ['mcq'] : canMatch ? ['mcq', 'tf', 'match'] : ['mcq', 'tf'];
     const type = types[Math.floor(Math.random() * types.length)];
 
     if (type === 'match') {
@@ -63,7 +185,7 @@ function buildQuestions(pool, allWords, count) {
       const word = targets[i++];
       if (type === 'mcq') {
         const dist = pickN(src, 3, word, (w) => `${w.jp}|${w.vi}`);
-        qs.push({ type: 'mcq', dir: 'jp-vi', word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 });
+        qs.push({ type: 'mcq', dir: 'jp-vi', word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1, typedVal: '' });
       } else {
         const isTrue = Math.random() < 0.5 || src.length < 2;
         const other = isTrue ? word : (pickN(src, 1, word, (w) => w.vi)[0] || word);
@@ -93,7 +215,7 @@ function buildGateQuestions(lessonWords, poolWords, priorityWrong = []) {
       const extraValid = poolWords.filter((w) => isValidDist(w) && !usedKeys.has(dir === 'jp-vi' ? normVi(w.vi) : w.jp));
       dist = [...dist, ...pickN(extraValid, 3 - dist.length, word, (w) => (dir === 'jp-vi' ? normVi(w.vi) : w.jp))];
     }
-    return { type: 'mcq', dir, word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1 };
+    return { type: 'mcq', dir, word, weight: 1, options: shuffle([word, ...dist]), answered: false, correct: false, clearedWeak: false, chosenIdx: -1, typedVal: '' };
   });
 }
 
@@ -102,31 +224,55 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
 
   const gate = opts.gate || null;
   const isWeakReview = Boolean(opts.weakReview);
+  const distractorPool = opts.poolWords?.length ? [...allWords, ...opts.poolWords] : allWords;
+
   let step = gate || isWeakReview ? 'play' : 'setup';
+  let inputMode = isWeakReview ? 'type' : 'mcq';
   let maxQ = allWords.length, numQ = maxQ, soundOn = true;
-  let questions = gate ? buildGateQuestions(gate.words, gate.poolWords) : isWeakReview ? buildQuestions(allWords, allWords, maxQ) : [];
+  let questions = gate
+    ? buildGateQuestions(gate.words, gate.poolWords)
+    : isWeakReview
+      ? buildQuestions(allWords, distractorPool, maxQ, true)
+      : [];
   let qIdx = 0, score = 0, clearedCount = 0, wrongWords = [], gateResult = null;
   let feedbackAnim = '';
 
   const getTotalItems = () => questions.reduce((sum, item) => sum + (item.weight || 1), 0);
-  const maybeSpeak = (w, q) => { if (soundOn && w && (!q || q.dir !== 'vi-jp')) speakJP(w.reading || w.jp); };
+  const maybeSpeak = (w, q) => {
+    if (!soundOn || !w) return;
+    if (isWeakReview && inputMode === 'type') return;
+    if (!q || q.dir !== 'vi-jp') speakJP(w.reading || w.jp);
+  };
 
   const onKeyDown = (e) => {
     if (!document.body.contains(container)) return document.removeEventListener('keydown', onKeyDown);
-    if (step !== 'play' || document.querySelector('dialog[open]') || ['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
+    if (step !== 'play' || document.querySelector('dialog[open]')) return;
     const q = questions[qIdx];
     if (!q) return;
     if (!q.answered) {
+      if (isWeakReview && inputMode === 'type') {
+        if (e.key === '?' || (e.shiftKey && e.key === 'Enter')) {
+          e.preventDefault();
+          container.querySelector('#qz-dont-know')?.click();
+        }
+        return;
+      }
+      if (['INPUT', 'TEXTAREA', 'SELECT'].includes(e.target?.tagName)) return;
       if (q.type === 'mcq' && ['1', '2', '3', '4'].includes(e.key)) container.querySelector(`.qz-opt[data-i="${Number(e.key) - 1}"]`)?.click();
       else if (q.type === 'tf' && (e.key === '1' || e.key === '2')) container.querySelector(`.qz-tf[data-v="${e.key === '1' ? 'true' : 'false'}"]`)?.click();
-    } else if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); container.querySelector('#qz-next')?.click(); }
+    } else if (e.key === 'Enter' || (!(isWeakReview && inputMode === 'type') && e.key === ' ')) {
+      e.preventDefault();
+      container.querySelector('#qz-next')?.click();
+    }
   };
   document.addEventListener('keydown', onKeyDown);
 
   const exitQuiz = () => { document.removeEventListener('keydown', onKeyDown); if (onBack) onBack(); };
 
   function startQuiz(pool, count) {
-    questions = gate ? buildGateQuestions(gate.words, gate.poolWords, wrongWords) : buildQuestions(pool, allWords, count);
+    questions = gate
+      ? buildGateQuestions(gate.words, gate.poolWords, wrongWords)
+      : buildQuestions(pool, distractorPool, count, isWeakReview);
     qIdx = 0; score = 0; clearedCount = 0; wrongWords = []; gateResult = null; feedbackAnim = ''; step = 'play';
     render(); maybeSpeak(questions[0]?.word, questions[0]);
   }
@@ -135,12 +281,14 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
     score++;
     feedbackAnim = 'anim-pop';
     if (!gate && removeWeakWord(q.word)) { q.clearedWeak = true; clearedCount++; }
+    if (soundOn && isWeakReview && inputMode === 'type') speakJP(q.word.reading || q.word.jp);
   }
 
   function recordWrong(w) {
     feedbackAnim = 'anim-shake';
     saveWrongWord(w);
     if (!wrongWords.some((x) => sameWord(x, w))) wrongWords.push(w);
+    if (soundOn && isWeakReview && inputMode === 'type') speakJP(w.reading || w.jp);
   }
 
   function renderSetup() {
@@ -200,7 +348,41 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
     feedbackAnim = '';
 
     let mainHtml = '';
-    if (q.type === 'mcq') {
+    if (isWeakReview && inputMode === 'type') {
+      const bd = q.answered ? (q.correct ? 'var(--green)' : 'var(--red)') : 'var(--teal)';
+      const inpAnim = q.answered ? currentAnim : '';
+      mainHtml = `
+        <div class="study-split">
+          <div class="study-left">
+            <div class="card study-card-match" style="padding:18px;">
+              <div style="display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap;">
+                <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--coral);color:var(--coral);background:rgba(240,143,122,0.12);">Việt → Nhật</span>
+                <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">Gõ lại từ tiếng Nhật tương ứng</span>
+              </div>
+              <div style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:34px 16px;text-align:center;font-size:clamp(1.35rem,3.2vw,1.95rem);font-weight:800;color:var(--text);">
+                ${escapeHtml(q.word.vi)}
+              </div>
+            </div>
+          </div>
+          <div class="study-right">
+            <div class="card study-card-match" style="padding:18px;">
+              <div style="font-size:0.86rem;color:var(--text-muted);font-weight:700;margin-bottom:10px;">Nhập từ tiếng Nhật (Romaji → Hiragana / Katakana)</div>
+              <form id="qz-type-form" style="display:flex;flex-direction:column;gap:12px;">
+                <input type="text" id="qz-type-inp" class="jp kr-inp ${inpAnim}" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+                  placeholder="Gõ romaji (vd: kamimasu)..."
+                  value="${escapeHtml(q.typedVal || '')}" ${q.answered ? 'disabled' : ''}
+                  style="width:100%;min-height:60px;padding:10px 14px;border-radius:14px;border:2.5px solid ${bd};background:var(--bg-elevated);color:var(--text);font-size:1.45rem;font-weight:700;text-align:center;">
+                ${!q.answered ? `
+                  <div style="display:grid;grid-template-columns:1.3fr 1fr;gap:8px;">
+                    <button type="submit" class="btn btn-teal" style="font-size:1rem;">Kiểm tra <span class="kbd-hint">Enter ↵</span></button>
+                    <button type="button" id="qz-dont-know" class="btn" style="font-size:0.95rem;">Không nhớ <span class="kbd-hint">Shift ↵</span></button>
+                  </div>` : ''}
+              </form>
+            </div>
+            ${renderExplanation(q, currentAnim)}
+          </div>
+        </div>`;
+    } else if (q.type === 'mcq') {
       const isViJp = q.dir === 'vi-jp';
       const optsHtml = q.options.map((opt, i) => {
         const isAns = sameWord(opt, q.word);
@@ -224,7 +406,7 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
                 <span style="padding:3px 12px;border-radius:999px;font-size:0.8rem;font-weight:700;border:1.5px solid var(--teal);color:var(--teal);background:rgba(91,192,190,0.12);">${isViJp ? 'Việt → Nhật' : 'Nhật → Việt'}</span>
                 <span style="font-size:0.9rem;color:var(--text-muted);font-weight:600;">${isViJp ? 'Chọn từ tiếng Nhật tương ứng' : 'Hãy chọn nghĩa đúng'}</span>
               </div>
-              <div class="${isViJp ? '' : 'jp'}" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:34px 14px;text-align:center;font-size:${isViJp ? 'clamp(1.35rem,4vw,1.9rem)' : 'clamp(1.85rem,5vw,2.6rem)'};font-weight:700;">${escapeHtml(isViJp ? q.word.vi : q.word.jp)}</div>
+              <div class="${isViJp ? '' : 'jp'}" style="background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:16px;padding:34px 14px;text-align:center;font-size:${isViJp ? 'clamp(1.35rem,4vw,1.9rem)' : 'clamp(1.65rem,3.4vw,2.4rem)'};font-weight:700;word-break:keep-all;overflow-wrap:break-word;">${isViJp ? escapeHtml(q.word.vi) : formatPromptJP(q.word.jp)}</div>
             </div>
           </div>
           <div class="study-right">
@@ -272,17 +454,23 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
     }
 
     const titleText = gate ? `QUA BÀI: ${escapeHtml(gate.lessonName)}` : isWeakReview ? 'ÔN TẬP TỪ SAI' : 'KIỂM TRA';
+    const weakModeSwitchHtml = isWeakReview ? `
+      <button type="button" class="btn qz-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">⌨️ Tự gõ</button>
+      <button type="button" class="btn qz-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">🔘 Trắc nghiệm</button>
+    ` : '';
+
     container.innerHTML = `
       <style>.qz-grid{display:grid;grid-template-columns:1fr;gap:10px;}@media(min-width:420px){.qz-grid{grid-template-columns:1fr 1fr;}.qz-tf-wrap{grid-template-columns:1fr auto 1fr;}}</style>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;">
-        <div style="flex:1;">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:220px;">
           <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
             <span style="font-size:1.12rem;font-weight:800;letter-spacing:0.3px;">${titleText}</span>
             <span id="qz-step-badge" style="padding:2px 10px;border-radius:999px;background:#CBECEB;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${currentStep}/${total}</span>
           </div>
           <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div id="qz-progress-bar" style="width:${pct}%;height:100%;background:#187E78;border-radius:999px;transition:width 0.25s ease;"></div></div>
         </div>
-        <div style="display:flex;gap:8px;flex-shrink:0;">
+        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+          ${weakModeSwitchHtml}
           <button type="button" id="qz-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
           <button type="button" id="qz-quit" class="btn btn-icon" style="background:var(--red);color:#fff;border-color:#101320;" title="Thoát">⏻</button>
         </div>
@@ -291,6 +479,16 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
 
     container.querySelector('#qz-mute').onclick = () => { soundOn = !soundOn; renderPlay(); };
     container.querySelector('#qz-quit').onclick = exitQuiz;
+    container.querySelectorAll('.qz-mode-sw').forEach((b) => {
+      b.onclick = () => {
+        if (inputMode !== b.dataset.m) {
+          inputMode = b.dataset.m;
+          renderPlay();
+          if (inputMode === 'mcq' && !q.answered) maybeSpeak(q.word, q);
+        }
+      };
+    });
+
     container.querySelector('#qz-speak')?.addEventListener('click', () => speakJP(q.word.reading || q.word.jp));
     container.querySelector('#qz-next')?.addEventListener('click', () => {
       if (qIdx < questions.length - 1) { qIdx++; renderPlay(); maybeSpeak(questions[qIdx]?.word, questions[qIdx]); }
@@ -303,6 +501,47 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
         step = 'result'; render();
       }
     });
+
+    if (isWeakReview && inputMode === 'type') {
+      const inp = container.querySelector('#qz-type-inp');
+      const targetHint = q.word.reading || q.word.jp;
+      if (inp && !q.answered) {
+        inp.focus();
+        inp.onkeydown = (e) => {
+          if (e.key === '?' || (e.shiftKey && e.key === 'Enter')) {
+            e.preventDefault();
+            e.stopPropagation();
+            container.querySelector('#qz-dont-know')?.click();
+          }
+        };
+        inp.oninput = () => {
+          const converted = romajiToContextKana(inp.value, false, targetHint);
+          if (converted !== inp.value) inp.value = converted;
+          q.typedVal = inp.value;
+        };
+      }
+      container.querySelector('#qz-type-form')?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        if (q.answered) return;
+        const displayKana = romajiToContextKana(inp?.value || '', true, targetHint).replace(STRIP_PUNCT, '');
+        if (!displayKana) return;
+        q.typedVal = displayKana;
+        q.answered = true;
+        q.correct = isVocabTypedMatch(inp?.value || '', q.word);
+        if (q.correct) handleCorrect(q); else recordWrong(q.word);
+        renderPlay();
+      });
+      container.querySelector('#qz-dont-know')?.addEventListener('click', () => {
+        if (q.answered) return;
+        q.typedVal = '(Bỏ qua)';
+        q.answered = true;
+        q.correct = false;
+        recordWrong(q.word);
+        renderPlay();
+      });
+      return;
+    }
+
     container.querySelectorAll('.qz-opt').forEach((btn) => {
       btn.onclick = () => {
         const idx = Number(btn.dataset.i);

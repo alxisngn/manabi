@@ -82,7 +82,7 @@ export async function mount(container, { level, query } = {}) {
   const saved = (store.selectedIds || []).filter((id) => lessons.some((l) => l.id === id));
   const selectedSet = new Set(saved.length ? saved : lessons.filter((l) => l.source === 'repo').slice(0, 2).map((l) => l.id));
   let step = 'list', impTab = 'upload', impTarget = 'user:weak', weakDirect = false, gateCfg = null;
-  let mixDirectMode = null;
+  let mixDirectMode = null, extraPoolWords = [];
   let wordLimit = 20, useAllWords = false, loading = false, errMsg = '';
 
   const baseRoute = `#/${activeLevel.toLowerCase()}/vocab`;
@@ -90,6 +90,15 @@ export async function mount(container, { level, query } = {}) {
   const markSelectedStudied = () => {
     (vocabSession.lessonIds || []).forEach((id) => markStudied(activeLevel, 'vocab', id));
   };
+
+  async function ensureDistractorPool() {
+    if (extraPoolWords.length >= 12) return extraPoolWords;
+    const repoList = lessons.filter((l) => l.source === 'repo').slice(0, 3);
+    if (!repoList.length) return [];
+    const buckets = await Promise.all(repoList.map((x) => fetchWords(x, activeLevel)));
+    extraPoolWords = buckets.flat();
+    return extraPoolWords;
+  }
 
   async function launchGate(lessonItem) {
     const repoList = lessons.filter((l) => l.source === 'repo');
@@ -140,10 +149,13 @@ export async function mount(container, { level, query } = {}) {
       const words = shuffle(await fetchWords(target, activeLevel));
       if (words.length) {
         vocabSession.words = words; vocabSession.lessonIds = [target.id]; vocabSession.lessonNames = [target.name];
-        weakDirect = target.id === 'user:weak'; step = weakDirect ? 'quiz' : 'modes';
+        weakDirect = target.id === 'user:weak';
+        if (weakDirect) await ensureDistractorPool();
+        step = weakDirect ? 'quiz' : 'modes';
       }
     }
   } else if (viewParam === 'study-weak' && store.weakWords?.length) {
+    await ensureDistractorPool();
     vocabSession.words = shuffle(store.weakWords); vocabSession.lessonIds = []; vocabSession.lessonNames = ['Từ cần ôn lại'];
     weakDirect = true; step = 'quiz';
   } else if (viewParam === 'study-open' && store.openWords?.length) {
@@ -174,7 +186,7 @@ export async function mount(container, { level, query } = {}) {
     if (step === 'flashcard') { markSelectedStudied(); setSession(true); return mountFlashcard(container, vocabSession.words, backModes); }
     if (step === 'kanji-read') { markSelectedStudied(); setSession(true); return mountKanjiRead(container, vocabSession.words, backModes); }
     if (step === 'match') { markSelectedStudied(); setSession(true); return mountMatch(container, vocabSession.words, backModes); }
-    if (step === 'quiz') { markSelectedStudied(); setSession(true); return mountQuiz(container, vocabSession.words, backModes, { weakReview: weakDirect }); }
+    if (step === 'quiz') { markSelectedStudied(); setSession(true); return mountQuiz(container, vocabSession.words, backModes, { weakReview: weakDirect, poolWords: extraPoolWords }); }
     if (step === 'reflex') { markSelectedStudied(); setSession(true); return mountReflex(container, vocabSession.words, backModes); }
     setSession(false);
     if (step === 'importer') return mountImporter(container, () => { setSession(false); backToLevel(); refresh(); saveSel(); step = 'list'; render(); }, { tab: impTab, manageTarget: impTarget });
@@ -248,10 +260,12 @@ export async function mount(container, { level, query } = {}) {
         const l = lessons.find((x) => x.id === btn.dataset.id);
         if (!l) return;
         btn.disabled = true;
+        weakDirect = l.id === 'user:weak';
+        if (weakDirect) await ensureDistractorPool();
         const words = shuffle(await fetchWords(l, activeLevel));
         if (!words.length) { btn.disabled = false; return; }
         vocabSession.words = words; vocabSession.lessonIds = [l.id]; vocabSession.lessonNames = [l.name];
-        weakDirect = l.id === 'user:weak'; mixDirectMode = null; step = weakDirect ? 'quiz' : 'modes'; render();
+        mixDirectMode = null; step = weakDirect ? 'quiz' : 'modes'; render();
       };
     });
     container.querySelectorAll('.v-gate-btn').forEach((btn) => {
@@ -343,20 +357,42 @@ export async function mount(container, { level, query } = {}) {
   }
 
   function renderModes() {
+    const singleRepoLesson = vocabSession.lessonIds?.length === 1
+      ? lessons.find((l) => l.source === 'repo' && String(l.id) === String(vocabSession.lessonIds[0]))
+      : null;
+
+    const gateCardHtml = singleRepoLesson ? `
+      <div class="card module-card is-active" id="m-start-gate" style="border-color:var(--teal);">
+        <div class="module-left">
+          <div class="module-icon accent-teal">🏆</div>
+          <div>
+            <div class="module-title">Kiểm tra qua bài</div>
+            <div class="module-sub">Đạt từ 80% trở lên để đánh dấu đã qua ${escapeHtml(singleRepoLesson.name)}</div>
+          </div>
+        </div>
+        <span class="badge badge-ready">Thi ngay →</span>
+      </div>` : '';
+
     const modesHtml = MODES.map((m) => `
       <div class="card module-card is-active" data-mode="${m.id}">
         <div class="module-left"><div class="module-icon ${m.accent}">${m.icon}</div><div><div class="module-title">${m.name}</div><div class="module-sub">${m.sub}</div></div></div>
         <span class="badge badge-ready">Vào →</span>
       </div>`).join('');
+
     container.innerHTML = `
       <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;">
         <button type="button" id="m-back" class="btn">← Đổi bài</button>
         <span class="badge badge-ready">${vocabSession.words.length} từ</span>
       </div>
       <div class="card" style="margin-bottom:12px;"><div class="module-title">${escapeHtml(vocabSession.lessonNames.join(', '))}</div><div class="module-sub">Chọn chế độ luyện tập bên dưới</div></div>
-      <div class="module-grid">${modesHtml}</div>`;
+      <div class="module-grid">${modesHtml}${gateCardHtml}</div>`;
+
     container.querySelector('#m-back').onclick = () => { backToLevel(); refresh(); step = 'list'; render(); };
-    container.querySelectorAll('.module-card').forEach((c) => { c.onclick = () => { step = c.dataset.mode; render(); }; });
+    container.querySelectorAll('.module-card[data-mode]').forEach((c) => { c.onclick = () => { step = c.dataset.mode; render(); }; });
+    container.querySelector('#m-start-gate')?.addEventListener('click', async (e) => {
+      e.currentTarget.style.pointerEvents = 'none';
+      await launchGate(singleRepoLesson);
+    });
   }
 
   render();
