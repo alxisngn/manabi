@@ -1,4 +1,4 @@
-const V = 'v2';
+const V = 'v3';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = `manabi-fonts-${V}`;
 
@@ -21,6 +21,7 @@ const CORE_ASSETS = [
   './js/core/util.js',
   './js/modules/vocab/flashcard.js',
   './js/modules/vocab/importer.js',
+  './js/modules/vocab/kanji-read.js',
   './js/modules/vocab/match.js',
   './js/modules/vocab/picker.js',
   './js/modules/vocab/quiz.js',
