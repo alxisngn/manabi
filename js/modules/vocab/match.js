@@ -59,51 +59,31 @@ export function mountMatch(container, allWords = [], onBack) {
     };
 
     const cardsHtml = cards.map((c) => `
-      <button type="button" class="mt-card ${c.kind === 'jp' ? 'mt-jp' : 'mt-vi'}" data-uid="${c.uid}" style="font-size:${cardFontSize(c)};">
+      <button type="button" class="mt-card ${c.kind === 'jp' ? 'mt-jp' : 'mt-vi'}" data-uid="${c.uid}" style="--fs:${cardFontSize(c)}">
         <span>${escapeHtml(c.text)}</span>
       </button>
     `).join('');
 
     container.innerHTML = `
-      <style>
-        @keyframes mt-shake { 0%, 100% { transform: translateX(0); } 25% { transform: translateX(-6px); } 50% { transform: translateX(6px); } 75% { transform: translateX(-4px); } }
-        .mt-board { background: #187971; border: 2.5px solid #0F101A; border-radius: 22px; padding: 14px; box-shadow: 5px 6px 0 #0F101A; }
-        .mt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; }
-        @media (min-width: 430px) { .mt-grid { grid-template-columns: repeat(4, 1fr); gap: 10px; } }
-        .mt-card {
-          min-height: 76px; padding: 8px 6px; border-radius: 14px; border: 2.5px solid #121521;
-          box-shadow: 3px 4px 0 #121521; display: flex; align-items: center; justify-content: center;
-          text-align: center; font-weight: 700; color: #F4F5F8; cursor: pointer; line-height: 1.25;
-          word-break: break-word; user-select: none;
-          transition: transform 0.12s ease, background-color 0.15s ease, border-color 0.15s ease, opacity 0.25s ease;
-        }
-        .mt-jp { background: #2C3147; font-family: var(--font-jp); }
-        .mt-vi { background: #2C281B; font-family: var(--font-ui); }
-        .mt-card.is-selected { border-color: #5BC0BE; box-shadow: 0 0 0 2px #5BC0BE, 3px 4px 0 #121521; transform: translateY(-2px); }
-        .mt-card.is-matched { background: var(--green) !important; border-color: #1B5E2E !important; color: #fff !important; transform: scale(1.03); }
-        .mt-card.is-gone { opacity: 0; transform: scale(0.84); pointer-events: none; visibility: hidden; transition: opacity 0.24s ease, transform 0.24s ease, visibility 0s linear 0.24s; }
-        .mt-card.is-wrong { background: var(--red) !important; border-color: #7A1C14 !important; color: #fff !important; animation: mt-shake 0.35s ease; }
-      </style>
-
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
+      <div class="row-between mb-12">
         <button type="button" id="mt-back" class="btn">← Chế độ học</button>
-        <div style="display:flex;align-items:center;gap:8px;">
+        <div class="row">
           <span class="badge">Vòng ${roundIdx + 1}/${rounds.length}</span>
-          <span id="mt-timer" class="badge badge-ready" style="min-width:68px;text-align:center;">${formatTime(elapsedMs)}</span>
-          <button type="button" id="mt-mute" class="btn btn-icon btn-yellow" style="width:44px;height:44px;" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
+          <span id="mt-timer" class="badge badge-ready center mt-timer">${formatTime(elapsedMs)}</span>
+          <button type="button" id="mt-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
         </div>
       </div>
 
       <div class="mt-board">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-          <div style="font-size:1.15rem;font-weight:800;color:#fff;">Ghép thuật ngữ với nghĩa</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:0.78rem;font-weight:700;color:#E6F7F5;">
-            <span style="display:inline-flex;align-items:center;gap:5px;"><i style="width:12px;height:12px;border-radius:4px;background:#2C3147;border:1.5px solid #121521;display:inline-block;"></i>Thuật ngữ</span>
-            <span style="display:inline-flex;align-items:center;gap:5px;"><i style="width:12px;height:12px;border-radius:4px;background:#2C281B;border:1.5px solid #121521;display:inline-block;"></i>Nghĩa</span>
+        <div class="row-between mb-12 mt-board-head">
+          <div class="mt-board-title">Ghép thuật ngữ với nghĩa</div>
+          <div class="row mt-legend">
+            <span class="mt-legend-item"><i class="mt-dot is-jp"></i>Thuật ngữ</span>
+            <span class="mt-legend-item"><i class="mt-dot is-vi"></i>Nghĩa</span>
           </div>
         </div>
         <div id="mt-grid" class="mt-grid">${cardsHtml}</div>
-        <p style="text-align:center;font-size:0.82rem;font-weight:700;color:#E6F7F5;margin-top:12px;">
+        <p class="center mt-12 mt-hint">
           Chọn một thuật ngữ rồi chọn nghĩa tương ứng. Ghép đúng hết các cặp càng nhanh càng tốt!
         </p>
       </div>
@@ -170,14 +150,14 @@ export function mountMatch(container, allWords = [], onBack) {
 
   function renderResult() {
     container.innerHTML = `
-      <div class="card" style="text-align:center;display:flex;flex-direction:column;gap:14px;padding:24px 18px;">
-        <div class="module-title" style="font-size:1.5rem;">Hoàn thành Ghép thẻ!</div>
-        <div style="font-size:2.5rem;font-weight:800;color:var(--teal);">${formatTime(elapsedMs)}</div>
+      <div class="card center col mt-result-card">
+        <div class="module-title text-lg">Hoàn thành Ghép thẻ!</div>
+        <div class="mt-result-time">${formatTime(elapsedMs)}</div>
         <p class="module-sub">
           Đã ghép xong <strong>${allWords.length}</strong> cặp từ (${rounds.length} vòng)
           ${mistakes ? `• Ghép nhầm <strong>${mistakes}</strong> lần (đã lưu vào Từ cần ôn lại).` : '• Không sai lần nào!'}
         </p>
-        <div style="display:flex;flex-direction:column;gap:10px;margin-top:6px;">
+        <div class="mt-result-actions">
           <button type="button" id="mt-replay" class="btn btn-teal">↻ Chơi lại (Trộn thẻ mới)</button>
           <button type="button" id="mt-done" class="btn">← Về menu chế độ</button>
         </div>

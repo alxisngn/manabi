@@ -65,14 +65,14 @@ export async function mount(container) {
             : 'Chưa kiểm tra • 0 lần thử';
 
         return `
-          <a href="#/${level.toLowerCase()}/vocab?lesson=${encodeURIComponent(les.id)}" class="card v-row" style="display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;color:inherit;">
-            <div style="display:flex;flex-direction:column;gap:4px;">
-              <span style="font-weight:800;font-size:1.05rem;">${escapeHtml(les.name)}</span>
-              <span style="font-size:0.84rem;color:var(--text-muted);font-weight:600;">${subText}</span>
+          <a href="#/${level.toLowerCase()}/vocab?lesson=${encodeURIComponent(les.id)}" class="card v-row prg-lesson-link">
+            <div class="col gap-4">
+              <span class="prg-lesson-name">${escapeHtml(les.name)}</span>
+              <span class="text-sm text-muted">${subText}</span>
             </div>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0;">
+            <div class="prg-lesson-side">
               ${badgeHtml}
-              <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">${escapeHtml(String(dateStr))}</span>
+              <span class="prg-lesson-date">${escapeHtml(String(dateStr))}</span>
             </div>
           </a>`;
       }).join('');
@@ -85,23 +85,22 @@ export async function mount(container) {
 
       const bodyHtml = isOpen
         ? (cat.ready && lessons.length
-            ? `<div class="module-grid" style="margin-top:12px;">${cardsHtml}</div>`
-            : `<div class="card" style="margin-top:10px;padding:18px;text-align:center;color:var(--text-muted);font-weight:600;">Nội dung ${escapeHtml(cat.label)} ${escapeHtml(level)} đang được cập nhật.</div>`)
+            ? `<div class="module-grid mt-12">${cardsHtml}</div>`
+            : `<div class="card center text-muted prg-empty-box">Nội dung ${escapeHtml(cat.label)} ${escapeHtml(level)} đang được cập nhật.</div>`)
         : '';
 
       return `
-        <section style="margin-bottom:16px;">
-          <button type="button" class="card prog-toggle-head" data-cat="${cat.id}" aria-expanded="${isOpen}"
-            style="width:100%;text-align:left;cursor:pointer;padding:16px 18px;display:flex;flex-direction:column;gap:10px;border-color:${isOpen ? 'var(--teal)' : 'var(--border)'};">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;">
-              <span style="font-weight:800;font-size:1.05rem;color:var(--text);">${summaryLabel}</span>
-              <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-                <span style="padding:2px 10px;border-radius:999px;background:rgba(91,192,190,0.18);border:1.5px solid var(--teal);color:var(--teal);font-weight:800;font-size:0.82rem;">${pct}%</span>
-                <span style="width:28px;height:28px;border-radius:8px;background:var(--bg-elevated);border:1.5px solid var(--border);display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:var(--text);transition:transform 0.18s ease;transform:rotate(${isOpen ? '0deg' : '-90deg'});">▾</span>
+        <section class="prg-sec">
+          <button type="button" class="card w-full prog-toggle-head prg-head ${isOpen ? 'is-open' : ''}" data-cat="${cat.id}" aria-expanded="${isOpen}">
+            <div class="row-between w-full prg-head-row">
+              <span class="prg-head-title">${summaryLabel}</span>
+              <div class="row prg-head-right">
+                <span class="prg-pct-pill">${pct}%</span>
+                <span class="prg-caret ${isOpen ? 'is-open' : ''}">▾</span>
               </div>
             </div>
-            <div style="width:100%;height:10px;background:var(--bg-elevated);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;">
-              <div style="width:${pct}%;height:100%;background:var(--green);border-radius:999px;transition:width 0.25s ease;"></div>
+            <div class="w-full prg-track">
+              <div class="prg-fill" style="--p:${pct}"></div>
             </div>
           </button>
           ${bodyHtml}

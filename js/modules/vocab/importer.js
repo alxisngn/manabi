@@ -86,13 +86,13 @@ export function mountImporter(container, onBack, init = {}) {
 
   function renderUpload() {
     const rows = preview.map((w, i) => `
-      <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:8px;">
-        <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;">
+      <div class="imp-word-card">
+        <div class="imp-grid-jp">
           <input class="inp p-inp" data-i="${i}" data-k="jp" value="${escapeHtml(w.jp)}" placeholder="Từ JP *">
           <input class="inp p-inp" data-i="${i}" data-k="reading" value="${escapeHtml(w.reading)}" placeholder="Cách đọc">
-          <button type="button" class="btn btn-icon p-del" data-i="${i}" style="color:var(--red);">✕</button>
+          <button type="button" class="btn btn-icon p-del imp-danger-txt" data-i="${i}">✕</button>
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
+        <div class="imp-grid-vi">
           <input class="inp p-inp" data-i="${i}" data-k="vi" value="${escapeHtml(w.vi)}" placeholder="Nghĩa tiếng Việt *">
           <select class="inp p-inp" data-i="${i}" data-k="pos">${posOpts(w.pos)}</select>
         </div>
@@ -101,23 +101,23 @@ export function mountImporter(container, onBack, init = {}) {
       </div>`).join('');
 
     return `
-      <div class="card" style="display:flex;flex-direction:column;gap:12px;">
+      <div class="card col">
         <p class="module-sub">Hỗ trợ JSON (mảng words hoặc format bài) và CSV (cột: jp, reading, vi, pos, ex, exVi).</p>
-        <label class="btn btn-teal" style="width:100%;">
+        <label class="btn btn-teal w-full">
           📂 Chọn file JSON / CSV
           <input type="file" id="up-file" accept=".json,.csv,application/json,text/csv" hidden>
         </label>
         ${preview.length ? `
           <input id="up-name" class="inp" value="${escapeHtml(lessonName)}" placeholder="Nhập tên bài mới...">
           ${conflictName ? `
-            <div style="padding:10px;border:2px solid var(--yellow);border-radius:12px;display:flex;flex-direction:column;gap:8px;">
-              <div style="font-size:0.9rem;color:var(--yellow);font-weight:700;">Bài "${escapeHtml(conflictName)}" đã tồn tại. Bạn muốn:</div>
-              <div style="display:flex;gap:8px;">
-                <button type="button" id="btn-merge" class="btn btn-teal" style="flex:1;">Gộp thêm</button>
-                <button type="button" id="btn-replace" class="btn btn-coral" style="flex:1;">Thay thế</button>
+            <div class="imp-conflict">
+              <div class="text-base imp-conflict-title">Bài "${escapeHtml(conflictName)}" đã tồn tại. Bạn muốn:</div>
+              <div class="row">
+                <button type="button" id="btn-merge" class="btn btn-teal grow">Gộp thêm</button>
+                <button type="button" id="btn-replace" class="btn btn-coral grow">Thay thế</button>
               </div>
             </div>` : `<button type="button" id="btn-save-up" class="btn btn-yellow">💾 Lưu bài (${preview.length} từ)</button>`}
-          <div style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;">${rows}</div>
+          <div class="imp-scroll-list">${rows}</div>
         ` : ''}
       </div>`;
   }
@@ -128,20 +128,20 @@ export function mountImporter(container, onBack, init = {}) {
       ...(st.customLessons || []).map(l => `<option value="${escapeHtml(l.id)}">${escapeHtml(l.name)}</option>`)
     ].join('');
     return `
-      <form id="form-manual" class="card" style="display:flex;flex-direction:column;gap:10px;">
-        <label style="font-size:0.88rem;color:var(--text-muted);font-weight:700;">Lưu vào nhóm</label>
+      <form id="form-manual" class="card imp-manual-form">
+        <label class="imp-lbl">Lưu vào nhóm</label>
         <select name="target" class="inp">${opts}</select>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+        <div class="grid-2">
           <input name="jp" class="inp" placeholder="Từ tiếng Nhật *" required>
           <input name="reading" class="inp" placeholder="Cách đọc (Hiragana)">
         </div>
-        <div style="display:grid;grid-template-columns:2fr 1fr;gap:8px;">
+        <div class="imp-grid-vi-lg">
           <input name="vi" class="inp" placeholder="Nghĩa tiếng Việt *" required>
           <select name="pos" class="inp">${posOpts('noun')}</select>
         </div>
         <input name="ex" class="inp" placeholder="Câu ví dụ (vd: 漢字[かんじ]を勉強[べんきょう]する)">
         <input name="exVi" class="inp" placeholder="Nghĩa câu ví dụ">
-        <button type="submit" class="btn btn-teal" style="margin-top:4px;">＋ Thêm từ vựng</button>
+        <button type="submit" class="btn btn-teal imp-submit-btn">＋ Thêm từ vựng</button>
       </form>`;
   }
 
@@ -160,13 +160,13 @@ export function mountImporter(container, onBack, init = {}) {
     const listHtml = !cur.words.length
       ? `<p class="module-sub">Danh sách này đang trống.</p>`
       : cur.words.map((w, i) => `
-        <div style="padding:10px;border:1.5px solid var(--border);border-radius:12px;background:var(--bg-elevated);display:flex;flex-direction:column;gap:8px;">
-          <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px;">
+        <div class="imp-word-card">
+          <div class="imp-grid-jp">
             <input class="inp m-inp" data-i="${i}" data-k="jp" value="${escapeHtml(w.jp)}">
             <input class="inp m-inp" data-i="${i}" data-k="reading" value="${escapeHtml(w.reading)}" placeholder="Cách đọc">
-            <button type="button" class="btn btn-icon m-del" data-i="${i}" style="color:var(--red);" title="Xóa từ này">🗑</button>
+            <button type="button" class="btn btn-icon m-del imp-danger-txt" data-i="${i}" title="Xóa từ này">🗑</button>
           </div>
-          <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;">
+          <div class="imp-grid-vi">
             <input class="inp m-inp" data-i="${i}" data-k="vi" value="${escapeHtml(w.vi)}">
             <select class="inp m-inp" data-i="${i}" data-k="pos">${posOpts(w.pos)}</select>
           </div>
@@ -175,17 +175,17 @@ export function mountImporter(container, onBack, init = {}) {
         </div>`).join('');
 
     return `
-      <div class="card" style="display:flex;flex-direction:column;gap:12px;">
-        <div style="display:flex;gap:8px;">
-          <select id="m-target" class="inp" style="flex:1;">
+      <div class="card col">
+        <div class="row">
+          <select id="m-target" class="inp grow">
             ${targets.map(t => `<option value="${escapeHtml(t.id)}" ${t.id === manageTarget ? 'selected' : ''}>${escapeHtml(t.name)}</option>`).join('')}
           </select>
-          ${showBulkBtn ? `<button type="button" id="m-bulk-del" class="btn" style="${confirmClear ? 'background:var(--red);color:#fff;border-color:#101320;' : 'color:var(--red);'}">${bulkLabel}</button>` : ''}
+          ${showBulkBtn ? `<button type="button" id="m-bulk-del" class="btn ${confirmClear ? 'imp-danger-solid' : 'imp-danger-txt'}">${bulkLabel}</button>` : ''}
         </div>
-        <div style="display:flex;flex-direction:column;gap:8px;max-height:360px;overflow-y:auto;">${listHtml}</div>
-        <div style="padding-top:10px;border-top:1.5px dashed var(--border);display:flex;gap:8px;flex-wrap:wrap;">
-          <button type="button" id="m-export" class="btn" style="flex:1;">⬇ Xuất Backup</button>
-          <label class="btn" style="flex:1;">⬆ Nhập Backup<input type="file" id="m-import" accept="application/json" hidden></label>
+        <div class="imp-scroll-list">${listHtml}</div>
+        <div class="imp-backup-bar">
+          <button type="button" id="m-export" class="btn grow">⬇ Xuất Backup</button>
+          <label class="btn grow">⬆ Nhập Backup<input type="file" id="m-import" accept="application/json" hidden></label>
         </div>
       </div>`;
   }
@@ -207,17 +207,16 @@ export function mountImporter(container, onBack, init = {}) {
   function render() {
     const st = getVocabStore();
     container.innerHTML = `
-      <style>.inp{width:100%;min-height:44px;padding:8px 10px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:0.95rem;}</style>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
+      <div class="row-between mb-12">
         <button type="button" id="imp-back" class="btn">← Quay lại</button>
         <div class="module-title">Quản lý từ vựng</div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:12px;">
+      <div class="mb-12 imp-tabs">
         <button type="button" class="btn ${tab === 'upload' ? 'btn-teal' : ''}" data-tab="upload">1. Tải file</button>
         <button type="button" class="btn ${tab === 'manual' ? 'btn-teal' : ''}" data-tab="manual">2. Nhập tay</button>
         <button type="button" class="btn ${tab === 'manage' ? 'btn-teal' : ''}" data-tab="manage">3. Kho từ</button>
       </div>
-      ${msg ? `<div class="card" style="padding:10px 14px;margin-bottom:12px;border-color:${isErr ? 'var(--red)' : 'var(--green)'};color:${isErr ? 'var(--red)' : 'var(--green)'};font-weight:700;">${escapeHtml(msg)}</div>` : ''}
+      ${msg ? `<div class="card imp-msg ${isErr ? 'is-error' : ''}">${escapeHtml(msg)}</div>` : ''}
       ${tab === 'upload' ? renderUpload() : tab === 'manual' ? renderManual(st) : renderManage(st)}
     `;
 

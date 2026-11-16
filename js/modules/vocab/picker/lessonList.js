@@ -11,8 +11,8 @@ export function renderList(container, ctx) {
   const textbook = lessons.filter((l) => l.source === 'repo');
 
   const localBtn = (l) => `
-    <button type="button" class="card v-item" data-id="${escapeHtml(l.id)}" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:14px 16px;cursor:pointer;text-align:left;color:var(--text);">
-      <span style="font-weight:800;font-size:1.05rem;">${escapeHtml(l.name)}</span>
+    <button type="button" class="card v-item pk-local-btn" data-id="${escapeHtml(l.id)}">
+      <span class="pk-item-title">${escapeHtml(l.name)}</span>
       <span class="badge ${l.id === 'user:weak' ? '' : 'badge-ready'}">${l.count} từ →</span>
     </button>`;
 
@@ -24,10 +24,10 @@ export function renderList(container, ctx) {
       <div class="card v-row">
         <button type="button" class="v-item v-row-main" data-id="${escapeHtml(l.id)}">
           <div>
-            <div style="font-weight:800;font-size:1.05rem;">${escapeHtml(l.name)}</div>
-            <div style="display:flex;align-items:center;gap:6px;margin-top:4px;flex-wrap:wrap;">
+            <div class="pk-item-title">${escapeHtml(l.name)}</div>
+            <div class="pk-item-meta">
               <span class="badge ${stCls}">${stTxt}</span>
-              <span style="font-size:0.82rem;color:var(--text-muted);font-weight:700;">${l.count} từ</span>
+              <span class="pk-item-count">${l.count} từ</span>
             </div>
           </div>
         </button>
@@ -36,31 +36,31 @@ export function renderList(container, ctx) {
   };
 
   container.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
+    <div class="row-between mb-12">
       <a href="#/learn" class="btn">← Đổi cấp</a>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <span class="badge badge-ready" style="font-size:0.9rem;padding:6px 12px;">JLPT ${escapeHtml(activeLevel)}</span>
+      <div class="row">
+        <span class="badge badge-ready pk-lv-badge">JLPT ${escapeHtml(activeLevel)}</span>
         <button type="button" id="v-add" class="btn btn-yellow">＋ Thêm từ</button>
       </div>
     </div>
-    <div class="module-grid" style="margin-bottom:14px;">
-      <button type="button" id="v-open-mix" class="card module-card is-active" style="border-color:var(--teal);">
+    <div class="module-grid pk-quick-grid">
+      <button type="button" id="v-open-mix" class="card module-card is-active pk-card-teal">
         <div class="module-left">
           <div class="module-icon accent-teal">🔀</div>
           <div><div class="module-title">Ôn tổng hợp ${escapeHtml(activeLevel)}</div><div class="module-sub">Chọn nhanh khoảng bài & trộn ngẫu nhiên</div></div>
         </div>
         <span class="badge badge-ready">Chọn →</span>
       </button>
-      <button type="button" id="v-open-kanji" class="card module-card is-active" style="border-color:var(--yellow);">
+      <button type="button" id="v-open-kanji" class="card module-card is-active pk-card-yellow">
         <div class="module-left">
           <div class="module-icon accent-yellow">漢</div>
           <div><div class="module-title">Luyện đọc Kanji ${escapeHtml(activeLevel)}</div><div class="module-sub">Nhìn chữ Hán đọc Hiragana • Trắc nghiệm & Tự gõ</div></div>
         </div>
-        <span class="badge badge-ready" style="background:var(--yellow);">Luyện →</span>
+        <span class="badge badge-ready pk-badge-yellow">Luyện →</span>
       </button>
     </div>
-    ${personal.length ? `<div style="font-size:0.78rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin:6px 0 8px;">Cá nhân</div><div class="module-grid" style="margin-bottom:14px;">${personal.map(localBtn).join('')}</div>` : ''}
-    <div style="font-size:0.78rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;margin-bottom:8px;">Giáo trình ${escapeHtml(activeLevel)}</div>
+    ${personal.length ? `<div class="pk-sec-lbl pk-sec-personal">Cá nhân</div><div class="module-grid pk-personal-grid">${personal.map(localBtn).join('')}</div>` : ''}
+    <div class="pk-sec-lbl mb-8">Giáo trình ${escapeHtml(activeLevel)}</div>
     <div class="module-grid">${textbook.length ? textbook.map(repoRow).join('') : `<p class="module-sub">Chưa có bài học cho trình độ này.</p>`}</div>
   `;
 
@@ -107,34 +107,34 @@ export function renderMix(container, ctx) {
 
   const pillsHtml = repoList.map((l) => {
     const on = selectedSet.has(l.id);
-    return `<button type="button" class="mix-pill" data-id="${escapeHtml(l.id)}" style="min-height:44px;padding:6px 4px;border-radius:12px;border:2px solid ${on ? 'var(--teal)' : 'var(--border)'};background:${on ? 'var(--teal)' : 'var(--bg-elevated)'};color:${on ? '#101320' : 'var(--text)'};font-family:var(--font-ui);font-weight:800;font-size:0.95rem;cursor:pointer;">${escapeHtml(l.name.replace(/^Bài\s*/i, ''))}</button>`;
+    return `<button type="button" class="mix-pill pk-pill ${on ? 'is-on' : ''}" data-id="${escapeHtml(l.id)}">${escapeHtml(l.name.replace(/^Bài\s*/i, ''))}</button>`;
   }).join('');
   const localHtml = localList.map((l) => {
     const on = selectedSet.has(l.id);
-    return `<button type="button" class="mix-pill" data-id="${escapeHtml(l.id)}" style="min-height:44px;padding:6px 12px;border-radius:12px;border:2px solid ${on ? 'var(--yellow)' : 'var(--border)'};background:${on ? 'rgba(245,200,79,0.2)' : 'var(--bg-elevated)'};color:var(--text);font-family:var(--font-ui);font-weight:700;font-size:0.9rem;cursor:pointer;">${escapeHtml(l.name)} (${l.count})</button>`;
+    return `<button type="button" class="mix-pill pk-local-pill ${on ? 'is-on' : ''}" data-id="${escapeHtml(l.id)}">${escapeHtml(l.name)} (${l.count})</button>`;
   }).join('');
 
   container.innerHTML = `
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:12px;">
+    <div class="row-between mb-12">
       <button type="button" id="mix-back" class="btn">← Danh sách ${escapeHtml(activeLevel)}</button>
-      <div style="display:flex;gap:6px;">
-        <button type="button" id="mix-all" class="btn" style="padding:6px 10px;font-size:0.86rem;">Chọn hết</button>
-        <button type="button" id="mix-none" class="btn" style="padding:6px 10px;font-size:0.86rem;">Bỏ chọn</button>
+      <div class="row pk-mix-tools">
+        <button type="button" id="mix-all" class="btn pk-tool-btn">Chọn hết</button>
+        <button type="button" id="mix-none" class="btn pk-tool-btn">Bỏ chọn</button>
       </div>
     </div>
-    <div class="card" style="display:flex;flex-direction:column;gap:12px;margin-bottom:12px;">
+    <div class="card col mb-12">
       <div class="module-title">${isKanjiDirect ? `Chọn bài luyện đọc Kanji (${escapeHtml(activeLevel)})` : `Chọn nhanh khoảng bài (${escapeHtml(activeLevel)})`}</div>
-      ${repoList.length ? `<div style="display:grid;grid-template-columns:1fr auto 1fr auto;gap:6px;align-items:center;"><select id="rng-from" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${fromOpts}</select><span style="color:var(--text-muted);font-weight:800;">→</span><select id="rng-to" style="min-height:44px;padding:6px 8px;border-radius:10px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-weight:700;">${toOpts}</select><button type="button" id="rng-apply" class="btn btn-teal" style="padding:6px 12px;">Áp dụng</button></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">${pillsHtml}</div>` : ''}
-      ${localList.length ? `<div style="display:flex;flex-wrap:wrap;gap:8px;padding-top:6px;border-top:1.5px dashed var(--border);">${localHtml}</div>` : ''}
+      ${repoList.length ? `<div class="pk-rng-row"><select id="rng-from" class="pk-rng-sel">${fromOpts}</select><span class="pk-rng-arrow">→</span><select id="rng-to" class="pk-rng-sel">${toOpts}</select><button type="button" id="rng-apply" class="btn btn-teal pk-rng-btn">Áp dụng</button></div><div class="pk-grid-4">${pillsHtml}</div>` : ''}
+      ${localList.length ? `<div class="pk-local-pills">${localHtml}</div>` : ''}
     </div>
-    <div class="card" style="display:flex;flex-direction:column;gap:12px;">
-      <div style="display:flex;justify-content:space-between;align-items:center;"><span style="font-weight:800;">${isKanjiDirect ? 'Số từ lấy để lọc Kanji' : 'Số từ muốn ôn'}</span><span class="badge badge-ready">Đã chọn ${picked.length} bài (${totalAvail} từ)</span></div>
-      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;">
-        ${[15, 30, 50].map((n) => `<button type="button" class="btn mix-lim ${!state.useAllWords && state.wordLimit === n ? 'btn-teal' : ''}" data-n="${n}" style="padding:6px 4px;font-size:0.9rem;">${n} từ</button>`).join('')}
-        <button type="button" id="mix-lim-all" class="btn ${state.useAllWords ? 'btn-yellow' : ''}" style="padding:6px 4px;font-size:0.9rem;">Ôn hết</button>
+    <div class="card col">
+      <div class="row-between"><span class="pk-bold">${isKanjiDirect ? 'Số từ lấy để lọc Kanji' : 'Số từ muốn ôn'}</span><span class="badge badge-ready">Đã chọn ${picked.length} bài (${totalAvail} từ)</span></div>
+      <div class="pk-grid-4">
+        ${[15, 30, 50].map((n) => `<button type="button" class="btn mix-lim pk-lim-btn ${!state.useAllWords && state.wordLimit === n ? 'btn-teal' : ''}" data-n="${n}">${n} từ</button>`).join('')}
+        <button type="button" id="mix-lim-all" class="btn pk-lim-btn ${state.useAllWords ? 'btn-yellow' : ''}">Ôn hết</button>
       </div>
-      ${state.errMsg ? `<p style="color:var(--red);font-weight:700;font-size:0.9rem;">${escapeHtml(state.errMsg)}</p>` : ''}
-      <button type="button" id="mix-go" class="btn ${isKanjiDirect ? 'btn-yellow' : 'btn-teal'}" style="width:100%;font-size:1.05rem;" ${!picked.length || state.loading ? 'disabled' : ''}>${state.loading ? 'Đang tải dữ liệu...' : isKanjiDirect ? `Bắt đầu luyện đọc Kanji →` : `Bắt đầu ôn ${effectiveLimit} từ →`}</button>
+      ${state.errMsg ? `<p class="pk-err">${escapeHtml(state.errMsg)}</p>` : ''}
+      <button type="button" id="mix-go" class="btn ${isKanjiDirect ? 'btn-yellow' : 'btn-teal'} w-full pk-go-btn" ${!picked.length || state.loading ? 'disabled' : ''}>${state.loading ? 'Đang tải dữ liệu...' : isKanjiDirect ? `Bắt đầu luyện đọc Kanji →` : `Bắt đầu ôn ${effectiveLimit} từ →`}</button>
     </div>`;
 
   container.querySelector('#mix-back').onclick = () => { state.mixDirectMode = null; state.step = 'list'; render(); };

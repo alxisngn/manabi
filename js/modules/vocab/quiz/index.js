@@ -78,18 +78,18 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   function renderSetup() {
     const presets = [...new Set([Math.min(10, maxQ), Math.min(20, maxQ), Math.min(30, maxQ), maxQ])];
     container.innerHTML = `
-      <div style="max-width:560px;margin:0 auto;">
-        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+      <div class="qz-setup-wrap">
+        <div class="row-between qz-setup-head">
           <button type="button" id="qz-back" class="btn">← Chế độ học</button>
           <span class="badge badge-ready">Tổng ${maxQ} từ</span>
         </div>
-        <div class="card" style="display:flex;flex-direction:column;gap:14px;">
+        <div class="card qz-setup-card">
           <div class="module-title">Thiết lập bài Kiểm tra</div>
           <p class="module-sub">Mỗi từ tương ứng 1 câu hỏi (trộn Trắc nghiệm 1–4, Đúng / Sai và Nối cặp 2 chiều). Từ làm sai tự động lưu vào Từ cần ôn lại.</p>
-          <label style="font-weight:700;font-size:0.95rem;">Số câu hỏi / số từ (1 – ${maxQ}):</label>
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">${presets.map((n) => `<button type="button" class="btn qz-preset ${n === numQ ? 'btn-teal' : ''}" data-n="${n}" style="flex:1;">${n === maxQ ? `Tất cả (${n})` : `${n} câu`}</button>`).join('')}</div>
-          <input type="number" id="qz-num" min="1" max="${maxQ}" value="${numQ}" style="width:100%;min-height:44px;padding:8px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:1.05rem;font-weight:700;">
-          <button type="button" id="qz-go" class="btn btn-yellow" style="width:100%;font-size:1.1rem;">🚀 Bắt đầu kiểm tra</button>
+          <label class="qz-setup-lbl">Số câu hỏi / số từ (1 – ${maxQ}):</label>
+          <div class="qz-presets">${presets.map((n) => `<button type="button" class="btn grow qz-preset ${n === numQ ? 'btn-teal' : ''}" data-n="${n}">${n === maxQ ? `Tất cả (${n})` : `${n} câu`}</button>`).join('')}</div>
+          <input type="number" id="qz-num" class="w-full qz-num-inp" min="1" max="${maxQ}" value="${numQ}">
+          <button type="button" id="qz-go" class="btn btn-yellow w-full qz-go-btn">🚀 Bắt đầu kiểm tra</button>
         </div>
       </div>`;
     container.querySelector('#qz-back').onclick = exitQuiz;
@@ -101,22 +101,23 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
   function renderExplanation(q, animCls) {
     if (!q.answered) return '';
     const nextLabel = qIdx < questions.length - 1 ? 'Câu tiếp theo →' : 'Xem kết quả 🏁';
-    if (q.type === 'match') return `<button type="button" id="qz-next" class="btn btn-yellow ${animCls}" style="width:100%;margin-top:14px;">${nextLabel} <span class="kbd-hint">Enter ↵</span></button>`;
+    if (q.type === 'match') return `<button type="button" id="qz-next" class="btn btn-yellow w-full qz-next-match ${animCls}">${nextLabel} <span class="kbd-hint">Enter ↵</span></button>`;
     const w = q.word;
+    const stateCls = q.correct ? 'is-correct' : 'is-wrong';
     const statusText = q.correct ? (q.clearedWeak ? '✓ Đúng rồi! Đã xóa khỏi Từ cần ôn lại' : '✓ Chính xác!') : '✕ Chưa đúng (đã lưu vào Từ cần ôn lại)';
     return `
-      <div class="card ${animCls}" style="margin-top:14px;border-color:${q.correct ? 'var(--green)' : 'var(--red)'};display:flex;flex-direction:column;gap:8px;">
-        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-          <span style="font-weight:800;color:${q.correct ? 'var(--green)' : 'var(--red)'};font-size:1.02rem;">${statusText}</span>
-          <button type="button" id="qz-speak" class="btn" style="padding:4px 12px;font-size:0.9rem;">🔊 Nghe</button>
+      <div class="card col gap-8 qz-explain ${stateCls} ${animCls}">
+        <div class="row-between">
+          <span class="qz-explain-status ${stateCls}">${statusText}</span>
+          <button type="button" id="qz-speak" class="btn qz-speak-btn">🔊 Nghe</button>
         </div>
-        <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;">
-          <span class="jp" style="font-size:1.45rem;font-weight:700;">${escapeHtml(w.jp)}</span>
-          ${w.reading ? `<span class="jp" style="color:var(--teal);font-weight:600;">【${escapeHtml(w.reading)}】</span>` : ''}
-          <span style="color:var(--yellow);font-weight:800;font-size:1.15rem;">— ${escapeHtml(w.vi)}</span>
+        <div class="qz-explain-word">
+          <span class="jp qz-explain-jp">${escapeHtml(w.jp)}</span>
+          ${w.reading ? `<span class="jp qz-explain-reading">【${escapeHtml(w.reading)}】</span>` : ''}
+          <span class="qz-explain-vi">— ${escapeHtml(w.vi)}</span>
         </div>
-        ${w.ex ? `<div style="padding-top:8px;border-top:1.5px dashed var(--border);"><div class="jp" style="font-size:0.98rem;line-height:1.7;">${parseRuby(w.ex)}</div>${w.exVi ? `<div style="font-size:0.88rem;color:var(--text-muted);">${escapeHtml(w.exVi)}</div>` : ''}</div>` : ''}
-        <button type="button" id="qz-next" class="btn btn-yellow" style="width:100%;margin-top:4px;">${nextLabel} <span class="kbd-hint">Enter ↵</span></button>
+        ${w.ex ? `<div class="qz-explain-ex"><div class="jp qz-explain-ex-jp">${parseRuby(w.ex)}</div>${w.exVi ? `<div class="qz-explain-ex-vi">${escapeHtml(w.exVi)}</div>` : ''}</div>` : ''}
+        <button type="button" id="qz-next" class="btn btn-yellow w-full qz-next-btn">${nextLabel} <span class="kbd-hint">Enter ↵</span></button>
       </div>`;
   }
 
@@ -143,24 +144,23 @@ export function mountQuiz(container, allWords = [], onBack, opts = {}) {
 
     const titleText = gate ? `QUA BÀI: ${escapeHtml(gate.lessonName)}` : isWeakReview ? 'ÔN TẬP TỪ SAI' : 'KIỂM TRA';
     const weakModeSwitchHtml = isWeakReview ? `
-      <button type="button" class="btn qz-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">⌨️ Tự gõ</button>
-      <button type="button" class="btn qz-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq" style="min-height:40px;padding:4px 12px;font-size:0.85rem;">🔘 Trắc nghiệm</button>
+      <button type="button" class="btn btn-sm qz-mode-sw ${inputMode === 'type' ? 'btn-teal' : ''}" data-m="type">⌨️ Tự gõ</button>
+      <button type="button" class="btn btn-sm qz-mode-sw ${inputMode === 'mcq' ? 'btn-teal' : ''}" data-m="mcq">🔘 Trắc nghiệm</button>
     ` : '';
 
     container.innerHTML = `
-      <style>.qz-grid{display:grid;grid-template-columns:1fr;gap:10px;}@media(min-width:420px){.qz-grid{grid-template-columns:1fr 1fr;}.qz-tf-wrap{grid-template-columns:1fr auto 1fr;}}</style>
-      <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:220px;">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap;">
-            <span style="font-size:1.12rem;font-weight:800;letter-spacing:0.3px;">${titleText}</span>
-            <span id="qz-step-badge" style="padding:2px 10px;border-radius:999px;background:#CBECEB;color:#101320;font-weight:800;font-size:0.82rem;">Câu ${currentStep}/${total}</span>
+      <div class="row-between qz-topbar">
+        <div class="grow qz-prog-wrap">
+          <div class="row qz-title-row">
+            <span class="qz-title">${titleText}</span>
+            <span id="qz-step-badge" class="qz-step-badge">Câu ${currentStep}/${total}</span>
           </div>
-          <div style="width:100%;height:10px;background:var(--bg-card);border:1.5px solid var(--border);border-radius:999px;overflow:hidden;"><div id="qz-progress-bar" style="width:${pct}%;height:100%;background:#187E78;border-radius:999px;transition:width 0.25s ease;"></div></div>
+          <div class="qz-prog-track"><div id="qz-progress-bar" class="qz-prog-fill" style="--p:${pct}"></div></div>
         </div>
-        <div style="display:flex;align-items:center;gap:6px;flex-shrink:0;">
+        <div class="row qz-controls">
           ${weakModeSwitchHtml}
           <button type="button" id="qz-mute" class="btn btn-icon btn-yellow" title="Bật/Tắt tiếng">${soundOn ? '🔊' : '🔇'}</button>
-          <button type="button" id="qz-quit" class="btn btn-icon" style="background:var(--red);color:#fff;border-color:#101320;" title="Thoát">⏻</button>
+          <button type="button" id="qz-quit" class="btn btn-icon qz-quit-btn" title="Thoát">⏻</button>
         </div>
       </div>
       ${mainHtml}`;

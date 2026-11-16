@@ -59,14 +59,14 @@ async function renderFirstLevelPick() {
     return n > 0
       ? `<button type="button" class="card module-card is-active" data-pick-lv="${lv.id}">
           <div class="module-left">
-            <div class="module-icon ${lv.accent}" style="font-family:var(--font-ui);font-size:1.25rem;font-weight:800;">${lv.id}</div>
+            <div class="module-icon ${lv.accent} lv-pick-ico">${lv.id}</div>
             <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub} • ${n} bài</div></div>
           </div>
           <span class="badge badge-ready">Chọn →</span>
         </button>`
       : `<div class="card module-card is-disabled" aria-disabled="true">
           <div class="module-left">
-            <div class="module-icon ${lv.accent}" style="font-family:var(--font-ui);font-size:1.25rem;font-weight:800;">${lv.id}</div>
+            <div class="module-icon ${lv.accent} lv-pick-ico">${lv.id}</div>
             <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub}</div></div>
           </div>
           <span class="badge">Sắp có</span>
@@ -154,9 +154,9 @@ function initLevelSheet() {
       return `
         <button type="button" class="level-opt ${hasData ? '' : 'is-disabled'} ${isCur ? 'is-current' : ''}" data-lv="${lv.id}" ${hasData ? '' : 'disabled'}>
           <div class="module-left">
-            <div class="module-icon ${lv.accent}" style="width:42px;height:42px;font-family:var(--font-ui);font-size:1.05rem;font-weight:800;">${lv.id}</div>
+            <div class="module-icon ${lv.accent} lv-sheet-ico">${lv.id}</div>
             <div>
-              <div class="module-title" style="font-size:1.05rem;">${lv.name}</div>
+              <div class="module-title lv-sheet-title">${lv.name}</div>
               <div class="module-sub">${lv.sub}</div>
             </div>
           </div>
@@ -200,7 +200,7 @@ window.addEventListener('DOMContentLoaded', () => {
   head.className = 'sidebar-head';
   head.innerHTML = `
     <span class="sidebar-brand">MENU</span>
-    <button type="button" id="nav-collapse-btn" class="btn btn-icon" title="Thu gọn / Mở rộng menu" style="min-width:38px;min-height:38px;padding:0;">☰</button>
+    <button type="button" id="nav-collapse-btn" class="btn btn-icon nav-collapse-btn" title="Thu gọn / Mở rộng menu">☰</button>
   `;
   nav.prepend(head);
 

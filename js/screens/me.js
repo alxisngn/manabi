@@ -14,77 +14,77 @@ export function mount(container) {
   const customCount = (st.customLessons || []).length;
   const curLv = getLevel();
   const baseVocab = `#/${curLv.toLowerCase()}/vocab`;
-  const secLabel = (t) => `<div style="font-size:0.78rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;">${t}</div>`;
+  const secLabel = (t) => `<div class="me-sec-lbl">${t}</div>`;
 
   container.innerHTML = `
     <h1 class="page-title">Tôi</h1>
 
-    <div style="display:flex;flex-direction:column;gap:12px;">
-      <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+    <div class="col">
+      <div class="card me-card">
         ${secLabel('Ôn tập cá nhân')}
 
-        <div style="padding:10px 12px;border-radius:14px;background:var(--bg-elevated);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="me-subbox">
+          <div class="row-between">
             <div>
-              <div style="font-weight:800;font-size:0.98rem;">📌 Từ cần ôn lại</div>
-              <div style="font-size:0.78rem;color:var(--text-muted);">Tự lưu khi làm sai hoặc đánh dấu</div>
+              <div class="me-item-title">📌 Từ cần ôn lại</div>
+              <div class="me-item-sub">Tự lưu khi làm sai hoặc đánh dấu</div>
             </div>
             <span class="badge">${weakCount} từ</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button type="button" class="btn btn-coral" data-nav="${baseVocab}?view=study-weak" ${weakCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Ôn ngay</button>
-            <button type="button" class="btn" data-nav="${baseVocab}?view=weak" style="font-size:0.9rem;">Xem / Xóa</button>
+          <div class="grid-2">
+            <button type="button" class="btn btn-coral text-base" data-nav="${baseVocab}?view=study-weak" ${weakCount === 0 ? 'disabled' : ''}>▶ Ôn ngay</button>
+            <button type="button" class="btn text-base" data-nav="${baseVocab}?view=weak">Xem / Xóa</button>
           </div>
         </div>
 
-        <div style="padding:10px 12px;border-radius:14px;background:var(--bg-elevated);border:1.5px solid var(--border);display:flex;flex-direction:column;gap:8px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
+        <div class="me-subbox">
+          <div class="row-between">
             <div>
-              <div style="font-weight:800;font-size:0.98rem;">📖 Từ mở rộng</div>
-              <div style="font-size:0.78rem;color:var(--text-muted);">Từ vựng thêm ngoài giáo trình</div>
+              <div class="me-item-title">📖 Từ mở rộng</div>
+              <div class="me-item-sub">Từ vựng thêm ngoài giáo trình</div>
             </div>
             <span class="badge">${openCount} từ</span>
           </div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-            <button type="button" class="btn btn-teal" data-nav="${baseVocab}?view=study-open" ${openCount === 0 ? 'disabled' : ''} style="font-size:0.9rem;">▶ Học ngay</button>
-            <button type="button" class="btn" data-nav="${baseVocab}?view=open" style="font-size:0.9rem;">Xem / Sửa</button>
+          <div class="grid-2">
+            <button type="button" class="btn btn-teal text-base" data-nav="${baseVocab}?view=study-open" ${openCount === 0 ? 'disabled' : ''}>▶ Học ngay</button>
+            <button type="button" class="btn text-base" data-nav="${baseVocab}?view=open">Xem / Sửa</button>
           </div>
         </div>
       </div>
 
-      <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+      <div class="card me-card">
         ${secLabel('Giọng đọc')}
 
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <label for="voice-select" style="font-weight:700;font-size:0.9rem;">Giọng tiếng Nhật</label>
-          <select id="voice-select" style="width:100%;min-height:44px;padding:8px 12px;border-radius:12px;border:2px solid var(--border);background:var(--bg);color:var(--text);font-family:var(--font-ui);font-size:0.92rem;font-weight:700;">
+        <div class="me-field">
+          <label for="voice-select" class="text-base me-lbl">Giọng tiếng Nhật</label>
+          <select id="voice-select" class="w-full me-select">
             <option value="">Tự động (khuyên dùng)</option>
           </select>
-          <div id="voice-empty-hint" hidden style="font-size:0.82rem;color:var(--coral);line-height:1.45;">
+          <div id="voice-empty-hint" class="me-voice-hint" hidden>
             Thiết bị chưa có giọng tiếng Nhật. Hãy mở Cài đặt thiết bị → Trợ năng / Ngôn ngữ & Nhập liệu (Chuyển văn bản thành giọng nói) để tải gói giọng tiếng Nhật.
           </div>
         </div>
 
-        <div style="display:flex;flex-direction:column;gap:6px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;">
-            <label for="voice-rate" style="font-weight:700;font-size:0.9rem;">Tốc độ đọc</label>
+        <div class="me-field">
+          <div class="row-between">
+            <label for="voice-rate" class="text-base me-lbl">Tốc độ đọc</label>
             <span id="voice-rate-val" class="badge badge-ready">${formatRate(voiceCfg.rate)}</span>
           </div>
-          <input type="range" id="voice-rate" min="0.6" max="1.2" step="0.05" value="${voiceCfg.rate}" style="width:100%;accent-color:var(--teal);cursor:pointer;">
+          <input type="range" id="voice-rate" class="w-full me-range" min="0.6" max="1.2" step="0.05" value="${voiceCfg.rate}">
         </div>
 
-        <button type="button" id="btn-test-voice" class="btn btn-teal" style="width:100%;font-size:0.95rem;">🔊 Nghe thử</button>
+        <button type="button" id="btn-test-voice" class="btn btn-teal w-full me-test-btn">🔊 Nghe thử</button>
       </div>
 
-      <div class="card" style="display:flex;flex-direction:column;gap:10px;">
+      <div class="card me-card">
         ${secLabel('Kho từ & Sao lưu')}
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button type="button" class="btn btn-yellow" data-nav="${baseVocab}?view=add" style="font-size:0.92rem;">＋ Thêm từ</button>
-          <button type="button" class="btn" data-nav="${baseVocab}?view=manage" style="font-size:0.92rem;">🗂 Kho từ (${customCount})</button>
+        <div class="grid-2">
+          <button type="button" class="btn btn-yellow me-btn-md" data-nav="${baseVocab}?view=add">＋ Thêm từ</button>
+          <button type="button" class="btn me-btn-md" data-nav="${baseVocab}?view=manage">🗂 Kho từ (${customCount})</button>
         </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
-          <button type="button" id="btn-export" class="btn" style="font-size:0.92rem;">⬇ Xuất backup</button>
-          <label class="btn" style="font-size:0.92rem;">
+        <div class="grid-2">
+          <button type="button" id="btn-export" class="btn me-btn-md">⬇ Xuất backup</button>
+          <label class="btn me-btn-md">
             ⬆ Nhập backup
             <input type="file" id="input-import" accept="application/json" hidden>
           </label>
@@ -92,8 +92,8 @@ export function mount(container) {
         <p id="backup-msg" class="backup-msg" hidden></p>
       </div>
 
-      <div class="card is-muted" style="display:flex;align-items:center;justify-content:space-between;gap:10px;">
-        <span style="font-weight:700;">☁️ Đăng nhập & đồng bộ</span>
+      <div class="card is-muted row-between me-sync-card">
+        <span class="me-sync-lbl">☁️ Đăng nhập & đồng bộ</span>
         <span class="badge">Sắp có</span>
       </div>
     </div>
@@ -147,7 +147,7 @@ export function mount(container) {
   const msgEl = container.querySelector('#backup-msg');
   const showMsg = (text, isErr = false) => {
     msgEl.hidden = false;
-    msgEl.style.color = isErr ? 'var(--red)' : 'var(--green)';
+    msgEl.classList.toggle('is-error', isErr);
     msgEl.textContent = text;
   };
 
@@ -165,7 +165,7 @@ export function mount(container) {
       const nextMsg = container.querySelector('#backup-msg');
       if (nextMsg) {
         nextMsg.hidden = false;
-        nextMsg.style.color = 'var(--green)';
+        nextMsg.classList.remove('is-error');
         nextMsg.textContent = 'Khôi phục dữ liệu thành công!';
       }
     } catch (err) {
