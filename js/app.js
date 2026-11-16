@@ -1,10 +1,4 @@
 import { hasLevel, getLevel, setLevel, setSession } from './core/nav.js';
-import { mount as mountVocab } from './modules/vocab/picker.js';
-import { mount as mountToday } from './screens/today.js';
-import { mount as mountLearn } from './screens/learn.js';
-import { mount as mountExam } from './screens/exam.js';
-import { mount as mountProgress } from './screens/progress.js';
-import { mount as mountMe } from './screens/me.js';
 
 const LEVELS = [
   { id: 'N5', name: 'Trình độ N5', sub: 'Sơ cấp 1 • Bài 1 – 25', accent: 'accent-teal' },
@@ -16,6 +10,7 @@ const LEVELS = [
 
 const appEl = document.getElementById('app');
 let curriculumCache = null;
+let routeToken = 0;
 
 async function getLevelCounts() {
   if (curriculumCache) return curriculumCache;
@@ -51,9 +46,10 @@ function navigateTo(hash) {
   else window.location.hash = hash;
 }
 
-async function renderFirstLevelPick() {
+async function renderFirstLevelPick(token) {
   document.body.dataset.onboard = '1';
   const counts = await getLevelCounts();
+  if (token !== routeToken) return;
   const cardsHtml = LEVELS.map((lv) => {
     const n = counts[lv.id] || 0;
     return n > 0
@@ -89,6 +85,7 @@ async function renderFirstLevelPick() {
 }
 
 async function router() {
+  const token = ++routeToken;
   setSession(false);
   const rawHash = window.location.hash || '#/';
   const [pathPart, queryPart = ''] = rawHash.split('?');
@@ -109,7 +106,8 @@ async function router() {
     const skill = skillMatch[2].toLowerCase();
     setActiveTab('learn');
     if (skill === 'vocab') {
-      mountVocab(appEl, { level, query: params });
+      const { mount } = await import('./modules/vocab/picker.js');
+      if (token === routeToken) mount(appEl, { level, query: params });
       return;
     }
     navigateTo('#/learn');
@@ -117,7 +115,7 @@ async function router() {
   }
 
   if (!hasLevel()) {
-    await renderFirstLevelPick();
+    await renderFirstLevelPick(token);
     return;
   }
 
@@ -125,13 +123,34 @@ async function router() {
   const chip = document.getElementById('level-chip-label');
   if (chip) chip.textContent = getLevel();
 
-  if (pathPart === '#/learn') { setActiveTab('learn'); await mountLearn(appEl); return; }
-  if (pathPart === '#/exam') { setActiveTab('exam'); mountExam(appEl); return; }
-  if (pathPart === '#/progress') { setActiveTab('progress'); await mountProgress(appEl); return; }
-  if (pathPart === '#/me') { setActiveTab('me'); mountMe(appEl); return; }
+  if (pathPart === '#/learn') {
+    setActiveTab('learn');
+    const { mount } = await import('./screens/learn.js');
+    if (token === routeToken) await mount(appEl);
+    return;
+  }
+  if (pathPart === '#/exam') {
+    setActiveTab('exam');
+    const { mount } = await import('./screens/exam.js');
+    if (token === routeToken) mount(appEl);
+    return;
+  }
+  if (pathPart === '#/progress') {
+    setActiveTab('progress');
+    const { mount } = await import('./screens/progress.js');
+    if (token === routeToken) await mount(appEl);
+    return;
+  }
+  if (pathPart === '#/me') {
+    setActiveTab('me');
+    const { mount } = await import('./screens/me.js');
+    if (token === routeToken) mount(appEl);
+    return;
+  }
 
   setActiveTab('today');
-  mountToday(appEl);
+  const { mount } = await import('./screens/today.js');
+  if (token === routeToken) mount(appEl);
 }
 
 function initLevelSheet() {
@@ -204,7 +223,6 @@ window.addEventListener('DOMContentLoaded', () => {
   `;
   nav.prepend(head);
 
-  // Add hover tooltips when collapsed
   nav.querySelectorAll('.nav-tab').forEach((tab) => {
     const label = tab.querySelector('.nav-lbl')?.textContent?.trim();
     if (label && !tab.title) tab.title = label;

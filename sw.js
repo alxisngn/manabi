@@ -1,12 +1,12 @@
-const V = 'v21';
+const V = 'v23';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = `manabi-fonts-${V}`;
 
 const CORE_ASSETS = [
   './',
   './css/base.css',
-  './css/layout.css',
   './css/components.css',
+  './css/layout.css',
   './css/screens.css',
   './css/utilities.css',
   './icons/apple-touch-icon.png',
@@ -15,35 +15,35 @@ const CORE_ASSETS = [
   './icons/icon-maskable-512.png',
   './index.html',
   './js/app.js',
+  './js/core/kana.js',
   './js/core/nav.js',
   './js/core/progress.js',
   './js/core/ruby.js',
   './js/core/store.js',
   './js/core/tts.js',
   './js/core/util.js',
-  './js/core/kana.js',
   './js/core/weak.js',
   './js/modules/vocab/flashcard.js',
   './js/modules/vocab/importer.js',
   './js/modules/vocab/kanji-read.js',
-  './js/modules/vocab/match.js',
-  './js/modules/vocab/picker.js',
-  './js/modules/vocab/quiz.js',
-  './js/modules/vocab/reflex.js',
-  './js/modules/vocab/quiz/index.js',
-  './js/modules/vocab/quiz/build.js',
-  './js/modules/vocab/quiz/choice.js',
-  './js/modules/vocab/quiz/pairs.js',
-  './js/modules/vocab/quiz/typing.js',
-  './js/modules/vocab/quiz/gate.js',
-  './js/modules/vocab/quiz/result.js',
-  './js/modules/vocab/picker/index.js',
-  './js/modules/vocab/picker/data.js',
-  './js/modules/vocab/picker/views.js',
-  './js/modules/vocab/picker/lessonList.js',
-  './js/modules/vocab/picker/modeMenu.js',
   './js/modules/vocab/kanji-read/index.js',
   './js/modules/vocab/kanji-read/ui.js',
+  './js/modules/vocab/match.js',
+  './js/modules/vocab/picker.js',
+  './js/modules/vocab/picker/data.js',
+  './js/modules/vocab/picker/index.js',
+  './js/modules/vocab/picker/lessonList.js',
+  './js/modules/vocab/picker/modeMenu.js',
+  './js/modules/vocab/picker/views.js',
+  './js/modules/vocab/quiz.js',
+  './js/modules/vocab/quiz/build.js',
+  './js/modules/vocab/quiz/choice.js',
+  './js/modules/vocab/quiz/gate.js',
+  './js/modules/vocab/quiz/index.js',
+  './js/modules/vocab/quiz/pairs.js',
+  './js/modules/vocab/quiz/result.js',
+  './js/modules/vocab/quiz/typing.js',
+  './js/modules/vocab/reflex.js',
   './js/screens/exam.js',
   './js/screens/learn.js',
   './js/screens/me.js',
@@ -54,7 +54,7 @@ const CORE_ASSETS = [
 
 const toLocalUrl = (p) => (p.startsWith('./') || p.startsWith('/') ? p : `./${p}`);
 
-async function precacheAll() {
+async function precacheCore() {
   const cache = await caches.open(CACHE);
   await Promise.allSettled(CORE_ASSETS.map((url) => cache.add(url)));
 
@@ -69,7 +69,7 @@ async function precacheAll() {
 }
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(precacheAll().then(() => self.skipWaiting()));
+  event.waitUntil(precacheCore().then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
@@ -85,6 +85,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
+
+  if (url.origin === self.location.origin && url.pathname.startsWith('/api/')) return;
 
   if (event.request.mode === 'navigate') {
     event.respondWith(

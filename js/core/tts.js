@@ -80,6 +80,8 @@ function selectVoice(voices, settings) {
 }
 
 if ('speechSynthesis' in window) {
+  // Gọi getVoices() sớm ngay khi module được nạp để kích hoạt trình duyệt nạp bộ đệm giọng đọc
+  window.speechSynthesis.getVoices();
   window.speechSynthesis.addEventListener?.('voiceschanged', () => {
     getJapaneseVoices();
   });

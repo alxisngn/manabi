@@ -114,7 +114,7 @@ body[data-onboard="1"] .app-shell {
   body:not([data-session="1"]):not([data-onboard="1"]) { padding-left: 224px; }
   body:not([data-onboard="1"]) {
     padding-left: 232px;
-    transition: padding-left 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: transform 0.22s cubic-bezier(0.22, 1, 0.36, 1);
   }
   body.nav-collapsed:not([data-onboard="1"]) { padding-left: 78px; }
 
@@ -141,7 +141,6 @@ body[data-onboard="1"] .app-shell {
     border-right: 2px solid var(--border);
     background: linear-gradient(180deg, var(--bg-card) 0%, #141726 100%);
     box-shadow: 4px 0 20px rgba(0, 0, 0, 0.28);
-    transition: width 0.22s cubic-bezier(0.22, 1, 0.36, 1), padding 0.22s ease;
   }
 
   .sidebar-head {
