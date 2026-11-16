@@ -1,4 +1,4 @@
-const V = 'v17';
+const V = 'v18';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = `manabi-fonts-${V}`;
 
@@ -33,6 +33,11 @@ const CORE_ASSETS = [
   './js/modules/vocab/quiz/typing.js',
   './js/modules/vocab/quiz/gate.js',
   './js/modules/vocab/quiz/result.js',
+  './js/modules/vocab/picker/index.js',
+  './js/modules/vocab/picker/data.js',
+  './js/modules/vocab/picker/views.js',
+  './js/modules/vocab/picker/lessonList.js',
+  './js/modules/vocab/picker/modeMenu.js',
   './js/screens/exam.js',
   './js/screens/learn.js',
   './js/screens/me.js',
