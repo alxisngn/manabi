@@ -1,4 +1,4 @@
-const V = 'v23';
+const V = 'v24';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = `manabi-fonts-${V}`;
 
@@ -20,6 +20,7 @@ const CORE_ASSETS = [
   './js/core/progress.js',
   './js/core/ruby.js',
   './js/core/store.js',
+  './js/core/sync.js',
   './js/core/tts.js',
   './js/core/util.js',
   './js/core/weak.js',
@@ -86,7 +87,7 @@ self.addEventListener('fetch', (event) => {
   if (event.request.method !== 'GET') return;
   const url = new URL(event.request.url);
 
-  if (url.origin === self.location.origin && url.pathname.startsWith('/api/')) return;
+  if (url.pathname.startsWith('/api/')) return;
 
   if (event.request.mode === 'navigate') {
     event.respondWith(

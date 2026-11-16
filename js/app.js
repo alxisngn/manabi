@@ -1,4 +1,5 @@
 import { hasLevel, getLevel, setLevel, setSession } from './core/nav.js';
+import { getNavCollapsed, setNavCollapsed } from './core/store.js';
 
 const LEVELS = [
   { id: 'N5', name: 'Trình độ N5', sub: 'Sơ cấp 1 • Bài 1 – 25', accent: 'accent-teal' },
@@ -206,12 +207,13 @@ window.addEventListener('DOMContentLoaded', () => {
   initLevelSheet();
   router();
   if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js').catch(() => {});
+  import('./core/sync.js').then((m) => m.initSync?.()).catch(() => {});
 });
 (() => {
   const nav = document.getElementById('bottom-nav') || document.querySelector('.bottom-nav');
   if (!nav || nav.querySelector('.sidebar-head')) return;
 
-  if (localStorage.getItem('manabi:navCollapsed') === '1') {
+  if (getNavCollapsed()) {
     document.body.classList.add('nav-collapsed');
   }
 
@@ -230,6 +232,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
   head.querySelector('#nav-collapse-btn').onclick = () => {
     const collapsed = document.body.classList.toggle('nav-collapsed');
-    localStorage.setItem('manabi:navCollapsed', collapsed ? '1' : '0');
+    setNavCollapsed(collapsed);
   };
 })();

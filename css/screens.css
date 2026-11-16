@@ -480,3 +480,11 @@
 .lv-sheet-ico { width: 42px; height: 42px; font-family: var(--font-ui); font-size: 1.05rem; font-weight: 800; }
 .lv-sheet-title { font-size: 1.05rem; }
 .nav-collapse-btn { min-width: 38px; min-height: 38px; padding: 0; }
+/* === Sync Settings in Me Screen === */
+.me-sync-entry { display: flex; flex-direction: column; gap: 8px; }
+.me-sync-input { min-height: 44px; padding: 8px 12px; border-radius: 12px; border: 2px solid var(--border); background: var(--bg); color: var(--text); font-family: monospace; font-size: 0.92rem; }
+.me-sync-key-box { padding: 10px 12px; border-radius: 10px; border: 1.5px dashed var(--border); background: var(--bg); color: var(--teal); font-family: monospace; font-size: 0.92rem; font-weight: 700; word-break: break-all; text-align: center; }
+.me-sync-warn { font-size: 0.8rem; color: var(--yellow); font-weight: 600; line-height: 1.4; }
+.me-sync-note { font-size: 0.85rem; font-weight: 600; color: var(--green); }
+.me-sync-note.is-error { color: var(--red); }
+.me-btn-danger { color: var(--red); }

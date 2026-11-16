@@ -2,9 +2,33 @@ import { getStore, exportBackup, importBackup } from '../core/store.js';
 import { getLevel } from '../core/nav.js';
 import { escapeHtml } from '../core/util.js';
 import { speakJP, getJapaneseVoices, getVoiceSettings, setVoiceSettings } from '../core/tts.js';
+import {
+  getSyncKey,
+  getSyncStatus,
+  onSyncStatus,
+  createSyncKey,
+  setSyncKey,
+  clearSyncKey,
+  syncNow
+} from '../core/sync.js';
 
 const SAMPLE_TEXT = 'これは日本語のテストです。診ます、探します、間に合います。';
 const formatRate = (r) => `${Number(r).toFixed(2).replace(/0$/, '')}x`;
+
+function formatSyncTime(iso) {
+  if (!iso) return '';
+  const d = new Date(iso);
+  if (Number.isNaN(d.getTime())) return '';
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mm = String(d.getMinutes()).padStart(2, '0');
+  return `${hh}:${mm}`;
+}
+
+function maskKey(key) {
+  if (!key) return '';
+  if (key.length <= 10) return '••••••••';
+  return `${key.slice(0, 6)}••••••••••••••••${key.slice(-4)}`;
+}
 
 export function mount(container) {
   const st = getStore('vocab', { weakWords: [], openWords: [], customLessons: [] });
@@ -15,6 +39,11 @@ export function mount(container) {
   const curLv = getLevel();
   const baseVocab = `#/${curLv.toLowerCase()}/vocab`;
   const secLabel = (t) => `<div class="me-sec-lbl">${t}</div>`;
+
+  let showKey = false;
+  let showKeyInput = false;
+  let syncNote = '';
+  let syncNoteErr = false;
 
   container.innerHTML = `
     <h1 class="page-title">Tôi</h1>
@@ -92,12 +121,167 @@ export function mount(container) {
         <p id="backup-msg" class="backup-msg" hidden></p>
       </div>
 
-      <div class="card is-muted row-between me-sync-card">
-        <span class="me-sync-lbl">☁️ Đăng nhập & đồng bộ</span>
-        <span class="badge">Sắp có</span>
-      </div>
+      <div class="card me-card" id="sync-card"></div>
     </div>
   `;
+
+  const syncCardEl = container.querySelector('#sync-card');
+
+  const renderSyncCard = () => {
+    const key = getSyncKey();
+    const stSync = getSyncStatus();
+
+    if (!key) {
+      syncCardEl.innerHTML = `
+        <div class="row-between">
+          ${secLabel('Đồng bộ giữa các thiết bị')}
+          <span class="badge">Chưa bật</span>
+        </div>
+        <p class="me-item-sub">Lưu tiến độ từ vựng & bài học lên đám mây bằng mã đồng bộ riêng, không cần tài khoản.</p>
+        <div class="grid-2">
+          <button type="button" id="btn-sync-create" class="btn btn-teal me-btn-md">✨ Tạo mã mới</button>
+          <button type="button" id="btn-sync-toggle-in" class="btn me-btn-md">🔑 Nhập mã có sẵn</button>
+        </div>
+        ${showKeyInput ? `
+          <div class="me-sync-entry">
+            <input type="text" id="input-sync-key" class="w-full me-sync-input" placeholder="Dán mã đồng bộ (24–128 ký tự)..." autocomplete="off" spellcheck="false">
+            <div class="grid-2">
+              <button type="button" id="btn-sync-save-key" class="btn btn-yellow me-btn-md">Lưu & Đồng bộ</button>
+              <button type="button" id="btn-sync-cancel-in" class="btn me-btn-md">Hủy</button>
+            </div>
+          </div>
+        ` : ''}
+        ${syncNote ? `<p class="me-sync-note ${syncNoteErr ? 'is-error' : ''}">${escapeHtml(syncNote)}</p>` : ''}
+      `;
+
+      syncCardEl.querySelector('#btn-sync-create').onclick = () => {
+        try {
+          createSyncKey();
+          showKey = true;
+          showKeyInput = false;
+          syncNote = 'Đã tạo mã đồng bộ mới. Hãy sao chép và lưu giữ cẩn thận!';
+          syncNoteErr = false;
+          renderSyncCard();
+        } catch (err) {
+          syncNote = err.message || 'Không thể tạo mã';
+          syncNoteErr = true;
+          renderSyncCard();
+        }
+      };
+
+      syncCardEl.querySelector('#btn-sync-toggle-in').onclick = () => {
+        showKeyInput = !showKeyInput;
+        syncNote = '';
+        syncNoteErr = false;
+        renderSyncCard();
+        if (showKeyInput) syncCardEl.querySelector('#input-sync-key')?.focus();
+      };
+
+      syncCardEl.querySelector('#btn-sync-cancel-in')?.addEventListener('click', () => {
+        showKeyInput = false;
+        syncNote = '';
+        renderSyncCard();
+      });
+
+      syncCardEl.querySelector('#btn-sync-save-key')?.addEventListener('click', () => {
+        const val = syncCardEl.querySelector('#input-sync-key')?.value || '';
+        try {
+          setSyncKey(val);
+          showKeyInput = false;
+          showKey = false;
+          syncNote = '';
+          syncNoteErr = false;
+          renderSyncCard();
+        } catch (err) {
+          syncNote = err.message || 'Mã đồng bộ không hợp lệ';
+          syncNoteErr = true;
+          renderSyncCard();
+        }
+      });
+      return;
+    }
+
+    let badgeCls = 'badge';
+    let statusText = 'Sẵn sàng đồng bộ';
+    if (stSync.state === 'syncing') {
+      badgeCls = 'badge badge-ready';
+      statusText = 'Đang đồng bộ…';
+    } else if (stSync.state === 'ok') {
+      badgeCls = 'badge st-done';
+      const hhmm = formatSyncTime(stSync.lastSyncAt);
+      statusText = hhmm ? `Đã đồng bộ lúc ${hhmm}` : 'Đã đồng bộ';
+    } else if (stSync.state === 'offline') {
+      badgeCls = 'badge st-learning';
+      statusText = 'Offline — tự đồng bộ khi có mạng';
+    } else if (stSync.state === 'error') {
+      badgeCls = 'badge st-learning';
+      statusText = 'Tạm gián đoạn — sẽ thử lại sau';
+    }
+
+    syncCardEl.innerHTML = `
+      <div class="row-between">
+        ${secLabel('Đồng bộ giữa các thiết bị')}
+        <span class="${badgeCls}">${escapeHtml(statusText)}</span>
+      </div>
+
+      <div class="me-subbox">
+        <div class="me-sync-key-box">${escapeHtml(showKey ? key : maskKey(key))}</div>
+        <div class="grid-2">
+          <button type="button" id="btn-sync-reveal" class="btn btn-sm">${showKey ? '🙈 Ẩn mã' : '👁 Hiện mã'}</button>
+          <button type="button" id="btn-sync-copy" class="btn btn-sm btn-teal">📋 Sao chép</button>
+        </div>
+      </div>
+
+      <p class="me-sync-warn">⚠️ Ai có mã này đều xem/sửa được tiến trình của bạn — giữ kín.</p>
+
+      <div class="grid-2">
+        <button type="button" id="btn-sync-now" class="btn btn-yellow me-btn-md" ${stSync.state === 'syncing' ? 'disabled' : ''}>🔄 Đồng bộ ngay</button>
+        <button type="button" id="btn-sync-off" class="btn me-btn-md me-btn-danger">Tắt đồng bộ trên máy này</button>
+      </div>
+      ${syncNote ? `<p class="me-sync-note ${syncNoteErr ? 'is-error' : ''}">${escapeHtml(syncNote)}</p>` : ''}
+    `;
+
+    syncCardEl.querySelector('#btn-sync-reveal').onclick = () => {
+      showKey = !showKey;
+      renderSyncCard();
+    };
+
+    syncCardEl.querySelector('#btn-sync-copy').onclick = async () => {
+      try {
+        await navigator.clipboard.writeText(key);
+        syncNote = 'Đã sao chép mã đồng bộ vào bộ nhớ tạm!';
+        syncNoteErr = false;
+      } catch {
+        showKey = true;
+        syncNote = 'Không tự sao chép được — hãy bấm Hiện mã và copy thủ công.';
+        syncNoteErr = true;
+      }
+      renderSyncCard();
+    };
+
+    syncCardEl.querySelector('#btn-sync-now').onclick = () => {
+      syncNote = '';
+      syncNow();
+    };
+
+    syncCardEl.querySelector('#btn-sync-off').onclick = () => {
+      clearSyncKey();
+      showKey = false;
+      showKeyInput = false;
+      syncNote = 'Đã tắt đồng bộ trên máy này (dữ liệu học vẫn được giữ nguyên).';
+      syncNoteErr = false;
+      renderSyncCard();
+    };
+  };
+
+  renderSyncCard();
+  const unsubSync = onSyncStatus(() => {
+    if (!document.body.contains(container)) {
+      unsubSync();
+      return;
+    }
+    renderSyncCard();
+  });
 
   const voiceSelect = container.querySelector('#voice-select');
   const emptyHint = container.querySelector('#voice-empty-hint');

@@ -1,4 +1,7 @@
 const PREFIX = 'manabi:';
+const META_KEY = 'manabi:_meta';
+const NAV_COLLAPSED_KEY = 'manabi:navCollapsed';
+const EXCLUDED_BACKUP_SUFFIXES = new Set(['syncKey', 'app', 'navCollapsed', '_meta', 'syncRev']);
 
 export function getStore(moduleName, fallback = {}) {
   try {
@@ -13,6 +16,20 @@ export function getStore(moduleName, fallback = {}) {
 export function setStore(moduleName, data) {
   try {
     localStorage.setItem(`${PREFIX}${moduleName}`, JSON.stringify(data));
+    if (moduleName !== '_meta') {
+      const now = new Date().toISOString();
+      let meta = {};
+      try {
+        meta = JSON.parse(localStorage.getItem(META_KEY) || '{}') || {};
+      } catch {
+        meta = {};
+      }
+      meta[moduleName] = now;
+      localStorage.setItem(META_KEY, JSON.stringify(meta));
+      if (typeof window !== 'undefined') {
+        window.dispatchEvent(new CustomEvent('manabi:changed', { detail: { key: moduleName } }));
+      }
+    }
     return true;
   } catch (err) {
     console.error(`Lỗi ghi store ${moduleName}:`, err);
@@ -27,6 +44,29 @@ export function updateStore(moduleName, updater, fallback = {}) {
   return next;
 }
 
+export function getNavCollapsed() {
+  try {
+    return localStorage.getItem(NAV_COLLAPSED_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+
+export function setNavCollapsed(collapsed) {
+  try {
+    localStorage.setItem(NAV_COLLAPSED_KEY, collapsed ? '1' : '0');
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function isBackupAllowedKey(fullKey) {
+  if (!fullKey || !fullKey.startsWith(PREFIX)) return false;
+  const suffix = fullKey.slice(PREFIX.length);
+  return !EXCLUDED_BACKUP_SUFFIXES.has(suffix);
+}
+
 export function exportBackup() {
   const payload = {
     app: 'manabi',
@@ -37,7 +77,7 @@ export function exportBackup() {
 
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
-    if (key && key.startsWith(PREFIX)) {
+    if (isBackupAllowedKey(key)) {
       try {
         payload.data[key] = JSON.parse(localStorage.getItem(key));
       } catch {
@@ -68,8 +108,9 @@ export function importBackup(file) {
           throw new Error('Định dạng file backup Manabi không hợp lệ.');
         }
         Object.entries(parsed.data).forEach(([key, val]) => {
-          if (key.startsWith(PREFIX)) {
-            localStorage.setItem(key, JSON.stringify(val));
+          if (isBackupAllowedKey(key)) {
+            const moduleName = key.slice(PREFIX.length);
+            setStore(moduleName, val);
           }
         });
         resolve(true);
