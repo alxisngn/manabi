@@ -1,0 +1,32 @@
+{
+  "lesson": { "id": "n4-kanji-b30", "name": "Buổi 30 (便利使銀白黒紙)", "type": "book" },
+  "words": [
+    { "jp": "不便", "reading": "ふべん", "vi": "Bất tiện", "pos": "adj", "kanji": "便", "hanViet": "TIỆN", "on": "べん・びん", "kun": "" },
+    { "jp": "便利な", "reading": "べんりな", "vi": "Tiện lợi", "pos": "adj", "kanji": "便", "hanViet": "TIỆN", "on": "べん・びん", "kun": "" },
+    { "jp": "郵便局", "reading": "ゆうびんきょく", "vi": "Bưu điện", "pos": "noun", "kanji": "便", "hanViet": "TIỆN", "on": "べん・びん", "kun": "" },
+    { "jp": "利用する", "reading": "りようする", "vi": "Sử dụng, tận dụng", "pos": "verb", "kanji": "利", "hanViet": "LỢI", "on": "り", "kun": "きく" },
+    { "jp": "左利き", "reading": "ひだりきき", "vi": "Thuận tay trái", "pos": "noun", "kanji": "利", "hanViet": "LỢI", "on": "り", "kun": "きく" },
+    { "jp": "右利き", "reading": "みぎきき", "vi": "Thuận tay phải", "pos": "noun", "kanji": "利", "hanViet": "LỢI", "on": "り", "kun": "きく" },
+    { "jp": "使用中", "reading": "しようちゅう", "vi": "Đang sử dụng", "pos": "noun", "kanji": "使", "hanViet": "SỬ", "on": "し", "kun": "つかう" },
+    { "jp": "大使館", "reading": "たいしかん", "vi": "Đại sứ quán", "pos": "noun", "kanji": "使", "hanViet": "SỬ", "on": "し", "kun": "つかう" },
+    { "jp": "使う", "reading": "つかう", "vi": "Sử dụng", "pos": "verb", "kanji": "使", "hanViet": "SỬ", "on": "し", "kun": "つかう" },
+    { "jp": "使い方", "reading": "つかいかた", "vi": "Cách sử dụng", "pos": "noun", "kanji": "使", "hanViet": "SỬ", "on": "し", "kun": "つかう" },
+    { "jp": "銀行", "reading": "ぎんこう", "vi": "Ngân hàng", "pos": "noun", "kanji": "銀", "hanViet": "NGÂN", "on": "ぎん", "kun": "" },
+    { "jp": "銀メダル", "reading": "ぎんメダル", "vi": "Huy chương bạc", "pos": "noun", "kanji": "銀", "hanViet": "NGÂN", "on": "ぎん", "kun": "" },
+    { "jp": "銀色", "reading": "ぎんいろ", "vi": "Màu bạc", "pos": "noun", "kanji": "銀", "hanViet": "NGÂN", "on": "ぎん", "kun": "" },
+    { "jp": "白紙", "reading": "はくし", "vi": "Giấy trắng", "pos": "noun", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "白人", "reading": "はくじん", "vi": "Người da trắng", "pos": "noun", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "白い", "reading": "しろい", "vi": "Màu trắng", "pos": "adj", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "白黒", "reading": "しろくろ", "vi": "Trắng đen", "pos": "noun", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "面白い", "reading": "おもしろい", "vi": "Thú vị, hay", "pos": "adj", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "真っ白", "reading": "まっしろ", "vi": "Trắng tinh", "pos": "adj", "kanji": "白", "hanViet": "BẠCH", "on": "はく", "kun": "しろい" },
+    { "jp": "黒板", "reading": "こくばん", "vi": "Bảng đen", "pos": "noun", "kanji": "黒", "hanViet": "HẮC", "on": "こく", "kun": "くろい" },
+    { "jp": "黒猫", "reading": "くろねこ", "vi": "Mèo đen", "pos": "noun", "kanji": "黒", "hanViet": "HẮC", "on": "こく", "kun": "くろい" },
+    { "jp": "黒い", "reading": "くろい", "vi": "Màu đen", "pos": "adj", "kanji": "黒", "hanViet": "HẮC", "on": "こく", "kun": "くろい" },
+    { "jp": "真っ黒", "reading": "まっくろ", "vi": "Đen tuyền", "pos": "adj", "kanji": "黒", "hanViet": "HẮC", "on": "こく", "kun": "くろい" },
+    { "jp": "新聞紙", "reading": "しんぶんし", "vi": "Giấy in báo", "pos": "noun", "kanji": "紙", "hanViet": "CHỈ", "on": "し", "kun": "かみ" },
+    { "jp": "用紙", "reading": "ようし", "vi": "Mẫu giấy, tờ đơn", "pos": "noun", "kanji": "紙", "hanViet": "CHỈ", "on": "し", "kun": "かみ" },
+    { "jp": "紙", "reading": "かみ", "vi": "Giấy", "pos": "noun", "kanji": "紙", "hanViet": "CHỈ", "on": "し", "kun": "かみ" },
+    { "jp": "手紙", "reading": "てがみ", "vi": "Thư tay", "pos": "noun", "kanji": "紙", "hanViet": "CHỈ", "on": "し", "kun": "かみ" }
+  ]
+}

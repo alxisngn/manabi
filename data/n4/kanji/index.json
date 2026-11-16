@@ -1,0 +1,150 @@
+{
+ "level": "N4",
+ "skill": "kanji",
+ "lessons": [
+  {
+   "id": "n4-kanji-b26",
+   "name": "Bài 26",
+   "file": "bai26.json",
+   "count": 21
+  },
+  {
+   "id": "n4-kanji-b27",
+   "name": "Bài 27",
+   "file": "bai27.json",
+   "count": 24
+  },
+  {
+   "id": "n4-kanji-b28",
+   "name": "Bài 28",
+   "file": "bai28.json",
+   "count": 32
+  },
+  {
+   "id": "n4-kanji-b29",
+   "name": "Bài 29",
+   "file": "bai29.json",
+   "count": 30
+  },
+  {
+   "id": "n4-kanji-b30",
+   "name": "Bài 30",
+   "file": "bai30.json",
+   "count": 27
+  },
+  {
+   "id": "n4-kanji-b31",
+   "name": "Bài 31",
+   "file": "bai31.json",
+   "count": 32
+  },
+  {
+   "id": "n4-kanji-b32",
+   "name": "Bài 32",
+   "file": "bai32.json",
+   "count": 25
+  },
+  {
+   "id": "n4-kanji-b33",
+   "name": "Bài 33",
+   "file": "bai33.json",
+   "count": 18
+  },
+  {
+   "id": "n4-kanji-b34",
+   "name": "Bài 34",
+   "file": "bai34.json",
+   "count": 22
+  },
+  {
+   "id": "n4-kanji-b35",
+   "name": "Bài 35",
+   "file": "bai35.json",
+   "count": 27
+  },
+  {
+   "id": "n4-kanji-b36",
+   "name": "Bài 36",
+   "file": "bai36.json",
+   "count": 23
+  },
+  {
+   "id": "n4-kanji-b37",
+   "name": "Bài 37",
+   "file": "bai37.json",
+   "count": 22
+  },
+  {
+   "id": "n4-kanji-b38",
+   "name": "Bài 38",
+   "file": "bai38.json",
+   "count": 30
+  },
+  {
+   "id": "n4-kanji-b39",
+   "name": "Bài 39",
+   "file": "bai39.json",
+   "count": 29
+  },
+  {
+   "id": "n4-kanji-b40",
+   "name": "Bài 40",
+   "file": "bai40.json",
+   "count": 31
+  },
+  {
+   "id": "n4-kanji-b41",
+   "name": "Bài 41",
+   "file": "bai41.json",
+   "count": 25
+  },
+  {
+   "id": "n4-kanji-b42",
+   "name": "Bài 42",
+   "file": "bai42.json",
+   "count": 21
+  },
+  {
+   "id": "n4-kanji-b43",
+   "name": "Bài 43",
+   "file": "bai43.json",
+   "count": 22
+  },
+  {
+   "id": "n4-kanji-b44",
+   "name": "Bài 44",
+   "file": "bai44.json",
+   "count": 19
+  },
+  {
+   "id": "n4-kanji-b45",
+   "name": "Bài 45",
+   "file": "bai45.json",
+   "count": 18
+  },
+  {
+   "id": "n4-kanji-b46",
+   "name": "Bài 46",
+   "file": "bai46.json",
+   "count": 21
+  },
+  {
+   "id": "n4-kanji-b47",
+   "name": "Bài 47",
+   "file": "bai47.json",
+   "count": 17
+  },
+  {
+   "id": "n4-kanji-b48",
+   "name": "Bài 48",
+   "file": "bai48.json",
+   "count": 19
+  },
+  {
+   "id": "n4-kanji-b49",
+   "name": "Bài 49",
+   "file": "bai49.json",
+   "count": 24
+  }
+ ]
+}

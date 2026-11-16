@@ -1,0 +1,27 @@
+{
+  "lesson": { "id": "n4-kanji-b37", "name": "Buổi 37 (洋服衣短毛糸玉光)", "type": "book" },
+  "words": [
+    { "jp": "洋服", "reading": "ようふく", "vi": "Quần áo kiểu Tây", "pos": "noun", "kanji": "洋", "hanViet": "DƯƠNG", "on": "よう", "kun": "" },
+    { "jp": "洋食", "reading": "ようしょく", "vi": "Món ăn kiểu Tây", "pos": "noun", "kanji": "洋", "hanViet": "DƯƠNG", "on": "よう", "kun": "" },
+    { "jp": "西洋", "reading": "せいよう", "vi": "Phương Tây", "pos": "noun", "kanji": "洋", "hanViet": "DƯƠNG", "on": "よう", "kun": "" },
+    { "jp": "東洋", "reading": "とうよう", "vi": "Phương Đông", "pos": "noun", "kanji": "洋", "hanViet": "DƯƠNG", "on": "よう", "kun": "" },
+    { "jp": "服", "reading": "ふく", "vi": "Quần áo, trang phục", "pos": "noun", "kanji": "服", "hanViet": "PHỤC", "on": "ふく", "kun": "" },
+    { "jp": "和服", "reading": "わふく", "vi": "Quần áo truyền thống Nhật", "pos": "noun", "kanji": "服", "hanViet": "PHỤC", "on": "ふく", "kun": "" },
+    { "jp": "制服", "reading": "せいふく", "vi": "Đồng phục", "pos": "noun", "kanji": "服", "hanViet": "PHỤC", "on": "ふく", "kun": "" },
+    { "jp": "衣類", "reading": "いるい", "vi": "Quần áo nói chung", "pos": "noun", "kanji": "衣", "hanViet": "Y", "on": "い", "kun": "" },
+    { "jp": "衣服", "reading": "いふく", "vi": "Y phục, quần áo", "pos": "noun", "kanji": "衣", "hanViet": "Y", "on": "い", "kun": "" },
+    { "jp": "短所", "reading": "たんしょ", "vi": "Điểm yếu, khuyết điểm", "pos": "noun", "kanji": "短", "hanViet": "ĐOẢN", "on": "たん", "kun": "みじかい" },
+    { "jp": "短期", "reading": "たんき", "vi": "Ngắn hạn", "pos": "noun", "kanji": "短", "hanViet": "ĐOẢN", "on": "たん", "kun": "みじかい" },
+    { "jp": "短い", "reading": "みじかい", "vi": "Ngắn", "pos": "adj", "kanji": "短", "hanViet": "ĐOẢN", "on": "たん", "kun": "みじかい" },
+    { "jp": "毛", "reading": "け", "vi": "Lông, tóc", "pos": "noun", "kanji": "毛", "hanViet": "MAO", "on": "もう", "kun": "け" },
+    { "jp": "髪の毛", "reading": "かみのけ", "vi": "Sợi tóc, mái tóc", "pos": "noun", "kanji": "毛", "hanViet": "MAO", "on": "もう", "kun": "け" },
+    { "jp": "糸", "reading": "いと", "vi": "Sợi chỉ", "pos": "noun", "kanji": "糸", "hanViet": "MỊCH", "on": "し", "kun": "いと" },
+    { "jp": "毛糸", "reading": "けいと", "vi": "Sợi len", "pos": "noun", "kanji": "糸", "hanViet": "MỊCH", "on": "し", "kun": "いと" },
+    { "jp": "玉", "reading": "たま", "vi": "Quả bóng, viên ngọc", "pos": "noun", "kanji": "玉", "hanViet": "NGỌC", "on": "ぎょく", "kun": "たま" },
+    { "jp": "お玉", "reading": "おたま", "vi": "Cái muôi múc canh", "pos": "noun", "kanji": "玉", "hanViet": "NGỌC", "on": "ぎょく", "kun": "たま" },
+    { "jp": "日光", "reading": "にっこう", "vi": "Ánh sáng mặt trời", "pos": "noun", "kanji": "光", "hanViet": "QUANG", "on": "こう", "kun": "ひかり・ひかる" },
+    { "jp": "観光", "reading": "かんこう", "vi": "Tham quan, du lịch", "pos": "noun", "kanji": "光", "hanViet": "QUANG", "on": "こう", "kun": "ひかり・ひかる" },
+    { "jp": "光", "reading": "ひかり", "vi": "Ánh sáng", "pos": "noun", "kanji": "光", "hanViet": "QUANG", "on": "こう", "kun": "ひかり・ひかる" },
+    { "jp": "光る", "reading": "ひかる", "vi": "Phát sáng, tỏa sáng", "pos": "verb", "kanji": "光", "hanViet": "QUANG", "on": "こう", "kun": "ひかり・ひかる" }
+  ]
+}

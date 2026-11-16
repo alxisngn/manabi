@@ -57,7 +57,7 @@ async function renderFirstLevelPick(token) {
       ? `<button type="button" class="card module-card is-active" data-pick-lv="${lv.id}">
           <div class="module-left">
             <div class="module-icon ${lv.accent} lv-pick-ico">${lv.id}</div>
-            <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub} • ${n} bài</div></div>
+            <div><div class="module-title">${lv.name}</div><div class="module-sub">${lv.sub} •${n} bài</div></div>
           </div>
           <span class="badge badge-ready">Chọn →</span>
         </button>`
@@ -106,9 +106,9 @@ async function router() {
     const level = setLevel(skillMatch[1].toUpperCase());
     const skill = skillMatch[2].toLowerCase();
     setActiveTab('learn');
-    if (skill === 'vocab') {
+    if (skill === 'vocab' || skill === 'kanji') {
       const { mount } = await import('./modules/vocab/picker.js');
-      if (token === routeToken) mount(appEl, { level, query: params });
+      if (token === routeToken) mount(appEl, { level, skill, query: params });
       return;
     }
     navigateTo('#/learn');
@@ -145,7 +145,7 @@ async function router() {
   if (pathPart === '#/me') {
     setActiveTab('me');
     const { mount } = await import('./screens/me.js');
-    if (token === routeToken) mount(appEl);
+    if (token === routeToken) await mount(appEl);
     return;
   }
 

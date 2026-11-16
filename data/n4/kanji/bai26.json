@@ -1,0 +1,26 @@
+{
+  "lesson": { "id": "n4-kanji-b26", "name": "Buổi 26 (家族兄弟姉妹私育)", "type": "book" },
+  "words": [
+    { "jp": "家族", "reading": "かぞく", "vi": "Gia đình", "pos": "noun", "kanji": "家", "hanViet": "GIA", "on": "か", "kun": "や・いえ" },
+    { "jp": "家庭", "reading": "かてい", "vi": "Gia đình, hộ gia đình", "pos": "noun", "kanji": "家", "hanViet": "GIA", "on": "か", "kun": "や・いえ" },
+    { "jp": "家事", "reading": "かじ", "vi": "Việc nhà", "pos": "noun", "kanji": "家", "hanViet": "GIA", "on": "か", "kun": "や・いえ" },
+    { "jp": "大家", "reading": "おおや", "vi": "Chủ nhà", "pos": "noun", "kanji": "家", "hanViet": "GIA", "on": "か", "kun": "や・いえ" },
+    { "jp": "家", "reading": "いえ", "vi": "Nhà", "pos": "noun", "kanji": "家", "hanViet": "GIA", "on": "か", "kun": "や・いえ" },
+    { "jp": "親族", "reading": "しんぞく", "vi": "Họ hàng, thân tộc", "pos": "noun", "kanji": "族", "hanViet": "TỘC", "on": "ぞく", "kun": "" },
+    { "jp": "兄弟", "reading": "きょうだい", "vi": "Anh em", "pos": "noun", "kanji": "兄", "hanViet": "HUYNH", "on": "きょう・けい", "kun": "あに" },
+    { "jp": "父兄", "reading": "ふけい", "vi": "Phụ huynh", "pos": "noun", "kanji": "兄", "hanViet": "HUYNH", "on": "きょう・けい", "kun": "あに" },
+    { "jp": "兄", "reading": "あに", "vi": "Anh trai (mình)", "pos": "noun", "kanji": "兄", "hanViet": "HUYNH", "on": "きょう・けい", "kun": "あに" },
+    { "jp": "弟子", "reading": "でし", "vi": "Đệ tử", "pos": "noun", "kanji": "弟", "hanViet": "ĐỆ", "on": "だい・で", "kun": "おとうと" },
+    { "jp": "弟", "reading": "おとうと", "vi": "Em trai (mình)", "pos": "noun", "kanji": "弟", "hanViet": "ĐỆ", "on": "だい・で", "kun": "おとうと" },
+    { "jp": "姉妹", "reading": "しまい", "vi": "Chị em gái", "pos": "noun", "kanji": "姉", "hanViet": "TỈ", "on": "し", "kun": "あね" },
+    { "jp": "姉", "reading": "あね", "vi": "Chị gái (mình)", "pos": "noun", "kanji": "姉", "hanViet": "TỈ", "on": "し", "kun": "あね" },
+    { "jp": "お姉さん", "reading": "おねえさん", "vi": "Chị gái (người khác / cách gọi)", "pos": "noun", "kanji": "姉", "hanViet": "TỈ", "on": "し", "kun": "あね" },
+    { "jp": "妹", "reading": "いもうと", "vi": "Em gái (mình)", "pos": "noun", "kanji": "妹", "hanViet": "MUỘI", "on": "まい", "kun": "いもうと" },
+    { "jp": "私立大学", "reading": "しりつだいがく", "vi": "Đại học tư lập", "pos": "noun", "kanji": "私", "hanViet": "TƯ", "on": "し", "kun": "わたくし・わたし" },
+    { "jp": "私", "reading": "わたし", "vi": "Tôi", "pos": "noun", "kanji": "私", "hanViet": "TƯ", "on": "し", "kun": "わたくし・わたし" },
+    { "jp": "教育", "reading": "きょういく", "vi": "Giáo dục", "pos": "noun", "kanji": "育", "hanViet": "DỤC", "on": "いく", "kun": "そだつ・そだてる" },
+    { "jp": "体育", "reading": "たいいく", "vi": "Thể dục", "pos": "noun", "kanji": "育", "hanViet": "DỤC", "on": "いく", "kun": "そだつ・そだてる" },
+    { "jp": "育つ", "reading": "そだつ", "vi": "Lớn lên, phát triển", "pos": "verb", "kanji": "育", "hanViet": "DỤC", "on": "いく", "kun": "そだつ・そだてる" },
+    { "jp": "育てる", "reading": "そだてる", "vi": "Nuôi dưỡng, chăm sóc", "pos": "verb", "kanji": "育", "hanViet": "DỤC", "on": "いく", "kun": "そだつ・そだてる" }
+  ]
+}

@@ -11,6 +11,16 @@ export function getLessonProgress(level, skill, lessonId) {
   return st?.lessons?.[makeKey(level, skill, lessonId)] || null;
 }
 
+export function getLastStudiedSkill(level) {
+  const prefix = `${String(level || 'N4').toLowerCase()}/`;
+  const st = getStore(STORE_KEY, { lessons: {} });
+  const entries = Object.entries(st?.lessons || {}).filter(([k]) => k.startsWith(prefix));
+  if (!entries.length) return 'vocab';
+  entries.sort((a, b) => String(b[1]?.updatedAt || b[1]?.lastAt || '').localeCompare(String(a[1]?.updatedAt || a[1]?.lastAt || '')));
+  const parts = entries[0][0].split('/');
+  return parts[1] || 'vocab';
+}
+
 export function markStudied(level, skill, lessonId) {
   if (!lessonId || String(lessonId).startsWith('user:')) return null;
   const key = makeKey(level, skill, lessonId);
@@ -20,7 +30,8 @@ export function markStudied(level, skill, lessonId) {
     const lessons = { ...(cur?.lessons || {}) };
     const prev = lessons[key];
     if (prev?.status === 'done') {
-      result = prev;
+      result = { ...prev, lastAt: now, updatedAt: now };
+      lessons[key] = result;
       return { ...cur, lessons };
     }
     result = {
@@ -29,7 +40,7 @@ export function markStudied(level, skill, lessonId) {
       bestPct: prev?.bestPct ?? null,
       lastPct: prev?.lastPct ?? null,
       firstDoneAt: prev?.firstDoneAt || null,
-      lastAt: prev?.lastAt || now,
+      lastAt: now,
       updatedAt: now
     };
     lessons[key] = result;

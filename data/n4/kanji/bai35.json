@@ -1,0 +1,32 @@
+{
+  "lesson": { "id": "n4-kanji-b35", "name": "Buổi 35 (毎週映画図書館公園)", "type": "book" },
+  "words": [
+    { "jp": "毎日", "reading": "まいにち", "vi": "Mỗi ngày", "pos": "adv", "kanji": "毎", "hanViet": "MỖI", "on": "まい", "kun": "" },
+    { "jp": "毎月", "reading": "まいつき", "vi": "Mỗi tháng", "pos": "adv", "kanji": "毎", "hanViet": "MỖI", "on": "まい", "kun": "" },
+    { "jp": "毎年", "reading": "まいとし", "vi": "Mỗi năm", "pos": "adv", "kanji": "毎", "hanViet": "MỖI", "on": "まい", "kun": "" },
+    { "jp": "毎晩", "reading": "まいばん", "vi": "Mỗi tối", "pos": "adv", "kanji": "毎", "hanViet": "MỖI", "on": "まい", "kun": "" },
+    { "jp": "毎週", "reading": "まいしゅう", "vi": "Mỗi tuần", "pos": "adv", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "今週", "reading": "こんしゅう", "vi": "Tuần này", "pos": "noun", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "来週", "reading": "らいしゅう", "vi": "Tuần sau", "pos": "noun", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "先週", "reading": "せんしゅう", "vi": "Tuần trước", "pos": "noun", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "週末", "reading": "しゅうまつ", "vi": "Cuối tuần", "pos": "noun", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "一週間", "reading": "いっしゅうかん", "vi": "Một tuần lễ", "pos": "noun", "kanji": "週", "hanViet": "CHU", "on": "しゅう", "kun": "" },
+    { "jp": "映画", "reading": "えいが", "vi": "Phim điện ảnh", "pos": "noun", "kanji": "映", "hanViet": "ẢNH", "on": "えい", "kun": "" },
+    { "jp": "映画館", "reading": "えいがかん", "vi": "Rạp chiếu phim", "pos": "noun", "kanji": "映", "hanViet": "ẢNH", "on": "えい", "kun": "" },
+    { "jp": "漫画", "reading": "まんが", "vi": "Truyện tranh", "pos": "noun", "kanji": "画", "hanViet": "HỌA", "on": "が・かく", "kun": "" },
+    { "jp": "画家", "reading": "がか", "vi": "Họa sĩ", "pos": "noun", "kanji": "画", "hanViet": "HỌA", "on": "が・かく", "kun": "" },
+    { "jp": "絵画", "reading": "かいが", "vi": "Hội họa, tranh vẽ", "pos": "noun", "kanji": "画", "hanViet": "HỌA", "on": "が・かく", "kun": "" },
+    { "jp": "計画", "reading": "けいかく", "vi": "Kế hoạch", "pos": "noun", "kanji": "画", "hanViet": "HỌA", "on": "が・かく", "kun": "" },
+    { "jp": "図書館", "reading": "としょかん", "vi": "Thư viện", "pos": "noun", "kanji": "図", "hanViet": "ĐỒ", "on": "と・ず", "kun": "" },
+    { "jp": "地図", "reading": "ちず", "vi": "Bản đồ", "pos": "noun", "kanji": "図", "hanViet": "ĐỒ", "on": "と・ず", "kun": "" },
+    { "jp": "大使館", "reading": "たいしかん", "vi": "Đại sứ quán", "pos": "noun", "kanji": "館", "hanViet": "QUÁN", "on": "かん", "kun": "" },
+    { "jp": "美術館", "reading": "びじゅつかん", "vi": "Bảo tàng mỹ thuật", "pos": "noun", "kanji": "館", "hanViet": "QUÁN", "on": "かん", "kun": "" },
+    { "jp": "公園", "reading": "こうえん", "vi": "Công viên", "pos": "noun", "kanji": "公", "hanViet": "CÔNG", "on": "こう", "kun": "" },
+    { "jp": "公立", "reading": "こうりつ", "vi": "Công lập", "pos": "noun", "kanji": "公", "hanViet": "CÔNG", "on": "こう", "kun": "" },
+    { "jp": "公平", "reading": "こうへい", "vi": "Công bằng", "pos": "adj", "kanji": "公", "hanViet": "CÔNG", "on": "こう", "kun": "" },
+    { "jp": "公開", "reading": "こうかい", "vi": "Công khai", "pos": "noun", "kanji": "公", "hanViet": "CÔNG", "on": "こう", "kun": "" },
+    { "jp": "動物園", "reading": "どうぶつえん", "vi": "Vườn bách thú, sở thú", "pos": "noun", "kanji": "園", "hanViet": "VIÊN", "on": "えん", "kun": "" },
+    { "jp": "遊園地", "reading": "ゆうえんち", "vi": "Khu vui chơi giải trí", "pos": "noun", "kanji": "園", "hanViet": "VIÊN", "on": "えん", "kun": "" },
+    { "jp": "幼稚園", "reading": "ようちえん", "vi": "Trường mẫu giáo", "pos": "noun", "kanji": "園", "hanViet": "VIÊN", "on": "えん", "kun": "" }
+  ]
+}

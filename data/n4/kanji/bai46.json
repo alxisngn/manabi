@@ -1,0 +1,26 @@
+{
+  "lesson": { "id": "n4-kanji-b46", "name": "Buổi 46 (旅持世界写真船)", "type": "book" },
+  "words": [
+    { "jp": "旅行", "reading": "りょこう", "vi": "Du lịch", "pos": "noun", "kanji": "旅", "hanViet": "LỮ", "on": "りょ", "kun": "たび" },
+    { "jp": "旅館", "reading": "りょかん", "vi": "Lữ quán, nhà trọ kiểu Nhật", "pos": "noun", "kanji": "旅", "hanViet": "LỮ", "on": "りょ", "kun": "たび" },
+    { "jp": "旅", "reading": "たび", "vi": "Chuyến đi, hành trình", "pos": "noun", "kanji": "旅", "hanViet": "LỮ", "on": "りょ", "kun": "たび" },
+    { "jp": "一人旅", "reading": "ひとりたび", "vi": "Du lịch một mình", "pos": "noun", "kanji": "旅", "hanViet": "LỮ", "on": "りょ", "kun": "たび" },
+    { "jp": "持つ", "reading": "もつ", "vi": "Cầm, nắm, mang theo", "pos": "verb", "kanji": "持", "hanViet": "TRÌ", "on": "じ", "kun": "もつ" },
+    { "jp": "お金持ち", "reading": "おかねもち", "vi": "Người giàu có", "pos": "noun", "kanji": "持", "hanViet": "TRÌ", "on": "じ", "kun": "もつ" },
+    { "jp": "気持ち", "reading": "きもち", "vi": "Cảm giác, tâm trạng", "pos": "noun", "kanji": "持", "hanViet": "TRÌ", "on": "じ", "kun": "もつ" },
+    { "jp": "世界", "reading": "せかい", "vi": "Thế giới", "pos": "noun", "kanji": "世", "hanViet": "THẾ", "on": "せ・せい", "kun": "よ" },
+    { "jp": "世話をする", "reading": "せわをする", "vi": "Chăm sóc, giúp đỡ", "pos": "verb", "kanji": "世", "hanViet": "THẾ", "on": "せ・せい", "kun": "よ" },
+    { "jp": "世の中", "reading": "よのなか", "vi": "Trong xã hội, trên đời", "pos": "noun", "kanji": "世", "hanViet": "THẾ", "on": "せ・せい", "kun": "よ" },
+    { "jp": "業界", "reading": "ぎょうかい", "vi": "Giới chuyên môn, ngành nghề", "pos": "noun", "kanji": "界", "hanViet": "GIỚI", "on": "かい", "kun": "" },
+    { "jp": "教育業界", "reading": "きょういくぎょうかい", "vi": "Ngành giáo dục", "pos": "noun", "kanji": "界", "hanViet": "GIỚI", "on": "かい", "kun": "" },
+    { "jp": "写真", "reading": "しゃしん", "vi": "Bức ảnh", "pos": "noun", "kanji": "写", "hanViet": "TẢ", "on": "しゃ", "kun": "うつす" },
+    { "jp": "写真家", "reading": "しゃしんか", "vi": "Nhiếp ảnh gia", "pos": "noun", "kanji": "写", "hanViet": "TẢ", "on": "しゃ", "kun": "うつす" },
+    { "jp": "写す", "reading": "うつす", "vi": "Chụp ảnh, sao chép lại", "pos": "verb", "kanji": "写", "hanViet": "TẢ", "on": "しゃ", "kun": "うつす" },
+    { "jp": "真実", "reading": "しんじつ", "vi": "Sự thật, chân thực", "pos": "noun", "kanji": "真", "hanViet": "CHÂN", "on": "しん", "kun": "ま" },
+    { "jp": "真ん中", "reading": "まんなか", "vi": "Chính giữa", "pos": "noun", "kanji": "真", "hanViet": "CHÂN", "on": "しん", "kun": "ま" },
+    { "jp": "真夜中", "reading": "まよなか", "vi": "Nửa đêm", "pos": "noun", "kanji": "真", "hanViet": "CHÂN", "on": "しん", "kun": "ま" },
+    { "jp": "客船", "reading": "きゃくせん", "vi": "Tàu chở khách", "pos": "noun", "kanji": "船", "hanViet": "THUYỀN", "on": "せん", "kun": "ふね" },
+    { "jp": "船長", "reading": "せんちょう", "vi": "Thuyền trưởng", "pos": "noun", "kanji": "船", "hanViet": "THUYỀN", "on": "せん", "kun": "ふね" },
+    { "jp": "船", "reading": "ふね", "vi": "Con thuyền, tàu thủy", "pos": "noun", "kanji": "船", "hanViet": "THUYỀN", "on": "せん", "kun": "ふね" }
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "lesson": { "id": "n4-kanji-b34", "name": "Buổi 34 (京都道府県市区村)", "type": "book" },
+  "words": [
+    { "jp": "東京", "reading": "とうきょう", "vi": "Tokyo", "pos": "noun", "kanji": "京", "hanViet": "KINH", "on": "きょう", "kun": "" },
+    { "jp": "京都", "reading": "きょうと", "vi": "Kyoto", "pos": "noun", "kanji": "京", "hanViet": "KINH", "on": "きょう", "kun": "" },
+    { "jp": "首都", "reading": "しゅと", "vi": "Thủ đô", "pos": "noun", "kanji": "都", "hanViet": "ĐÔ", "on": "と・つ", "kun": "" },
+    { "jp": "都会", "reading": "とかい", "vi": "Đô thị, thành thị", "pos": "noun", "kanji": "都", "hanViet": "ĐÔ", "on": "と・つ", "kun": "" },
+    { "jp": "東京都", "reading": "とうきょうと", "vi": "Thủ đô Tokyo", "pos": "noun", "kanji": "都", "hanViet": "ĐÔ", "on": "と・つ", "kun": "" },
+    { "jp": "都合", "reading": "つごう", "vi": "Hoàn cảnh, sự thuận tiện", "pos": "noun", "kanji": "都", "hanViet": "ĐÔ", "on": "と・つ", "kun": "" },
+    { "jp": "北海道", "reading": "ほっかいどう", "vi": "Hokkaido", "pos": "noun", "kanji": "道", "hanViet": "ĐẠO", "on": "どう", "kun": "みち" },
+    { "jp": "道具", "reading": "どうぐ", "vi": "Dụng cụ, đạo cụ", "pos": "noun", "kanji": "道", "hanViet": "ĐẠO", "on": "どう", "kun": "みち" },
+    { "jp": "書道", "reading": "しょどう", "vi": "Thư pháp", "pos": "noun", "kanji": "道", "hanViet": "ĐẠO", "on": "どう", "kun": "みち" },
+    { "jp": "道", "reading": "みち", "vi": "Con đường", "pos": "noun", "kanji": "道", "hanViet": "ĐẠO", "on": "どう", "kun": "みち" },
+    { "jp": "近道", "reading": "ちかみち", "vi": "Đường tắt", "pos": "noun", "kanji": "道", "hanViet": "ĐẠO", "on": "どう", "kun": "みち" },
+    { "jp": "京都府", "reading": "きょうとふ", "vi": "Phủ Kyoto", "pos": "noun", "kanji": "府", "hanViet": "PHỦ", "on": "ふ", "kun": "" },
+    { "jp": "広島県", "reading": "ひろしまけん", "vi": "Tỉnh Hiroshima", "pos": "noun", "kanji": "県", "hanViet": "HUYỆN", "on": "けん", "kun": "" },
+    { "jp": "都道府県", "reading": "とどうふけん", "vi": "Các đơn vị hành chính cấp tỉnh của Nhật", "pos": "noun", "kanji": "県", "hanViet": "HUYỆN", "on": "けん", "kun": "" },
+    { "jp": "市民", "reading": "しみん", "vi": "Người dân thành phố, thị dân", "pos": "noun", "kanji": "市", "hanViet": "THỊ", "on": "し", "kun": "いち" },
+    { "jp": "都市", "reading": "とし", "vi": "Đô thị", "pos": "noun", "kanji": "市", "hanViet": "THỊ", "on": "し", "kun": "いち" },
+    { "jp": "市役所", "reading": "しやくしょ", "vi": "Tòa thị chính, ủy ban thành phố", "pos": "noun", "kanji": "市", "hanViet": "THỊ", "on": "し", "kun": "いち" },
+    { "jp": "市場", "reading": "いちば", "vi": "Chợ", "pos": "noun", "kanji": "市", "hanViet": "THỊ", "on": "し", "kun": "いち" },
+    { "jp": "新宿区", "reading": "しんじゅくく", "vi": "Quận Shinjuku", "pos": "noun", "kanji": "区", "hanViet": "KHU", "on": "く", "kun": "" },
+    { "jp": "村長", "reading": "そんちょう", "vi": "Trưởng thôn", "pos": "noun", "kanji": "村", "hanViet": "THÔN", "on": "そん", "kun": "むら" },
+    { "jp": "村民", "reading": "そんみん", "vi": "Dân làng", "pos": "noun", "kanji": "村", "hanViet": "THÔN", "on": "そん", "kun": "むら" },
+    { "jp": "村", "reading": "むら", "vi": "Làng, thôn", "pos": "noun", "kanji": "村", "hanViet": "THÔN", "on": "そん", "kun": "むら" }
+  ]
+}

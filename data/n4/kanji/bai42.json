@@ -1,0 +1,26 @@
+{
+  "lesson": { "id": "n4-kanji-b42", "name": "Buổi 42 (若集知酒歌声楽)", "type": "book" },
+  "words": [
+    { "jp": "若い", "reading": "わかい", "vi": "Trẻ", "pos": "adj", "kanji": "若", "hanViet": "NHƯỢC", "on": "じゃく", "kun": "わかい" },
+    { "jp": "若者", "reading": "わかもの", "vi": "Người trẻ tuổi, thanh niên", "pos": "noun", "kanji": "若", "hanViet": "NHƯỢC", "on": "じゃく", "kun": "わかい" },
+    { "jp": "集中する", "reading": "しゅうちゅうする", "vi": "Tập trung", "pos": "verb", "kanji": "集", "hanViet": "TẬP", "on": "しゅう", "kun": "あつめる・あつまる" },
+    { "jp": "集める", "reading": "あつめる", "vi": "Tập hợp lại, sưu tầm (tha động từ)", "pos": "verb", "kanji": "集", "hanViet": "TẬP", "on": "しゅう", "kun": "あつめる・あつまる" },
+    { "jp": "集まる", "reading": "あつまる", "vi": "Tập trung lại (tự động từ)", "pos": "verb", "kanji": "集", "hanViet": "TẬP", "on": "しゅう", "kun": "あつめる・あつまる" },
+    { "jp": "知人", "reading": "ちじん", "vi": "Người quen", "pos": "noun", "kanji": "知", "hanViet": "TRI", "on": "ち", "kun": "しる" },
+    { "jp": "知る", "reading": "しる", "vi": "Biết", "pos": "verb", "kanji": "知", "hanViet": "TRI", "on": "ち", "kun": "しる" },
+    { "jp": "知らせる", "reading": "しらせる", "vi": "Thông báo, báo tin", "pos": "verb", "kanji": "知", "hanViet": "TRI", "on": "ち", "kun": "しる" },
+    { "jp": "知り合い", "reading": "しりあい", "vi": "Người quen biết", "pos": "noun", "kanji": "知", "hanViet": "TRI", "on": "ち", "kun": "しる" },
+    { "jp": "日本酒", "reading": "にほんしゅ", "vi": "Rượu Nhật (Sake)", "pos": "noun", "kanji": "酒", "hanViet": "TỬU", "on": "しゅ", "kun": "さけ" },
+    { "jp": "お酒", "reading": "おさけ", "vi": "Rượu", "pos": "noun", "kanji": "酒", "hanViet": "TỬU", "on": "しゅ", "kun": "さけ" },
+    { "jp": "歌手", "reading": "かしゅ", "vi": "Ca sĩ", "pos": "noun", "kanji": "歌", "hanViet": "CA", "on": "か", "kun": "うた・うたう" },
+    { "jp": "歌詞", "reading": "かし", "vi": "Lời bài hát", "pos": "noun", "kanji": "歌", "hanViet": "CA", "on": "か", "kun": "うた・うたう" },
+    { "jp": "国歌", "reading": "こっか", "vi": "Quốc ca", "pos": "noun", "kanji": "歌", "hanViet": "CA", "on": "か", "kun": "うた・うたう" },
+    { "jp": "歌", "reading": "うた", "vi": "Bài hát", "pos": "noun", "kanji": "歌", "hanViet": "CA", "on": "か", "kun": "うた・うたう" },
+    { "jp": "歌う", "reading": "うたう", "vi": "Hát", "pos": "verb", "kanji": "歌", "hanViet": "CA", "on": "か", "kun": "うた・うたう" },
+    { "jp": "声", "reading": "こえ", "vi": "Giọng nói, tiếng", "pos": "noun", "kanji": "声", "hanViet": "THANH", "on": "せい", "kun": "こえ" },
+    { "jp": "大声", "reading": "おおごえ", "vi": "Giọng to, nói lớn tiếng", "pos": "noun", "kanji": "声", "hanViet": "THANH", "on": "せい", "kun": "こえ" },
+    { "jp": "音楽", "reading": "おんがく", "vi": "Âm nhạc", "pos": "noun", "kanji": "楽", "hanViet": "LẠC", "on": "がく・らく", "kun": "たのしい" },
+    { "jp": "楽", "reading": "らく", "vi": "Nhàn hạ, thoải mái", "pos": "adj", "kanji": "楽", "hanViet": "LẠC", "on": "がく・らく", "kun": "たのしい" },
+    { "jp": "楽しい", "reading": "たのしい", "vi": "Vui vẻ", "pos": "adj", "kanji": "楽", "hanViet": "LẠC", "on": "がく・らく", "kun": "たのしい" }
+  ]
+}

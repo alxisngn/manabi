@@ -1,0 +1,22 @@
+{
+  "lesson": { "id": "n4-kanji-b47", "name": "Buổi 47 (勉漢宿題質問教室)", "type": "book" },
+  "words": [
+    { "jp": "勉強", "reading": "べんきょう", "vi": "Việc học tập", "pos": "noun", "kanji": "勉", "hanViet": "MIỄN", "on": "べん", "kun": "" },
+    { "jp": "漢字", "reading": "かんじ", "vi": "Chữ Hán, Kanji", "pos": "noun", "kanji": "漢", "hanViet": "HÁN", "on": "かん", "kun": "" },
+    { "jp": "宿題", "reading": "しゅくだい", "vi": "Bài tập về nhà", "pos": "noun", "kanji": "宿", "hanViet": "TÚC", "on": "しゅく", "kun": "" },
+    { "jp": "問題", "reading": "もんだい", "vi": "Vấn đề, câu hỏi thi", "pos": "noun", "kanji": "題", "hanViet": "ĐỀ", "on": "だい", "kun": "" },
+    { "jp": "質問", "reading": "しつもん", "vi": "Câu hỏi, thắc mắc", "pos": "noun", "kanji": "質", "hanViet": "CHẤT", "on": "しつ", "kun": "" },
+    { "jp": "質", "reading": "しつ", "vi": "Chất lượng", "pos": "noun", "kanji": "質", "hanViet": "CHẤT", "on": "しつ", "kun": "" },
+    { "jp": "学問", "reading": "がくもん", "vi": "Học vấn", "pos": "noun", "kanji": "問", "hanViet": "VẤN", "on": "もん", "kun": "とう" },
+    { "jp": "問い", "reading": "とい", "vi": "Câu hỏi", "pos": "noun", "kanji": "問", "hanViet": "VẤN", "on": "もん", "kun": "とう" },
+    { "jp": "問い合わせ", "reading": "といあわせ", "vi": "Sự liên hệ hỏi thông tin", "pos": "noun", "kanji": "問", "hanViet": "VẤN", "on": "もん", "kun": "とう" },
+    { "jp": "教室", "reading": "きょうしつ", "vi": "Phòng học", "pos": "noun", "kanji": "教", "hanViet": "GIÁO", "on": "きょう", "kun": "おしえる" },
+    { "jp": "教会", "reading": "きょうかい", "vi": "Nhà thờ", "pos": "noun", "kanji": "教", "hanViet": "GIÁO", "on": "きょう", "kun": "おしえる" },
+    { "jp": "教師", "reading": "きょうし", "vi": "Giáo viên", "pos": "noun", "kanji": "教", "hanViet": "GIÁO", "on": "きょう", "kun": "おしえる" },
+    { "jp": "教科書", "reading": "きょうかしょ", "vi": "Sách giáo khoa", "pos": "noun", "kanji": "教", "hanViet": "GIÁO", "on": "きょう", "kun": "おしえる" },
+    { "jp": "教える", "reading": "おしえる", "vi": "Dạy, chỉ bảo", "pos": "verb", "kanji": "教", "hanViet": "GIÁO", "on": "きょう", "kun": "おしえる" },
+    { "jp": "会議室", "reading": "かいぎしつ", "vi": "Phòng họp", "pos": "noun", "kanji": "室", "hanViet": "THẤT", "on": "しつ", "kun": "" },
+    { "jp": "室内", "reading": "しつない", "vi": "Trong nhà, trong phòng", "pos": "noun", "kanji": "室", "hanViet": "THẤT", "on": "しつ", "kun": "" },
+    { "jp": "室外", "reading": "しつがい", "vi": "Ngoài trời, ngoài phòng", "pos": "noun", "kanji": "室", "hanViet": "THẤT", "on": "しつ", "kun": "" }
+  ]
+}

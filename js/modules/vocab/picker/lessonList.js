@@ -1,23 +1,44 @@
 import { getLessonProgress } from '../../../core/progress.js';
 import { shuffle, escapeHtml } from '../../../core/util.js';
 import { fetchWords, sampleBalanced } from './data.js';
+import { renderKanjiFilterCard, bindKanjiFilter } from './kanjiSearch.js';
+import { renderAlbumEditor } from './albumEditor.js';
 
 let mixFromIdx = 0;
 let mixToIdx = 4;
 
 export function renderList(container, ctx) {
-  const { lessons, activeLevel, vocabSession, state, ensureDistractorPool, launchGate, render } = ctx;
+  const { lessons, activeLevel, skill = 'vocab', vocabSession, state, ensureDistractorPool, launchGate, render } = ctx;
+  if (state.editAlbumId) {
+    renderAlbumEditor(container, ctx, state.editAlbumId);
+    return;
+  }
+
+  const isKanji = skill === 'kanji';
   const personal = lessons.filter((l) => l.source === 'local');
+  const customCount = personal.filter((l) => !String(l.id).startsWith('user:')).length;
   const textbook = lessons.filter((l) => l.source === 'repo');
 
-  const localBtn = (l) => `
-    <button type="button" class="card v-item pk-local-btn" data-id="${escapeHtml(l.id)}">
-      <span class="pk-item-title">${escapeHtml(l.name)}</span>
-      <span class="badge ${l.id === 'user:weak' ? '' : 'badge-ready'}">${l.count} từ →</span>
-    </button>`;
+  const localBtn = (l) => {
+    const isEditable = !String(l.id).startsWith('user:');
+    return isEditable
+      ? `<div class="card v-row">
+          <button type="button" class="v-item v-row-main" data-id="${escapeHtml(l.id)}">
+            <div>
+              <div class="pk-item-title">${escapeHtml(l.name)}</div>
+              <div class="pk-item-meta"><span class="badge badge-ready">${l.count} từ →</span></div>
+            </div>
+          </button>
+          <button type="button" class="btn btn-sm" data-edit-alb="${escapeHtml(l.id)}">✏️ Sửa</button>
+        </div>`
+      : `<button type="button" class="card v-item pk-local-btn" data-id="${escapeHtml(l.id)}">
+          <span class="pk-item-title">${escapeHtml(l.name)}</span>
+          <span class="badge ${l.id === 'user:weak' ? '' : 'badge-ready'}">${l.count} từ →</span>
+        </button>`;
+  };
 
   const repoRow = (l) => {
-    const prog = getLessonProgress(activeLevel, 'vocab', l.id);
+    const prog = getLessonProgress(activeLevel, skill, l.id);
     const stCls = prog?.status === 'done' ? 'st-done' : prog?.status === 'learning' ? 'st-learning' : 'st-none';
     const stTxt = prog?.status === 'done' ? 'Đã qua ✅' : prog?.status === 'learning' ? 'Đang học' : 'Chưa học';
     return `
@@ -39,10 +60,11 @@ export function renderList(container, ctx) {
     <div class="row-between mb-12">
       <a href="#/learn" class="btn">← Đổi cấp</a>
       <div class="row">
-        <span class="badge badge-ready pk-lv-badge">JLPT ${escapeHtml(activeLevel)}</span>
+        <span class="badge badge-ready pk-lv-badge">${isKanji ? 'Kanji' : 'Từ vựng'} ${escapeHtml(activeLevel)}</span>
         <button type="button" id="v-add" class="btn btn-yellow">＋ Thêm từ</button>
       </div>
     </div>
+    ${isKanji ? renderKanjiFilterCard(activeLevel, customCount) : ''}
     <div class="module-grid pk-quick-grid">
       <button type="button" id="v-open-mix" class="card module-card is-active pk-card-teal">
         <div class="module-left">
@@ -59,14 +81,18 @@ export function renderList(container, ctx) {
         <span class="badge badge-ready pk-badge-yellow">Luyện →</span>
       </button>
     </div>
-    ${personal.length ? `<div class="pk-sec-lbl pk-sec-personal">Cá nhân</div><div class="module-grid pk-personal-grid">${personal.map(localBtn).join('')}</div>` : ''}
-    <div class="pk-sec-lbl mb-8">Giáo trình ${escapeHtml(activeLevel)}</div>
+    ${personal.length ? `<div class="pk-sec-lbl pk-sec-personal">Album & Cá nhân</div><div class="module-grid pk-personal-grid">${personal.map(localBtn).join('')}</div>` : ''}
+    <div class="pk-sec-lbl mb-8">${isKanji ? 'Kho Kanji Riki' : 'Giáo trình'} ${escapeHtml(activeLevel)}</div>
     <div class="module-grid">${textbook.length ? textbook.map(repoRow).join('') : `<p class="module-sub">Chưa có bài học cho trình độ này.</p>`}</div>
   `;
 
+  if (isKanji) bindKanjiFilter(container, ctx);
   container.querySelector('#v-add').onclick = () => { state.impTab = 'upload'; state.step = 'importer'; render(); };
   container.querySelector('#v-open-mix').onclick = () => { state.errMsg = ''; state.mixDirectMode = null; state.step = 'mix'; render(); };
   container.querySelector('#v-open-kanji').onclick = () => { state.errMsg = ''; state.mixDirectMode = 'kanji-read'; state.step = 'mix'; render(); };
+  container.querySelectorAll('[data-edit-alb]').forEach((btn) => {
+    btn.onclick = () => { state.editAlbumId = btn.dataset.editAlb; render(); };
+  });
   container.querySelectorAll('.v-item').forEach((btn) => {
     btn.onclick = async () => {
       const l = lessons.find((x) => x.id === btn.dataset.id);
@@ -74,7 +100,7 @@ export function renderList(container, ctx) {
       btn.disabled = true;
       state.weakDirect = l.id === 'user:weak';
       if (state.weakDirect) await ensureDistractorPool();
-      const words = shuffle(await fetchWords(l, activeLevel));
+      const words = shuffle(await fetchWords(l, activeLevel, skill));
       if (!words.length) { btn.disabled = false; return; }
       vocabSession.words = words; vocabSession.lessonIds = [l.id]; vocabSession.lessonNames = [l.name];
       state.mixDirectMode = null; state.step = state.weakDirect ? 'quiz' : 'modes'; render();
@@ -91,7 +117,7 @@ export function renderList(container, ctx) {
 }
 
 export function renderMix(container, ctx) {
-  const { lessons, selectedSet, activeLevel, vocabSession, state, saveSel, render } = ctx;
+  const { lessons, selectedSet, activeLevel, skill = 'vocab', vocabSession, state, saveSel, render } = ctx;
   const isKanjiDirect = state.mixDirectMode === 'kanji-read';
   const repoList = lessons.filter((l) => l.source === 'repo');
   const localList = lessons.filter((l) => l.source === 'local');
@@ -107,7 +133,7 @@ export function renderMix(container, ctx) {
 
   const pillsHtml = repoList.map((l) => {
     const on = selectedSet.has(l.id);
-    return `<button type="button" class="mix-pill pk-pill ${on ? 'is-on' : ''}" data-id="${escapeHtml(l.id)}">${escapeHtml(l.name.replace(/^Bài\s*/i, ''))}</button>`;
+    return `<button type="button" class="mix-pill pk-pill ${on ? 'is-on' : ''}" data-id="${escapeHtml(l.id)}">${escapeHtml(l.name.replace(/^(Bài|Buổi)\s*/i, '').replace(/\s*\(.*\)/, ''))}</button>`;
   }).join('');
   const localHtml = localList.map((l) => {
     const on = selectedSet.has(l.id);
@@ -156,7 +182,7 @@ export function renderMix(container, ctx) {
   container.querySelector('#mix-go').onclick = async () => {
     if (!picked.length) return;
     state.loading = true; state.errMsg = ''; renderMix(container, ctx);
-    const buckets = await Promise.all(picked.map((item) => fetchWords(item, activeLevel)));
+    const buckets = await Promise.all(picked.map((item) => fetchWords(item, activeLevel, skill)));
     state.loading = false;
     const mixed = sampleBalanced(buckets, state.useAllWords ? 0 : state.wordLimit);
     if (!mixed.length) { state.errMsg = 'Các bài đã chọn chưa có dữ liệu từ vựng.'; renderMix(container, ctx); return; }

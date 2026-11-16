@@ -1,0 +1,30 @@
+{
+  "lesson": { "id": "n4-kanji-b41", "name": "Buổi 41 (研究語文英化数心)", "type": "book" },
+  "words": [
+    { "jp": "研究", "reading": "けんきゅう", "vi": "Nghiên cứu", "pos": "noun", "kanji": "研", "hanViet": "NGHIÊN", "on": "けん", "kun": "" },
+    { "jp": "研究者", "reading": "けんきゅうしゃ", "vi": "Nhà nghiên cứu", "pos": "noun", "kanji": "研", "hanViet": "NGHIÊN", "on": "けん", "kun": "" },
+    { "jp": "研究室", "reading": "けんきゅうしつ", "vi": "Phòng nghiên cứu", "pos": "noun", "kanji": "究", "hanViet": "CỨU", "on": "きゅう", "kun": "" },
+    { "jp": "研究所", "reading": "けんきゅうじょ", "vi": "Viện nghiên cứu", "pos": "noun", "kanji": "究", "hanViet": "CỨU", "on": "きゅう", "kun": "" },
+    { "jp": "日本語", "reading": "にほんご", "vi": "Tiếng Nhật", "pos": "noun", "kanji": "語", "hanViet": "NGỮ", "on": "ご", "kun": "" },
+    { "jp": "中国語", "reading": "ちゅうごくご", "vi": "Tiếng Trung", "pos": "noun", "kanji": "語", "hanViet": "NGỮ", "on": "ご", "kun": "" },
+    { "jp": "外国語", "reading": "がいこくご", "vi": "Ngoại ngữ", "pos": "noun", "kanji": "語", "hanViet": "NGỮ", "on": "ご", "kun": "" },
+    { "jp": "単語", "reading": "たんご", "vi": "Từ vựng, từ đơn", "pos": "noun", "kanji": "語", "hanViet": "NGỮ", "on": "ご", "kun": "" },
+    { "jp": "文学", "reading": "ぶんがく", "vi": "Văn học", "pos": "noun", "kanji": "文", "hanViet": "VĂN", "on": "ぶん・もん", "kun": "" },
+    { "jp": "文化", "reading": "ぶんか", "vi": "Văn hóa", "pos": "noun", "kanji": "文", "hanViet": "VĂN", "on": "ぶん・もん", "kun": "" },
+    { "jp": "文法", "reading": "ぶんぽう", "vi": "Ngữ pháp", "pos": "noun", "kanji": "文", "hanViet": "VĂN", "on": "ぶん・もん", "kun": "" },
+    { "jp": "文字", "reading": "もじ", "vi": "Chữ cái, ký tự", "pos": "noun", "kanji": "文", "hanViet": "VĂN", "on": "ぶん・もん", "kun": "" },
+    { "jp": "英語", "reading": "えいご", "vi": "Tiếng Anh", "pos": "noun", "kanji": "英", "hanViet": "ANH", "on": "えい", "kun": "" },
+    { "jp": "英国", "reading": "えいこく", "vi": "Nước Anh", "pos": "noun", "kanji": "英", "hanViet": "ANH", "on": "えい", "kun": "" },
+    { "jp": "英会話", "reading": "えいかいわ", "vi": "Hội thoại tiếng Anh", "pos": "noun", "kanji": "英", "hanViet": "ANH", "on": "えい", "kun": "" },
+    { "jp": "日本文化", "reading": "にほんぶんか", "vi": "Văn hóa Nhật Bản", "pos": "noun", "kanji": "化", "hanViet": "HÓA", "on": "か・け", "kun": "" },
+    { "jp": "化粧", "reading": "けしょう", "vi": "Trang điểm", "pos": "noun", "kanji": "化", "hanViet": "HÓA", "on": "か・け", "kun": "" },
+    { "jp": "数学", "reading": "すうがく", "vi": "Toán học", "pos": "noun", "kanji": "数", "hanViet": "SỐ", "on": "すう", "kun": "かず・かぞえる" },
+    { "jp": "数字", "reading": "すうじ", "vi": "Chữ số", "pos": "noun", "kanji": "数", "hanViet": "SỐ", "on": "すう", "kun": "かず・かぞえる" },
+    { "jp": "数", "reading": "かず", "vi": "Số lượng", "pos": "noun", "kanji": "数", "hanViet": "SỐ", "on": "すう", "kun": "かず・かぞえる" },
+    { "jp": "数える", "reading": "かぞえる", "vi": "Đếm", "pos": "verb", "kanji": "数", "hanViet": "SỐ", "on": "すう", "kun": "かず・かぞえる" },
+    { "jp": "心配", "reading": "しんぱい", "vi": "Lo lắng", "pos": "noun", "kanji": "心", "hanViet": "TÂM", "on": "しん", "kun": "こころ" },
+    { "jp": "安心", "reading": "あんしん", "vi": "An tâm", "pos": "noun", "kanji": "心", "hanViet": "TÂM", "on": "しん", "kun": "こころ" },
+    { "jp": "中心", "reading": "ちゅうしん", "vi": "Trung tâm", "pos": "noun", "kanji": "心", "hanViet": "TÂM", "on": "しん", "kun": "こころ" },
+    { "jp": "心", "reading": "こころ", "vi": "Trái tim, tấm lòng", "pos": "noun", "kanji": "心", "hanViet": "TÂM", "on": "しん", "kun": "こころ" }
+  ]
+}

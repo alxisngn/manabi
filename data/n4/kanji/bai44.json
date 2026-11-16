@@ -1,0 +1,24 @@
+{
+  "lesson": { "id": "n4-kanji-b44", "name": "Buổi 44 (春夏秋冬空星雲去)", "type": "book" },
+  "words": [
+    { "jp": "春", "reading": "はる", "vi": "Mùa xuân", "pos": "noun", "kanji": "春", "hanViet": "XUÂN", "on": "しゅん", "kun": "はる" },
+    { "jp": "春休み", "reading": "はるやすみ", "vi": "Kỳ nghỉ xuân", "pos": "noun", "kanji": "春", "hanViet": "XUÂN", "on": "しゅん", "kun": "はる" },
+    { "jp": "夏", "reading": "なつ", "vi": "Mùa hè", "pos": "noun", "kanji": "夏", "hanViet": "HẠ", "on": "か", "kun": "なつ" },
+    { "jp": "夏服", "reading": "なつふく", "vi": "Đồ mặc mùa hè", "pos": "noun", "kanji": "夏", "hanViet": "HẠ", "on": "か", "kun": "なつ" },
+    { "jp": "真夏", "reading": "まなつ", "vi": "Giữa mùa hè", "pos": "noun", "kanji": "夏", "hanViet": "HẠ", "on": "か", "kun": "なつ" },
+    { "jp": "秋", "reading": "あき", "vi": "Mùa thu", "pos": "noun", "kanji": "秋", "hanViet": "THU", "on": "しゅう", "kun": "あき" },
+    { "jp": "秋風", "reading": "あきかぜ", "vi": "Gió mùa thu", "pos": "noun", "kanji": "秋", "hanViet": "THU", "on": "しゅう", "kun": "あき" },
+    { "jp": "秋学期", "reading": "あきがっき", "vi": "Học kỳ mùa thu", "pos": "noun", "kanji": "秋", "hanViet": "THU", "on": "しゅう", "kun": "あき" },
+    { "jp": "冬", "reading": "ふゆ", "vi": "Mùa đông", "pos": "noun", "kanji": "冬", "hanViet": "ĐÔNG", "on": "とう", "kun": "ふゆ" },
+    { "jp": "冬休み", "reading": "ふゆやすみ", "vi": "Kỳ nghỉ đông", "pos": "noun", "kanji": "冬", "hanViet": "ĐÔNG", "on": "とう", "kun": "ふゆ" },
+    { "jp": "真冬", "reading": "まふゆ", "vi": "Giữa mùa đông", "pos": "noun", "kanji": "冬", "hanViet": "ĐÔNG", "on": "とう", "kun": "ふゆ" },
+    { "jp": "空気", "reading": "くうき", "vi": "Không khí", "pos": "noun", "kanji": "空", "hanViet": "KHÔNG", "on": "くう", "kun": "そら" },
+    { "jp": "空港", "reading": "くうこう", "vi": "Sân bay", "pos": "noun", "kanji": "空", "hanViet": "KHÔNG", "on": "くう", "kun": "そら" },
+    { "jp": "空", "reading": "そら", "vi": "Bầu trời", "pos": "noun", "kanji": "空", "hanViet": "KHÔNG", "on": "くう", "kun": "そら" },
+    { "jp": "星", "reading": "ほし", "vi": "Ngôi sao", "pos": "noun", "kanji": "星", "hanViet": "TINH", "on": "せい", "kun": "ほし" },
+    { "jp": "雲", "reading": "くも", "vi": "Đám mây", "pos": "noun", "kanji": "雲", "hanViet": "VÂN", "on": "うん", "kun": "くも" },
+    { "jp": "去年", "reading": "きょねん", "vi": "Năm ngoái", "pos": "noun", "kanji": "去", "hanViet": "KHỨ", "on": "きょ・こ", "kun": "さる" },
+    { "jp": "過去", "reading": "かこ", "vi": "Quá khứ", "pos": "noun", "kanji": "去", "hanViet": "KHỨ", "on": "きょ・こ", "kun": "さる" },
+    { "jp": "去る", "reading": "さる", "vi": "Rời khỏi, qua đi", "pos": "verb", "kanji": "去", "hanViet": "KHỨ", "on": "きょ・こ", "kun": "さる" }
+  ]
+}

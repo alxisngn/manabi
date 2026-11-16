@@ -1,0 +1,29 @@
+{
+  "lesson": { "id": "n4-kanji-b27", "name": "Buổi 27 (部屋広低緑静近遠)", "type": "book" },
+  "words": [
+    { "jp": "全部", "reading": "ぜんぶ", "vi": "Toàn bộ", "pos": "noun", "kanji": "部", "hanViet": "BỘ", "on": "ぶ", "kun": "へ" },
+    { "jp": "部長", "reading": "ぶちょう", "vi": "Trưởng phòng", "pos": "noun", "kanji": "部", "hanViet": "BỘ", "on": "ぶ", "kun": "へ" },
+    { "jp": "一部", "reading": "いちぶ", "vi": "Một phần", "pos": "noun", "kanji": "部", "hanViet": "BỘ", "on": "ぶ", "kun": "へ" },
+    { "jp": "部屋", "reading": "へや", "vi": "Căn phòng", "pos": "noun", "kanji": "部", "hanViet": "BỘ", "on": "ぶ", "kun": "へ" },
+    { "jp": "屋上", "reading": "おくじょう", "vi": "Nóc nhà, sân thượng", "pos": "noun", "kanji": "屋", "hanViet": "ỐC", "on": "おく", "kun": "や" },
+    { "jp": "本屋", "reading": "ほんや", "vi": "Hiệu sách", "pos": "noun", "kanji": "屋", "hanViet": "ỐC", "on": "おく", "kun": "や" },
+    { "jp": "八百屋", "reading": "やおや", "vi": "Cửa hàng rau quả", "pos": "noun", "kanji": "屋", "hanViet": "ỐC", "on": "おく", "kun": "や" },
+    { "jp": "広大", "reading": "こうだい", "vi": "Rộng lớn", "pos": "adj", "kanji": "広", "hanViet": "QUẢNG", "on": "こう", "kun": "ひろい" },
+    { "jp": "広島", "reading": "ひろしま", "vi": "Hiroshima", "pos": "noun", "kanji": "広", "hanViet": "QUẢNG", "on": "こう", "kun": "ひろい" },
+    { "jp": "広い", "reading": "ひろい", "vi": "Rộng", "pos": "adj", "kanji": "広", "hanViet": "QUẢNG", "on": "こう", "kun": "ひろい" },
+    { "jp": "広げる", "reading": "ひろげる", "vi": "Mở rộng (tha động từ)", "pos": "verb", "kanji": "広", "hanViet": "QUẢNG", "on": "こう", "kun": "ひろい" },
+    { "jp": "広がる", "reading": "ひろがる", "vi": "Lan rộng (tự động từ)", "pos": "verb", "kanji": "広", "hanViet": "QUẢNG", "on": "こう", "kun": "ひろい" },
+    { "jp": "低学年", "reading": "ていがくねん", "vi": "Lớp nhỏ (tiểu học)", "pos": "noun", "kanji": "低", "hanViet": "ĐÊ", "on": "てい", "kun": "ひくい" },
+    { "jp": "低下", "reading": "ていか", "vi": "Suy giảm", "pos": "noun", "kanji": "低", "hanViet": "ĐÊ", "on": "てい", "kun": "ひくい" },
+    { "jp": "高低", "reading": "こうてい", "vi": "Cao thấp", "pos": "noun", "kanji": "低", "hanViet": "ĐÊ", "on": "てい", "kun": "ひくい" },
+    { "jp": "低い", "reading": "ひくい", "vi": "Thấp", "pos": "adj", "kanji": "低", "hanViet": "ĐÊ", "on": "てい", "kun": "ひくい" },
+    { "jp": "緑茶", "reading": "りょくちゃ", "vi": "Trà xanh", "pos": "noun", "kanji": "緑", "hanViet": "LỤC", "on": "りょく", "kun": "みどり" },
+    { "jp": "緑", "reading": "みどり", "vi": "Màu xanh lá", "pos": "noun", "kanji": "緑", "hanViet": "LỤC", "on": "りょく", "kun": "みどり" },
+    { "jp": "静かな", "reading": "しずかな", "vi": "Yên tĩnh, yên lặng", "pos": "adj", "kanji": "静", "hanViet": "TĨNH", "on": "せい", "kun": "しずかな" },
+    { "jp": "近所", "reading": "きんじょ", "vi": "Hàng xóm, vùng lân cận", "pos": "noun", "kanji": "近", "hanViet": "CẬN", "on": "きん", "kun": "ちかい" },
+    { "jp": "最近", "reading": "さいきん", "vi": "Gần đây", "pos": "adv", "kanji": "近", "hanViet": "CẬN", "on": "きん", "kun": "ちかい" },
+    { "jp": "近い", "reading": "ちかい", "vi": "Gần", "pos": "adj", "kanji": "近", "hanViet": "CẬN", "on": "きん", "kun": "ちかい" },
+    { "jp": "遠足", "reading": "えんそく", "vi": "Dã ngoại", "pos": "noun", "kanji": "遠", "hanViet": "VIỄN", "on": "えん", "kun": "とおい" },
+    { "jp": "遠い", "reading": "とおい", "vi": "Xa", "pos": "adj", "kanji": "遠", "hanViet": "VIỄN", "on": "えん", "kun": "とおい" }
+  ]
+}

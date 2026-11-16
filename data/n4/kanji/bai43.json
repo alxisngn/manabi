@@ -1,0 +1,27 @@
+{
+  "lesson": { "id": "n4-kanji-b43", "name": "Buổi 43 (味油太細皿飯麦)", "type": "book" },
+  "words": [
+    { "jp": "意味", "reading": "いみ", "vi": "Ý nghĩa", "pos": "noun", "kanji": "味", "hanViet": "VỊ", "on": "み", "kun": "あじ" },
+    { "jp": "趣味", "reading": "しゅみ", "vi": "Sở thích", "pos": "noun", "kanji": "味", "hanViet": "VỊ", "on": "み", "kun": "あじ" },
+    { "jp": "味", "reading": "あじ", "vi": "Hương vị, vị", "pos": "noun", "kanji": "味", "hanViet": "VỊ", "on": "み", "kun": "あじ" },
+    { "jp": "石油", "reading": "せきゆ", "vi": "Dầu mỏ", "pos": "noun", "kanji": "油", "hanViet": "DU", "on": "ゆ", "kun": "あぶら" },
+    { "jp": "醤油", "reading": "しょうゆ", "vi": "Nước tương, xì dầu", "pos": "noun", "kanji": "油", "hanViet": "DU", "on": "ゆ", "kun": "あぶら" },
+    { "jp": "油", "reading": "あぶら", "vi": "Dầu ăn, dầu mỡ", "pos": "noun", "kanji": "油", "hanViet": "DU", "on": "ゆ", "kun": "あぶら" },
+    { "jp": "太陽", "reading": "たいよう", "vi": "Mặt trời", "pos": "noun", "kanji": "太", "hanViet": "THÁI", "on": "たい", "kun": "ふとい・ふとる" },
+    { "jp": "太い", "reading": "ふとい", "vi": "Béo, to, dày", "pos": "adj", "kanji": "太", "hanViet": "THÁI", "on": "たい", "kun": "ふとい・ふとる" },
+    { "jp": "太る", "reading": "ふとる", "vi": "Béo lên, tăng cân", "pos": "verb", "kanji": "太", "hanViet": "THÁI", "on": "たい", "kun": "ふとい・ふとる" },
+    { "jp": "細い", "reading": "ほそい", "vi": "Gầy, mảnh, hẹp", "pos": "adj", "kanji": "細", "hanViet": "TẾ", "on": "さい", "kun": "ほそい・こまかい" },
+    { "jp": "細かい", "reading": "こまかい", "vi": "Nhỏ lẻ, chi tiết", "pos": "adj", "kanji": "細", "hanViet": "TẾ", "on": "さい", "kun": "ほそい・こまかい" },
+    { "jp": "お皿", "reading": "おさら", "vi": "Cái đĩa", "pos": "noun", "kanji": "皿", "hanViet": "MÃNH", "on": "", "kun": "さら" },
+    { "jp": "皿洗い", "reading": "さらあらい", "vi": "Việc rửa bát đĩa", "pos": "noun", "kanji": "皿", "hanViet": "MÃNH", "on": "", "kun": "さら" },
+    { "jp": "紙皿", "reading": "かみざら", "vi": "Đĩa giấy", "pos": "noun", "kanji": "皿", "hanViet": "MÃNH", "on": "", "kun": "さら" },
+    { "jp": "灰皿", "reading": "はいざら", "vi": "Cái gạt tàn", "pos": "noun", "kanji": "皿", "hanViet": "MÃNH", "on": "", "kun": "さら" },
+    { "jp": "ご飯", "reading": "ごはん", "vi": "Cơm, bữa ăn", "pos": "noun", "kanji": "飯", "hanViet": "PHẠN", "on": "はん", "kun": "めし" },
+    { "jp": "朝ご飯", "reading": "あさごはん", "vi": "Bữa sáng", "pos": "noun", "kanji": "飯", "hanViet": "PHẠN", "on": "はん", "kun": "めし" },
+    { "jp": "昼ご飯", "reading": "ひるごはん", "vi": "Bữa trưa", "pos": "noun", "kanji": "飯", "hanViet": "PHẠN", "on": "はん", "kun": "めし" },
+    { "jp": "晩ご飯", "reading": "ばんごはん", "vi": "Bữa tối", "pos": "noun", "kanji": "飯", "hanViet": "PHẠN", "on": "はん", "kun": "めし" },
+    { "jp": "飯", "reading": "めし", "vi": "Cơm (cách nói thân mật)", "pos": "noun", "kanji": "飯", "hanViet": "PHẠN", "on": "はん", "kun": "めし" },
+    { "jp": "麦", "reading": "むぎ", "vi": "Lúa mì, lúa mạch", "pos": "noun", "kanji": "麦", "hanViet": "MẠCH", "on": "ばく", "kun": "むぎ" },
+    { "jp": "小麦粉", "reading": "こむぎこ", "vi": "Bột mì", "pos": "noun", "kanji": "麦", "hanViet": "MẠCH", "on": "ばく", "kun": "むぎ" }
+  ]
+}

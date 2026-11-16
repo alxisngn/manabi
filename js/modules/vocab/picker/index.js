@@ -1,7 +1,7 @@
 import { getStore, updateStore } from '../../../core/store.js';
 import { getLevel, setSession } from '../../../core/nav.js';
 import { markStudied } from '../../../core/progress.js';
-import { STORE_KEY, DEFAULT_STORE, fetchRepo, buildLessons, fetchWords } from './data.js';
+import { getStoreKey, DEFAULT_STORE, fetchRepo, buildLessons, fetchWords } from './data.js';
 import { buildGateConfig, applyQueryView } from './views.js';
 import { renderList, renderMix } from './lessonList.js';
 import { renderModes } from './modeMenu.js';
@@ -9,14 +9,16 @@ import { renderModes } from './modeMenu.js';
 export const meta = { id: 'vocab', name: 'Từ vựng', icon: '語' };
 export const vocabSession = { words: [], lessonIds: [], lessonNames: [] };
 
-export async function mount(container, { level, query } = {}) {
+export async function mount(container, { level, skill = 'vocab', query } = {}) {
   setSession(false);
   container.innerHTML = `<div class="card"><p class="module-sub">Đang tải danh sách bài học...</p></div>`;
   const activeLevel = (level || getLevel()).toUpperCase();
+  const activeSkill = skill.toLowerCase();
+  const storeKey = getStoreKey(activeSkill);
   const params = query instanceof URLSearchParams ? query : new URLSearchParams(query || '');
 
-  const repo = await fetchRepo(activeLevel);
-  let store = getStore(STORE_KEY, DEFAULT_STORE);
+  const repo = await fetchRepo(activeLevel, activeSkill);
+  let store = getStore(storeKey, DEFAULT_STORE);
   const initialLessons = buildLessons(repo, store, activeLevel);
 
   const saved = (store.selectedIds || []).filter((id) => initialLessons.some((l) => l.id === id));
@@ -35,17 +37,17 @@ export async function mount(container, { level, query } = {}) {
     errMsg: ''
   };
 
-  const baseRoute = `#/${activeLevel.toLowerCase()}/vocab`;
+  const baseRoute = `#/${activeLevel.toLowerCase()}/${activeSkill}`;
   const backToLevel = () => { if (window.location.hash !== baseRoute) window.location.hash = baseRoute; };
   const markSelectedStudied = () => {
-    (vocabSession.lessonIds || []).forEach((id) => markStudied(activeLevel, 'vocab', id));
+    (vocabSession.lessonIds || []).forEach((id) => markStudied(activeLevel, activeSkill, id));
   };
 
   async function ensureDistractorPool() {
     if (state.extraPoolWords.length >= 12) return state.extraPoolWords;
     const repoList = ctx.lessons.filter((l) => l.source === 'repo').slice(0, 3);
     if (!repoList.length) return [];
-    const buckets = await Promise.all(repoList.map((x) => fetchWords(x, activeLevel)));
+    const buckets = await Promise.all(repoList.map((x) => fetchWords(x, activeLevel, activeSkill)));
     state.extraPoolWords = buckets.flat();
     return state.extraPoolWords;
   }
@@ -55,6 +57,7 @@ export async function mount(container, { level, query } = {}) {
       lessons: ctx.lessons,
       lessonItem,
       activeLevel,
+      skill: activeSkill,
       vocabSession,
       state,
       backToLevel,
@@ -67,26 +70,29 @@ export async function mount(container, { level, query } = {}) {
   }
 
   const refresh = () => {
-    store = getStore(STORE_KEY, DEFAULT_STORE);
+    store = getStore(storeKey, DEFAULT_STORE);
     ctx.lessons = buildLessons(repo, store, activeLevel);
     for (const id of [...selectedSet]) if (!ctx.lessons.some((l) => l.id === id)) selectedSet.delete(id);
   };
-  const saveSel = () => updateStore(STORE_KEY, (c) => ({ ...c, selectedIds: [...selectedSet] }), DEFAULT_STORE);
+  const saveSel = () => updateStore(storeKey, (c) => ({ ...c, selectedIds: [...selectedSet] }), DEFAULT_STORE);
   window.addEventListener('hashchange', () => setSession(false), { once: true });
 
   const ctx = {
     lessons: initialLessons,
     selectedSet,
     activeLevel,
+    skill: activeSkill,
+    storeKey,
     vocabSession,
     state,
     saveSel,
     ensureDistractorPool,
     launchGate,
+    refresh,
     render
   };
 
-  if (await applyQueryView({ params, lessons: ctx.lessons, store, activeLevel, vocabSession, state, ensureDistractorPool, launchGate })) return;
+  if (await applyQueryView({ params, lessons: ctx.lessons, store, activeLevel, skill: activeSkill, vocabSession, state, ensureDistractorPool, launchGate })) return;
 
   let navToken = 0;
   async function mountDynamicStep(token, backModes) {

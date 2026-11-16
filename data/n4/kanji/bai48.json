@@ -1,0 +1,24 @@
+{
+  "lesson": { "id": "n4-kanji-b48", "name": "Buổi 48 (試験答考正丸不同)", "type": "book" },
+  "words": [
+    { "jp": "試験", "reading": "しけん", "vi": "Kỳ thi, bài kiểm tra", "pos": "noun", "kanji": "試", "hanViet": "THÍ", "on": "し", "kun": "ためす" },
+    { "jp": "試す", "reading": "ためす", "vi": "Thử nghiệm, thử", "pos": "verb", "kanji": "試", "hanViet": "THÍ", "on": "し", "kun": "ためす" },
+    { "jp": "経験", "reading": "けいけん", "vi": "Kinh nghiệm", "pos": "noun", "kanji": "験", "hanViet": "NGHIỆM", "on": "けん", "kun": "" },
+    { "jp": "体験", "reading": "たいけん", "vi": "Trải nghiệm thực tế", "pos": "noun", "kanji": "験", "hanViet": "NGHIỆM", "on": "けん", "kun": "" },
+    { "jp": "回答", "reading": "かいとう", "vi": "Hồi đáp, câu trả lời", "pos": "noun", "kanji": "答", "hanViet": "ĐÁP", "on": "とう", "kun": "こたえ・こたえる" },
+    { "jp": "答え", "reading": "こたえ", "vi": "Đáp án, câu trả lời", "pos": "noun", "kanji": "答", "hanViet": "ĐÁP", "on": "とう", "kun": "こたえ・こたえる" },
+    { "jp": "答える", "reading": "こたえる", "vi": "Trả lời", "pos": "verb", "kanji": "答", "hanViet": "ĐÁP", "on": "とう", "kun": "こたえ・こたえる" },
+    { "jp": "参考", "reading": "さんこう", "vi": "Tham khảo", "pos": "noun", "kanji": "考", "hanViet": "KHẢO", "on": "こう", "kun": "かんがえる" },
+    { "jp": "参考書", "reading": "さんこうしょ", "vi": "Sách tham khảo", "pos": "noun", "kanji": "考", "hanViet": "KHẢO", "on": "こう", "kun": "かんがえる" },
+    { "jp": "考える", "reading": "かんがえる", "vi": "Suy nghĩ", "pos": "verb", "kanji": "考", "hanViet": "KHẢO", "on": "こう", "kun": "かんがえる" },
+    { "jp": "考え方", "reading": "かんがえかた", "vi": "Cách suy nghĩ, tư duy", "pos": "noun", "kanji": "考", "hanViet": "KHẢO", "on": "こう", "kun": "かんがえる" },
+    { "jp": "お正月", "reading": "おしょうがつ", "vi": "Tết Dương lịch", "pos": "noun", "kanji": "正", "hanViet": "CHÍNH", "on": "しょう・せい", "kun": "ただしい" },
+    { "jp": "正式な", "reading": "せいしきな", "vi": "Chính thức", "pos": "adj", "kanji": "正", "hanViet": "CHÍNH", "on": "しょう・せい", "kun": "ただしい" },
+    { "jp": "正しい", "reading": "ただしい", "vi": "Đúng, chính xác", "pos": "adj", "kanji": "正", "hanViet": "CHÍNH", "on": "しょう・せい", "kun": "ただしい" },
+    { "jp": "丸", "reading": "まる", "vi": "Hình tròn, dấu tròn (đúng)", "pos": "noun", "kanji": "丸", "hanViet": "HOÀN", "on": "がん", "kun": "まる・まるい" },
+    { "jp": "丸い", "reading": "まるい", "vi": "Tròn", "pos": "adj", "kanji": "丸", "hanViet": "HOÀN", "on": "がん", "kun": "まる・まるい" },
+    { "jp": "不安な", "reading": "ふあんな", "vi": "Bất an, lo âu", "pos": "adj", "kanji": "不", "hanViet": "BẤT", "on": "ふ", "kun": "" },
+    { "jp": "同時に", "reading": "どうじに", "vi": "Đồng thời", "pos": "adv", "kanji": "同", "hanViet": "ĐỒNG", "on": "どう", "kun": "おなじ" },
+    { "jp": "同じ", "reading": "おなじ", "vi": "Giống nhau, tương tự", "pos": "adj", "kanji": "同", "hanViet": "ĐỒNG", "on": "どう", "kun": "おなじ" }
+  ]
+}

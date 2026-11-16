@@ -1,0 +1,23 @@
+{
+  "lesson": { "id": "n4-kanji-b45", "name": "Buổi 45 (天晴雪風強弱暑寒)", "type": "book" },
+  "words": [
+    { "jp": "天才", "reading": "てんさい", "vi": "Thiên tài", "pos": "noun", "kanji": "天", "hanViet": "THIÊN", "on": "てん", "kun": "" },
+    { "jp": "天気", "reading": "てんき", "vi": "Thời tiết", "pos": "noun", "kanji": "天", "hanViet": "THIÊN", "on": "てん", "kun": "" },
+    { "jp": "天気予報", "reading": "てんきよほう", "vi": "Dự báo thời tiết", "pos": "noun", "kanji": "天", "hanViet": "THIÊN", "on": "てん", "kun": "" },
+    { "jp": "晴れる", "reading": "はれる", "vi": "Trời quang đãng, nắng lên", "pos": "verb", "kanji": "晴", "hanViet": "TÌNH", "on": "せい", "kun": "はれる・はれ" },
+    { "jp": "晴れ", "reading": "はれ", "vi": "Trời nắng", "pos": "noun", "kanji": "晴", "hanViet": "TÌNH", "on": "せい", "kun": "はれる・はれ" },
+    { "jp": "雪", "reading": "ゆき", "vi": "Tuyết", "pos": "noun", "kanji": "雪", "hanViet": "TUYẾT", "on": "せつ", "kun": "ゆき" },
+    { "jp": "大雪", "reading": "おおゆき", "vi": "Tuyết rơi dày, tuyết lớn", "pos": "noun", "kanji": "雪", "hanViet": "TUYẾT", "on": "せつ", "kun": "ゆき" },
+    { "jp": "雪だるま", "reading": "ゆきだるま", "vi": "Người tuyết", "pos": "noun", "kanji": "雪", "hanViet": "TUYẾT", "on": "せつ", "kun": "ゆき" },
+    { "jp": "洋風", "reading": "ようふう", "vi": "Phong cách phương Tây", "pos": "noun", "kanji": "風", "hanViet": "PHONG", "on": "ふう・ふ", "kun": "かぜ" },
+    { "jp": "お風呂", "reading": "おふろ", "vi": "Bồn tắm, nhà tắm", "pos": "noun", "kanji": "風", "hanViet": "PHONG", "on": "ふう・ふ", "kun": "かぜ" },
+    { "jp": "風邪", "reading": "かぜ", "vi": "Bệnh cảm cúm", "pos": "noun", "kanji": "風", "hanViet": "PHONG", "on": "ふう・ふ", "kun": "かぜ" },
+    { "jp": "風", "reading": "かぜ", "vi": "Gió", "pos": "noun", "kanji": "風", "hanViet": "PHONG", "on": "ふう・ふ", "kun": "かぜ" },
+    { "jp": "勉強する", "reading": "べんきょうする", "vi": "Học tập", "pos": "verb", "kanji": "強", "hanViet": "CƯỜNG", "on": "きょう", "kun": "つよい" },
+    { "jp": "強い", "reading": "つよい", "vi": "Khỏe, mạnh", "pos": "adj", "kanji": "強", "hanViet": "CƯỜNG", "on": "きょう", "kun": "つよい" },
+    { "jp": "弱い", "reading": "よわい", "vi": "Yếu ớt", "pos": "adj", "kanji": "弱", "hanViet": "NHƯỢC", "on": "じゃく", "kun": "よわい・よわる" },
+    { "jp": "弱る", "reading": "よわる", "vi": "Trở nên suy yếu", "pos": "verb", "kanji": "弱", "hanViet": "NHƯỢC", "on": "じゃく", "kun": "よわい・よわる" },
+    { "jp": "暑い", "reading": "あつい", "vi": "Nóng (thời tiết)", "pos": "adj", "kanji": "暑", "hanViet": "THỬ", "on": "しょ", "kun": "あつい" },
+    { "jp": "寒い", "reading": "さむい", "vi": "Lạnh (thời tiết)", "pos": "adj", "kanji": "寒", "hanViet": "HÀN", "on": "かん", "kun": "さむい" }
+  ]
+}

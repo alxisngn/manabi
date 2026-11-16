@@ -1,0 +1,23 @@
+{
+  "lesson": { "id": "n4-kanji-b33", "name": "Buổi 33 (住所様主番地号)", "type": "book" },
+  "words": [
+    { "jp": "住所", "reading": "じゅうしょ", "vi": "Địa chỉ", "pos": "noun", "kanji": "住", "hanViet": "TRÚ", "on": "じゅう", "kun": "すむ" },
+    { "jp": "住む", "reading": "すむ", "vi": "Sống, cư trú", "pos": "verb", "kanji": "住", "hanViet": "TRÚ", "on": "じゅう", "kun": "すむ" },
+    { "jp": "事務所", "reading": "じむしょ", "vi": "Văn phòng", "pos": "noun", "kanji": "所", "hanViet": "SỞ", "on": "しょ・じょ", "kun": "ところ" },
+    { "jp": "所", "reading": "ところ", "vi": "Nơi, chỗ", "pos": "noun", "kanji": "所", "hanViet": "SỞ", "on": "しょ・じょ", "kun": "ところ" },
+    { "jp": "台所", "reading": "だいどころ", "vi": "Nhà bếp", "pos": "noun", "kanji": "所", "hanViet": "SỞ", "on": "しょ・じょ", "kun": "ところ" },
+    { "jp": "様子", "reading": "ようす", "vi": "Dáng vẻ, tình hình", "pos": "noun", "kanji": "様", "hanViet": "DẠNG", "on": "よう", "kun": "さま" },
+    { "jp": "王様", "reading": "おうさま", "vi": "Đức vua", "pos": "noun", "kanji": "様", "hanViet": "DẠNG", "on": "よう", "kun": "さま" },
+    { "jp": "ご主人", "reading": "ごしゅじん", "vi": "Chồng (người khác)", "pos": "noun", "kanji": "主", "hanViet": "CHỦ", "on": "しゅ", "kun": "おもに" },
+    { "jp": "主に", "reading": "おもに", "vi": "Chủ yếu", "pos": "adv", "kanji": "主", "hanViet": "CHỦ", "on": "しゅ", "kun": "おもに" },
+    { "jp": "一番", "reading": "いちばん", "vi": "Nhất, số một", "pos": "adv", "kanji": "番", "hanViet": "PHIÊN", "on": "ばん", "kun": "" },
+    { "jp": "番号", "reading": "ばんごう", "vi": "Số hiệu, số thứ tự", "pos": "noun", "kanji": "番", "hanViet": "PHIÊN", "on": "ばん", "kun": "" },
+    { "jp": "番地", "reading": "ばんち", "vi": "Số nhà / địa chỉ", "pos": "noun", "kanji": "番", "hanViet": "PHIÊN", "on": "ばん", "kun": "" },
+    { "jp": "交番", "reading": "こうばん", "vi": "Đồn cảnh sát", "pos": "noun", "kanji": "番", "hanViet": "PHIÊN", "on": "ばん", "kun": "" },
+    { "jp": "地図", "reading": "ちず", "vi": "Bản đồ", "pos": "noun", "kanji": "地", "hanViet": "ĐỊA", "on": "ち・じ", "kun": "" },
+    { "jp": "地下鉄", "reading": "ちかてつ", "vi": "Tàu điện ngầm", "pos": "noun", "kanji": "地", "hanViet": "ĐỊA", "on": "ち・じ", "kun": "" },
+    { "jp": "地球", "reading": "ちきゅう", "vi": "Trái đất", "pos": "noun", "kanji": "地", "hanViet": "ĐỊA", "on": "ち・じ", "kun": "" },
+    { "jp": "地震", "reading": "じしん", "vi": "Động đất", "pos": "noun", "kanji": "地", "hanViet": "ĐỊA", "on": "ち・じ", "kun": "" },
+    { "jp": "信号", "reading": "しんごう", "vi": "Đèn tín hiệu, tín hiệu", "pos": "noun", "kanji": "号", "hanViet": "HIỆU", "on": "ごう", "kun": "" }
+  ]
+}

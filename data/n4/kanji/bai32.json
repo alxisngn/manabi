@@ -1,0 +1,30 @@
+{
+  "lesson": { "id": "n4-kanji-b32", "name": "Buổi 32 (荷送宅急速度快重軽)", "type": "book" },
+  "words": [
+    { "jp": "荷物", "reading": "にもつ", "vi": "Hành lý", "pos": "noun", "kanji": "荷", "hanViet": "HÀ", "on": "か", "kun": "に" },
+    { "jp": "手荷物", "reading": "てにもつ", "vi": "Hành lý xách tay", "pos": "noun", "kanji": "荷", "hanViet": "HÀ", "on": "か", "kun": "に" },
+    { "jp": "放送", "reading": "ほうそう", "vi": "Phát thanh, phát sóng", "pos": "noun", "kanji": "送", "hanViet": "TỐNG", "on": "そう", "kun": "おくる" },
+    { "jp": "送別会", "reading": "そうべつかい", "vi": "Tiệc chia tay", "pos": "noun", "kanji": "送", "hanViet": "TỐNG", "on": "そう", "kun": "おくる" },
+    { "jp": "送る", "reading": "おくる", "vi": "Gửi", "pos": "verb", "kanji": "送", "hanViet": "TỐNG", "on": "そう", "kun": "おくる" },
+    { "jp": "見送る", "reading": "みおくる", "vi": "Đưa tiễn", "pos": "verb", "kanji": "送", "hanViet": "TỐNG", "on": "そう", "kun": "おくる" },
+    { "jp": "お宅", "reading": "おたく", "vi": "Nhà (lịch sự)", "pos": "noun", "kanji": "宅", "hanViet": "TRẠCH", "on": "たく", "kun": "" },
+    { "jp": "帰宅", "reading": "きたく", "vi": "Về nhà", "pos": "noun", "kanji": "宅", "hanViet": "TRẠCH", "on": "たく", "kun": "" },
+    { "jp": "自宅", "reading": "じたく", "vi": "Nhà riêng, nhà mình", "pos": "noun", "kanji": "宅", "hanViet": "TRẠCH", "on": "たく", "kun": "" },
+    { "jp": "住宅", "reading": "じゅうたく", "vi": "Nhà ở, khu dân cư", "pos": "noun", "kanji": "宅", "hanViet": "TRẠCH", "on": "たく", "kun": "" },
+    { "jp": "急に", "reading": "きゅうに", "vi": "Đột nhiên, gấp", "pos": "adv", "kanji": "急", "hanViet": "CẤP", "on": "きゅう", "kun": "いそぐ" },
+    { "jp": "急行", "reading": "きゅうこう", "vi": "Tàu tốc hành", "pos": "noun", "kanji": "急", "hanViet": "CẤP", "on": "きゅう", "kun": "いそぐ" },
+    { "jp": "救急車", "reading": "きゅうきゅうしゃ", "vi": "Xe cứu thương", "pos": "noun", "kanji": "急", "hanViet": "CẤP", "on": "きゅう", "kun": "いそぐ" },
+    { "jp": "急ぐ", "reading": "いそぐ", "vi": "Vội vàng", "pos": "verb", "kanji": "急", "hanViet": "CẤP", "on": "きゅう", "kun": "いそぐ" },
+    { "jp": "時速", "reading": "じそく", "vi": "Tốc độ theo giờ (km/h)", "pos": "noun", "kanji": "速", "hanViet": "TỐC", "on": "そく", "kun": "はやい" },
+    { "jp": "速度", "reading": "そくど", "vi": "Tốc độ, vận tốc", "pos": "noun", "kanji": "速", "hanViet": "TỐC", "on": "そく", "kun": "はやい" },
+    { "jp": "速い", "reading": "はやい", "vi": "Nhanh", "pos": "adj", "kanji": "速", "hanViet": "TỐC", "on": "そく", "kun": "はやい" },
+    { "jp": "遅刻", "reading": "ちこく", "vi": "Đến muộn, đi trễ", "pos": "noun", "kanji": "遅", "hanViet": "TRÌ", "on": "ち", "kun": "おそい・おくれる" },
+    { "jp": "遅い", "reading": "おそい", "vi": "Chậm trễ, muộn", "pos": "adj", "kanji": "遅", "hanViet": "TRÌ", "on": "ち", "kun": "おそい・おくれる" },
+    { "jp": "遅れる", "reading": "おくれる", "vi": "Bị trễ, đến muộn", "pos": "verb", "kanji": "遅", "hanViet": "TRÌ", "on": "ち", "kun": "おそい・おくれる" },
+    { "jp": "重要な", "reading": "じゅうような", "vi": "Trọng yếu, quan trọng", "pos": "adj", "kanji": "重", "hanViet": "TRỌNG", "on": "じゅう", "kun": "おもい" },
+    { "jp": "体重", "reading": "たいじゅう", "vi": "Cân nặng", "pos": "noun", "kanji": "重", "hanViet": "TRỌNG", "on": "じゅう", "kun": "おもい" },
+    { "jp": "重い", "reading": "おもい", "vi": "Nặng", "pos": "adj", "kanji": "重", "hanViet": "TRỌNG", "on": "じゅう", "kun": "おもい" },
+    { "jp": "軽食", "reading": "けいしょく", "vi": "Bữa ăn nhẹ", "pos": "noun", "kanji": "軽", "hanViet": "KHINH", "on": "けい", "kun": "かるい" },
+    { "jp": "軽い", "reading": "かるい", "vi": "Nhẹ", "pos": "adj", "kanji": "軽", "hanViet": "KHINH", "on": "けい", "kun": "かるい" }
+  ]
+}

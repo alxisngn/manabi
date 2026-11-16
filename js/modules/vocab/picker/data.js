@@ -2,18 +2,19 @@ import { shuffle } from '../../../core/util.js';
 import { getWeak } from '../../../core/weak.js';
 
 export const STORE_KEY = 'vocab';
+export const getStoreKey = (skill = 'vocab') => (skill === 'kanji' ? 'kanji' : 'vocab');
 export const DEFAULT_STORE = { selectedIds: [], customLessons: [], openWords: [], weakWords: [] };
 
 const repoCache = {};
 
-export async function fetchRepo(level) {
-  const lv = level.toLowerCase();
-  if (repoCache[lv]) return repoCache[lv];
+export async function fetchRepo(level, skill = 'vocab') {
+  const key = `${level.toLowerCase()}:${skill}`;
+  if (repoCache[key]) return repoCache[key];
   try {
-    const res = await fetch(`data/${lv}/vocab/index.json`);
-    repoCache[lv] = res.ok ? ((await res.json())?.lessons || []) : [];
-  } catch { repoCache[lv] = []; }
-  return repoCache[lv];
+    const res = await fetch(`data/${level.toLowerCase()}/${skill}/index.json`);
+    repoCache[key] = res.ok ? ((await res.json())?.lessons || []) : [];
+  } catch { repoCache[key] = []; }
+  return repoCache[key];
 }
 
 export const cleanName = (n) => String(n || '').replace(/\s*\(N[1-5]\)\s*/gi, '').trim();
@@ -30,10 +31,10 @@ export function buildLessons(repo, st, activeLevel) {
   return list;
 }
 
-export async function fetchWords(item, level) {
+export async function fetchWords(item, level, skill = 'vocab') {
   if (item.source === 'local') return [...(item.words || [])];
   try {
-    const res = await fetch(`data/${level.toLowerCase()}/vocab/${item.file}`);
+    const res = await fetch(`data/${level.toLowerCase()}/${skill}/${item.file}`);
     return res.ok ? ((await res.json())?.words || []) : [];
   } catch { return []; }
 }

@@ -1,0 +1,29 @@
+{
+  "lesson": { "id": "n4-kanji-b49", "name": "Buổi 49 (運動練習走歩泳才)", "type": "book" },
+  "words": [
+    { "jp": "運転", "reading": "うんてん", "vi": "Lái xe", "pos": "noun", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "運転手", "reading": "うんてんしゅ", "vi": "Tài xế", "pos": "noun", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "運動", "reading": "うんどう", "vi": "Vận động, thể thao", "pos": "noun", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "運がいい", "reading": "うんがいい", "vi": "May mắn", "pos": "adj", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "不運", "reading": "ふうん", "vi": "Không may, xui xẻo", "pos": "noun", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "運ぶ", "reading": "はこぶ", "vi": "Mang, vác, vận chuyển", "pos": "verb", "kanji": "運", "hanViet": "VẬN", "on": "うん", "kun": "はこぶ" },
+    { "jp": "自動車", "reading": "じどうしゃ", "vi": "Xe ô tô", "pos": "noun", "kanji": "動", "hanViet": "ĐỘNG", "on": "どう", "kun": "うごく・うごかす" },
+    { "jp": "動物", "reading": "どうぶつ", "vi": "Động vật", "pos": "noun", "kanji": "動", "hanViet": "ĐỘNG", "on": "どう", "kun": "うごく・うごかす" },
+    { "jp": "動く", "reading": "うごく", "vi": "Chuyển động, hoạt động (tự động từ)", "pos": "verb", "kanji": "動", "hanViet": "ĐỘNG", "on": "どう", "kun": "うごく・うごかす" },
+    { "jp": "動かす", "reading": "うごかす", "vi": "Làm chuyển động (tha động từ)", "pos": "verb", "kanji": "動", "hanViet": "ĐỘNG", "on": "どう", "kun": "うごく・うごかす" },
+    { "jp": "練習", "reading": "れんしゅう", "vi": "Luyện tập", "pos": "noun", "kanji": "練", "hanViet": "LUYỆN", "on": "れん", "kun": "" },
+    { "jp": "練習問題", "reading": "れんしゅうもんだい", "vi": "Bài tập luyện tập", "pos": "noun", "kanji": "練", "hanViet": "LUYỆN", "on": "れん", "kun": "" },
+    { "jp": "復習", "reading": "ふくしゅう", "vi": "Ôn tập bài cũ", "pos": "noun", "kanji": "習", "hanViet": "TẬP", "on": "しゅう", "kun": "ならう" },
+    { "jp": "習う", "reading": "ならう", "vi": "Học (từ ai đó / kỹ năng)", "pos": "verb", "kanji": "習", "hanViet": "TẬP", "on": "しゅう", "kun": "ならう" },
+    { "jp": "予習", "reading": "よしゅう", "vi": "Chuẩn bị bài mới", "pos": "noun", "kanji": "習", "hanViet": "TẬP", "on": "しゅう", "kun": "ならう" },
+    { "jp": "走る", "reading": "はしる", "vi": "Chạy", "pos": "verb", "kanji": "走", "hanViet": "TẨU", "on": "そう", "kun": "はしる" },
+    { "jp": "散歩する", "reading": "さんぽする", "vi": "Đi dạo", "pos": "verb", "kanji": "歩", "hanViet": "BỘ", "on": "ほ・ぽ", "kun": "あるく" },
+    { "jp": "歩道", "reading": "ほどう", "vi": "Vỉa hè, đường đi bộ", "pos": "noun", "kanji": "歩", "hanViet": "BỘ", "on": "ほ・ぽ", "kun": "あるく" },
+    { "jp": "歩行者", "reading": "ほこうしゃ", "vi": "Người đi bộ", "pos": "noun", "kanji": "歩", "hanViet": "BỘ", "on": "ほ・ぽ", "kun": "あるく" },
+    { "jp": "歩く", "reading": "あるく", "vi": "Đi bộ", "pos": "verb", "kanji": "歩", "hanViet": "BỘ", "on": "ほ・ぽ", "kun": "あるく" },
+    { "jp": "水泳", "reading": "すいえい", "vi": "Bơi lội", "pos": "noun", "kanji": "泳", "hanViet": "VỊNH", "on": "えい", "kun": "およぐ" },
+    { "jp": "泳ぐ", "reading": "およぐ", "vi": "Bơi", "pos": "verb", "kanji": "泳", "hanViet": "VỊNH", "on": "えい", "kun": "およぐ" },
+    { "jp": "一才", "reading": "いっさい", "vi": "1 tuổi", "pos": "noun", "kanji": "才", "hanViet": "TÀI", "on": "さい", "kun": "" },
+    { "jp": "八才", "reading": "はっさい", "vi": "8 tuổi", "pos": "noun", "kanji": "才", "hanViet": "TÀI", "on": "さい", "kun": "" }
+  ]
+}

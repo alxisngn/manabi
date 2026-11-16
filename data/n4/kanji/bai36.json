@@ -1,0 +1,28 @@
+{
+  "lesson": { "id": "n4-kanji-b36", "name": "Buổi 36 (夫妻特思料理有)", "type": "book" },
+  "words": [
+    { "jp": "夫婦", "reading": "ふうふ", "vi": "Vợ chồng", "pos": "noun", "kanji": "夫", "hanViet": "PHU", "on": "ふ・ふう", "kun": "おっと" },
+    { "jp": "夫妻", "reading": "ふさい", "vi": "Phu thê, vợ chồng", "pos": "noun", "kanji": "夫", "hanViet": "PHU", "on": "ふ・ふう", "kun": "おっと" },
+    { "jp": "大丈夫", "reading": "だいじょうぶ", "vi": "Không sao, ổn", "pos": "adj", "kanji": "夫", "hanViet": "PHU", "on": "ふ・ふう", "kun": "おっと" },
+    { "jp": "丈夫な", "reading": "じょうぶな", "vi": "Bền chắc, khỏe mạnh", "pos": "adj", "kanji": "夫", "hanViet": "PHU", "on": "ふ・ふう", "kun": "おっと" },
+    { "jp": "夫", "reading": "おっと", "vi": "Chồng (mình)", "pos": "noun", "kanji": "夫", "hanViet": "PHU", "on": "ふ・ふう", "kun": "おっと" },
+    { "jp": "妻", "reading": "つま", "vi": "Vợ (mình)", "pos": "noun", "kanji": "妻", "hanViet": "THÊ", "on": "さい", "kun": "つま" },
+    { "jp": "特別な", "reading": "とくべつな", "vi": "Đặc biệt", "pos": "adj", "kanji": "特", "hanViet": "ĐẶC", "on": "とく", "kun": "" },
+    { "jp": "特に", "reading": "とくに", "vi": "Đặc biệt là, nhất là", "pos": "adv", "kanji": "特", "hanViet": "ĐẶC", "on": "とく", "kun": "" },
+    { "jp": "特急電車", "reading": "とっきゅうでんしゃ", "vi": "Tàu điện tốc hành đặc biệt", "pos": "noun", "kanji": "特", "hanViet": "ĐẶC", "on": "とく", "kun": "" },
+    { "jp": "思う", "reading": "おもう", "vi": "Nghĩ, suy nghĩ", "pos": "verb", "kanji": "思", "hanViet": "TƯ", "on": "し", "kun": "おもう" },
+    { "jp": "思い出す", "reading": "おもいだす", "vi": "Nhớ ra", "pos": "verb", "kanji": "思", "hanViet": "TƯ", "on": "し", "kun": "おもう" },
+    { "jp": "思いきり", "reading": "おもいきり", "vi": "Hết mình, dứt khoát", "pos": "adv", "kanji": "思", "hanViet": "TƯ", "on": "し", "kun": "おもう" },
+    { "jp": "思い出", "reading": "おもいで", "vi": "Kỷ niệm", "pos": "noun", "kanji": "思", "hanViet": "TƯ", "on": "し", "kun": "おもう" },
+    { "jp": "料理", "reading": "りょうり", "vi": "Món ăn, nấu ăn", "pos": "noun", "kanji": "料", "hanViet": "LIỆU", "on": "りょう", "kun": "" },
+    { "jp": "資料", "reading": "しりょう", "vi": "Tài liệu", "pos": "noun", "kanji": "料", "hanViet": "LIỆU", "on": "りょう", "kun": "" },
+    { "jp": "無料", "reading": "むりょう", "vi": "Miễn phí", "pos": "noun", "kanji": "料", "hanViet": "LIỆU", "on": "りょう", "kun": "" },
+    { "jp": "給料", "reading": "きゅうりょう", "vi": "Tiền lương", "pos": "noun", "kanji": "料", "hanViet": "LIỆU", "on": "りょう", "kun": "" },
+    { "jp": "材料", "reading": "ざいりょう", "vi": "Nguyên liệu", "pos": "noun", "kanji": "料", "hanViet": "LIỆU", "on": "りょう", "kun": "" },
+    { "jp": "無理な", "reading": "むりな", "vi": "Vô lý, quá sức", "pos": "adj", "kanji": "理", "hanViet": "LÝ", "on": "り", "kun": "" },
+    { "jp": "理由", "reading": "りゆう", "vi": "Lý do", "pos": "noun", "kanji": "理", "hanViet": "LÝ", "on": "り", "kun": "" },
+    { "jp": "修理", "reading": "しゅうり", "vi": "Sửa chữa", "pos": "noun", "kanji": "理", "hanViet": "LÝ", "on": "り", "kun": "" },
+    { "jp": "有名な", "reading": "ゆうめいな", "vi": "Nổi tiếng", "pos": "adj", "kanji": "有", "hanViet": "HỮU", "on": "ゆう", "kun": "" },
+    { "jp": "有料", "reading": "ゆうりょう", "vi": "Có tính phí", "pos": "noun", "kanji": "有", "hanViet": "HỮU", "on": "ゆう", "kun": "" }
+  ]
+}
