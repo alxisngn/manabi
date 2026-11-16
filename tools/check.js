@@ -102,7 +102,8 @@ for (const f of jsFiles) {
 }
 for (const f of cssFiles) { const n = fs.readFileSync(f, "utf8").split("\n").length; if (n > 500) warn(`${rel(f)}: ${n} dòng CSS (nên tách theo khu vực)`); }
 const junk = []; (function w(d) { for (const f of fs.readdirSync(d)) { if (f === ".git" || f === "node_modules") continue; const p = path.join(d, f); if (fs.statSync(p).isDirectory()) w(p); else if (f === ".DS_Store") junk.push(rel(p)); } })(ROOT);
-if (junk.length) warn(`Có ${junk.length} file .DS_Store (thêm vào .gitignore)`);
+const gi = fs.existsSync(path.join(ROOT, ".gitignore")) ? fs.readFileSync(path.join(ROOT, ".gitignore"), "utf8") : "";
+if (junk.length && !/(^|\n)\.DS_Store\s*(\n|$)/.test(gi)) warn(`Có ${junk.length} file .DS_Store (thêm vào .gitignore)`);
 
 // Kết quả
 console.log("");

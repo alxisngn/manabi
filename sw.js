@@ -1,10 +1,14 @@
-const V = 'v18';
+const V = 'v19';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = `manabi-fonts-${V}`;
 
 const CORE_ASSETS = [
   './',
-  './css/style.css',
+  './css/base.css',
+  './css/layout.css',
+  './css/components.css',
+  './css/screens.css',
+  './css/utilities.css',
   './icons/apple-touch-icon.png',
   './icons/icon-192.png',
   './icons/icon-512.png',
