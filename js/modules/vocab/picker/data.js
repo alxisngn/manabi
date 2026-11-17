@@ -25,7 +25,9 @@ export function buildLessons(repo, st, activeLevel) {
   if (weakWords.length) list.push({ id: 'user:weak', name: '📌 Từ cần ôn lại', count: weakWords.length, words: weakWords, source: 'local' });
   if (st.openWords?.length) list.push({ id: 'user:open', name: '📖 Từ mở rộng', count: st.openWords.length, words: st.openWords, source: 'local' });
   (st.customLessons || []).forEach((cl) => {
-    if (cl?.id && cl.words?.length) list.push({ id: String(cl.id), name: cleanName(cl.name || 'Bài tự thêm'), count: cl.words.length, words: cl.words, source: 'local' });
+    if (cl && !cl.deletedAt && cl.id && cl.words?.length) {
+      list.push({ id: String(cl.id), name: cleanName(cl.name || 'Bài tự thêm'), count: cl.words.length, words: cl.words, source: 'local' });
+    }
   });
   repo.forEach((l) => list.push({ id: l.id, level: activeLevel, name: cleanName(l.name), file: l.file, count: Number(l.count) || 0, source: 'repo' }));
   return list;

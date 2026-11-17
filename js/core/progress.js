@@ -2,16 +2,55 @@ import { getStore, updateStore } from './store.js';
 
 export const PASS_RATE = 1.0;
 const STORE_KEY = 'progress';
+let migrated = false;
+
+function normalizeLessonId(level, skill, lessonId) {
+  const lv = String(level || 'N4').toLowerCase();
+  const sk = String(skill || 'vocab').toLowerCase();
+  const raw = String(lessonId || '');
+  if (sk === 'vocab' && lv === 'n4') return raw;
+  const m = raw.match(/^b(\d+)$/i);
+  return m ? `${lv}-${sk}-b${m[1]}` : raw;
+}
 
 const makeKey = (level, skill, lessonId) =>
-  `${String(level || 'N4').toLowerCase()}/${String(skill || 'vocab').toLowerCase()}/${String(lessonId)}`;
+  `${String(level || 'N4').toLowerCase()}/${String(skill || 'vocab').toLowerCase()}/${normalizeLessonId(level, skill, lessonId)}`;
+
+function ensureMigrated() {
+  if (migrated) return;
+  migrated = true;
+  const st = getStore(STORE_KEY, { lessons: {} });
+  const oldLessons = st?.lessons;
+  if (!oldLessons || typeof oldLessons !== 'object') return;
+
+  let changed = false;
+  const nextLessons = { ...oldLessons };
+  for (const [k, val] of Object.entries(oldLessons)) {
+    const m = k.match(/^(n[1-5])\/(kanji)\/b(\d+)$/i);
+    if (!m) continue;
+    const lv = m[1].toLowerCase();
+    const sk = m[2].toLowerCase();
+    const newKey = `${lv}/${sk}/${lv}-${sk}-b${m[3]}`;
+    if (!nextLessons[newKey]) {
+      nextLessons[newKey] = { ...val };
+    }
+    delete nextLessons[k];
+    changed = true;
+  }
+
+  if (changed) {
+    updateStore(STORE_KEY, (cur) => ({ ...cur, lessons: nextLessons }), { lessons: {} });
+  }
+}
 
 export function getLessonProgress(level, skill, lessonId) {
+  ensureMigrated();
   const st = getStore(STORE_KEY, { lessons: {} });
   return st?.lessons?.[makeKey(level, skill, lessonId)] || null;
 }
 
 export function getLastStudiedSkill(level) {
+  ensureMigrated();
   const prefix = `${String(level || 'N4').toLowerCase()}/`;
   const st = getStore(STORE_KEY, { lessons: {} });
   const entries = Object.entries(st?.lessons || {}).filter(([k]) => k.startsWith(prefix));
@@ -22,6 +61,7 @@ export function getLastStudiedSkill(level) {
 }
 
 export function markStudied(level, skill, lessonId) {
+  ensureMigrated();
   if (!lessonId || String(lessonId).startsWith('user:')) return null;
   const key = makeKey(level, skill, lessonId);
   const now = new Date().toISOString();
@@ -50,6 +90,7 @@ export function markStudied(level, skill, lessonId) {
 }
 
 export function recordTest(level, skill, lessonId, pct) {
+  ensureMigrated();
   if (!lessonId) return null;
   const key = makeKey(level, skill, lessonId);
   const now = new Date().toISOString();
@@ -79,6 +120,7 @@ export function recordTest(level, skill, lessonId, pct) {
 }
 
 export function getSummary(level, skill, lessonList = []) {
+  ensureMigrated();
   const st = getStore(STORE_KEY, { lessons: {} });
   const map = st?.lessons || {};
   let done = 0;

@@ -68,11 +68,12 @@ export function bindKanjiFilter(container, ctx) {
 
     const baseName = (nameInp?.value || '').trim() || `So-matome (${chars.join('')})`;
     const albumName = `${baseName} (${chars.join('')})`;
+    const nowIso = new Date().toISOString();
     const albumId = `album-${Date.now()}`;
 
     updateStore(ctx.storeKey, (cur) => {
       const list = Array.isArray(cur?.customLessons) ? [...cur.customLessons] : [];
-      list.unshift({ id: albumId, name: albumName, words: matched });
+      list.unshift({ id: albumId, name: albumName, words: matched, updatedAt: nowIso });
       return { ...cur, customLessons: list };
     }, DEFAULT_STORE);
 

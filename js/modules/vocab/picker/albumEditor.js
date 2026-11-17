@@ -15,9 +15,10 @@ export function renderAlbumEditor(container, ctx, albumId) {
   let errMsg = '';
 
   const saveChanges = (nextWords, nextName) => {
+    const nowIso = new Date().toISOString();
     updateStore(ctx.storeKey, (cur) => {
       const list = (cur?.customLessons || []).map((cl) =>
-        String(cl.id) === String(albumId) ? { ...cl, name: nextName, words: nextWords } : cl
+        String(cl.id) === String(albumId) ? { ...cl, name: nextName, words: nextWords, updatedAt: nowIso } : cl
       );
       return { ...cur, customLessons: list };
     }, DEFAULT_STORE);
@@ -25,8 +26,11 @@ export function renderAlbumEditor(container, ctx, albumId) {
   };
 
   const deleteAlbum = () => {
+    const nowIso = new Date().toISOString();
     updateStore(ctx.storeKey, (cur) => {
-      const list = (cur?.customLessons || []).filter((cl) => String(cl.id) !== String(albumId));
+      const list = (cur?.customLessons || []).map((cl) =>
+        String(cl.id) === String(albumId) ? { ...cl, deletedAt: nowIso, updatedAt: nowIso } : cl
+      );
       return { ...cur, customLessons: list };
     }, DEFAULT_STORE);
     ctx.refresh?.();

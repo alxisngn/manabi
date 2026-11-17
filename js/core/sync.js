@@ -2,7 +2,7 @@ const SYNC_KEY_STORAGE = 'manabi:syncKey';
 const SYNC_REV_STORAGE = 'manabi:syncRev';
 const META_STORAGE = 'manabi:_meta';
 const PREFIX = 'manabi:';
-const SYNC_KEYS = ['vocab', 'progress'];
+const SYNC_KEYS = ['vocab', 'kanji', 'progress'];
 const KEY_PATTERN = /^[A-Za-z0-9_-]{24,128}$/;
 const CHARSET = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 const FETCH_TIMEOUT_MS = 8000;
@@ -96,6 +96,12 @@ export function clearSyncKey() {
   emitStatus({ state: 'off', lastSyncAt: null });
 }
 
+function normalizeAlbum(cl, fallbackTime, idx) {
+  const id = cl?.id ? String(cl.id) : `album-${fallbackTime}-${idx}`;
+  const updatedAt = cl?.updatedAt || cl?.deletedAt || fallbackTime;
+  return { ...cl, id, updatedAt };
+}
+
 function readLocalPayload() {
   let meta = {};
   try {
@@ -165,6 +171,40 @@ function mergeProgressValues(localVal, remoteVal) {
   return { ...(rLessons ? remoteVal : {}), ...(localVal || {}), lessons };
 }
 
+function mergeKanjiValues(localEntry, remoteEntry, nowIso) {
+  const lVal = localEntry?.value || {};
+  const rVal = remoteEntry?.value || {};
+  const lTime = String(localEntry?.updatedAt || '');
+  const rTime = String(remoteEntry?.updatedAt || '');
+  const base = rTime > lTime ? { ...rVal } : { ...lVal };
+
+  const lList = Array.isArray(lVal.customLessons) ? lVal.customLessons : [];
+  const rList = Array.isArray(rVal.customLessons) ? rVal.customLessons : [];
+  const map = new Map();
+
+  lList.forEach((cl, i) => {
+    if (!cl || typeof cl !== 'object') return;
+    const norm = normalizeAlbum(cl, lTime || nowIso, i);
+    map.set(norm.id, norm);
+  });
+
+  rList.forEach((cl, i) => {
+    if (!cl || typeof cl !== 'object') return;
+    const norm = normalizeAlbum(cl, rTime || nowIso, i);
+    const existing = map.get(norm.id);
+    if (!existing) {
+      map.set(norm.id, norm);
+    } else {
+      const exTime = String(existing.deletedAt || existing.updatedAt || '');
+      const rmTime = String(norm.deletedAt || norm.updatedAt || '');
+      if (rmTime > exTime) map.set(norm.id, norm);
+    }
+  });
+
+  base.customLessons = [...map.values()];
+  return base;
+}
+
 function mergeData(localData, remoteData) {
   const lKeys = localData?.keys || {};
   const rKeys = remoteData?.keys || {};
@@ -175,13 +215,27 @@ function mergeData(localData, remoteData) {
     const l = lKeys[k];
     const r = rKeys[k];
     if (!l && !r) continue;
-    if (!l) { mergedKeys[k] = { value: r.value, updatedAt: r.updatedAt || nowIso }; continue; }
-    if (!r) { mergedKeys[k] = { value: l.value, updatedAt: l.updatedAt || nowIso }; continue; }
+    if (!l) {
+      const val = k === 'kanji' ? mergeKanjiValues(null, r, nowIso) : r.value;
+      mergedKeys[k] = { value: val, updatedAt: r.updatedAt || nowIso };
+      continue;
+    }
+    if (!r) {
+      const val = k === 'kanji' ? mergeKanjiValues(l, null, nowIso) : l.value;
+      mergedKeys[k] = { value: val, updatedAt: l.updatedAt || nowIso };
+      continue;
+    }
 
     if (k === 'progress') {
       const latest = [l.updatedAt, r.updatedAt].filter(Boolean).sort().pop() || nowIso;
       mergedKeys[k] = {
         value: mergeProgressValues(l.value, r.value),
+        updatedAt: latest
+      };
+    } else if (k === 'kanji') {
+      const latest = [l.updatedAt, r.updatedAt].filter(Boolean).sort().pop() || nowIso;
+      mergedKeys[k] = {
+        value: mergeKanjiValues(l, r, nowIso),
         updatedAt: latest
       };
     } else {
