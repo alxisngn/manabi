@@ -28,7 +28,7 @@ export function buildGateQuestions(lessonWords, poolWords, priorityWrong = []) {
 export function evaluateGate(gate, score, total) {
   const rawPct = (score / total) * 100;
   const gateResult = { pct: Math.round(rawPct), passed: rawPct >= PASS_RATE * 100 };
-  recordTest(gate.level, 'vocab', gate.lessonId, gateResult.pct);
+  recordTest(gate.level, gate.skill || 'vocab', gate.lessonId, gateResult.pct);
   return gateResult;
 }
 

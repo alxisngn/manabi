@@ -4,17 +4,17 @@ import { escapeHtml } from '../core/util.js';
 
 const CATEGORIES = [
   { id: 'vocab', label: 'Từ vựng', icon: '📚', ready: true },
+  { id: 'kanji', label: 'Kanji', icon: '漢', ready: true },
   { id: 'grammar', label: 'Ngữ pháp', icon: '🧩', ready: false },
-  { id: 'kanji', label: 'Kanji', icon: '漢', ready: false },
   { id: 'reading', label: 'Đọc hiểu', icon: '📖', ready: false },
   { id: 'listening', label: 'Nghe hiểu', icon: '🎧', ready: false }
 ];
 
 const cleanName = (n) => String(n || '').replace(/\s*\(N[1-5]\)\s*/gi, '').trim();
 
-async function fetchVocabLessons(level) {
+async function fetchSkillLessons(level, skill) {
   try {
-    const res = await fetch(`data/${level.toLowerCase()}/vocab/index.json`);
+    const res = await fetch(`data/${level.toLowerCase()}/${skill}/index.json`);
     if (!res.ok) return [];
     const list = (await res.json())?.lessons || [];
     return list.map((l) => ({ id: l.id, name: cleanName(l.name) }));
@@ -25,14 +25,18 @@ async function fetchVocabLessons(level) {
 
 export async function mount(container) {
   const level = (getLevel() || 'N4').toUpperCase();
-  const openState = { vocab: true, grammar: false, kanji: false, reading: false, listening: false };
+  const openState = { vocab: false, grammar: false, kanji: false, reading: false, listening: false };
 
   container.innerHTML = `<div class="card"><p class="module-sub">Đang tải tiến độ...</p></div>`;
-  const vocabLessons = await fetchVocabLessons(level);
+  const [vocabLessons, kanjiLessons] = await Promise.all([
+    fetchSkillLessons(level, 'vocab'),
+    fetchSkillLessons(level, 'kanji')
+  ]);
+  const lessonsByCat = { vocab: vocabLessons, kanji: kanjiLessons };
 
   function render() {
     const sectionsHtml = CATEGORIES.map((cat) => {
-      const lessons = cat.id === 'vocab' ? vocabLessons : [];
+      const lessons = lessonsByCat[cat.id] || [];
       const isOpen = Boolean(openState[cat.id]);
       let passedCount = 0;
 
@@ -48,7 +52,7 @@ export async function mount(container) {
         const inProgress = !passed && prog.status === 'learning';
         const best = Number(prog.bestPct ?? prog.bestScore ?? prog.highScore ?? prog.best ?? prog.score ?? prog.pct ?? 0);
         const attempts = Number(prog.attempts ?? prog.tries ?? prog.count ?? 0);
-        const dateStr = formatDate(prog.lastDate || prog.updatedAt || prog.date);
+        const dateStr = formatDate(prog.lastDate || prog.lastAt || prog.updatedAt || prog.date);
 
         if (passed) passedCount++;
 
@@ -65,7 +69,7 @@ export async function mount(container) {
             : 'Chưa kiểm tra • 0 lần thử';
 
         return `
-          <a href="#/${level.toLowerCase()}/vocab?lesson=${encodeURIComponent(les.id)}" class="card v-row prg-lesson-link">
+          <a href="#/${level.toLowerCase()}/${cat.id}?lesson=${encodeURIComponent(les.id)}" class="card v-row prg-lesson-link">
             <div class="col gap-4">
               <span class="prg-lesson-name">${escapeHtml(les.name)}</span>
               <span class="text-sm text-muted">${subText}</span>
@@ -81,7 +85,9 @@ export async function mount(container) {
       const pct = total > 0 ? Math.round((passedCount / total) * 100) : 0;
       const summaryLabel = cat.ready && total > 0
         ? `${cat.icon} ${cat.label}: ${passedCount}/${total} bài đã qua`
-        : `${cat.icon} ${cat.label}: Sắp ra mắt`;
+        : cat.icon === '漢' || cat.ready
+          ? `${cat.icon} ${cat.label}: Chưa có dữ liệu`
+          : `${cat.icon} ${cat.label}: Sắp ra mắt`;
 
       const bodyHtml = isOpen
         ? (cat.ready && lessons.length
