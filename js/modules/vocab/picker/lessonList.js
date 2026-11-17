@@ -1,7 +1,7 @@
 import { getLessonProgress } from '../../../core/progress.js';
 import { shuffle, escapeHtml } from '../../../core/util.js';
 import { fetchWords, sampleBalanced } from './data.js';
-import { renderKanjiFilterCard, bindKanjiFilter } from './kanjiSearch.js';
+import { renderKanjiFilterCard, bindKanjiFilter, parseSomatomeTag } from './kanjiSearch.js';
 import { renderAlbumEditor } from './albumEditor.js';
 
 let mixFromIdx = 0;
@@ -15,8 +15,11 @@ export function renderList(container, ctx) {
   }
 
   const isKanji = skill === 'kanji';
-  const personal = lessons.filter((l) => l.source === 'local');
-  const customCount = personal.filter((l) => !String(l.id).startsWith('user:')).length;
+  const allLocal = lessons.filter((l) => l.source === 'local');
+  const customOnly = allLocal.filter((l) => !String(l.id).startsWith('user:'));
+  const personal = isKanji
+    ? allLocal.filter((l) => !parseSomatomeTag(l.name))
+    : allLocal;
   const textbook = lessons.filter((l) => l.source === 'repo');
 
   const localBtn = (l) => {
@@ -64,7 +67,7 @@ export function renderList(container, ctx) {
         <button type="button" id="v-add" class="btn btn-yellow">＋ Thêm từ</button>
       </div>
     </div>
-    ${isKanji ? renderKanjiFilterCard(activeLevel, customCount) : ''}
+    ${isKanji ? renderKanjiFilterCard(activeLevel, customOnly) : ''}
     <div class="module-grid pk-quick-grid">
       <button type="button" id="v-open-mix" class="card module-card is-active pk-card-teal">
         <div class="module-left">
