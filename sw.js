@@ -1,6 +1,6 @@
-const V = 'v28';
+const V = 'v29';
 const CACHE = `manabi-${V}`;
-const FONT_CACHE = `manabi-fonts-${V}`;
+const FONT_CACHE = 'manabi-fonts-v1';
 
 const CORE_ASSETS = [
   './',
@@ -55,20 +55,11 @@ const CORE_ASSETS = [
   './manifest.webmanifest'
 ];
 
-const toLocalUrl = (p) => (p.startsWith('./') || p.startsWith('/') ? p : `./${p}`);
+const isCodeAsset = (pathname) => /\.(js|css|html)$/i.test(pathname);
 
 async function precacheCore() {
   const cache = await caches.open(CACHE);
   await Promise.allSettled(CORE_ASSETS.map((url) => cache.add(url)));
-
-  try {
-    const res = await fetch('./data/files.json');
-    if (res && res.ok) {
-      const json = await res.json();
-      const files = Array.isArray(json) ? json : (Array.isArray(json?.files) ? json.files : []);
-      await Promise.allSettled(files.map((f) => cache.add(toLocalUrl(String(f)))));
-    }
-  } catch {}
 }
 
 self.addEventListener('install', (event) => {
@@ -123,17 +114,29 @@ self.addEventListener('fetch', (event) => {
 
   if (url.origin !== self.location.origin) return;
 
+  if (isCodeAsset(url.pathname)) {
+    event.respondWith(
+      fetch(event.request)
+        .then((res) => {
+          if (res && res.ok) {
+            const clone = res.clone();
+            caches.open(CACHE).then((cache) => cache.put(event.request, clone));
+          }
+          return res;
+        })
+        .catch(() => caches.match(event.request))
+    );
+    return;
+  }
+
   event.respondWith(
     caches.open(CACHE).then((cache) =>
       cache.match(event.request).then((cached) => {
-        const networkFetch = fetch(event.request)
-          .then((res) => {
-            if (res && res.ok) cache.put(event.request, res.clone());
-            return res;
-          })
-          .catch(() => cached);
-
-        return cached || networkFetch;
+        if (cached) return cached;
+        return fetch(event.request).then((res) => {
+          if (res && res.ok) cache.put(event.request, res.clone());
+          return res;
+        });
       })
     )
   );
