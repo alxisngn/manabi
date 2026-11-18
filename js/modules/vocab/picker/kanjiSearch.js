@@ -8,6 +8,7 @@ const uiState = {
   week: 1,
   addingDay: null,
   query: '',
+  extraDraft: '',
   candidates: [],
   selectedWords: [],
   errMsg: ''
@@ -28,9 +29,37 @@ export const parseSomatomeTag = (name) => {
   return m ? { week: Number(m[1]), day: Number(m[2]) } : null;
 };
 
+function parseQuickWordInput(raw) {
+  const clean = String(raw || '').trim();
+  if (!clean) return null;
+
+  if (clean.includes('|')) {
+    const parts = clean.split('|').map((s) => s.trim());
+    if (parts.length >= 3 && parts[0] && parts[1] && parts[2]) {
+      return { jp: parts[0], reading: parts[1], vi: parts.slice(2).join(' '), pos: 'noun' };
+    }
+    return null;
+  }
+
+  const tokens = clean.split(/[\s\u3000]+/).filter(Boolean);
+  if (tokens.length < 2) return null;
+
+  const jp = tokens[0];
+  const isPureKana = /^[\u3040-\u30FFー・〜]+$/.test(jp);
+
+  if (tokens.length === 2 && isPureKana) {
+    return { jp, reading: jp, vi: tokens[1], pos: 'noun' };
+  }
+  if (tokens.length >= 3) {
+    return { jp, reading: tokens[1], vi: tokens.slice(2).join(' '), pos: 'noun' };
+  }
+  return null;
+}
+
 function resetAddDraft() {
   uiState.addingDay = null;
   uiState.query = '';
+  uiState.extraDraft = '';
   uiState.candidates = [];
   uiState.selectedWords = [];
   uiState.errMsg = '';
@@ -156,9 +185,9 @@ export function renderKanjiFilterCard(activeLevel, customLessons = []) {
         </div>
         ${candHtml}
         <div class="col gap-8">
-          <div class="text-sm text-muted">2. Thêm từ ngoài kho Riki (nếu thiếu):</div>
+          <div class="text-sm text-muted">2. Thêm từ ngoài kho Riki (cách nhau dấu cách):</div>
           <div class="pk-rng-row">
-            <input type="text" id="kj-extra-inp" class="inp" placeholder="Từ Nhật | Cách đọc | Nghĩa" autocomplete="off" />
+            <input type="text" id="kj-extra-inp" class="inp" value="${escapeHtml(uiState.extraDraft)}" placeholder="VD: 建物 たてもの tòa nhà" autocomplete="off" />
             <button type="button" id="kj-extra-add" class="btn">＋ Thêm</button>
           </div>
         </div>
@@ -237,8 +266,12 @@ export function bindKanjiFilter(container, ctx) {
 
   const inp = container.querySelector('#kj-filter-inp');
   const searchBtn = container.querySelector('#kj-search-btn');
+  const extraInp = container.querySelector('#kj-extra-inp');
   const saveBtn = container.querySelector('#kj-filter-go');
   if (!inp) return;
+
+  inp.oninput = () => { uiState.query = inp.value; };
+  if (extraInp) extraInp.oninput = () => { uiState.extraDraft = extraInp.value; };
 
   const runSearch = async () => {
     const raw = inp.value.trim();
@@ -265,11 +298,21 @@ export function bindKanjiFilter(container, ctx) {
     uiState.candidates = matched;
     uiState.errMsg = matched.length ? '' : `Không thấy từ nào trong kho Riki chứa: ${chars.join(', ')}. Bạn có thể thêm tay ở mục 2.`;
     ctx.render();
-    container.querySelector('#kj-filter-inp')?.focus();
+    const nextInp = container.querySelector('#kj-filter-inp');
+    if (nextInp) {
+      nextInp.focus();
+      nextInp.setSelectionRange(nextInp.value.length, nextInp.value.length);
+    }
   };
 
   if (searchBtn) searchBtn.onclick = runSearch;
-  inp.onkeydown = (e) => { if (e.key === 'Enter') runSearch(); };
+  inp.onkeydown = (e) => {
+    if (e.isComposing || e.keyCode === 229) return;
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      runSearch();
+    }
+  };
 
   container.querySelectorAll('[data-kj-pick]').forEach((b) => {
     b.onclick = () => {
@@ -303,18 +346,29 @@ export function bindKanjiFilter(container, ctx) {
     ctx.render();
   });
 
-  container.querySelector('#kj-extra-add')?.addEventListener('click', () => {
-    const extraInp = container.querySelector('#kj-extra-inp');
-    const parts = String(extraInp?.value || '').split('|').map((s) => s.trim());
-    if (parts.length < 3 || !parts[0] || !parts[1] || !parts[2]) {
-      uiState.errMsg = 'Nhập đúng 3 phần cách nhau dấu | (VD: 建物 | たてもの | Tòa nhà).';
+  const runAddExtra = () => {
+    const parsed = parseQuickWordInput(extraInp?.value);
+    if (!parsed) {
+      uiState.errMsg = 'Gõ cách nhau bằng dấu cách: Từ_Nhật Cách_đọc Nghĩa (VD: 建物 たてもの tòa nhà).';
       return ctx.render();
     }
-    const newWord = { jp: parts[0], reading: parts[1], vi: parts[2], pos: 'noun' };
-    if (!isPicked(newWord.jp)) uiState.selectedWords.push(newWord);
+    if (!isPicked(parsed.jp)) uiState.selectedWords.push(parsed);
+    uiState.extraDraft = '';
     uiState.errMsg = '';
     ctx.render();
-  });
+    container.querySelector('#kj-extra-inp')?.focus();
+  };
+
+  container.querySelector('#kj-extra-add')?.addEventListener('click', runAddExtra);
+  if (extraInp) {
+    extraInp.onkeydown = (e) => {
+      if (e.isComposing || e.keyCode === 229) return;
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        runAddExtra();
+      }
+    };
+  }
 
   if (saveBtn) {
     saveBtn.onclick = () => {
