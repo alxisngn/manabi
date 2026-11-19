@@ -105,6 +105,10 @@ export async function mount(container, { level, skill = 'vocab', query } = {}) {
       markSelectedStudied(); setSession(true);
       const { mountFlashcard } = await import('../flashcard.js');
       if (token === navToken) mountFlashcard(container, vocabSession.words, backModes);
+    } else if (step === 'kanji-type') {
+      markSelectedStudied(); setSession(true);
+      const { mountKanjiType } = await import('../kanji-type.js');
+      if (token === navToken) mountKanjiType(container, vocabSession.words, backModes);
     } else if (step === 'kanji-read') {
       markSelectedStudied(); setSession(true);
       const { mountKanjiRead } = await import('../kanji-read.js');
@@ -141,7 +145,7 @@ export async function mount(container, { level, skill = 'vocab', query } = {}) {
       }
       render();
     };
-    const dynamicSteps = ['gate', 'flashcard', 'kanji-read', 'match', 'quiz', 'reflex', 'importer'];
+    const dynamicSteps = ['gate', 'flashcard', 'kanji-type', 'kanji-read', 'match', 'quiz', 'reflex', 'importer'];
     if (dynamicSteps.includes(state.step) && !(state.step === 'gate' && !state.gateCfg)) {
       mountDynamicStep(token, backModes);
       return;
@@ -151,6 +155,7 @@ export async function mount(container, { level, skill = 'vocab', query } = {}) {
     if (state.step === 'modes') {
       return renderModes(container, {
         lessons: ctx.lessons,
+        skill: activeSkill,
         vocabSession,
         onBack: () => { backToLevel(); refresh(); state.step = 'list'; render(); },
         onSelectMode: (modeId) => { state.step = modeId; render(); },
