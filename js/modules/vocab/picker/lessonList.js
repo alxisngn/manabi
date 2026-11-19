@@ -1,7 +1,8 @@
 import { getLessonProgress } from '../../../core/progress.js';
+import { getBookSource, renderBookDropdown, bindBookDropdown } from '../../../core/bookSwitch.js';
 import { shuffle, escapeHtml } from '../../../core/util.js';
 import { fetchWords, sampleBalanced } from './data.js';
-import { renderKanjiFilterCard, bindKanjiFilter, parseSomatomeTag } from './kanjiSearch.js';
+import { renderSomatomeBook, bindSomatomeBook, parseSomatomeTag, getSomatomeWeeks } from './kanjiSearch.js';
 import { renderAlbumEditor } from './albumEditor.js';
 
 let mixFromIdx = 0;
@@ -15,11 +16,15 @@ export function renderList(container, ctx) {
   }
 
   const isKanji = skill === 'kanji';
+  const isSomatome = getBookSource() === 'somatome';
+  const smWeeks = getSomatomeWeeks(skill);
+
   const allLocal = lessons.filter((l) => l.source === 'local');
   const customOnly = allLocal.filter((l) => !String(l.id).startsWith('user:'));
-  const personal = isKanji
-    ? allLocal.filter((l) => !parseSomatomeTag(l.name))
-    : allLocal;
+  const personal = allLocal.filter((l) => {
+    const tag = parseSomatomeTag(l.name);
+    return !(tag && smWeeks.includes(tag.week));
+  });
   const textbook = lessons.filter((l) => l.source === 'repo');
 
   const localBtn = (l) => {
@@ -59,40 +64,46 @@ export function renderList(container, ctx) {
       </div>`;
   };
 
+  const mainBookHtml = isSomatome
+    ? renderSomatomeBook(activeLevel, skill, customOnly)
+    : `
+      <div class="module-grid pk-quick-grid">
+        <button type="button" id="v-open-mix" class="card module-card is-active pk-card-teal">
+          <div class="module-left">
+            <div class="module-icon accent-teal">🔀</div>
+            <div><div class="module-title">Ôn tổng hợp ${escapeHtml(activeLevel)}</div><div class="module-sub">Chọn nhanh khoảng bài & trộn ngẫu nhiên</div></div>
+          </div>
+          <span class="badge badge-ready">Chọn →</span>
+        </button>
+        <button type="button" id="v-open-kanji" class="card module-card is-active pk-card-yellow">
+          <div class="module-left">
+            <div class="module-icon accent-yellow">漢</div>
+            <div><div class="module-title">Luyện đọc Kanji ${escapeHtml(activeLevel)}</div><div class="module-sub">Nhìn chữ Hán đọc Hiragana • Trắc nghiệm & Tự gõ</div></div>
+          </div>
+          <span class="badge badge-ready pk-badge-yellow">Luyện →</span>
+        </button>
+      </div>
+      <div class="pk-sec-lbl mb-8">Giáo trình Riki ${escapeHtml(activeLevel)}</div>
+      <div class="module-grid">${textbook.length ? textbook.map(repoRow).join('') : `<p class="module-sub">Chưa có bài học cho trình độ này.</p>`}</div>`;
+
   container.innerHTML = `
-    <div class="row-between mb-12">
+    <div class="row-between mb-12" style="flex-wrap:wrap;gap:8px;">
       <a href="#/learn" class="btn">← Đổi cấp</a>
-      <div class="row">
+      <div class="row" style="flex-wrap:wrap;gap:8px;">
         <span class="badge badge-ready pk-lv-badge">${isKanji ? 'Kanji' : 'Từ vựng'} ${escapeHtml(activeLevel)}</span>
-        <button type="button" id="v-add" class="btn btn-yellow">＋ Thêm từ</button>
+        ${renderBookDropdown('pk-book-dd')}
+        <button type="button" id="v-add" class="btn btn-yellow btn-sm">＋ Thêm từ</button>
       </div>
     </div>
-    ${isKanji ? renderKanjiFilterCard(activeLevel, customOnly) : ''}
-    <div class="module-grid pk-quick-grid">
-      <button type="button" id="v-open-mix" class="card module-card is-active pk-card-teal">
-        <div class="module-left">
-          <div class="module-icon accent-teal">🔀</div>
-          <div><div class="module-title">Ôn tổng hợp ${escapeHtml(activeLevel)}</div><div class="module-sub">Chọn nhanh khoảng bài & trộn ngẫu nhiên</div></div>
-        </div>
-        <span class="badge badge-ready">Chọn →</span>
-      </button>
-      <button type="button" id="v-open-kanji" class="card module-card is-active pk-card-yellow">
-        <div class="module-left">
-          <div class="module-icon accent-yellow">漢</div>
-          <div><div class="module-title">Luyện đọc Kanji ${escapeHtml(activeLevel)}</div><div class="module-sub">Nhìn chữ Hán đọc Hiragana • Trắc nghiệm & Tự gõ</div></div>
-        </div>
-        <span class="badge badge-ready pk-badge-yellow">Luyện →</span>
-      </button>
-    </div>
-    ${personal.length ? `<div class="pk-sec-lbl pk-sec-personal">Album & Cá nhân</div><div class="module-grid pk-personal-grid">${personal.map(localBtn).join('')}</div>` : ''}
-    <div class="pk-sec-lbl mb-8">${isKanji ? 'Kho Kanji Riki' : 'Giáo trình'} ${escapeHtml(activeLevel)}</div>
-    <div class="module-grid">${textbook.length ? textbook.map(repoRow).join('') : `<p class="module-sub">Chưa có bài học cho trình độ này.</p>`}</div>
+    ${mainBookHtml}
+    ${personal.length ? `<div class="pk-sec-lbl pk-sec-personal">Từ cần ôn & Cá nhân</div><div class="module-grid pk-personal-grid">${personal.map(localBtn).join('')}</div>` : ''}
   `;
 
-  if (isKanji) bindKanjiFilter(container, ctx);
+  bindBookDropdown(container, () => render(), 'pk-book-dd');
+  if (isSomatome) bindSomatomeBook(container, ctx);
   container.querySelector('#v-add').onclick = () => { state.impTab = 'upload'; state.step = 'importer'; render(); };
-  container.querySelector('#v-open-mix').onclick = () => { state.errMsg = ''; state.mixDirectMode = null; state.step = 'mix'; render(); };
-  container.querySelector('#v-open-kanji').onclick = () => { state.errMsg = ''; state.mixDirectMode = 'kanji-read'; state.step = 'mix'; render(); };
+  container.querySelector('#v-open-mix')?.addEventListener('click', () => { state.errMsg = ''; state.mixDirectMode = null; state.step = 'mix'; render(); });
+  container.querySelector('#v-open-kanji')?.addEventListener('click', () => { state.errMsg = ''; state.mixDirectMode = 'kanji-read'; state.step = 'mix'; render(); });
   container.querySelectorAll('[data-edit-alb]').forEach((btn) => {
     btn.onclick = () => { state.editAlbumId = btn.dataset.editAlb; render(); };
   });

@@ -3,19 +3,19 @@ import { getWeak } from '../../../core/weak.js';
 import { fetchWords } from './data.js';
 
 export async function buildGateConfig({ lessons, lessonItem, activeLevel, skill = 'vocab', vocabSession, state, backToLevel, render }) {
-  const repoList = lessons.filter((l) => l.source === 'repo');
-  const idx = repoList.findIndex((x) => x.id === lessonItem.id);
+  const sameSourceList = lessons.filter((l) => l.source === lessonItem.source && !String(l.id).startsWith('user:'));
+  const idx = sameSourceList.findIndex((x) => String(x.id) === String(lessonItem.id));
   const words = await fetchWords(lessonItem, activeLevel, skill);
   if (!words.length) return null;
 
   let poolWords = [...words];
-  if (poolWords.length < 6 && repoList.length > 1) {
-    const extras = repoList.filter((x) => x.id !== lessonItem.id).slice(0, 3);
-    const extraBuckets = await Promise.all(extras.map((x) => fetchWords(x, activeLevel, skill)));
+  if (poolWords.length < 6) {
+    const repoFallback = lessons.filter((l) => l.source === 'repo' && String(l.id) !== String(lessonItem.id)).slice(0, 3);
+    const extraBuckets = await Promise.all(repoFallback.map((x) => fetchWords(x, activeLevel, skill)));
     poolWords = [...poolWords, ...extraBuckets.flat()];
   }
 
-  const nextLesson = idx >= 0 && idx < repoList.length - 1 ? repoList[idx + 1] : null;
+  const nextLesson = idx >= 0 && idx < sameSourceList.length - 1 ? sameSourceList[idx + 1] : null;
   return {
     level: activeLevel,
     skill,
@@ -49,7 +49,7 @@ export async function applyQueryView({ params, lessons, store, activeLevel, skil
   const lessonParam = params.get('lesson');
 
   if (gateParam) {
-    const target = lessons.find((l) => l.source === 'repo' && String(l.id) === String(gateParam));
+    const target = lessons.find((l) => String(l.id) === String(gateParam) && !String(l.id).startsWith('user:'));
     if (target) {
       await launchGate(target);
       return true;

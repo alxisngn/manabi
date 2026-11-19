@@ -8,24 +8,31 @@ export const MODES = [
   { id: 'reflex', name: 'Luyện phản xạ', sub: 'Nghe hiểu & Thử thách tốc độ 5 giây/câu', icon: '⚡', accent: 'accent-teal' }
 ];
 
-export function renderModes(container, { lessons, vocabSession, onBack, onSelectMode, onLaunchGate }) {
-  const singleRepoLesson = vocabSession.lessonIds?.length === 1
-    ? lessons.find((l) => l.source === 'repo' && String(l.id) === String(vocabSession.lessonIds[0]))
+export function renderModes(container, { lessons, skill = 'vocab', vocabSession, onBack, onSelectMode, onLaunchGate }) {
+  const singleLesson = vocabSession.lessonIds?.length === 1
+    ? lessons.find((l) => String(l.id) === String(vocabSession.lessonIds[0]) && !String(l.id).startsWith('user:'))
     : null;
 
-  const gateCardHtml = singleRepoLesson ? `
+  const gateCardHtml = singleLesson ? `
     <div class="card module-card is-active" id="m-start-gate" style="border-color:var(--teal);">
       <div class="module-left">
         <div class="module-icon accent-teal">🏆</div>
         <div>
           <div class="module-title">Kiểm tra qua bài</div>
-          <div class="module-sub">Đạt từ 80% trở lên để đánh dấu đã qua ${escapeHtml(singleRepoLesson.name)}</div>
+          <div class="module-sub">Đạt chuẩn để đánh dấu đã qua ${escapeHtml(singleLesson.name)}</div>
         </div>
       </div>
       <span class="badge badge-ready">Thi ngay →</span>
     </div>` : '';
 
-  const modesHtml = MODES.map((m) => `
+  const activeModes = skill === 'kanji'
+    ? [
+        { id: 'kanji-type', name: 'Học qua gõ phím', sub: 'Gõ theo bóng mờ Hiragana/Kanji & tự động phát âm', icon: '⌨️', accent: 'accent-teal' },
+        ...MODES.slice(1)
+      ]
+    : MODES;
+
+  const modesHtml = activeModes.map((m) => `
     <div class="card module-card is-active" data-mode="${m.id}">
       <div class="module-left"><div class="module-icon ${m.accent}">${m.icon}</div><div><div class="module-title">${m.name}</div><div class="module-sub">${m.sub}</div></div></div>
       <span class="badge badge-ready">Vào →</span>
@@ -45,6 +52,6 @@ export function renderModes(container, { lessons, vocabSession, onBack, onSelect
   });
   container.querySelector('#m-start-gate')?.addEventListener('click', async (e) => {
     e.currentTarget.style.pointerEvents = 'none';
-    await onLaunchGate(singleRepoLesson);
+    await onLaunchGate(singleLesson);
   });
 }

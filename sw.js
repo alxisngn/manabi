@@ -1,4 +1,4 @@
-const V = 'v30';
+const V = 'v31';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = 'manabi-fonts-v1';
 
@@ -15,6 +15,7 @@ const CORE_ASSETS = [
   './icons/icon-maskable-512.png',
   './index.html',
   './js/app.js',
+  './js/core/bookSwitch.js',
   './js/core/kana.js',
   './js/core/nav.js',
   './js/core/progress.js',
@@ -29,6 +30,7 @@ const CORE_ASSETS = [
   './js/modules/vocab/kanji-read.js',
   './js/modules/vocab/kanji-read/index.js',
   './js/modules/vocab/kanji-read/ui.js',
+  './js/modules/vocab/kanji-type.js',
   './js/modules/vocab/match.js',
   './js/modules/vocab/picker.js',
   './js/modules/vocab/picker/albumEditor.js',
