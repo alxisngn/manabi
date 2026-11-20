@@ -1,0 +1,150 @@
+{
+  "lesson": { "id": "n4-grammar-b5", "name": "Tuần 1 - Ngày 5", "week": 1, "day": 5, "type": "somatome" },
+  "title": "音楽[おんがく]を聞[き]きながら勉強[べんきょう]しています。",
+  "warmup": {
+    "q": "（ ）、勉強[べんきょう]できない。",
+    "choices": ["うるさいが", "うるさくし", "うるさくて"],
+    "answer": 2,
+    "explain": "Tính từ い bỏ い + くて chỉ nguyên nhân khiến không thể học được."
+  },
+  "items": [
+    {
+      "id": "g5-1",
+      "pattern": "～ながら",
+      "formation": "Vます (bỏ ます) + ながら",
+      "vi": "Vừa ~ vừa ~ (hai hành động diễn ra đồng thời bởi cùng một chủ thể)",
+      "examples": [
+        { "jp": "私[わたし]はいつもご飯[はん]を食[た]べながら、テレビを見[み]ています。", "vi": "Tôi lúc nào cũng vừa ăn cơm vừa xem tivi.", "highlight": "食[た]べながら" },
+        { "jp": "田中[たなか]さんの息子[むすこ]さんは、働[はたら]きながら大学[だいがく]に行[い]っています。", "vi": "Con trai anh Tanaka vừa đi làm vừa học đại học.", "highlight": "働[はたら]きながら" },
+        { "jp": "お茶[ちゃ]を飲[の]みながら話[はな]しましょう。", "vi": "Hãy vừa uống trà vừa nói chuyện nhé.", "highlight": "飲[の]みながら" }
+      ]
+    },
+    {
+      "id": "g5-2",
+      "pattern": "～て / ～で（原因・理由）",
+      "formation": "Vて / Aくて / Aなで / Nで",
+      "vi": "Vì ~ nên (chỉ nguyên nhân tự nhiên, cảm xúc, khả năng)",
+      "note": "Bẫy hay sai: Vế sau của ～て/～で chỉ lý do KHÔNG dùng câu nhờ vả, mệnh lệnh, rủ rê hay ý chí (×暑くて窓を開けてください → ○暑いから/暑いので).",
+      "examples": [
+        { "jp": "かぜで学校[がっこう]を休[やす]みました。", "vi": "Tôi nghỉ học vì bị cảm.", "highlight": "かぜで" },
+        { "jp": "このカレーはからくて食[た]べられません。", "vi": "Món cà ri này cay quá nên không ăn được.", "highlight": "からくて" },
+        { "jp": "お金[かね]がなくて、買[か]えない。", "vi": "Vì không có tiền nên không mua được.", "highlight": "なくて" },
+        { "jp": "ひさしぶりに友[とも]だちに会[あ]えて、うれしかったです。", "vi": "Lâu rồi mới gặp được bạn nên tôi rất vui.", "highlight": "会[あ]えて" }
+      ]
+    },
+    {
+      "id": "g5-3",
+      "pattern": "～て / ～ないで（状態・手段）",
+      "formation": "Vて / Vないで",
+      "vi": "Trong trạng thái ~ / Bằng cách ~ / Mà không làm ~",
+      "examples": [
+        { "jp": "いすにすわって話[はな]しましょう。", "vi": "Hãy ngồi xuống ghế rồi nói chuyện.", "highlight": "すわって" },
+        { "jp": "えんぴつを使[つか]って書[か]いてください。", "vi": "Hãy viết bằng bút chì.", "highlight": "使[つか]って" },
+        { "jp": "朝[あさ]ご飯[はん]を食[た]べないで、学校[がっこう]へ行[い]きました。", "vi": "Tôi đã đi học mà không ăn sáng.", "highlight": "食[た]べないで" },
+        { "jp": "辞書[じしょ]を使[つか]わないで、日本語[にほんご]の本[ほん]を読[よ]みます。", "vi": "Tôi đọc sách tiếng Nhật mà không dùng từ điển.", "highlight": "使[つか]わないで" }
+      ]
+    },
+    {
+      "id": "g5-4",
+      "pattern": "～まま",
+      "formation": "Vた / Vない / Aい / Aな / Nの + まま",
+      "vi": "Giữ nguyên trạng thái ~ mà làm việc khác (thường trái với thông thường)",
+      "examples": [
+        { "jp": "まどを開[あ]けたまま寝[ね]ました。", "vi": "Tôi để nguyên cửa sổ mở mà đi ngủ.", "highlight": "開[あ]けたまま" },
+        { "jp": "父[ちち]はめがねをかけたまま寝[ね]ました。", "vi": "Bố tôi đeo nguyên kính mà ngủ quên.", "highlight": "かけたまま" },
+        { "jp": "ぼうしをかぶったまま、部屋[へや]に入[はい]ってはいけません。", "vi": "Không được đội nguyên mũ mà bước vào phòng.", "highlight": "かぶったまま" },
+        { "jp": "うちの子[こ]は、パジャマのまま、出[で]かけてしまいました。", "vi": "Con nhà tôi mặc nguyên đồ ngủ mà chạy ra ngoài mất.", "highlight": "パジャマのまま" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e5-1",
+      "type": "choice",
+      "q": "足[あし]がいたく（ ）、もう歩[ある]けません。",
+      "choices": ["で", "て", "し", "から"],
+      "answer": 1,
+      "explain": "Tính từ い (いたい → いたくて) chỉ nguyên nhân khiến không đi bộ tiếp được."
+    },
+    {
+      "id": "e5-2",
+      "type": "choice",
+      "q": "A「あ、メールが来た。」\nB「ダメだよ。運転[うんてん]（ ）、スマホを見るのは。」",
+      "choices": ["しながら", "するながら", "したまま", "しまま"],
+      "answer": 0,
+      "explain": "運転します → 運転しながら (vừa lái xe vừa xem điện thoại)."
+    },
+    {
+      "id": "e5-3",
+      "type": "choice",
+      "q": "A「試験、できた？」\nB「ううん、きのう寝[ね]（ ）勉強[べんきょう]したのにできなかったよ。」",
+      "choices": ["なしで", "ないまま", "なくて", "ないで"],
+      "answer": 3,
+      "explain": "Vないで: học bài mà không ngủ."
+    },
+    {
+      "id": "e5-4",
+      "type": "star",
+      "prefix": "A「タクシーで行けば、間に合うでしょうか。」\nB「このへんは",
+      "suffix": "行きましょう。」",
+      "choices": ["走[はし]って", "少[すく]ない", "タクシーも", "から"],
+      "order": [2, 1, 3, 0],
+      "starIndex": 2,
+      "answer": 3,
+      "explain": "Thứ tự đúng: タクシーも(3) 少ない(2) から(4) 走って(1) → vị trí ★ là から (vì vế sau là câu rủ rê 行きましょう nên phải dùng から thay vì 少なくて)."
+    },
+    {
+      "id": "e5-5",
+      "type": "star",
+      "prefix": "Tシャツなどの",
+      "suffix": "入[はい]らないでください。",
+      "choices": ["着[き]た", "まま", "服[ふく]を", "プールに"],
+      "order": [2, 0, 1, 3],
+      "starIndex": 2,
+      "answer": 1,
+      "explain": "Thứ tự đúng: 服を(3) 着た(1) まま(2) プールに(4) → vị trí ★ là まま."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x5-1",
+      "type": "choice",
+      "q": "テレビをつけた（ ）、出[で]かけてしまいました。",
+      "choices": ["ながら", "まま", "て", "ので"],
+      "answer": 1,
+      "explain": "Vたまま: để nguyên tivi bật mà ra ngoài."
+    },
+    {
+      "id": "x5-2",
+      "type": "choice",
+      "q": "この町[まち]は静[しず]か（ ）住[す]みやすいです。",
+      "choices": ["くて", "で", "ながら", "まま"],
+      "answer": 1,
+      "explain": "Tính từ đuôi な (静かだ → 静かで) nối 2 vế chỉ đặc điểm/nguyên nhân."
+    },
+    {
+      "id": "x5-3",
+      "type": "choice",
+      "q": "さとうを入[い]れ（ ）、ブラックコーヒーを飲[の]みます。",
+      "choices": ["なくて", "ないで", "ながら", "まま"],
+      "answer": 1,
+      "explain": "Vないで: uống cà phê đen mà không cho đường (trạng thái/cách thức)."
+    },
+    {
+      "id": "x5-4",
+      "type": "choice",
+      "q": "アルバイトを（ ）、日本語[にほんご]学校[がっこう]に通[かよ]っています。",
+      "choices": ["しながら", "したまま", "するながら", "しなくて"],
+      "answer": 0,
+      "explain": "Vます (bỏ ます) + ながら: vừa đi làm thêm vừa đi học trường Nhật ngữ."
+    },
+    {
+      "id": "x5-5",
+      "type": "choice",
+      "q": "明日[あした]は早[はや]い（ ）、もう寝[ね]ましょう。",
+      "choices": ["くて", "から", "ながら", "まま"],
+      "answer": 1,
+      "explain": "Vế sau là câu rủ rê 寝ましょう nên vế nguyên nhân phải dùng から, không dùng くて."
+    }
+  ]
+}

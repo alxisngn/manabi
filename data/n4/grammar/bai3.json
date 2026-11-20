@@ -1,0 +1,147 @@
+{
+  "lesson": { "id": "n4-grammar-b3", "name": "Tuần 1 - Ngày 3", "week": 1, "day": 3, "type": "somatome" },
+  "title": "9時[じ]までに来[き]てください。",
+  "warmup": {
+    "q": "休[やす]みの日[ひ]は映画[えいが]を（ ）しています。",
+    "choices": ["見[み]たり", "見[み]るや", "見[み]るし"],
+    "answer": 0,
+    "explain": "～たりしています: liệt kê hành động tiêu biểu vào ngày nghỉ."
+  },
+  "items": [
+    {
+      "id": "g3-1",
+      "pattern": "～まで vs ～までに",
+      "formation": "N (thời gian) / Vる + まで / までに",
+      "vi": "～まで: cho đến khi (hành động kéo dài liên tục) / ～までに: trước hạn chót (xong trước mốc đó)",
+      "note": "Phân biệt: 5時まで働きます (làm liên tục tới 5h) vs 5時までに出してください (nộp trước 5h).",
+      "examples": [
+        { "jp": "私[わたし]は日本[にほん]に来[く]るまでフランスに住[す]んでいました。", "vi": "Tôi đã sống ở Pháp cho đến khi tới Nhật.", "highlight": "来[く]るまで" },
+        { "jp": "仕事[しごと]が終[お]わるまで、ここで待[ま]っていてください。", "vi": "Hãy đợi ở đây cho đến khi công việc kết thúc.", "highlight": "終[お]わるまで" },
+        { "jp": "レポートは15日[にち]までに出[だ]してください。", "vi": "Hãy nộp báo cáo trước ngày 15.", "highlight": "15日[にち]までに" },
+        { "jp": "私[わたし]は30さいになるまでに結婚[けっこん]したいです。", "vi": "Tôi muốn kết hôn trước năm 30 tuổi.", "highlight": "なるまでに" }
+      ]
+    },
+    {
+      "id": "g3-2",
+      "pattern": "～たり（～たり）する",
+      "formation": "Vた + り、Vた + り する / Aかったり / Nだったり",
+      "vi": "Lúc thì ~, lúc thì ~ / Nào là ~, nào là ~ (liệt kê hành động hoặc trạng thái lặp đi lặp lại)",
+      "examples": [
+        { "jp": "休[やす]みの日[ひ]はDVDを見[み]たり本[ほん]を読[よ]んだりしています。", "vi": "Ngày nghỉ tôi làm những việc như xem DVD, đọc sách.", "highlight": "見[み]たり本[ほん]を読[よ]んだり" },
+        { "jp": "雨[あめ]が降[ふ]ったりやんだりしています。", "vi": "Trời lúc mưa lúc tạnh.", "highlight": "降[ふ]ったりやんだり" },
+        { "jp": "このごろ、暑[あつ]かったり寒[さむ]かったりしています。", "vi": "Dạo này trời lúc nóng lúc lạnh.", "highlight": "暑[あつ]かったり寒[さむ]かったり" }
+      ]
+    },
+    {
+      "id": "g3-3",
+      "pattern": "～し、（～し、）～",
+      "formation": "Thể thông thường + し (N・Aな + だし)",
+      "vi": "Vừa ~, lại vừa ~ (liệt kê nhiều lý do hoặc đặc điểm cùng chiều)",
+      "examples": [
+        { "jp": "このレストランはおいしいし、安[やす]いです。", "vi": "Nhà hàng này vừa ngon lại vừa rẻ.", "highlight": "おいしいし" },
+        { "jp": "のどもかわいたし、おなかもすいたし、少[すこ]し休[やす]みたいです。", "vi": "Vừa khát nước lại vừa đói bụng nên tôi muốn nghỉ một chút.", "highlight": "かわいたし、おなかもすいたし" }
+      ]
+    },
+    {
+      "id": "g3-4",
+      "pattern": "Nばかり vs Nだけ",
+      "formation": "N + ばかり / だけ",
+      "vi": "Nばかり: toàn là N (rất nhiều, thường mang hàm ý chê trách) / Nだけ: chỉ duy nhất 100% là N",
+      "examples": [
+        { "jp": "弟[おとうと]はゲームばかりしています。", "vi": "Em trai tôi suốt ngày chỉ toàn chơi game.", "highlight": "ゲームばかり" },
+        { "jp": "父[ちち]はこのごろお酒[さけ]ばかり飲[の]んでいます。", "vi": "Dạo này bố tôi toàn uống rượu.", "highlight": "お酒[さけ]ばかり" },
+        { "jp": "あの人[ひと]の話[はなし]は、うそばかりだ。", "vi": "Chuyện của người đó toàn là nói dối.", "highlight": "うそばかり" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e3-1",
+      "type": "choice",
+      "q": "わたしのアパートは駅[えき]から遠[とお]い（ ）、へやもせまいです。",
+      "choices": ["と", "し", "から", "たり"],
+      "answer": 1,
+      "explain": "Liệt kê 2 điểm bất tiện cùng chiều: vừa xa ga lại vừa hẹp."
+    },
+    {
+      "id": "e3-2",
+      "type": "choice",
+      "q": "A「また太っちゃった…。」\nB「あまいもの（ ）食[た]べているからだよ。」",
+      "choices": ["ばかり", "しか", "だけ", "まで"],
+      "answer": 0,
+      "explain": "Nばかり: toàn ăn đồ ngọt (nhấn mạnh mức độ nhiều/chê trách)."
+    },
+    {
+      "id": "e3-3",
+      "type": "choice",
+      "q": "今日[きょう]は8時[じ]（ ）うちに帰[かえ]りたいです。",
+      "choices": ["まで", "までに", "から", "からで"],
+      "answer": 1,
+      "explain": "8時までに帰りたい: muốn về nhà trước mốc 8 giờ."
+    },
+    {
+      "id": "e3-4",
+      "type": "star",
+      "prefix": "母親「さあ、もう寝なさい。」\n子ども「この",
+      "suffix": "ちょっとまって。」",
+      "choices": ["終[お]わる", "もう", "ゲームが", "まで"],
+      "order": [2, 0, 3, 1],
+      "starIndex": 2,
+      "answer": 3,
+      "explain": "Thứ tự đúng: ゲームが(3) 終わる(1) まで(4) もう(2) → vị trí ★ là まで."
+    },
+    {
+      "id": "e3-5",
+      "type": "star",
+      "prefix": "A「新しい先生はどうですか。」\nB「きれい",
+      "suffix": "です。」",
+      "choices": ["大好[だいす]き", "し", "だし", "やさしい"],
+      "order": [2, 3, 1, 0],
+      "starIndex": 2,
+      "answer": 1,
+      "explain": "Thứ tự đúng: だし(3) やさしい(4) し(2) 大好き(1) → vị trí ★ là し."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x3-1",
+      "type": "choice",
+      "q": "母[はは]は夜[よる]おそく（ ）働[はたら]いています。",
+      "choices": ["までに", "まで", "ばかり", "し"],
+      "answer": 1,
+      "explain": "Hành động làm việc kéo dài liên tục tới tối muộn nên dùng まで."
+    },
+    {
+      "id": "x3-2",
+      "type": "choice",
+      "q": "夏休[なつやす]みは旅行[りょこう]（ ）テニスをしたりしていました。",
+      "choices": ["し", "とか", "したり", "まで"],
+      "answer": 2,
+      "explain": "Cặp ～たり～たりする để liệt kê hoạt động."
+    },
+    {
+      "id": "x3-3",
+      "type": "choice",
+      "q": "この本[ほん]は来週[らいしゅう]の金曜日[きんようび]（ ）図書館[としょかん]に返[かえ]さなければなりません。",
+      "choices": ["まで", "までに", "ばかり", "し"],
+      "answer": 1,
+      "explain": "Hạn chót trả sách trước thứ Sáu tuần sau → dùng までに."
+    },
+    {
+      "id": "x3-4",
+      "type": "choice",
+      "q": "昨日[きのう]のハイキングは天気[てんき]もよかった（ ）、とても楽[たの]しかったです。",
+      "choices": ["たり", "まで", "し", "ばかり"],
+      "answer": 2,
+      "explain": "Nêu lý do kết quả tốt đẹp bằng ～し."
+    },
+    {
+      "id": "x3-5",
+      "type": "choice",
+      "q": "野菜[やさい]も食べなさい。肉[にく]（ ）食べていては体に悪いですよ。",
+      "choices": ["ばかり", "までに", "たり", "し"],
+      "answer": 0,
+      "explain": "Chỉ toàn ăn mỗi thịt (chê trách thói quen ăn uống) → 肉ばかり."
+    }
+  ]
+}

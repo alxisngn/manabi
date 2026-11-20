@@ -1,0 +1,69 @@
+{
+ "level": "N4",
+ "skill": "grammar",
+ "lessons": [
+  {
+   "id": "n4-grammar-b1",
+   "name": "Tuần 1 - Ngày 1",
+   "file": "bai1.json",
+   "count": 6,
+   "week": 1,
+   "day": 1,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b2",
+   "name": "Tuần 1 - Ngày 2",
+   "file": "bai2.json",
+   "count": 5,
+   "week": 1,
+   "day": 2,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b3",
+   "name": "Tuần 1 - Ngày 3",
+   "file": "bai3.json",
+   "count": 4,
+   "week": 1,
+   "day": 3,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b4",
+   "name": "Tuần 1 - Ngày 4",
+   "file": "bai4.json",
+   "count": 4,
+   "week": 1,
+   "day": 4,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b5",
+   "name": "Tuần 1 - Ngày 5",
+   "file": "bai5.json",
+   "count": 4,
+   "week": 1,
+   "day": 5,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b6",
+   "name": "Tuần 1 - Ngày 6",
+   "file": "bai6.json",
+   "count": 5,
+   "week": 1,
+   "day": 6,
+   "type": "somatome"
+  },
+  {
+   "id": "n4-grammar-b7",
+   "name": "Kiểm tra Tuần 1",
+   "file": "bai7.json",
+   "count": 13,
+   "week": 1,
+   "day": 7,
+   "type": "weekly_test"
+  }
+ ]
+}

@@ -1,0 +1,165 @@
+{
+  "lesson": { "id": "n4-grammar-b1", "name": "Tuần 1 - Ngày 1", "week": 1, "day": 1, "type": "somatome" },
+  "title": "1日[にち]に2回[かい]、歯[は]をみがきます。",
+  "warmup": {
+    "q": "きのうも暑[あつ]かったけれど、今日[きょう]（ ）じゃない。",
+    "choices": ["より", "くらい", "ほど"],
+    "answer": 2,
+    "explain": "N₁ほど～ない / ～じゃない: không nóng bằng hôm nay."
+  },
+  "items": [
+    {
+      "id": "g1-1",
+      "pattern": "～で / ～に / ～から",
+      "formation": "N + で / に / から",
+      "vi": "Trợ từ chỉ nơi làm việc (で), nơi trực thuộc (に) và nguyên liệu (から)",
+      "note": "Phân biệt: 日本で働きます (làm việc tại Nhật) vs 日本のトヨタにつとめています (làm nhân viên cho hãng Toyota).",
+      "examples": [
+        { "jp": "兄[あに]は日本[にほん]のトヨタにつとめています。", "vi": "Anh trai tôi làm việc ở hãng Toyota của Nhật.", "highlight": "につとめています" },
+        { "jp": "兄[あに]は日本[にほん]で働[はたら]いています。", "vi": "Anh trai tôi đang làm việc ở Nhật.", "highlight": "で働[はたら]いています" },
+        { "jp": "ぶどうからワインを作[つく]ります。", "vi": "Làm rượu vang từ nho.", "highlight": "から" }
+      ]
+    },
+    {
+      "id": "g1-2",
+      "pattern": "～に（割合）",
+      "formation": "Khoảng thời gian + に + Số lần",
+      "vi": "Mỗi ~ (tỉ lệ, tần suất trên một đơn vị thời gian)",
+      "examples": [
+        { "jp": "1日[にち]に3回[かい]、この薬[くすり]を飲[の]んでいます。", "vi": "Tôi uống thuốc này 3 lần một ngày.", "highlight": "1日[にち]に3回[かい]" }
+      ]
+    },
+    {
+      "id": "g1-3",
+      "pattern": "～も（極端な例）",
+      "formation": "N + も + Phủ định",
+      "vi": "Ngay cả ~ cũng (đưa ra ví dụ cực đoan, mức tối thiểu cũng không)",
+      "examples": [
+        { "jp": "私[わたし]はひらがなも書[か]けません。", "vi": "Tôi ngay cả chữ Hiragana cũng không viết được.", "highlight": "ひらがなも" }
+      ]
+    },
+    {
+      "id": "g1-4",
+      "pattern": "～ずつ",
+      "formation": "Số lượng + ずつ",
+      "vi": "Từng ~ một (phân chia đều hoặc lặp lại với lượng cố định)",
+      "examples": [
+        { "jp": "このプリントを1枚[まい]ずつ配[くば]ってください。", "vi": "Hãy phát bài in này cho mỗi người từng tờ một.", "highlight": "1枚[まい]ずつ" },
+        { "jp": "この本[ほん]を毎日[まいにち]2ページずつ勉強[べんきょう]しましょう。", "vi": "Hãy học quyển sách này mỗi ngày 2 trang.", "highlight": "2ページずつ" }
+      ]
+    },
+    {
+      "id": "g1-5",
+      "pattern": "N₁は N₂ほど ～ない",
+      "formation": "N₁ は N₂ ほど + Aくない / Aじゃない / Vない",
+      "vi": "N₁ không ~ bằng N₂ (= N₁より N₂のほうが ~)",
+      "note": "Dạng rút gọn: 「N₁も～ですが、N₂ほどでは／じゃない」 (N₁ cũng ~ nhưng không bằng N₂).",
+      "examples": [
+        { "jp": "今週[こんしゅう]は先週[せんしゅう]ほどいそがしくありません。", "vi": "Tuần này không bận rộn bằng tuần trước.", "highlight": "先週[せんしゅう]ほど" },
+        { "jp": "日本[にほん]ではぶた肉[にく]は牛肉[ぎゅうにく]ほど高[たか]くありません。", "vi": "Ở Nhật thịt heo không đắt bằng thịt bò.", "highlight": "牛肉[ぎゅうにく]ほど" },
+        { "jp": "今週[こんしゅう]もいそがしいですが、先週[せんしゅう]ほどではありません。", "vi": "Tuần này cũng bận nhưng không bằng tuần trước.", "highlight": "先週[せんしゅう]ほどではありません" }
+      ]
+    },
+    {
+      "id": "g1-6",
+      "pattern": "名詞修飾（Bổ ngữ cho danh từ）",
+      "formation": "Mệnh đề thể thông thường + N",
+      "vi": "Mệnh đề giải thích đặt ngay trước danh từ (không dùng の giữa V/A-i và N)",
+      "examples": [
+        { "jp": "これは姉[あね]にもらったバッグです。", "vi": "Đây là cái túi tôi nhận được từ chị gái.", "highlight": "姉[あね]にもらった" },
+        { "jp": "きのうクラスで使[つか]う本[ほん]を買[か]いに行[い]きました。", "vi": "Hôm qua tôi đã đi mua sách dùng ở lớp.", "highlight": "クラスで使[つか]う" },
+        { "jp": "あそこの青[あお]いセーターを着[き]た背[せ]の高[たか]い男[おとこ]の人[ひと]はだれですか。", "vi": "Người đàn ông cao mặc áo len xanh ở đằng kia là ai vậy?", "highlight": "青[あお]いセーターを着[き]た" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e1-1",
+      "type": "choice",
+      "q": "日本酒[にほんしゅ]は米[こめ]（ ）作[つく]られます。",
+      "choices": ["から", "にから", "からで", "からも"],
+      "answer": 0,
+      "explain": "Dùng から để chỉ nguyên liệu tạo ra thành phẩm (rượu sake làm từ gạo)."
+    },
+    {
+      "id": "e1-2",
+      "type": "choice",
+      "q": "スーパーで、りんごとみかんを一つ（ ）買[か]いました。",
+      "choices": ["も", "ほど", "ずつ", "くらい"],
+      "answer": 2,
+      "explain": "一つずつ: mỗi loại mua 1 quả (phân lượng đều nhau)."
+    },
+    {
+      "id": "e1-3",
+      "type": "choice",
+      "q": "わたしは1週間[しゅうかん]（ ）3回[かい]、ジムに通[かよ]っています。",
+      "choices": ["は", "も", "で", "に"],
+      "answer": 3,
+      "explain": "Khoảng thời gian + に + số lần: 3 lần mỗi tuần."
+    },
+    {
+      "id": "e1-4",
+      "type": "star",
+      "prefix": "山田「田中さん、そのバッグ、すてきですね。どこで買いましたか。」\n田中「",
+      "suffix": "ですが、ハワイに行ったときに、買いました。」",
+      "choices": ["作[つく]られた", "もの", "で", "日本[にほん]"],
+      "order": [3, 2, 0, 1],
+      "starIndex": 2,
+      "answer": 0,
+      "explain": "Thứ tự đúng: 日本(4) で(3) 作られた(1) もの(2) → vị trí ★ là 作られた."
+    },
+    {
+      "id": "e1-5",
+      "type": "star",
+      "prefix": "A「今日も寒いですね。」\nB「そうですね。でも、",
+      "suffix": "ですよ。」",
+      "choices": ["ない", "では", "ほど", "きのう"],
+      "order": [3, 2, 1, 0],
+      "starIndex": 2,
+      "answer": 1,
+      "explain": "Thứ tự đúng: きのう(4) ほど(3) では(2) ない(1) → vị trí ★ là では."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x1-1",
+      "type": "choice",
+      "q": "姉[あね]は銀行[ぎんこう]（ ）つとめています。",
+      "choices": ["で", "に", "から", "へ"],
+      "answer": 1,
+      "explain": "Động từ つとめる (làm việc cho cơ quan/công ty) đi với trợ từ に."
+    },
+    {
+      "id": "x1-2",
+      "type": "choice",
+      "q": "忙[いそが]しくて、朝[あさ]ご飯[はん]を食べる時間[じかん]（ ）ありませんでした。",
+      "choices": ["ずつ", "ほど", "も", "から"],
+      "answer": 2,
+      "explain": "～も＋phủ định: ngay cả thời gian ăn sáng cũng không có."
+    },
+    {
+      "id": "x1-3",
+      "type": "choice",
+      "q": "あしたのテストのために、今日[きょう]は漢字[かんじ]を10個[こ]（ ）覚[おぼ]えます。",
+      "choices": ["ずつ", "ほど", "に", "から"],
+      "answer": 0,
+      "explain": "10個ずつ: học từng 10 chữ Hán một."
+    },
+    {
+      "id": "x1-4",
+      "type": "choice",
+      "q": "わたしは（ ）本[ほん]が読[よ]みたいです。",
+      "choices": ["おもしろいの", "おもしろくて", "おもしろい", "おもしろいだ"],
+      "answer": 2,
+      "explain": "Tính từ đuôi い bổ nghĩa trực tiếp cho danh từ: おもしろい本."
+    },
+    {
+      "id": "x1-5",
+      "type": "choice",
+      "q": "バスは電車[でんしゃ]（ ）速[はや]くありません。",
+      "choices": ["より", "ほど", "ずつ", "から"],
+      "answer": 1,
+      "explain": "N₁は N₂ほど～ない: Xe buýt không nhanh bằng tàu điện."
+    }
+  ]
+}

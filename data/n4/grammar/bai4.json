@@ -1,0 +1,147 @@
+{
+  "lesson": { "id": "n4-grammar-b4", "name": "Tuần 1 - Ngày 4", "week": 1, "day": 4, "type": "somatome" },
+  "title": "今[いま]、勉強[べんきょう]しているところです。",
+  "warmup": {
+    "q": "今[いま]、ご飯[はん]を食[た]べている（ ）です。",
+    "choices": ["ところ", "あいだ", "とき"],
+    "answer": 0,
+    "explain": "Vているところです: đúng ngay lúc đang ăn cơm."
+  },
+  "items": [
+    {
+      "id": "g4-1",
+      "pattern": "Vるところ / Vているところ / Vたところ",
+      "formation": "Vる / Vている / Vた + ところだ",
+      "vi": "Sắp sửa làm V / Đang làm V / Vừa mới làm xong V",
+      "examples": [
+        { "jp": "今[いま]から家[いえ]を出[で]るところです。", "vi": "Bây giờ tôi sắp sửa ra khỏi nhà.", "highlight": "出[で]るところです" },
+        { "jp": "今[いま]、料理[りょうり]を作[つく]っているところです。", "vi": "Bây giờ tôi đang nấu ăn.", "highlight": "作[つく]っているところです" },
+        { "jp": "今[いま]、お昼[ひる]ご飯[はん]を食[た]べたところです。", "vi": "Tôi vừa mới ăn trưa xong.", "highlight": "食[た]べたところです" }
+      ]
+    },
+    {
+      "id": "g4-2",
+      "pattern": "Nの間に / Vている間に",
+      "formation": "Nの / Vている + 間[あいだ]に",
+      "vi": "Trong lúc ~ (một sự việc khác xảy ra chen vào trong khoảng thời gian đó)",
+      "examples": [
+        { "jp": "買[か]い物[もの]に行[い]っている間[あいだ]に、友[とも]だちが来[き]ました。", "vi": "Trong lúc tôi đang đi mua sắm thì bạn tôi đã đến.", "highlight": "行[い]っている間[あいだ]に" },
+        { "jp": "夏休[なつやす]みの間[あいだ]にヨーロッパへ旅行[りょこう]をする予定[よてい]です。", "vi": "Tôi dự định đi du lịch châu Âu trong kỳ nghỉ hè.", "highlight": "夏休[なつやす]みの間[あいだ]に" },
+        { "jp": "映画[えいが]を見[み]ている間[あいだ]に、寝[ね]てしまいました。", "vi": "Trong lúc đang xem phim tôi đã ngủ quên mất.", "highlight": "見[み]ている間[あいだ]に" }
+      ]
+    },
+    {
+      "id": "g4-3",
+      "pattern": "Vるとき / Vたとき",
+      "formation": "Vる / Vた + とき（に）",
+      "vi": "Khi ~ (Vるとき: trước khi làm V₁; Vたとき: sau khi đã làm V₁)",
+      "examples": [
+        { "jp": "寝[ね]るとき、パジャマを着[き]ます。", "vi": "Khi đi ngủ (trước lúc ngủ), tôi mặc đồ ngủ.", "highlight": "寝[ね]るとき" },
+        { "jp": "私[わたし]は、本[ほん]を読[よ]むとき、めがねをかけます。", "vi": "Khi đọc sách, tôi đeo kính.", "highlight": "読[よ]むとき" },
+        { "jp": "東京[とうきょう]に行[い]ったときに、友[とも]だちに会[あ]う予定[よてい]です。", "vi": "Khi tới Tokyo (sau khi đến nơi), tôi dự định gặp bạn.", "highlight": "行[い]ったときに" }
+      ]
+    },
+    {
+      "id": "g4-4",
+      "pattern": "N中（ちゅう / じゅう）",
+      "formation": "N (hành động) + 中[ちゅう] / N (thời gian・không gian) + 中[じゅう]",
+      "vi": "Đang ~ (ちゅう) / Suốt cả, khắp cả (じゅう)",
+      "note": "Lưu ý cách đọc: 電話中・会議中・食事中 đọc là ちゅう; 午前中・今日中・今年中 đọc là じゅう.",
+      "examples": [
+        { "jp": "田中[たなか]さんは今[いま]、電話中[でんわちゅう]です。", "vi": "Anh Tanaka hiện đang nghe điện thoại.", "highlight": "電話中[でんわちゅう]" },
+        { "jp": "社長[しゃちょう]は今[いま]、会議中[かいぎちゅう]です。", "vi": "Giám đốc hiện đang họp.", "highlight": "会議中[かいぎちゅう]" },
+        { "jp": "食事中[しょくじちゅう]はテレビを消[け]しましょう。", "vi": "Trong lúc ăn cơm hãy tắt tivi đi.", "highlight": "食事中[しょくじちゅう]" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e4-1",
+      "type": "choice",
+      "q": "トイレに行[い]っている（ ）に、電車[でんしゃ]が行[い]ってしまった。",
+      "choices": ["なか", "あいだ", "ところ", "まで"],
+      "answer": 1,
+      "explain": "Vている間に: trong lúc đang đi vệ sinh thì tàu chạy mất."
+    },
+    {
+      "id": "e4-2",
+      "type": "choice",
+      "q": "A「すみません、おそくなって。ずいぶん待ちましたか。」\nB「いいえ、わたしも今[いま]（ ）ところです。」",
+      "choices": ["来[く]る", "来[き]ている", "来[き]て", "来[き]た"],
+      "answer": 3,
+      "explain": "今来たところです: tôi cũng vừa mới tới ngay lúc này thôi."
+    },
+    {
+      "id": "e4-3",
+      "type": "choice",
+      "q": "山田「もしもし、こちら、山田ですが、スミスさん、おねがいします。」\n田中「すみません。スミスは今、会議[かいぎ]（ ）です。」",
+      "choices": ["あいだ", "ちゅう", "なか", "じゅう"],
+      "answer": 1,
+      "explain": "会議中 (かいぎちゅう): đang trong cuộc họp."
+    },
+    {
+      "id": "e4-4",
+      "type": "star",
+      "prefix": "A「ケーキ、食べる？」\nB「今、",
+      "suffix": "あとで食べるよ。」",
+      "choices": ["だから", "おなかがいっぱい", "ところで", "ご飯[はん]を食[た]べた"],
+      "order": [3, 2, 1, 0],
+      "starIndex": 2,
+      "answer": 1,
+      "explain": "Thứ tự đúng: ご飯を食べた(4) ところで(3) おなかがいっぱい(2) だから(1) → vị trí ★ là おなかがいっぱい."
+    },
+    {
+      "id": "e4-5",
+      "type": "star",
+      "prefix": "A「それは、どこで買いましたか。」\nB「きょねん、",
+      "suffix": "ものです。」",
+      "choices": ["イタリアに", "買[か]った", "行[い]った", "ときに"],
+      "order": [0, 2, 3, 1],
+      "starIndex": 2,
+      "answer": 3,
+      "explain": "Thứ tự đúng: イタリアに(1) 行った(3) ときに(4) 買った(2) → vị trí ★ là ときに."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x4-1",
+      "type": "choice",
+      "q": "バスは今[いま]、出[で]た（ ）ですから、次[つぎ]のバスを待[ま]ちましょう。",
+      "choices": ["あいだ", "とき", "ところ", "ちゅう"],
+      "answer": 2,
+      "explain": "Vたところ: xe buýt vừa mới chạy xong."
+    },
+    {
+      "id": "x4-2",
+      "type": "choice",
+      "q": "国[くに]へ帰[かえ]る（ ）、家族[かぞく]におみやげを買[か]います。",
+      "choices": ["とき", "ところ", "あいだ", "ちゅう"],
+      "answer": 0,
+      "explain": "Vるとき: trước khi về nước thì mua quà cho gia đình."
+    },
+    {
+      "id": "x4-3",
+      "type": "choice",
+      "q": "母[はは]が料理[りょうり]を作[つく]っている（ ）、わたしはそうじをしました。",
+      "choices": ["ところ", "あいだ", "ちゅう", "まで"],
+      "answer": 1,
+      "explain": "Vている間 (không に): suốt thời gian mẹ nấu ăn thì tôi dọn dẹp."
+    },
+    {
+      "id": "x4-4",
+      "type": "choice",
+      "q": "この仕事[しごと]は今日[きょう]（ ）に終[お]わらせなければなりません。",
+      "choices": ["ちゅう", "じゅう", "あいだ", "ところ"],
+      "answer": 1,
+      "explain": "今日中 (きょうじゅう): trong suốt ngày hôm nay (trước khi hết hôm nay)."
+    },
+    {
+      "id": "x4-5",
+      "type": "choice",
+      "q": "「今から昼ご飯を食べる（ ）なんですが、いっしょにどうですか。」",
+      "choices": ["あいだ", "ところ", "ちゅう", "とき"],
+      "answer": 1,
+      "explain": "Vるところ: ngay trước lúc sắp bắt đầu ăn trưa."
+    }
+  ]
+}

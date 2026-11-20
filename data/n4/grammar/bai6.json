@@ -1,0 +1,158 @@
+{
+  "lesson": { "id": "n4-grammar-b6", "name": "Tuần 1 - Ngày 6", "week": 1, "day": 6, "type": "somatome" },
+  "title": "雪[ゆき]を見[み]たことがありません。",
+  "warmup": {
+    "q": "毎朝[まいあさ]早[はや]く起[お]きて勉強[べんきょう]すること（ ）。",
+    "choices": ["にします", "があります", "になります"],
+    "answer": 0,
+    "explain": "Vることにします: tự mình quyết định sẽ dậy sớm học bài mỗi sáng."
+  },
+  "items": [
+    {
+      "id": "g6-1",
+      "pattern": "Vたことがある",
+      "formation": "Vた + ことがある",
+      "vi": "Đã từng làm V (nói về kinh nghiệm trong quá khứ)",
+      "examples": [
+        { "jp": "私[わたし]はアフリカに行[い]ったことがあります。", "vi": "Tôi đã từng đi châu Phi.", "highlight": "行[い]ったことがあります" },
+        { "jp": "私[わたし]はマラソン大会[たいかい]に出[で]たことがあります。", "vi": "Tôi đã từng tham gia giải chạy marathon.", "highlight": "出[で]たことがあります" },
+        { "jp": "私[わたし]は一度[いちど]もミュージカルを見[み]たことがありません。", "vi": "Tôi chưa từng xem nhạc kịch lần nào.", "highlight": "見[み]たことがありません" }
+      ]
+    },
+    {
+      "id": "g6-2",
+      "pattern": "Vる / Vないことがある",
+      "formation": "Vる / Vない + ことがある",
+      "vi": "Đôi khi có lúc làm V / không làm V",
+      "examples": [
+        { "jp": "うちの犬[いぬ]は夜中[よなか]にほえることがあって、困[こま]ります。", "vi": "Chó nhà tôi thỉnh thoảng sủa lúc nửa đêm nên rất phiền.", "highlight": "ほえることがあって" },
+        { "jp": "私[わたし]は昼[ひる]ご飯[はん]を食[た]べないことがあります。", "vi": "Thỉnh thoảng có hôm tôi không ăn trưa.", "highlight": "食[た]べないことがあります" }
+      ]
+    },
+    {
+      "id": "g6-3",
+      "pattern": "Nにする / Vる・Vないことにする（している）",
+      "formation": "N + にする / Vる・Vない + ことにする（している）",
+      "vi": "Quyết định chọn N / Quyết định làm V (～にしている: duy trì thành thói quen)",
+      "examples": [
+        { "jp": "（レストランで）私[わたし]はAランチにします。", "vi": "(Ở nhà hàng) Tôi chọn suất ăn trưa A.", "highlight": "Aランチにします" },
+        { "jp": "これから、ダイエットすることにします。", "vi": "Từ bây giờ tôi quyết định sẽ ăn kiêng.", "highlight": "ダイエットすることにします" },
+        { "jp": "毎朝[まいあさ]、30分[ぷん]散歩[さんぽ]することにしています。", "vi": "Tôi giữ thói quen đi bộ 30 phút mỗi sáng.", "highlight": "散歩[さんぽ]することにしています" },
+        { "jp": "今年[ことし]の夏[なつ]は、国[くに]に帰[かえ]らないことにします。", "vi": "Mùa hè năm nay tôi quyết định không về nước.", "highlight": "帰[かえ]らないことにします" }
+      ]
+    },
+    {
+      "id": "g6-4",
+      "pattern": "Nになる / Vる・Vないことになる",
+      "formation": "N + になる / Vる・Vない + ことになる",
+      "vi": "Được quyết định là ~ (quyết định khách quan từ bên ngoài, không phải do ý mình)",
+      "examples": [
+        { "jp": "明日[あした]雨[あめ]なら、ハイキングは中止[ちゅうし]になります。", "vi": "Nếu mai trời mưa thì buổi đi bộ đường dài sẽ bị hủy.", "highlight": "中止[ちゅうし]になります" },
+        { "jp": "来月[らいげつ]、イギリスへ出張[しゅっちょう]することになりました。", "vi": "Tháng sau tôi có quyết định đi công tác Anh.", "highlight": "出張[しゅっちょう]することになりました" },
+        { "jp": "来月[らいげつ]、アメリカに出張[しゅっちょう]する予定[よてい]でしたが、行[い]かないことになりました。", "vi": "Tháng sau tôi dự định công tác Mỹ nhưng quyết định đổi thành không đi nữa.", "highlight": "行[い]かないことになりました" }
+      ]
+    },
+    {
+      "id": "g6-5",
+      "pattern": "Aく / Aな・Nにする・なる",
+      "formation": "Aい(bỏ い)く / Aな・Nに + する（tác động thay đổi）/ なる（biến đổi tự nhiên）",
+      "vi": "Làm cho trở nên ~ (ý chí) vs Trở nên ~ (thay đổi tự nhiên)",
+      "examples": [
+        { "jp": "テレビの音[おと]を小[ちい]さくしてください。", "vi": "Vui lòng vặn nhỏ tiếng tivi lại.", "highlight": "小[ちい]さくしてください" },
+        { "jp": "もらった時計[とけい]、大切[たいせつ]にします。", "vi": "Chiếc đồng hồ được tặng tôi sẽ giữ gìn trân trọng.", "highlight": "大切[たいせつ]にします" },
+        { "jp": "母[はは]がなくなって、さびしくなりました。", "vi": "Mẹ mất nên tôi trở nên cô đơn.", "highlight": "さびしくなりました" },
+        { "jp": "大[おお]きい道路[どうろ]ができて、この辺[へん]も静[しず]かじゃなくなりました。", "vi": "Con đường lớn xây xong nên quanh đây cũng không còn yên tĩnh nữa.", "highlight": "静[しず]かじゃなくなりました" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e6-1",
+      "type": "choice",
+      "q": "このパソコンはときどきフリーズすること（ ）。",
+      "choices": ["にあります", "があります", "にします", "になります"],
+      "answer": 1,
+      "explain": "Vることがあります: máy tính này thỉnh thoảng bị đơ."
+    },
+    {
+      "id": "e6-2",
+      "type": "choice",
+      "q": "わたしは、夜[よる]はコーヒーやお茶[ちゃ]を飲[の]まないこと（ ）。",
+      "choices": ["になります", "はしていません", "になっています", "にしています"],
+      "answer": 3,
+      "explain": "Vないことにしています: duy trì thói quen buổi tối không uống cà phê hay trà."
+    },
+    {
+      "id": "e6-3",
+      "type": "choice",
+      "q": "A「ここのランチ、どれでもおいしいですよ。」\nB「そうですか。じゃ、わたしはハンバーグランチ（ ）します。」",
+      "choices": ["を", "に", "で", "も"],
+      "answer": 1,
+      "explain": "Nにします: chọn món ăn trưa Hamburg."
+    },
+    {
+      "id": "e6-4",
+      "type": "star",
+      "prefix": "A「お母さま、お元気ですか。」\nB「それが、1年くらい前",
+      "suffix": "なくなりました。」",
+      "choices": ["では", "から", "元気[げんき]", "あまり"],
+      "order": [1, 3, 2, 0],
+      "starIndex": 2,
+      "answer": 2,
+      "explain": "Thứ tự đúng: から(2) あまり(4) 元気(3) では(1) → vị trí ★ là 元気."
+    },
+    {
+      "id": "e6-5",
+      "type": "star",
+      "prefix": "母親「おべんとう、急いで作るから、待ってて。」\n子ども「ちこく",
+      "suffix": "！」",
+      "choices": ["早[はや]く", "しちゃう", "から", "して"],
+      "order": [1, 2, 0, 3],
+      "starIndex": 2,
+      "answer": 0,
+      "explain": "Thứ tự đúng: しちゃう(2) から(3) 早く(1) して(4) → vị trí ★ là 早く."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x6-1",
+      "type": "choice",
+      "q": "富士山[ふじさん]に登[のぼ]った（ ）がありますか。",
+      "choices": ["もの", "こと", "ところ", "とき"],
+      "answer": 1,
+      "explain": "Vたことがありますか: bạn đã từng leo núi Phú Sĩ chưa?"
+    },
+    {
+      "id": "x6-2",
+      "type": "choice",
+      "q": "来月[らいげつ]から大阪[おおさか]で働[はたら]くこと（ ）。",
+      "choices": ["にしました", "になりました", "をしています", "がありました"],
+      "answer": 1,
+      "explain": "Quyết định điều chuyển công tác từ công ty → Vることになりました."
+    },
+    {
+      "id": "x6-3",
+      "type": "choice",
+      "q": "部屋[へや]が暗[くら]いので、電気[でんき]をつけて明[あか]るく（ ）。",
+      "choices": ["なりました", "しました", "いました", "ありました"],
+      "answer": 1,
+      "explain": "Tác động có chủ đích làm phòng sáng lên → 明るくしました."
+    },
+    {
+      "id": "x6-4",
+      "type": "choice",
+      "q": "健康[けんこう]のために、毎日[まいにち]野菜[やさい]をたくさん食[た]べること（ ）。",
+      "choices": ["になっています", "にしています", "がありました", "になりました"],
+      "answer": 1,
+      "explain": "Thói quen cá nhân tự đặt ra → Vることにしています."
+    },
+    {
+      "id": "x6-5",
+      "type": "choice",
+      "q": "春[はる]になって、だんだん暖[あたた]かく（ ）。",
+      "choices": ["しました", "なりました", "ことにしました", "ありました"],
+      "answer": 1,
+      "explain": "Thời tiết ấm lên tự nhiên → 暖かくなりました."
+    }
+  ]
+}

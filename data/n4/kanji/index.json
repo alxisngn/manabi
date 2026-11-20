@@ -4,147 +4,171 @@
  "lessons": [
   {
    "id": "n4-kanji-b26",
-   "name": "Bài 26",
+   "name": "Buổi 26 (家族兄弟姉妹私育)",
    "file": "bai26.json",
-   "count": 21
+   "count": 21,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b27",
-   "name": "Bài 27",
+   "name": "Buổi 27 (部屋広低緑静近遠)",
    "file": "bai27.json",
-   "count": 24
+   "count": 24,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b28",
-   "name": "Bài 28",
+   "name": "Buổi 28 (会社働作工場始終)",
    "file": "bai28.json",
-   "count": 32
+   "count": 32,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b29",
-   "name": "Bài 29",
+   "name": "Buổi 29 (店客親切売当品)",
    "file": "bai29.json",
-   "count": 30
+   "count": 30,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b30",
-   "name": "Bài 30",
+   "name": "Buổi 30 (便利使銀白黒紙)",
    "file": "bai30.json",
-   "count": 27
+   "count": 27,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b31",
-   "name": "Bài 31",
+   "name": "Buổi 31 (朝晩昼夜前後午早)",
    "file": "bai31.json",
-   "count": 32
+   "count": 32,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b32",
-   "name": "Bài 32",
+   "name": "Buổi 32 (荷送宅急速度快重軽)",
    "file": "bai32.json",
-   "count": 25
+   "count": 25,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b33",
-   "name": "Bài 33",
+   "name": "Buổi 33 (住所様主番地号)",
    "file": "bai33.json",
-   "count": 18
+   "count": 18,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b34",
-   "name": "Bài 34",
+   "name": "Buổi 34 (京都道府県市区村)",
    "file": "bai34.json",
-   "count": 22
+   "count": 22,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b35",
-   "name": "Bài 35",
+   "name": "Buổi 35 (毎週映画図書館公園)",
    "file": "bai35.json",
-   "count": 27
+   "count": 27,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b36",
-   "name": "Bài 36",
+   "name": "Buổi 36 (夫妻特思料理有)",
    "file": "bai36.json",
-   "count": 23
+   "count": 23,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b37",
-   "name": "Bài 37",
+   "name": "Buổi 37 (洋服衣短毛糸玉光)",
    "file": "bai37.json",
-   "count": 22
+   "count": 22,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b38",
-   "name": "Bài 38",
+   "name": "Buổi 38 (駅鉄乗降開閉発着)",
    "file": "bai38.json",
-   "count": 30
+   "count": 30,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b39",
-   "name": "Bài 39",
+   "name": "Buổi 39 (交通台止色赤黄青)",
    "file": "bai39.json",
-   "count": 29
+   "count": 29,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b40",
-   "name": "Bài 40",
+   "name": "Buổi 40 (病院医科薬待合計)",
    "file": "bai40.json",
-   "count": 31
+   "count": 31,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b41",
-   "name": "Bài 41",
+   "name": "Buổi 41 (研究語文英化数心)",
    "file": "bai41.json",
-   "count": 25
+   "count": 25,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b42",
-   "name": "Bài 42",
+   "name": "Buổi 42 (若集知酒歌声楽)",
    "file": "bai42.json",
-   "count": 21
+   "count": 21,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b43",
-   "name": "Bài 43",
+   "name": "Buổi 43 (味油太細皿飯麦)",
    "file": "bai43.json",
-   "count": 22
+   "count": 22,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b44",
-   "name": "Bài 44",
+   "name": "Buổi 44 (春夏秋冬空星雲去)",
    "file": "bai44.json",
-   "count": 19
+   "count": 19,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b45",
-   "name": "Bài 45",
+   "name": "Buổi 45 (天晴雪風強弱暑寒)",
    "file": "bai45.json",
-   "count": 18
+   "count": 18,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b46",
-   "name": "Bài 46",
+   "name": "Buổi 46 (旅持世界写真船)",
    "file": "bai46.json",
-   "count": 21
+   "count": 21,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b47",
-   "name": "Bài 47",
+   "name": "Buổi 47 (勉漢宿題質問教室)",
    "file": "bai47.json",
-   "count": 17
+   "count": 17,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b48",
-   "name": "Bài 48",
+   "name": "Buổi 48 (試験答考正丸不同)",
    "file": "bai48.json",
-   "count": 19
+   "count": 19,
+   "type": "book"
   },
   {
    "id": "n4-kanji-b49",
-   "name": "Bài 49",
+   "name": "Buổi 49 (運動練習走歩泳才)",
    "file": "bai49.json",
-   "count": 24
+   "count": 24,
+   "type": "book"
   }
  ]
 }

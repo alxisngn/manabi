@@ -52,11 +52,26 @@ for (const lv of LEVELS) {
         });
         if (w.length < 10 || w.length > 60) probs.push(`số từ ${w.length} bất thường`);
       }
-      console.log(probs.length ? `⚠️  ${rel}: ${w.length} mục` : `✅ ${rel}: ${w.length} mục`);
+      if (sk === "grammar") {
+        w.forEach((x, i) => {
+          if (!x.pattern || !x.vi) probs.push(`mẫu #${i + 1} thiếu "pattern" hoặc "vi"`);
+        });
+        const allEx = [...(d.exercises || []), ...(d.extraExercises || [])];
+        if (!w.length && !allEx.length) probs.push(`bài ngữ pháp trống cả mẫu câu lẫn bài tập`);
+      }
+      const itemCount = w.length || (d.exercises || []).length;
+      console.log(probs.length ? `⚠️  ${rel}: ${itemCount} mục` : `✅ ${rel}: ${itemCount} mục`);
       probs.forEach(p => console.log("     - " + p));
       if (probs.length) warns++;
-      lessons.push({ id, name: `Bài ${n}`, file: f, count: w.length });
-      items += w.length; allFiles.push(`data/${rel}`);
+      lessons.push({
+        id,
+        name: d.lesson?.name || `Bài ${n}`,
+        file: f,
+        count: itemCount,
+        ...(d.lesson?.week ? { week: d.lesson.week, day: d.lesson.day } : {}),
+        ...(d.lesson?.type ? { type: d.lesson.type } : {})
+      });
+      items += itemCount; allFiles.push(`data/${rel}`);
     }
     write(path.join(skDir, "index.json"), { level: entry.id, skill: sk, lessons });
     allFiles.push(`data/${lv}/${sk}/index.json`);

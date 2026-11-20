@@ -1,0 +1,158 @@
+{
+  "lesson": { "id": "n4-grammar-b2", "name": "Tuần 1 - Ngày 2", "week": 1, "day": 2, "type": "somatome" },
+  "title": "漢字[かんじ]は少[すこ]ししか書[か]けません。",
+  "warmup": {
+    "q": "これは、こども（ ）できる問題[もんだい]です。",
+    "choices": ["しか", "とか", "でも"],
+    "answer": 2,
+    "explain": "Nでも: ngay cả trẻ con cũng làm được (ví dụ cực đoan)."
+  },
+  "items": [
+    {
+      "id": "g2-1",
+      "pattern": "Nでも",
+      "formation": "N + でも",
+      "vi": "① Ngay cả N cũng (ví dụ cực đoan) / ② Như là N chẳng hạn (gợi ý nhẹ nhàng)",
+      "examples": [
+        { "jp": "これは日本人[にほんじん]でも読[よ]めない漢字[かんじ]です。", "vi": "Đây là chữ Hán mà ngay cả người Nhật cũng không đọc được.", "highlight": "日本人[にほんじん]でも" },
+        { "jp": "お茶[ちゃ]でも飲[の]みましょうか。", "vi": "Chúng ta uống trà hay gì đó nhé?", "highlight": "お茶[ちゃ]でも" },
+        { "jp": "天気[てんき]がいいから、散歩[さんぽ]でもしませんか。", "vi": "Trời đẹp nên đi dạo một chút không?", "highlight": "散歩[さんぽ]でも" }
+      ]
+    },
+    {
+      "id": "g2-2",
+      "pattern": "Nしか～ない",
+      "formation": "N / Lượng từ + しか + Vない / ない",
+      "vi": "Chỉ có N (mang sắc thái ít ỏi, không đủ, đi với thể phủ định)",
+      "examples": [
+        { "jp": "私[わたし]のクラスに男[おとこ]の人[ひと]は二人[ふたり]しかいません。", "vi": "Trong lớp tôi chỉ có 2 bạn nam thôi.", "highlight": "二人[ふたり]しかいません" },
+        { "jp": "ジョンさんは英語[えいご]しか話[はな]せません。", "vi": "Anh John chỉ nói được mỗi tiếng Anh.", "highlight": "英語[えいご]しか話[はな]せません" },
+        { "jp": "れいぞうこに、たまごが1個[こ]しかありません。", "vi": "Trong tủ lạnh chỉ còn có 1 quả trứng.", "highlight": "1個[こ]しかありません" }
+      ]
+    },
+    {
+      "id": "g2-3",
+      "pattern": "Nで（いろいろな意味）",
+      "formation": "N + で",
+      "vi": "Các nghĩa của trợ từ で: phương tiện, phạm vi, số lượng/giá cả, lý do, chất liệu",
+      "examples": [
+        { "jp": "電車[でんしゃ]で行[い]きます。／はさみで切[き]ります。", "vi": "Đi bằng tàu điện. / Cắt bằng kéo. (Phương tiện)", "highlight": "で" },
+        { "jp": "富士山[ふじさん]は日本[にほん]でいちばん高[たか]い山[やま]です。", "vi": "Núi Phú Sĩ là ngọn núi cao nhất ở Nhật. (Phạm vi)", "highlight": "日本[にほん]で" },
+        { "jp": "このりんごは3個[こ]で500円[えん]です。", "vi": "Táo này 3 quả giá 500 yên. (Tổng lượng/giá)", "highlight": "3個[こ]で" },
+        { "jp": "かぜで学校[がっこう]を休[やす]みました。", "vi": "Tôi nghỉ học vì bị cảm. (Lý do)", "highlight": "かぜで" },
+        { "jp": "これは、紙[かみ]で作[つく]ったにんぎょうです。", "vi": "Đây là con búp bê làm bằng giấy. (Chất liệu nhìn thấy được)", "highlight": "紙[かみ]で" }
+      ]
+    },
+    {
+      "id": "g2-4",
+      "pattern": "Nも（時間・数量）",
+      "formation": "Thời gian / Số lượng + も",
+      "vi": "Khẳng định: những/tới tận ~ (nhiều); Phủ định: đến 1 ~ cũng không (rất ít/zero)",
+      "examples": [
+        { "jp": "学校[がっこう]まで2時間[じかん]もかかります。", "vi": "Đến trường mất tận 2 tiếng đồng hồ.", "highlight": "2時間[じかん]も" },
+        { "jp": "ビールを3本[ほん]も飲[の]みました。", "vi": "Tôi đã uống tới 3 chai bia.", "highlight": "3本[ほん]も" },
+        { "jp": "パーティーには10人[にん]も来[こ]ませんでした。", "vi": "Bữa tiệc đến 10 người cũng không tới (rất vắng).", "highlight": "10人[にん]も来[こ]ませんでした" },
+        { "jp": "私[わたし]はスカートを1枚[まい]も持[も]っていません。", "vi": "Tôi không có lấy một chiếc váy nào.", "highlight": "1枚[まい]も持[も]っていません" }
+      ]
+    },
+    {
+      "id": "g2-5",
+      "pattern": "N₁ とか N₂（とか）",
+      "formation": "N₁ とか N₂（とか）",
+      "vi": "Nào là N₁, nào là N₂ (liệt kê ví dụ tiêu biểu, khẩu ngữ hơn や)",
+      "examples": [
+        { "jp": "毎日[まいにち]、昼[ひる]はラーメンとかそばとかを食[た]べます。", "vi": "Mỗi ngày buổi trưa tôi ăn những món như ramen hay soba.", "highlight": "ラーメンとかそばとか" }
+      ]
+    }
+  ],
+  "exercises": [
+    {
+      "id": "e2-1",
+      "type": "choice",
+      "q": "あしたの宿題[しゅくだい]のレポートがまだ1枚[まい]（ ）できていません。",
+      "choices": ["も", "ずつ", "でも", "とか"],
+      "answer": 0,
+      "explain": "1枚も＋phủ định: đến 1 trang cũng chưa làm xong."
+    },
+    {
+      "id": "e2-2",
+      "type": "choice",
+      "q": "山田「これ、おいしいですね。田中さんが作りましたか。」\n田中「はい、わたし（ ）作[つく]れるのでかんたんでしたよ。」",
+      "choices": ["だけ", "くらい", "しか", "でも"],
+      "answer": 3,
+      "explain": "わたしでも: ngay cả tôi cũng làm được (khiêm tốn, ví dụ cực đoan)."
+    },
+    {
+      "id": "e2-3",
+      "type": "choice",
+      "q": "A「あしたは休みですね。何をしますか。」\nB「そうじ（ ）せんたく（ ）をするつもりです。」",
+      "choices": ["も／も", "や／や", "でも／でも", "とか／とか"],
+      "answer": 3,
+      "explain": "N₁とかN₂とか: liệt kê hành động như dọn dẹp, giặt giũ."
+    },
+    {
+      "id": "e2-4",
+      "type": "star",
+      "prefix": "子ども「お母さん、今日は、すきやきが食べたい。」\n母親「お肉はあるけれど、たまご",
+      "suffix": "から、あしたね。」",
+      "choices": ["しか", "が", "ない", "ひとつ"],
+      "order": [1, 3, 0, 2],
+      "starIndex": 2,
+      "answer": 0,
+      "explain": "Thứ tự đúng: が(2) ひとつ(4) しか(1) ない(3) → vị trí ★ là しか."
+    },
+    {
+      "id": "e2-5",
+      "type": "star",
+      "prefix": "今年の夏休みは",
+      "suffix": "しようと思っています。",
+      "choices": ["でも", "旅行[りょこう]", "どこか", "へ"],
+      "order": [2, 3, 1, 0],
+      "starIndex": 2,
+      "answer": 1,
+      "explain": "Thứ tự đúng: どこか(3) へ(4) 旅行(2) でも(1) → vị trí ★ là 旅行."
+    }
+  ],
+  "extraExercises": [
+    {
+      "id": "x2-1",
+      "type": "choice",
+      "q": "財布[さいふ]の中[なか]に100円[えん]（ ）入[はい]っていません。",
+      "choices": ["でも", "しか", "とか", "ずつ"],
+      "answer": 1,
+      "explain": "100円しか入っていません: trong ví chỉ có mỗi 100 yên (ít ỏi)."
+    },
+    {
+      "id": "x2-2",
+      "type": "choice",
+      "q": "このケーキは5個[こ]（ ）1,000円[えん]です。",
+      "choices": ["に", "を", "で", "から"],
+      "answer": 2,
+      "explain": "Nで chỉ tổng số lượng và tổng giá tiền (5 cái giá 1.000 yên)."
+    },
+    {
+      "id": "x2-3",
+      "type": "choice",
+      "q": "ちょっとつかれましたね。コーヒー（ ）飲[の]みませんか。",
+      "choices": ["でも", "しか", "も", "に"],
+      "answer": 0,
+      "explain": "Nでも: đưa ra gợi ý nhẹ nhàng (uống cà phê hay gì đó không?)."
+    },
+    {
+      "id": "x2-4",
+      "type": "choice",
+      "q": "きのうは10時間[じかん]（ ）寝[ね]ました。",
+      "choices": ["しか", "も", "ずつ", "でも"],
+      "answer": 1,
+      "explain": "10時間も寝ました: ngủ tới tận 10 tiếng đồng hồ (nhấn mạnh số lượng nhiều)."
+    },
+    {
+      "id": "x2-5",
+      "type": "choice",
+      "q": "地震[じしん]（ ）電車[でんしゃ]が止[と]まりました。",
+      "choices": ["に", "を", "で", "とか"],
+      "answer": 2,
+      "explain": "Nで chỉ nguyên nhân/lý do trực tiếp khiến tàu dừng."
+    }
+  ]
+}

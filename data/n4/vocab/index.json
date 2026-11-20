@@ -6,151 +6,176 @@
    "id": "b26",
    "name": "Bài 26",
    "file": "bai26.json",
-   "count": 29
+   "count": 29,
+   "type": "book"
   },
   {
    "id": "b27",
    "name": "Bài 27",
    "file": "bai27.json",
-   "count": 23
+   "count": 23,
+   "type": "book"
   },
   {
    "id": "b28",
    "name": "Bài 28",
    "file": "bai28.json",
-   "count": 39
+   "count": 39,
+   "type": "book"
   },
   {
    "id": "b29",
    "name": "Bài 29",
    "file": "bai29.json",
-   "count": 49
+   "count": 49,
+   "type": "book"
   },
   {
    "id": "b30",
    "name": "Bài 30",
    "file": "bai30.json",
-   "count": 35
+   "count": 35,
+   "type": "book"
   },
   {
    "id": "b31",
    "name": "Bài 31",
    "file": "bai31.json",
-   "count": 19
+   "count": 19,
+   "type": "book"
   },
   {
    "id": "b32",
    "name": "Bài 32",
    "file": "bai32.json",
-   "count": 40
+   "count": 40,
+   "type": "book"
   },
   {
    "id": "b33",
    "name": "Bài 33",
    "file": "bai33.json",
-   "count": 35
+   "count": 35,
+   "type": "book"
   },
   {
    "id": "b34",
    "name": "Bài 34",
    "file": "bai34.json",
-   "count": 27
+   "count": 27,
+   "type": "book"
   },
   {
    "id": "b35",
    "name": "Bài 35",
    "file": "bai35.json",
-   "count": 29
+   "count": 29,
+   "type": "book"
   },
   {
    "id": "b36",
    "name": "Bài 36",
    "file": "bai36.json",
-   "count": 21
+   "count": 21,
+   "type": "book"
   },
   {
    "id": "b37",
    "name": "Bài 37",
    "file": "bai37.json",
-   "count": 27
+   "count": 27,
+   "type": "book"
   },
   {
    "id": "b38",
    "name": "Bài 38",
    "file": "bai38.json",
-   "count": 25
+   "count": 25,
+   "type": "book"
   },
   {
    "id": "b39",
    "name": "Bài 39",
    "file": "bai39.json",
-   "count": 36
+   "count": 36,
+   "type": "book"
   },
   {
    "id": "b40",
    "name": "Bài 40",
    "file": "bai40.json",
-   "count": 33
+   "count": 33,
+   "type": "book"
   },
   {
    "id": "b41",
    "name": "Bài 41",
    "file": "bai41.json",
-   "count": 43
+   "count": 43,
+   "type": "book"
   },
   {
    "id": "b42",
    "name": "Bài 42",
    "file": "bai42.json",
-   "count": 33
+   "count": 33,
+   "type": "book"
   },
   {
    "id": "b43",
    "name": "Bài 43",
    "file": "bai43.json",
-   "count": 21
+   "count": 21,
+   "type": "book"
   },
   {
    "id": "b44",
    "name": "Bài 44",
    "file": "bai44.json",
-   "count": 28
+   "count": 28,
+   "type": "book"
   },
   {
    "id": "b45",
    "name": "Bài 45",
    "file": "bai45.json",
-   "count": 14
+   "count": 14,
+   "type": "book"
   },
   {
    "id": "b46",
    "name": "Bài 46",
    "file": "bai46.json",
-   "count": 18
+   "count": 18,
+   "type": "book"
   },
   {
    "id": "b47",
    "name": "Bài 47",
    "file": "bai47.json",
-   "count": 33
+   "count": 33,
+   "type": "book"
   },
   {
    "id": "b48",
    "name": "Bài 48",
    "file": "bai48.json",
-   "count": 14
+   "count": 14,
+   "type": "book"
   },
   {
    "id": "b49",
    "name": "Bài 49",
    "file": "bai49.json",
-   "count": 17
+   "count": 17,
+   "type": "book"
   },
   {
    "id": "b50",
    "name": "Bài 50",
    "file": "bai50.json",
-   "count": 19
+   "count": 19,
+   "type": "book"
   }
  ]
 }

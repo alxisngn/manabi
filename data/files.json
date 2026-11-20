@@ -51,6 +51,14 @@
   "data/n4/kanji/bai48.json",
   "data/n4/kanji/bai49.json",
   "data/n4/kanji/index.json",
+  "data/n4/grammar/bai1.json",
+  "data/n4/grammar/bai2.json",
+  "data/n4/grammar/bai3.json",
+  "data/n4/grammar/bai4.json",
+  "data/n4/grammar/bai5.json",
+  "data/n4/grammar/bai6.json",
+  "data/n4/grammar/bai7.json",
+  "data/n4/grammar/index.json",
   "data/curriculum.json"
  ]
 }
