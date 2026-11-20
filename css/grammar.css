@@ -1,6 +1,15 @@
 .gr-wrap { display: flex; flex-direction: column; gap: 14px; padding-bottom: 74px; }
-.gr-wrap.hide-furigana ruby { cursor: pointer; border-bottom: 1px dotted rgba(91, 192, 190, 0.45); }
-.gr-wrap.hide-furigana ruby rt { opacity: 0; pointer-events: none; transition: opacity 0.14s ease; }
+.gr-wrap.hide-furigana ruby { position: relative; cursor: pointer; border-bottom: 1px dotted rgba(91, 192, 190, 0.45); }
+.gr-wrap.hide-furigana ruby rt {
+  position: absolute;
+  bottom: 95%;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.14s ease;
+}
 .gr-wrap.hide-furigana ruby:hover rt,
 .gr-wrap.hide-furigana ruby.is-peek rt { opacity: 1; }
 
