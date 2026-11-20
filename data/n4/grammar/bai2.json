@@ -5,6 +5,10 @@
     "q": "これは、こども（ ）できる問題[もんだい]です。",
     "choices": ["しか", "とか", "でも"],
     "answer": 2,
+    "wrongExplains": {
+      "0": "「しか」 luôn phải đi với động từ phủ định (できない) và mang nghĩa \"chỉ có\".",
+      "1": "「とか」 dùng để liệt kê ví dụ (N₁とかN₂とか), không mang nghĩa nhấn mạnh \"ngay cả\"."
+    },
     "explain": "Nでも: ngay cả trẻ con cũng làm được (ví dụ cực đoan)."
   },
   "items": [

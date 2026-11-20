@@ -5,6 +5,10 @@
     "q": "毎朝[まいあさ]早[はや]く起[お]きて勉強[べんきょう]すること（ ）。",
     "choices": ["にします", "があります", "になります"],
     "answer": 0,
+    "wrongExplains": {
+      "1": "「Vることがあります」 nghĩa là \"thỉnh thoảng có lúc làm V\", không hợp với thói quen chủ động \"mỗi sáng\".",
+      "2": "「になります」 dùng cho quyết định từ bên ngoài, còn tự đặt mục tiêu cho bản thân dùng 「にします」."
+    },
     "explain": "Vることにします: tự mình quyết định sẽ dậy sớm học bài mỗi sáng."
   },
   "items": [

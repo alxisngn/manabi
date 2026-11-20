@@ -5,6 +5,10 @@
     "q": "（ ）、勉強[べんきょう]できない。",
     "choices": ["うるさいが", "うるさくし", "うるさくて"],
     "answer": 2,
+    "wrongExplains": {
+      "0": "「～が」 mang nghĩa đối lập (\"tuy ồn nhưng...\"), không hợp với kết quả \"không thể học\".",
+      "1": "「～し」 đi với tính từ đuôi い phải giữ nguyên い (うるさいし), chia 「うるさくし」 là sai cách chia."
+    },
     "explain": "Tính từ い bỏ い + くて chỉ nguyên nhân khiến không thể học được."
   },
   "items": [

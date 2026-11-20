@@ -5,6 +5,10 @@
     "q": "今[いま]、ご飯[はん]を食[た]べている（ ）です。",
     "choices": ["ところ", "あいだ", "とき"],
     "answer": 0,
+    "wrongExplains": {
+      "1": "「あいだ」 chỉ một khoảng thời gian kéo dài để việc khác xen vào, không dùng cuối câu để báo trạng thái hiện tại.",
+      "2": "「とき」 chỉ mốc thời điểm chung chung (\"lúc...\"), không nhấn mạnh đúng khoảnh khắc đang diễn ra như 「ところ」."
+    },
     "explain": "Vているところです: đúng ngay lúc đang ăn cơm."
   },
   "items": [

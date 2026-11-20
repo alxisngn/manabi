@@ -1,4 +1,4 @@
-const V = 'v33';
+const V = 'v37';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = 'manabi-fonts-v1';
 
@@ -6,6 +6,7 @@ const CORE_ASSETS = [
   './',
   './css/base.css',
   './css/components.css',
+  './css/grammar.css',
   './css/layout.css',
   './css/screens.css',
   './css/utilities.css',
@@ -25,6 +26,10 @@ const CORE_ASSETS = [
   './js/core/tts.js',
   './js/core/util.js',
   './js/core/weak.js',
+  './js/modules/grammar/exercises.js',
+  './js/modules/grammar/lesson.js',
+  './js/modules/grammar/picker.js',
+  './js/modules/grammar/test.js',
   './js/modules/vocab/flashcard.js',
   './js/modules/vocab/importer.js',
   './js/modules/vocab/kanji-read.js',

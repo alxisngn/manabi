@@ -111,6 +111,11 @@ async function router() {
       if (token === routeToken) mount(appEl, { level, skill, query: params });
       return;
     }
+    if (skill === 'grammar') {
+      const { mount } = await import('./modules/grammar/picker.js');
+      if (token === routeToken) await mount(appEl, { level, skill, query: params });
+      return;
+    }
     navigateTo('#/learn');
     return;
   }

@@ -5,7 +5,11 @@
     "q": "きのうも暑[あつ]かったけれど、今日[きょう]（ ）じゃない。",
     "choices": ["より", "くらい", "ほど"],
     "answer": 2,
-    "explain": "N₁ほど～ない / ～じゃない: không nóng bằng hôm nay."
+    "wrongExplains": {
+      "0": "「より」 dùng để so sánh hơn (AはBより～), không đi với dạng phủ định 「～じゃない」.",
+      "1": "「くらい」 chỉ mức độ ước lượng (khoảng chừng), không diễn đạt ý so sánh kém bằng."
+    },
+    "explain": "N₁ほど～ない / ～じゃない: hôm qua cũng nóng nhưng không nóng bằng hôm nay."
   },
   "items": [
     {

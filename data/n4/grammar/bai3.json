@@ -5,6 +5,10 @@
     "q": "休[やす]みの日[ひ]は映画[えいが]を（ ）しています。",
     "choices": ["見[み]たり", "見[み]るや", "見[み]るし"],
     "answer": 0,
+    "wrongExplains": {
+      "1": "Không có cấu trúc 「Vる＋や」 để liệt kê hành động.",
+      "2": "「～し」 dùng để nêu nhiều lý do hoặc tính chất, không đi với 「～しています」."
+    },
     "explain": "～たりしています: liệt kê hành động tiêu biểu vào ngày nghỉ."
   },
   "items": [
