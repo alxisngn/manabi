@@ -1,12 +1,12 @@
 .gr-wrap { display: flex; flex-direction: column; gap: 14px; padding-bottom: 74px; }
-.gr-wrap.hide-furigana ruby {
+.gr-wrap ruby {
   display: inline-block;
   position: relative;
   line-height: 1.25;
   cursor: pointer;
   border-bottom: 1px dotted rgba(91, 192, 190, 0.45);
 }
-.gr-wrap.hide-furigana ruby rt {
+.gr-wrap ruby rt {
   position: absolute;
   bottom: 95%;
   left: 50%;
@@ -16,13 +16,12 @@
   pointer-events: none;
   transition: opacity 0.14s ease;
 }
-.gr-wrap.hide-furigana ruby:hover rt,
-.gr-wrap.hide-furigana ruby.is-peek rt { opacity: 1; }
+.gr-wrap ruby:hover rt,
+.gr-wrap ruby.is-peek rt { opacity: 1; }
 
 .gr-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .gr-top-title { font-size: 1.15rem; font-weight: 800; flex: 1; text-align: center; }
 .gr-pill { min-height: 36px; padding: 4px 10px; font-size: 0.84rem; border-radius: 999px; }
-.gr-pill.is-on { background: var(--teal); color: #101320; border-color: #101320; }
 
 .gr-week-card { display: flex; flex-direction: column; gap: 12px; }
 .gr-day-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -34,7 +33,7 @@
 .gr-test-btn { width: 100%; justify-content: space-between; padding: 12px 14px; }
 .gr-test-btn .badge { color: var(--text); }
 
-.gr-hero { background: var(--bg-elevated); border-color: var(--teal); }
+.gr-hero { background: var(--bg-elevated); border-color: var(--teal); display: flex; flex-direction: column; gap: 6px; }
 .gr-hero-jp { font-size: 1.2rem; font-weight: 700; margin-top: 4px; }
 
 .gr-warm { border-color: var(--yellow); display: flex; flex-direction: column; gap: 10px; }
@@ -63,7 +62,26 @@
 
 .gr-q-card { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
 .gr-q-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); }
-.gr-q-text { font-size: 1.02rem; line-height: 1.75; white-space: pre-line; }
+.gr-q-text { font-size: 1.02rem; line-height: 1.85; white-space: pre-line; }
+.gr-q-blank {
+  display: inline-block;
+  min-width: 56px;
+  padding: 0 10px;
+  margin: 0 3px;
+  border-radius: 8px;
+  border: 2px dashed var(--teal);
+  background: var(--bg-elevated);
+  color: var(--text-muted);
+  text-align: center;
+  font-weight: 700;
+  vertical-align: baseline;
+}
+.gr-q-blank.is-filled {
+  border-style: solid;
+  border-color: var(--green);
+  background: rgba(76, 175, 106, 0.18);
+  color: var(--teal);
+}
 .gr-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
 .gr-opt { display: block; text-align: left; font-weight: 600; padding: 10px 12px; line-height: 1.5; }
 .gr-opt.is-picked { border-color: var(--teal); background: rgba(91, 192, 190, 0.18); }
@@ -83,6 +101,29 @@
 
 .gr-jump { position: fixed; bottom: calc(74px + env(safe-area-inset-bottom, 0px)); right: 14px; z-index: 20; display: flex; gap: 6px; padding: 6px; border-radius: 999px; background: var(--bg-card); border: 2px solid var(--border); box-shadow: 3px 4px 0 var(--shadow); }
 .gr-jump .btn { min-height: 34px; padding: 4px 12px; font-size: 0.82rem; border-radius: 999px; box-shadow: none; }
+
+.gr-lookup {
+  position: fixed;
+  left: 14px;
+  right: 14px;
+  bottom: calc(128px + env(safe-area-inset-bottom, 0px));
+  max-width: 460px;
+  margin: 0 auto;
+  z-index: 25;
+  padding: 12px 14px;
+  border-color: var(--yellow);
+  background: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  animation: fadeSlideUp 0.16s ease both;
+}
+.gr-lookup-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.gr-lookup-word { font-size: 1.08rem; font-weight: 800; color: var(--teal); }
+.gr-lookup-read { font-size: 0.86rem; color: var(--text-muted); margin-left: 6px; }
+.gr-lookup-vi { font-size: 0.94rem; line-height: 1.45; }
+.gr-lookup-sub { font-size: 0.8rem; color: var(--text-muted); }
+.gr-lookup-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
 .gr-timer { font-variant-numeric: tabular-nums; color: var(--yellow); font-weight: 800; }
 .gr-cloze-box { position: sticky; top: 8px; z-index: 10; max-height: 36dvh; overflow-y: auto; background: var(--bg-elevated); border-color: var(--teal); font-size: 0.96rem; line-height: 1.85; white-space: pre-line; }

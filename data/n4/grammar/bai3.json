@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b3", "name": "Tuần 1 - Ngày 3", "week": 1, "day": 3, "type": "somatome" },
   "title": "9時[じ]までに来[き]てください。",
+  "titleVi": "Hãy đến trước 9 giờ.",
   "warmup": {
     "q": "休[やす]みの日[ひ]は映画[えいが]を（ ）しています。",
     "choices": ["見[み]たり", "見[み]るや", "見[み]るし"],

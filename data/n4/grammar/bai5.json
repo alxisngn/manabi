@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b5", "name": "Tuần 1 - Ngày 5", "week": 1, "day": 5, "type": "somatome" },
   "title": "音楽[おんがく]を聞[き]きながら勉強[べんきょう]しています。",
+  "titleVi": "Tôi vừa nghe nhạc vừa học bài.",
   "warmup": {
     "q": "（ ）、勉強[べんきょう]できない。",
     "choices": ["うるさいが", "うるさくし", "うるさくて"],

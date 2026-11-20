@@ -7,7 +7,7 @@ import { escapeHtml } from '../core/util.js';
 const CATEGORIES = [
   { id: 'kanji', label: 'Kanji', icon: '漢', ready: true, smRange: 'Tuần 1–3', smWeeks: [1, 2, 3] },
   { id: 'vocab', label: 'Từ vựng', icon: '📚', ready: true, smRange: 'Tuần 4–6', smWeeks: [4, 5, 6] },
-  { id: 'grammar', label: 'Ngữ pháp', icon: '🧩', ready: false, smRange: 'Tuần 1–4', smWeeks: [1, 2, 3, 4] },
+  { id: 'grammar', label: 'Ngữ pháp', icon: '🧩', ready: true, smRange: 'Tuần 1–4', smWeeks: [1, 2, 3, 4] },
   { id: 'reading', label: 'Đọc hiểu', icon: '📖', ready: false, smRange: 'Tuần 5', smWeeks: [5] },
   { id: 'listening', label: 'Nghe hiểu', icon: '🎧', ready: false, smRange: 'Tuần 6', smWeeks: [6] }
 ];
@@ -19,13 +19,28 @@ async function fetchSkillLessons(level, skill) {
     const res = await fetch(`data/${level.toLowerCase()}/${skill}/index.json`);
     if (!res.ok) return [];
     const list = (await res.json())?.lessons || [];
-    return list.map((l) => ({ id: l.id, name: cleanName(l.name) }));
+    return list.map((l) => ({
+      id: l.id,
+      name: cleanName(l.name),
+      count: Number(l.count) || 0,
+      type: l.type || ''
+    }));
   } catch {
     return [];
   }
 }
 
-function buildSomatomeLessons(skill, smWeeks) {
+function buildSomatomeLessons(skill, smWeeks, grammarList = []) {
+  if (skill === 'grammar') {
+    return grammarList.map((g) => ({
+      id: g.id,
+      name: g.name,
+      wordCount: g.count,
+      unitLabel: g.type === 'weekly_test' ? 'câu' : 'mẫu',
+      loaded: true
+    }));
+  }
+
   const storeKey = skill === 'kanji' ? 'kanji' : 'vocab';
   const custom = getStore(storeKey, { customLessons: [] })?.customLessons || [];
   const tagged = new Map();
@@ -47,6 +62,7 @@ function buildSomatomeLessons(skill, smWeeks) {
         id: found ? found.id : null,
         name: `Tuần ${w} - Ngày ${d}`,
         wordCount: found ? (found.words?.length || 0) : 0,
+        unitLabel: 'từ',
         loaded: Boolean(found)
       });
     }
@@ -59,11 +75,12 @@ export async function mount(container) {
   const openState = { vocab: false, grammar: false, kanji: false, reading: false, listening: false };
 
   container.innerHTML = `<div class="card"><p class="module-sub">Đang tải tiến độ...</p></div>`;
-  const [vocabLessons, kanjiLessons] = await Promise.all([
+  const [vocabLessons, kanjiLessons, grammarLessons] = await Promise.all([
     fetchSkillLessons(level, 'vocab'),
-    fetchSkillLessons(level, 'kanji')
+    fetchSkillLessons(level, 'kanji'),
+    fetchSkillLessons(level, 'grammar')
   ]);
-  const rikiByCat = { vocab: vocabLessons, kanji: kanjiLessons };
+  const rikiByCat = { vocab: vocabLessons, kanji: kanjiLessons, grammar: grammarLessons };
 
   const formatDate = (val) => {
     if (!val) return '—';
@@ -79,7 +96,7 @@ export async function mount(container) {
       let passedCount = 0;
 
       if (isSomatome) {
-        const slots = cat.ready ? buildSomatomeLessons(cat.id, cat.smWeeks) : [];
+        const slots = cat.ready ? buildSomatomeLessons(cat.id, cat.smWeeks, grammarLessons) : [];
         const total = slots.length;
 
         const cardsHtml = slots.map((slot) => {
@@ -88,7 +105,7 @@ export async function mount(container) {
               <a href="#/${level.toLowerCase()}/${cat.id}" class="card v-row prg-lesson-link">
                 <div class="col gap-4">
                   <span class="prg-lesson-name">${escapeHtml(slot.name)}</span>
-                  <span class="text-sm text-muted">Chưa nạp từ vựng</span>
+                  <span class="text-sm text-muted">Chưa nạp dữ liệu</span>
                 </div>
                 <div class="prg-lesson-side">
                   <span class="badge st-none">Chưa nạp</span>
@@ -102,6 +119,7 @@ export async function mount(container) {
           const best = Number(prog.bestPct ?? prog.bestScore ?? prog.highScore ?? prog.best ?? prog.score ?? prog.pct ?? 0);
           const attempts = Number(prog.attempts ?? prog.tries ?? prog.count ?? 0);
           const dateStr = formatDate(prog.lastDate || prog.lastAt || prog.updatedAt || prog.date);
+          const unit = slot.unitLabel || 'từ';
 
           if (passed) passedCount++;
 
@@ -109,13 +127,13 @@ export async function mount(container) {
             ? `<span class="badge st-done">Đã qua ✅</span>`
             : inProgress
               ? `<span class="badge st-learning">Đang học</span>`
-              : `<span class="badge st-none">Đã nạp (${slot.wordCount} từ)</span>`;
+              : `<span class="badge st-none">${slot.wordCount} ${unit}</span>`;
 
           const subText = attempts > 0
-            ? `${slot.wordCount} từ • Cao nhất: ${best}% (${attempts} lần)`
+            ? `${slot.wordCount} ${unit} • Cao nhất: ${best}% (${attempts} lần)`
             : inProgress
-              ? `${slot.wordCount} từ • Đã mở học, chưa thi qua bài`
-              : `${slot.wordCount} từ • Sẵn sàng luyện tập`;
+              ? `${slot.wordCount} ${unit} • Đã mở học, chưa hoàn thành bài tập`
+              : `${slot.wordCount} ${unit} • Sẵn sàng luyện tập`;
 
           return `
             <a href="#/${level.toLowerCase()}/${cat.id}?lesson=${encodeURIComponent(slot.id)}" class="card v-row prg-lesson-link">
@@ -131,14 +149,17 @@ export async function mount(container) {
         }).join('');
 
         const pct = total > 0 ? Math.round((passedCount / total) * 100) : 0;
+        const unitLabel = cat.id === 'grammar' ? 'bài' : 'ngày';
         const summaryLabel = cat.ready && total > 0
-          ? `${cat.icon} ${cat.label} (${cat.smRange}): ${passedCount}/${total} ngày đã qua`
-          : `${cat.icon} ${cat.label} (${cat.smRange}): Sắp ra mắt`;
+          ? `${cat.icon} ${cat.label} (${cat.smRange}): ${passedCount}/${total} ${unitLabel} đã qua`
+          : cat.ready
+            ? `${cat.icon} ${cat.label} (${cat.smRange}): Chưa có dữ liệu`
+            : `${cat.icon} ${cat.label} (${cat.smRange}): Sắp ra mắt`;
 
         const bodyHtml = isOpen
           ? (cat.ready && total
               ? `<div class="module-grid mt-12">${cardsHtml}</div>`
-              : `<div class="card center text-muted prg-empty-box">Phần ${escapeHtml(cat.label)} (${escapeHtml(cat.smRange)}) Sou-matome ${escapeHtml(level)} sẽ được mở ở bước tiếp theo.</div>`)
+              : `<div class="card center text-muted prg-empty-box">Phần ${escapeHtml(cat.label)} (${escapeHtml(cat.smRange)}) Sou-matome ${escapeHtml(level)} đang được cập nhật.</div>`)
           : '';
 
         return `
@@ -199,7 +220,7 @@ export async function mount(container) {
       const pct = total > 0 ? Math.round((passedCount / total) * 100) : 0;
       const summaryLabel = cat.ready && total > 0
         ? `${cat.icon} ${cat.label}: ${passedCount}/${total} bài đã qua`
-        : cat.icon === '漢' || cat.ready
+        : cat.ready
           ? `${cat.icon} ${cat.label}: Chưa có dữ liệu`
           : `${cat.icon} ${cat.label}: Sắp ra mắt`;
 

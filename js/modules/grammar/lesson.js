@@ -3,40 +3,61 @@ import { markStudied, recordTest } from '../../core/progress.js';
 import { parseRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
 import { escapeHtml } from '../../core/util.js';
-import { renderExerciseCard, bindExerciseEvents } from './exercises.js';
+import { renderExerciseCard, bindExerciseEvents, formatQuestionHtml } from './exercises.js';
+import { getGrammarState, saveGrammarState, clearGrammarState } from './state.js';
+import { attachSelectionLookup } from './lookup.js';
 
 function renderHighlightedJp(jp, hl) {
   if (!hl || !jp.includes(hl)) return parseRuby(jp);
-  const parts = jp.split(hl);
-  return parts.map((p) => parseRuby(p)).join(`<mark class="gr-hl">${parseRuby(hl)}</mark>`);
+  if (hl.includes('[')) {
+    return jp.split(hl).map((p) => parseRuby(p)).join(`<mark class="gr-hl">${parseRuby(hl)}</mark>`);
+  }
+  return jp.split(/([一-龯々〆ヵヶ]+\[[^\]]+\])/g).map((seg) => {
+    if (/^[一-龯々〆ヵヶ]+\[[^\]]+\]$/.test(seg)) return parseRuby(seg);
+    return seg.split(hl).map((p) => parseRuby(p)).join(`<mark class="gr-hl">${parseRuby(hl)}</mark>`);
+  }).join('');
 }
 
 export function mount(container, { level, meta, data, backHash }) {
   setSession(true);
   markStudied(level, 'grammar', meta.id);
+  attachSelectionLookup(container, level);
 
-  let showFuri = false;
-  let showExtra = false;
-  let warmPick = null;
-  const collapsed = new Set();
   const baseList = data.exercises || [];
   const extraList = data.extraExercises || [];
-  const baseStates = baseList.map(() => ({}));
-  const extraStates = extraList.map(() => ({}));
+  const saved = getGrammarState(meta.id);
+
+  let showExtra = Boolean(saved?.showExtra);
+  let warmPick = saved?.warmPick ?? null;
+  const collapsed = new Set();
+  let baseStates = baseList.map((_, i) => ({ ...(saved?.baseStates?.[i] || {}) }));
+  let extraStates = extraList.map((_, i) => ({ ...(saved?.extraStates?.[i] || {}) }));
+
+  function persist() {
+    saveGrammarState(meta.id, { warmPick, showExtra, baseStates, extraStates });
+  }
+
+  function resetAll() {
+    warmPick = null;
+    showExtra = false;
+    baseStates = baseList.map(() => ({}));
+    extraStates = extraList.map(() => ({}));
+    clearGrammarState(meta.id);
+    render();
+  }
 
   function renderWarmup(warm) {
     if (!warm) return '';
     const answered = warmPick !== null;
     const isRight = warmPick === warm.answer;
     const wrongMsg = !isRight && warm.wrongExplains?.[warmPick] ? `${warm.wrongExplains[warmPick]} ` : '';
-    const fbText = isRight
-      ? `✅ Chính xác! ${warm.explain}`
-      : `❌ Chưa đúng. ${wrongMsg}👉 ${warm.explain}`;
+    const fbText = isRight ? `✅ Chính xác! ${warm.explain}` : `❌ Chưa đúng. ${wrongMsg}👉 ${warm.explain}`;
+    const fillAnswer = answered ? warm.choices[warm.answer] : '';
 
     return `
       <section class="card gr-warm">
         <div class="gr-q-meta"><span>💡 Khởi động nhanh</span></div>
-        <div class="gr-q-text jp">${parseRuby(warm.q)}</div>
+        <div class="gr-q-text jp">${formatQuestionHtml(warm.q, fillAnswer)}</div>
         <div class="gr-warm-opts">
           ${warm.choices.map((c, i) => {
             const cls = !answered ? '' : i === warm.answer ? 'is-right' : i === warmPick ? 'is-wrong' : '';
@@ -76,17 +97,18 @@ export function mount(container, { level, meta, data, backHash }) {
     }).join('');
 
     const doneBase = baseStates.filter((s) => s.done).length;
+    const hasProgress = warmPick !== null || doneBase > 0 || extraStates.some((s) => s.done);
     const baseExHtml = baseList.map((ex, i) => renderExerciseCard(ex, i, baseStates[i])).join('');
     const extraExHtml = showExtra
       ? extraList.map((ex, i) => renderExerciseCard(ex, i, extraStates[i], { tag: 'Luyện thêm' })).join('')
       : (extraList.length ? `<button type="button" id="gr-more-btn" class="btn btn-yellow">+ Luyện thêm ${extraList.length} câu (phủ mẫu còn lại)</button>` : '');
 
     container.innerHTML = `
-      <div class="gr-wrap ${showFuri ? '' : 'hide-furigana'}">
+      <div class="gr-wrap">
         <div class="gr-top">
           <a href="${backHash}" class="btn gr-pill">← Tuần</a>
           <h1 class="gr-top-title">${escapeHtml(data.lesson?.name || meta.name)}</h1>
-          <button type="button" id="gr-furi-btn" class="btn gr-pill ${showFuri ? 'is-on' : ''}">ふりがな</button>
+          <button type="button" id="gr-reset-btn" class="btn gr-pill" ${hasProgress ? '' : 'disabled'}>↻ Làm lại</button>
         </div>
 
         <section class="card gr-hero" id="gr-sec-theory">
@@ -97,6 +119,7 @@ export function mount(container, { level, meta, data, backHash }) {
             </div>
             <button type="button" class="btn btn-icon gr-spk" data-say="${escapeHtml(data.title || '')}" aria-label="Nghe tiêu đề">🔊</button>
           </div>
+          ${data.titleVi ? `<div class="gr-ex-vi is-hidden" data-reveal="1">${escapeHtml(data.titleVi)}</div>` : ''}
         </section>
 
         ${renderWarmup(data.warmup)}
@@ -120,7 +143,7 @@ export function mount(container, { level, meta, data, backHash }) {
   }
 
   function bindAll() {
-    container.querySelector('#gr-furi-btn').onclick = () => { showFuri = !showFuri; render(); };
+    container.querySelector('#gr-reset-btn').onclick = resetAll;
     container.querySelectorAll('ruby').forEach((rb) => {
       if (rb.closest('button, a, [data-toggle-pat]')) return;
       rb.onclick = (e) => { e.stopPropagation(); rb.classList.toggle('is-peek'); };
@@ -129,6 +152,7 @@ export function mount(container, { level, meta, data, backHash }) {
       b.onclick = () => {
         if (warmPick !== null) return;
         warmPick = Number(b.dataset.warm);
+        persist();
         render();
       };
     });
@@ -151,6 +175,7 @@ export function mount(container, { level, meta, data, backHash }) {
 
     const baseBox = container.querySelector('#gr-base-box');
     bindExerciseEvents(baseBox, baseList, baseStates, () => {
+      persist();
       if (baseStates.every((s) => s.done)) {
         const right = baseStates.filter((s) => s.correct).length;
         recordTest(level, 'grammar', meta.id, Math.round((right / baseList.length) * 100));
@@ -159,10 +184,10 @@ export function mount(container, { level, meta, data, backHash }) {
     });
 
     const moreBtn = container.querySelector('#gr-more-btn');
-    if (moreBtn) moreBtn.onclick = () => { showExtra = true; render(); };
+    if (moreBtn) moreBtn.onclick = () => { showExtra = true; persist(); render(); };
     if (showExtra) {
       const extraBox = container.querySelector('#gr-extra-box');
-      bindExerciseEvents(extraBox, extraList, extraStates, () => render());
+      bindExerciseEvents(extraBox, extraList, extraStates, () => { persist(); render(); });
     }
   }
 

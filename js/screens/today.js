@@ -10,7 +10,8 @@ const cleanName = (n) => String(n || '').replace(/\s*\(N[1-5]\)\s*/gi, '').trim(
 
 const SKILL_META = {
   vocab: { name: 'Từ vựng', icon: '語', accent: 'accent-teal', smWeeks: [4, 5, 6] },
-  kanji: { name: 'Kanji', icon: '漢', accent: 'accent-yellow', smWeeks: [1, 2, 3] }
+  kanji: { name: 'Kanji', icon: '漢', accent: 'accent-yellow', smWeeks: [1, 2, 3] },
+  grammar: { name: 'Ngữ pháp', icon: '文', accent: 'accent-coral', smWeeks: [1, 2, 3, 4] }
 };
 
 function getSomatomeDays(level, skill, weeks) {
@@ -50,7 +51,7 @@ export async function mount(container) {
   const lastSkill = getLastStudiedSkill(lv);
   const preferredSkill = SKILL_META[lastSkill] ? lastSkill : 'kanji';
 
-  let rikiCache = null;
+  let indexCache = null;
   let warmupWord = null;
   let warmupVal = '';
   let warmupOk = false;
@@ -65,20 +66,22 @@ export async function mount(container) {
     return next;
   };
 
-  async function ensureRikiData() {
-    if (rikiCache) return rikiCache;
+  async function ensureIndexData() {
+    if (indexCache) return indexCache;
     try {
-      const [vRes, kRes] = await Promise.all([
+      const [vRes, kRes, gRes] = await Promise.all([
         fetch(`data/${lvLower}/vocab/index.json`),
-        fetch(`data/${lvLower}/kanji/index.json`)
+        fetch(`data/${lvLower}/kanji/index.json`),
+        fetch(`data/${lvLower}/grammar/index.json`)
       ]);
       const vList = vRes.ok ? ((await vRes.json())?.lessons || []).map((l) => ({ id: l.id, name: cleanName(l.name) })) : [];
       const kList = kRes.ok ? ((await kRes.json())?.lessons || []).map((l) => ({ id: l.id, name: cleanName(l.name) })) : [];
-      rikiCache = { vocab: vList, kanji: kList };
+      const gList = gRes.ok ? ((await gRes.json())?.lessons || []).map((l) => ({ id: l.id, name: cleanName(l.name), count: l.count || 0 })) : [];
+      indexCache = { vocab: vList, kanji: kList, grammar: gList };
     } catch {
-      rikiCache = { vocab: [], kanji: [] };
+      indexCache = { vocab: [], kanji: [], grammar: [] };
     }
-    return rikiCache;
+    return indexCache;
   }
 
   async function render() {
@@ -87,9 +90,21 @@ export async function mount(container) {
     const weakVocab = getStore('vocab', { weakWords: [] })?.weakWords || [];
     const totalWeak = weakKanji.length + weakVocab.length;
     const weakSkill = weakKanji.length >= weakVocab.length ? 'kanji' : 'vocab';
+    const idxData = await ensureIndexData();
 
     const smKanjiDays = getSomatomeDays(lv, 'kanji', [1, 2, 3]);
     const smVocabDays = getSomatomeDays(lv, 'vocab', [4, 5, 6]);
+    const smGrammarDays = (idxData.grammar || []).map((g) => {
+      const prog = getLessonProgress(lv, 'grammar', g.id) || {};
+      return {
+        skill: 'grammar',
+        name: g.name,
+        lessonId: g.id,
+        words: [],
+        count: g.count,
+        status: prog.status === 'done' ? 'done' : prog.status === 'learning' ? 'learning' : 'none'
+      };
+    });
     const allSmWords = [...smKanjiDays, ...smVocabDays].flatMap((d) => d.words);
 
     if (!warmupWord) {
@@ -103,9 +118,12 @@ export async function mount(container) {
     if (isSomatome) {
       const kDone = smKanjiDays.filter((d) => d.status === 'done').length;
       const vDone = smVocabDays.filter((d) => d.status === 'done').length;
+      const gDone = smGrammarDays.filter((d) => d.status === 'done').length;
       const kLoaded = smKanjiDays.filter((d) => d.status !== 'unloaded').length;
       const vLoaded = smVocabDays.filter((d) => d.status !== 'unloaded').length;
-      const totalPct = Math.round(((kDone + vDone) / 36) * 100);
+      const totalSlots = 36 + smGrammarDays.length;
+      const totalPct = totalSlots > 0 ? Math.round(((kDone + vDone + gDone) / totalSlots) * 100) : 0;
+      const grSub = smGrammarDays.length ? ` • Ngữ pháp: ${gDone}/${smGrammarDays.length} bài qua` : '';
 
       overviewCardHtml = `
         <div class="card col gap-8">
@@ -116,36 +134,42 @@ export async function mount(container) {
             </div>
             <span class="badge badge-ready">${totalPct}%</span>
           </div>
-          <div class="text-sm text-muted">Kanji (T1–3): ${kDone}/18 qua (${kLoaded} đã nạp) • Từ vựng (T4–6): ${vDone}/18 qua (${vLoaded} đã nạp)</div>
+          <div class="text-sm text-muted">Kanji (T1–3): ${kDone}/18 qua (${kLoaded} đã nạp) • Từ vựng (T4–6): ${vDone}/18 qua (${vLoaded} đã nạp)${grSub}</div>
           <div class="w-full prg-track"><div class="prg-fill" style="--p:${totalPct}"></div></div>
         </div>`;
 
-      const orderedDays = preferredSkill === 'vocab'
-        ? [...smVocabDays, ...smKanjiDays]
-        : [...smKanjiDays, ...smVocabDays];
+      const orderedDays = preferredSkill === 'grammar'
+        ? [...smGrammarDays, ...smKanjiDays, ...smVocabDays]
+        : preferredSkill === 'vocab'
+          ? [...smVocabDays, ...smGrammarDays, ...smKanjiDays]
+          : [...smKanjiDays, ...smGrammarDays, ...smVocabDays];
 
       const nextLoaded = orderedDays.find((d) => d.status === 'learning')
         || orderedDays.find((d) => d.status === 'none');
       const nextUnloaded = orderedDays.find((d) => d.status === 'unloaded');
 
       if (nextLoaded) {
-        const skLabel = nextLoaded.skill === 'kanji' ? 'Kanji' : 'Từ vựng';
+        const skLabel = SKILL_META[nextLoaded.skill]?.name || 'Từ vựng';
         const idEnc = encodeURIComponent(nextLoaded.lessonId);
+        const countLabel = nextLoaded.skill === 'grammar' ? `${nextLoaded.count || 0} mục` : `${nextLoaded.words.length} từ`;
+        const actionsHtml = nextLoaded.skill === 'grammar'
+          ? `<a href="#/${lvLower}/grammar?lesson=${idEnc}" class="btn btn-teal w-full">📖 Học & Luyện tập →</a>`
+          : `<div class="grid-2">
+              <a href="#/${lvLower}/${nextLoaded.skill}?lesson=${idEnc}" class="btn">⌨️ Học ngay</a>
+              <a href="#/${lvLower}/${nextLoaded.skill}?gate=${idEnc}" class="btn btn-teal">✅ Kiểm tra</a>
+            </div>`;
         nextCardHtml = `
           <div class="card col">
             <div class="row-between">
               <div>
                 <div class="module-sub">Bài tiếp theo • ${skLabel} (${lv})</div>
-                <div class="module-title">${escapeHtml(nextLoaded.name)} <span class="text-sm text-muted">(${nextLoaded.words.length} từ)</span></div>
+                <div class="module-title">${escapeHtml(nextLoaded.name)} <span class="text-sm text-muted">(${countLabel})</span></div>
               </div>
               <span class="badge ${nextLoaded.status === 'learning' ? 'st-learning' : 'st-none'}">
                 ${nextLoaded.status === 'learning' ? 'Đang học' : 'Sẵn sàng'}
               </span>
             </div>
-            <div class="grid-2">
-              <a href="#/${lvLower}/${nextLoaded.skill}?lesson=${idEnc}" class="btn">⌨️ Học ngay</a>
-              <a href="#/${lvLower}/${nextLoaded.skill}?gate=${idEnc}" class="btn btn-teal">✅ Kiểm tra</a>
-            </div>
+            ${actionsHtml}
           </div>`;
       } else if (nextUnloaded) {
         const skLabel = nextUnloaded.skill === 'kanji' ? 'Kanji' : 'Từ vựng';
@@ -165,15 +189,14 @@ export async function mount(container) {
           <div class="card row-between">
             <div>
               <div class="module-sub">Sou-matome ${lv}</div>
-              <div class="module-title">Hoàn thành toàn bộ 36 ngày! 🎉</div>
+              <div class="module-title">Hoàn thành toàn bộ bài đã nạp! 🎉</div>
             </div>
-            <span class="badge st-done">36/36</span>
+            <span class="badge st-done">${totalSlots}/${totalSlots}</span>
           </div>`;
       }
     } else {
-      const rikiData = await ensureRikiData();
       const meta = SKILL_META[preferredSkill];
-      const summary = getSummary(lv, preferredSkill, rikiData[preferredSkill] || []);
+      const summary = getSummary(lv, preferredSkill, idxData[preferredSkill] || []);
       const nextItem = summary.items.find((it) => it.status !== 'done');
       const pct = summary.total > 0 ? Math.round((summary.done / summary.total) * 100) : 0;
 
@@ -200,6 +223,12 @@ export async function mount(container) {
           </div>`;
       } else if (nextItem) {
         const idEnc = encodeURIComponent(nextItem.lessonId);
+        const actionsHtml = preferredSkill === 'grammar'
+          ? `<a href="#/${lvLower}/grammar?lesson=${idEnc}" class="btn btn-teal w-full">📖 Học & Luyện tập →</a>`
+          : `<div class="grid-2">
+              <a href="#/${lvLower}/${preferredSkill}?lesson=${idEnc}" class="btn">📖 Học</a>
+              <a href="#/${lvLower}/${preferredSkill}?gate=${idEnc}" class="btn btn-teal">✅ Kiểm tra</a>
+            </div>`;
         nextCardHtml = `
           <div class="card col">
             <div class="row-between">
@@ -211,10 +240,7 @@ export async function mount(container) {
                 ${nextItem.status === 'learning' ? 'Đang học' : 'Chưa học'}
               </span>
             </div>
-            <div class="grid-2">
-              <a href="#/${lvLower}/${preferredSkill}?lesson=${idEnc}" class="btn">📖 Học</a>
-              <a href="#/${lvLower}/${preferredSkill}?gate=${idEnc}" class="btn btn-teal">✅ Kiểm tra</a>
-            </div>
+            ${actionsHtml}
           </div>`;
       }
     }

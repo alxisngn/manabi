@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b2", "name": "Tuần 1 - Ngày 2", "week": 1, "day": 2, "type": "somatome" },
   "title": "漢字[かんじ]は少[すこ]ししか書[か]けません。",
+  "titleVi": "Tôi chỉ viết được một chút chữ Hán thôi.",
   "warmup": {
     "q": "これは、こども（ ）できる問題[もんだい]です。",
     "choices": ["しか", "とか", "でも"],

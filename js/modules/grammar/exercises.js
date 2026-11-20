@@ -1,6 +1,13 @@
 import { parseRuby } from '../../core/ruby.js';
 import { escapeHtml } from '../../core/util.js';
 
+export function formatQuestionHtml(rawQ, fillText = '') {
+  const blankHtml = fillText
+    ? `<span class="gr-q-blank is-filled">${parseRuby(fillText)}</span>`
+    : `<span class="gr-q-blank">…</span>`;
+  return parseRuby(rawQ).replace(/（[\s ]*）/g, blankHtml);
+}
+
 export function renderExerciseCard(ex, idx, state, opts = {}) {
   const num = idx + 1;
   const tag = opts.tag || (ex.type === 'star' ? 'Sắp xếp ★' : 'Trắc nghiệm');
@@ -37,6 +44,7 @@ export function renderExerciseCard(ex, idx, state, opts = {}) {
     </div>`;
   }
 
+  const fillAnswer = answered ? ex.choices[ex.answer] : '';
   const optsHtml = ex.choices.map((c, cIdx) => {
     let cls = '';
     if (opts.examMode && !answered) {
@@ -54,7 +62,7 @@ export function renderExerciseCard(ex, idx, state, opts = {}) {
 
   return `<div class="card gr-q-card" data-qbox="${idx}">
     <div class="gr-q-meta"><span>Câu ${num} • ${tag}</span></div>
-    <div class="gr-q-text jp">${parseRuby(ex.q)}</div>
+    <div class="gr-q-text jp">${formatQuestionHtml(ex.q, fillAnswer)}</div>
     <div class="gr-opts">${optsHtml}</div>
     ${fb}
   </div>`;

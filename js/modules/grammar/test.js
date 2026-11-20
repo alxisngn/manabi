@@ -3,36 +3,57 @@ import { recordTest } from '../../core/progress.js';
 import { parseRuby } from '../../core/ruby.js';
 import { escapeHtml } from '../../core/util.js';
 import { renderExerciseCard, bindExerciseEvents } from './exercises.js';
+import { getGrammarState, saveGrammarState, clearGrammarState } from './state.js';
+import { attachSelectionLookup } from './lookup.js';
 
 export function mount(container, { level, meta, data, backHash }) {
   setSession(true);
-  let showFuri = false;
-  let submitted = false;
-  let score = 0;
-  let secLeft = data.timeLimitSec || 1200;
+  attachSelectionLookup(container, level);
 
   const mainList = data.exercises || [];
-  const mainStates = mainList.map(() => ({}));
   const cloze = data.clozePassage;
   const blanks = cloze?.blanks || [];
-  const blankPicks = blanks.map(() => null);
-  let activeBlank = 0;
+  const saved = getGrammarState(meta.id);
 
-  const timerId = window.setInterval(() => {
-    if (submitted || !document.body.contains(container)) {
-      window.clearInterval(timerId);
-      return;
-    }
-    secLeft = Math.max(0, secLeft - 1);
-    const el = container.querySelector('#gr-timer');
-    if (el) el.textContent = formatTime(secLeft);
-    if (secLeft === 0) gradeTest();
-  }, 1000);
+  let submitted = Boolean(saved?.submitted);
+  let score = saved?.score || 0;
+  let secLeft = data.timeLimitSec || 1200;
+  let mainStates = mainList.map((_, i) => ({ ...(saved?.mainStates?.[i] || {}) }));
+  let blankPicks = blanks.map((_, i) => saved?.blankPicks?.[i] ?? null);
+  let activeBlank = 0;
+  let timerId = null;
+
+  function startTimer() {
+    window.clearInterval(timerId);
+    if (submitted) return;
+    timerId = window.setInterval(() => {
+      if (submitted || !document.body.contains(container)) {
+        window.clearInterval(timerId);
+        return;
+      }
+      secLeft = Math.max(0, secLeft - 1);
+      const el = container.querySelector('#gr-timer');
+      if (el) el.textContent = `⏱ ${formatTime(secLeft)}`;
+      if (secLeft === 0) gradeTest();
+    }, 1000);
+  }
 
   function formatTime(s) {
     const m = String(Math.floor(s / 60)).padStart(2, '0');
     const sec = String(s % 60).padStart(2, '0');
     return `${m}:${sec}`;
+  }
+
+  function resetTest() {
+    submitted = false;
+    score = 0;
+    secLeft = data.timeLimitSec || 1200;
+    mainStates = mainList.map(() => ({}));
+    blankPicks = blanks.map(() => null);
+    activeBlank = 0;
+    clearGrammarState(meta.id);
+    startTimer();
+    render();
   }
 
   function gradeTest() {
@@ -50,6 +71,7 @@ export function mount(container, { level, meta, data, backHash }) {
       if (blankPicks[i] === b.answer) earned += b.points || 7;
     });
     score = Math.min(100, earned);
+    saveGrammarState(meta.id, { submitted, score, mainStates, blankPicks });
     recordTest(level, 'grammar', meta.id, score);
     render();
     container.scrollIntoView({ behavior: 'smooth' });
@@ -107,13 +129,14 @@ export function mount(container, { level, meta, data, backHash }) {
       : '';
 
     const mainHtml = mainList.map((ex, i) => renderExerciseCard(ex, i, mainStates[i], { examMode: !submitted })).join('');
+    const timerLabel = submitted ? '✅ Đã nộp bài' : `⏱ ${formatTime(secLeft)}`;
 
     container.innerHTML = `
-      <div class="gr-wrap ${showFuri ? '' : 'hide-furigana'}">
+      <div class="gr-wrap">
         <div class="gr-top">
           <a href="${backHash}" class="btn gr-pill">← Thoát</a>
-          <span id="gr-timer" class="gr-timer">⏱ ${formatTime(secLeft)}</span>
-          <button type="button" id="gr-furi-btn" class="btn gr-pill ${showFuri ? 'is-on' : ''}">ふりがな</button>
+          <span id="gr-timer" class="gr-timer">${timerLabel}</span>
+          <button type="button" id="gr-reset-btn" class="btn gr-pill">↻ Làm lại</button>
         </div>
 
         ${banner}
@@ -126,7 +149,7 @@ export function mount(container, { level, meta, data, backHash }) {
       </div>
     `;
 
-    container.querySelector('#gr-furi-btn').onclick = () => { showFuri = !showFuri; render(); };
+    container.querySelector('#gr-reset-btn').onclick = resetTest;
     container.querySelectorAll('ruby').forEach((rb) => {
       if (rb.closest('button, a')) return;
       rb.onclick = (e) => { e.stopPropagation(); rb.classList.toggle('is-peek'); };
@@ -150,5 +173,6 @@ export function mount(container, { level, meta, data, backHash }) {
     if (subBtn) subBtn.onclick = gradeTest;
   }
 
+  startTimer();
   render();
 }

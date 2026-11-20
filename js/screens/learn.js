@@ -10,7 +10,8 @@ const SKILLS = [
   { id: 'listening', name: 'Nghe hiểu', icon: '聴', accent: 'accent-yellow', smRange: 'Tuần 6', smWeeks: [6] }
 ];
 
-function countSomatomeLoaded(skill, weeks) {
+function countSomatomeLoaded(skill, weeks, rikiCount) {
+  if (skill === 'grammar') return rikiCount;
   const storeKey = skill === 'kanji' ? 'kanji' : 'vocab';
   const custom = getStore(storeKey, { customLessons: [] })?.customLessons || [];
   const days = new Set();
@@ -48,9 +49,9 @@ export async function mount(container) {
       let subText = 'Đang cập nhật';
       if (active) {
         if (isSomatome) {
-          const totalDays = sk.smWeeks.length * 6;
-          const loadedDays = countSomatomeLoaded(sk.id, sk.smWeeks);
-          subText = `${sk.smRange} • Đã nạp ${loadedDays}/${totalDays} ngày`;
+          const totalDays = sk.id === 'grammar' ? sk.smWeeks.length * 7 : sk.smWeeks.length * 6;
+          const loadedDays = countSomatomeLoaded(sk.id, sk.smWeeks, rikiCount);
+          subText = `${sk.smRange} • Đã nạp ${loadedDays}/${totalDays} ${sk.id === 'grammar' ? 'bài' : 'ngày'}`;
         } else {
           subText = `${rikiCount} bài`;
         }

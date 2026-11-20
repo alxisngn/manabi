@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b4", "name": "Tuần 1 - Ngày 4", "week": 1, "day": 4, "type": "somatome" },
   "title": "今[いま]、勉強[べんきょう]しているところです。",
+  "titleVi": "Bây giờ tôi đang học bài.",
   "warmup": {
     "q": "今[いま]、ご飯[はん]を食[た]べている（ ）です。",
     "choices": ["ところ", "あいだ", "とき"],

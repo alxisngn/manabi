@@ -1,4 +1,4 @@
-const V = 'v39';
+const V = 'v40';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = 'manabi-fonts-v1';
 
@@ -28,7 +28,9 @@ const CORE_ASSETS = [
   './js/core/weak.js',
   './js/modules/grammar/exercises.js',
   './js/modules/grammar/lesson.js',
+  './js/modules/grammar/lookup.js',
   './js/modules/grammar/picker.js',
+  './js/modules/grammar/state.js',
   './js/modules/grammar/test.js',
   './js/modules/vocab/flashcard.js',
   './js/modules/vocab/importer.js',

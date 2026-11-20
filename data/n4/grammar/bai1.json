@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b1", "name": "Tuần 1 - Ngày 1", "week": 1, "day": 1, "type": "somatome" },
   "title": "1日[にち]に2回[かい]、歯[は]をみがきます。",
+  "titleVi": "Tôi đánh răng 2 lần một ngày.",
   "warmup": {
     "q": "きのうも暑[あつ]かったけれど、今日[きょう]（ ）じゃない。",
     "choices": ["より", "くらい", "ほど"],

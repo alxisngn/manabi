@@ -1,6 +1,7 @@
 {
   "lesson": { "id": "n4-grammar-b6", "name": "Tuần 1 - Ngày 6", "week": 1, "day": 6, "type": "somatome" },
   "title": "雪[ゆき]を見[み]たことがありません。",
+  "titleVi": "Tôi chưa từng nhìn thấy tuyết.",
   "warmup": {
     "q": "毎朝[まいあさ]早[はや]く起[お]きて勉強[べんきょう]すること（ ）。",
     "choices": ["にします", "があります", "になります"],
