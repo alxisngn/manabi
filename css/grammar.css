@@ -1,5 +1,11 @@
 .gr-wrap { display: flex; flex-direction: column; gap: 14px; padding-bottom: 74px; }
-.gr-wrap.hide-furigana ruby { position: relative; cursor: pointer; border-bottom: 1px dotted rgba(91, 192, 190, 0.45); }
+.gr-wrap.hide-furigana ruby {
+  display: inline-block;
+  position: relative;
+  line-height: 1.25;
+  cursor: pointer;
+  border-bottom: 1px dotted rgba(91, 192, 190, 0.45);
+}
 .gr-wrap.hide-furigana ruby rt {
   position: absolute;
   bottom: 95%;
@@ -65,7 +71,7 @@
 .gr-opt.is-wrong { border-color: var(--red); background: rgba(217, 72, 59, 0.24); }
 
 .gr-star-slots { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
-.gr-slot { min-height: 44px; padding: 6px 4px; border-radius: 10px; border: 2px dashed var(--border); background: var(--bg-elevated); display: flex; align-items: center; justify-content: center; text-align: center; font-size: 0.88rem; cursor: pointer; position: relative; }
+.gr-slot { display: block; min-height: 44px; padding: 9px 4px; border-radius: 10px; border: 2px dashed var(--border); background: var(--bg-elevated); text-align: center; font-size: 0.88rem; line-height: 1.5; cursor: pointer; position: relative; }
 .gr-slot.is-star { border-color: var(--yellow); }
 .gr-slot.is-star::before { content: "★"; position: absolute; top: -9px; right: 4px; font-size: 0.75rem; color: var(--yellow); background: var(--bg-card); padding: 0 3px; }
 .gr-slot.is-filled { border-style: solid; border-color: var(--teal); }
