@@ -2,10 +2,20 @@ import { parseRuby } from '../../core/ruby.js';
 import { escapeHtml } from '../../core/util.js';
 
 export function formatQuestionHtml(rawQ, fillText = '') {
-  const blankHtml = fillText
-    ? `<span class="gr-q-blank is-filled">${parseRuby(fillText)}</span>`
-    : `<span class="gr-q-blank">…</span>`;
-  return parseRuby(rawQ).replace(/（[\s ]*）/g, blankHtml);
+  const blankRx = /（[\s ]*）/g;
+  const matches = rawQ.match(blankRx) || [];
+  if (!fillText || matches.length === 0) {
+    return parseRuby(rawQ).replace(blankRx, `<span class="gr-q-blank">…</span>`);
+  }
+  const parts = matches.length > 1 && fillText.includes('／')
+    ? fillText.split('／')
+    : [fillText];
+  let idx = 0;
+  return parseRuby(rawQ).replace(blankRx, () => {
+    const val = parts[idx] ?? parts[parts.length - 1];
+    idx++;
+    return `<span class="gr-q-blank is-filled">${parseRuby(val)}</span>`;
+  });
 }
 
 export function renderExerciseCard(ex, idx, state, opts = {}) {
