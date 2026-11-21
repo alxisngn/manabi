@@ -1,4 +1,4 @@
-const V = 'v44';
+const V = 'v45';
 const CACHE = `manabi-${V}`;
 const FONT_CACHE = 'manabi-fonts-v1';
 

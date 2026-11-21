@@ -1,23 +1,28 @@
 .gr-wrap { display: flex; flex-direction: column; gap: 14px; padding-bottom: 74px; }
 .gr-wrap ruby {
-  display: inline-block;
-  position: relative;
-  line-height: 1.25;
+  display: inline-ruby;
+  ruby-align: center;
+  vertical-align: baseline;
+  line-height: 1.3;
+  margin: 0 1px;
   cursor: pointer;
   border-bottom: 1px dotted rgba(91, 192, 190, 0.45);
 }
 .gr-wrap ruby rt {
-  position: absolute;
-  bottom: 95%;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
+  font-size: 0.62em;
+  line-height: 1.05;
+  letter-spacing: 0;
+  color: var(--teal);
+  visibility: hidden;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.14s ease;
 }
 .gr-wrap ruby:hover rt,
-.gr-wrap ruby.is-peek rt { opacity: 1; }
+.gr-wrap ruby.is-peek rt {
+  visibility: visible;
+  opacity: 1;
+}
 
 .gr-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 .gr-top-title { font-size: 1.15rem; font-weight: 800; flex: 1; text-align: center; }
@@ -80,7 +85,7 @@
 .gr-ex-list { display: flex; flex-direction: column; gap: 8px; }
 .gr-ex { padding: 10px 12px; border-radius: var(--radius-md); background: var(--bg-elevated); border: 1.5px solid var(--border); display: flex; flex-direction: column; gap: 4px; }
 .gr-ex-row { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; }
-.gr-ex-jp { font-size: 1.02rem; line-height: 1.75; flex: 1; }
+.gr-ex-jp { font-size: 1.02rem; line-height: 2; flex: 1; }
 .gr-hl { background: rgba(91, 192, 190, 0.22); color: var(--teal); padding: 1px 4px; border-radius: 6px; font-weight: 700; }
 .gr-ex-vi { font-size: 0.88rem; color: var(--text-muted); cursor: pointer; }
 .gr-ex-vi.is-hidden { background: var(--bg-card); color: transparent; border-radius: 6px; user-select: none; position: relative; }
@@ -89,7 +94,7 @@
 
 .gr-q-card { display: flex; flex-direction: column; gap: 10px; padding: 14px; }
 .gr-q-meta { display: flex; align-items: center; justify-content: space-between; font-size: 0.82rem; color: var(--text-muted); }
-.gr-q-text { font-size: 1.02rem; line-height: 1.85; white-space: pre-line; }
+.gr-q-text { font-size: 1.02rem; line-height: 2.1; white-space: pre-line; }
 .gr-q-blank {
   display: inline-block;
   min-width: 56px;
@@ -110,7 +115,7 @@
   color: var(--teal);
 }
 .gr-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-.gr-opt { display: block; text-align: left; font-weight: 600; padding: 10px 12px; line-height: 1.5; }
+.gr-opt { display: block; text-align: left; font-weight: 600; padding: 10px 12px; line-height: 1.65; }
 .gr-opt.is-picked { border-color: var(--teal); background: rgba(91, 192, 190, 0.18); }
 .gr-opt.is-right { border-color: var(--green); background: rgba(76, 175, 106, 0.24); color: var(--text); }
 .gr-opt.is-wrong { border-color: var(--red); background: rgba(217, 72, 59, 0.24); }
@@ -153,7 +158,7 @@
 .gr-lookup-actions { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
 
 .gr-timer { font-variant-numeric: tabular-nums; color: var(--yellow); font-weight: 800; }
-.gr-cloze-box { position: sticky; top: 8px; z-index: 10; max-height: 36dvh; overflow-y: auto; background: var(--bg-elevated); border-color: var(--teal); font-size: 0.96rem; line-height: 1.85; white-space: pre-line; }
+.gr-cloze-box { position: sticky; top: 8px; z-index: 10; max-height: 36dvh; overflow-y: auto; background: var(--bg-elevated); border-color: var(--teal); font-size: 0.96rem; line-height: 2; white-space: pre-line; }
 .gr-blank { display: inline-block; min-width: 54px; padding: 0 8px; margin: 0 2px; border-radius: 8px; border: 2px solid var(--yellow); background: var(--bg-card); color: var(--yellow); font-weight: 800; text-align: center; cursor: pointer; }
 .gr-blank.is-active { background: var(--yellow); color: #101320; }
 .gr-blank.is-right { border-color: var(--green); color: var(--green); }
