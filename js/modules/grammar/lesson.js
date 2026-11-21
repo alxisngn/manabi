@@ -4,8 +4,9 @@ import { parseRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
 import { escapeHtml } from '../../core/util.js';
 import { renderExerciseCard, bindExerciseEvents, formatQuestionHtml } from './exercises.js';
-import { getGrammarState, saveGrammarState, clearGrammarState } from './state.js';
+import { getGrammarState, saveGrammarState, clearGrammarState, recordGrammarResult } from './state.js';
 import { attachSelectionLookup } from './lookup.js';
+import { CLUSTERS } from './drill.js';
 
 function renderHighlightedJp(jp, hl) {
   if (!hl || !jp.includes(hl)) return parseRuby(jp);
@@ -71,6 +72,7 @@ export function mount(container, { level, meta, data, backHash }) {
   function render() {
     const patsHtml = (data.items || []).map((it) => {
       const isCol = collapsed.has(it.id);
+      const cl = CLUSTERS.find((c) => c.patIds.includes(it.id));
       const exsHtml = (it.examples || []).map((ex, eIdx) => `
         <div class="gr-ex">
           <div class="gr-ex-row">
@@ -79,6 +81,13 @@ export function mount(container, { level, meta, data, backHash }) {
           </div>
           <div class="gr-ex-vi is-hidden" data-reveal="1">${escapeHtml(ex.vi)}</div>
         </div>`).join('');
+
+      const drillLink = cl
+        ? `<a href="${backHash}?cluster=${encodeURIComponent(cl.id)}&from=${encodeURIComponent(meta.id)}" class="btn btn-teal gr-drill-btn">
+            <span>⚡ Luyện trộn cụm: ${escapeHtml(cl.title)}</span>
+            <span>→</span>
+          </a>`
+        : '';
 
       return `<article class="card gr-pat ${isCol ? 'is-collapsed' : ''}" data-pat="${escapeHtml(it.id)}">
         <div class="gr-pat-head" data-toggle-pat="${escapeHtml(it.id)}">
@@ -92,6 +101,7 @@ export function mount(container, { level, meta, data, backHash }) {
         <div class="gr-pat-body">
           ${it.note ? `<div class="gr-note mb-8">⚠️ ${escapeHtml(it.note)}</div>` : ''}
           <div class="gr-ex-list">${exsHtml}</div>
+          ${drillLink}
         </div>
       </article>`;
     }).join('');
@@ -174,7 +184,9 @@ export function mount(container, { level, meta, data, backHash }) {
     });
 
     const baseBox = container.querySelector('#gr-base-box');
-    bindExerciseEvents(baseBox, baseList, baseStates, () => {
+    bindExerciseEvents(baseBox, baseList, baseStates, (idx) => {
+      const st = baseStates[idx];
+      if (st?.done) recordGrammarResult(baseList[idx].id, st.correct);
       persist();
       if (baseStates.every((s) => s.done)) {
         const right = baseStates.filter((s) => s.correct).length;
@@ -187,7 +199,12 @@ export function mount(container, { level, meta, data, backHash }) {
     if (moreBtn) moreBtn.onclick = () => { showExtra = true; persist(); render(); };
     if (showExtra) {
       const extraBox = container.querySelector('#gr-extra-box');
-      bindExerciseEvents(extraBox, extraList, extraStates, () => { persist(); render(); });
+      bindExerciseEvents(extraBox, extraList, extraStates, (idx) => {
+        const st = extraStates[idx];
+        if (st?.done) recordGrammarResult(extraList[idx].id, st.correct);
+        persist();
+        render();
+      });
     }
   }
 

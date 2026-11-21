@@ -1,0 +1,846 @@
+{
+  "level": "N4",
+  "source": "Minna no Nihongo II (Hyoujun Mondaishuu & Kaite Oboeru) + Riki",
+  "exercises": [
+    {
+      "id": "hj-11-1",
+      "patternId": "g1-1",
+      "source": "Hyoujun • Bài 37",
+      "type": "choice",
+      "q": "昔[むかし]、日本[にほん]では建物[たてもの]や橋[はし]を木[き]（ ）造[つく]っていました。",
+      "choices": ["から", "で", "に", "を"],
+      "answer": 1,
+      "explain": "Vật liệu nhìn thấy rõ chất liệu ban đầu (xây nhà, cầu bằng gỗ) dùng trợ từ で."
+    },
+    {
+      "id": "hj-11-2",
+      "patternId": "g1-1",
+      "source": "Hyoujun • Bài 37",
+      "type": "choice",
+      "q": "ワインは何[なに]（ ）造[つく]られるんですか。― ぶどうですね。",
+      "choices": ["で", "に", "から", "へ"],
+      "answer": 2,
+      "explain": "Nguyên liệu biến đổi trạng thái (nho lên men thành rượu vang) dùng trợ từ から."
+    },
+    {
+      "id": "ko-11-3",
+      "patternId": "g1-1",
+      "source": "Kaite Oboeru • Bài 37",
+      "type": "choice",
+      "q": "あの家[いえ]は木[き]（ ）作[つく]られています。",
+      "choices": ["から", "で", "に", "と"],
+      "answer": 1,
+      "explain": "Ngôi nhà làm bằng gỗ (giữ nguyên chất liệu) nên dùng で."
+    },
+    {
+      "id": "hj-11-4",
+      "patternId": "g1-1",
+      "source": "Hyoujun • Bài 50",
+      "type": "choice",
+      "q": "私[わたし]は貿易会社[ぼうえきがいしゃ]（ ）勤[つと]めております。",
+      "choices": ["で", "を", "に", "から"],
+      "answer": 2,
+      "explain": "Động từ 勤める (trực thuộc/làm việc cho công ty nào) đi với trợ từ に."
+    },
+    {
+      "id": "mn-12-1",
+      "patternId": "g1-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "健康[けんこう]のために、1週間[しゅうかん]（ ）2回[かい]ぐらいプールで泳[およ]いでいます。",
+      "choices": ["で", "に", "も", "から"],
+      "answer": 1,
+      "explain": "Khoảng thời gian + に + số lần: diễn tả tần suất 2 lần mỗi tuần."
+    },
+    {
+      "id": "mn-12-2",
+      "patternId": "g1-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "この薬[くすり]は1日[にち]（ ）3回[かい]、食後[しょくご]に飲[の]んでください。",
+      "choices": ["に", "で", "を", "ずつ"],
+      "answer": 0,
+      "explain": "1日に3回: uống thuốc 3 lần một ngày."
+    },
+    {
+      "id": "hj-13-1",
+      "patternId": "g1-3",
+      "source": "Hyoujun • Bài 26",
+      "type": "choice",
+      "q": "けさは忙[いそが]しくて、何[なに]（ ）食[た]べませんでした。",
+      "choices": ["か", "でも", "も", "ずつ"],
+      "answer": 2,
+      "explain": "Từ để hỏi + も + phủ định: không ăn bất cứ thứ gì."
+    },
+    {
+      "id": "hj-13-2",
+      "patternId": "g1-3",
+      "source": "Hyoujun • Bài 47",
+      "type": "choice",
+      "q": "電気[でんき]が消[き]えていますから、だれ（ ）いないようですね。",
+      "choices": ["か", "も", "でも", "しか"],
+      "answer": 1,
+      "explain": "だれもいない: ngay cả một người cũng không có."
+    },
+    {
+      "id": "hj-13-3",
+      "patternId": "g1-3",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "きのうは疲[つか]れていたので、どこ（ ）行[い]かないでうちにいました。",
+      "choices": ["か", "でも", "も", "へ"],
+      "answer": 2,
+      "explain": "どこも行かないで: ngay cả một nơi cũng không đi."
+    },
+    {
+      "id": "hj-14-1",
+      "patternId": "g1-4",
+      "source": "Hyoujun • Bài 48",
+      "type": "choice",
+      "q": "先生[せんせい]は生徒[せいと]に毎日[まいにち]10個[こ]（ ）漢字[かんじ]を覚[おぼ]えさせます。",
+      "choices": ["ずつ", "ほど", "しか", "でも"],
+      "answer": 0,
+      "explain": "10個ずつ: học từng 10 chữ Hán mỗi ngày."
+    },
+    {
+      "id": "ko-14-2",
+      "patternId": "g1-4",
+      "source": "Kaite Oboeru • Bài 36",
+      "type": "choice",
+      "q": "そこにある資料[しりょう]を1枚[まい]（ ）取[と]ってください。",
+      "choices": ["ぐらい", "ずつ", "ほど", "でも"],
+      "answer": 1,
+      "explain": "1枚ずつ: mỗi người lấy từng tờ tài liệu một."
+    },
+    {
+      "id": "mn-15-1",
+      "patternId": "g1-5",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "今年の冬[ふゆ]は去年[きょねん]（ ）寒[さむ]くありません。",
+      "choices": ["より", "ほど", "ずつ", "くらい"],
+      "answer": 1,
+      "explain": "N₁は N₂ほど～ない: mùa đông năm nay không lạnh bằng năm ngoái."
+    },
+    {
+      "id": "mn-15-2",
+      "patternId": "g1-5",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "テストは思[おも]っていた（ ）難[むずか]しくなかったです。",
+      "choices": ["ほど", "より", "しか", "ばかり"],
+      "answer": 0,
+      "explain": "～ほど～なかった: bài kiểm tra không khó như tôi đã nghĩ."
+    },
+    {
+      "id": "ko-16-1",
+      "patternId": "g1-6",
+      "source": "Kaite Oboeru • Bài 38",
+      "type": "choice",
+      "q": "あそこに（ ）ホテルができましたね。",
+      "choices": ["大きい", "大きな", "大きくて", "大きいの"],
+      "answer": 1,
+      "explain": "Tính từ đặc biệt 大きい đứng trước danh từ thường dùng dạng 大きな (大きなホテル)."
+    },
+    {
+      "id": "ko-16-2",
+      "patternId": "g1-6",
+      "source": "Kaite Oboeru • Bài 38",
+      "type": "choice",
+      "q": "わたしが（ ）のは名古屋[なごや]です。",
+      "choices": ["生まれる", "生まれた", "生まれて", "生まれます"],
+      "answer": 1,
+      "explain": "Sự việc đã xảy ra trong quá khứ bổ nghĩa cho の: 生まれたのは名古屋です."
+    },
+    {
+      "id": "hj-16-3",
+      "patternId": "g1-6",
+      "source": "Hyoujun • Bài 38",
+      "type": "choice",
+      "q": "今[いま]ミラーさんが「20分[ぷん]でできるおいしい料理[りょうり]」という本[ほん]を（ ）のを知[し]っていますか。",
+      "choices": ["書きます", "書いている", "書いて", "書いたの"],
+      "answer": 1,
+      "explain": "Động từ chia thể thông thường (書いている) đứng trực tiếp trước danh từ hình thức の."
+    },
+    {
+      "id": "hj-21-1",
+      "patternId": "g2-1",
+      "source": "Hyoujun • Bài 26",
+      "type": "choice",
+      "q": "今度[こんど]の運動会[うんどうかい]は（ ）参加[さんか]することができますから、ぜひ申し込んでください。",
+      "choices": ["だれか", "だれも", "だれでも", "だれが"],
+      "answer": 2,
+      "explain": "だれでも: bất kỳ ai cũng có thể tham gia."
+    },
+    {
+      "id": "hj-21-2",
+      "patternId": "g2-1",
+      "source": "Hyoujun • Bài 29",
+      "type": "choice",
+      "q": "ちょっとお茶[ちゃ]（ ）飲[の]みませんか。",
+      "choices": ["しか", "でも", "ずつ", "ほど"],
+      "answer": 1,
+      "explain": "お茶でも飲みませんか: đưa ra lời mời nhẹ nhàng (uống trà hay gì đó không?)."
+    },
+    {
+      "id": "hj-21-3",
+      "patternId": "g2-1",
+      "source": "Hyoujun • Bài 38",
+      "type": "choice",
+      "q": "ええ、甘[あま]い物[もの]なら、何[なに]（ ）好[す]きです。",
+      "choices": ["も", "しか", "でも", "か"],
+      "answer": 2,
+      "explain": "何でも好きです: bất cứ món gì (miễn là đồ ngọt) tôi cũng thích."
+    },
+    {
+      "id": "hj-22-1",
+      "patternId": "g2-2",
+      "source": "Hyoujun • Bài 27",
+      "type": "choice",
+      "q": "冷蔵庫[れいぞうこ]に卵[たまご]が2つ（ ）。",
+      "choices": ["しかあります", "しかありません", "だけありません", "でもありません"],
+      "answer": 1,
+      "explain": "2つしかありません: chỉ còn mỗi 2 quả trứng (đi với thể phủ định)."
+    },
+    {
+      "id": "hj-22-2",
+      "patternId": "g2-2",
+      "source": "Hyoujun • Bài 27",
+      "type": "choice",
+      "q": "きのうの晩[ばん]は忙[いそが]しくて、2時間[じかん]ぐらい（ ）。",
+      "choices": ["しか寝られました", "しか寝られませんでした", "も寝られませんでした", "だけ寝られませんでした"],
+      "answer": 1,
+      "explain": "2時間ぐらいしか寝られませんでした: chỉ ngủ được khoảng 2 tiếng thôi."
+    },
+    {
+      "id": "hj-22-3",
+      "patternId": "g2-2",
+      "source": "Hyoujun • Bài 36",
+      "type": "choice",
+      "q": "料理[りょうり]を習[なら]い始[はじ]めたばかりなので、まだ簡単[かんたん]な料理[りょうり]（ ）。",
+      "choices": ["しか作れません", "しか作れます", "でも作れません", "も作れません"],
+      "answer": 0,
+      "explain": "簡単な料理しか作れません: mới chỉ nấu được các món đơn giản."
+    },
+    {
+      "id": "hj-22-4",
+      "patternId": "g2-2",
+      "source": "Hyoujun • Bài 46",
+      "type": "choice",
+      "q": "この赤ちゃんは先月[せんげつ]生[う]まれたばかりですから、まだミルク（ ）飲[の]めません。",
+      "choices": ["だけ", "しか", "でも", "ばかり"],
+      "answer": 1,
+      "explain": "ミルクしか飲めません: mới chỉ uống được mỗi sữa."
+    },
+    {
+      "id": "rk-22-1",
+      "patternId": "g2-2",
+      "source": "Riki • Buổi 27",
+      "type": "choice",
+      "q": "月曜日[げつようび]から土曜日[どようび]まで働[はたら]きます。休[やす]みは日曜日[にちようび]（ ）ありません。",
+      "choices": ["だけ", "しか", "でも", "も"],
+      "answer": 1,
+      "explain": "Nしか＋phủ định: chỉ có duy nhất ngày Chủ nhật được nghỉ."
+    },
+    {
+      "id": "hj-23-1",
+      "patternId": "g2-3",
+      "source": "Hyoujun • 復習26-33",
+      "type": "choice",
+      "q": "この料理[りょうり]は簡単[かんたん]ですから、10分[ぷん]（ ）できます。",
+      "choices": ["に", "で", "から", "まで"],
+      "answer": 1,
+      "explain": "Thời gian/tiền bạc + で: chỉ giới hạn hoàn thành trong 10 phút."
+    },
+    {
+      "id": "ko-23-2",
+      "patternId": "g2-3",
+      "source": "Kaite Oboeru • Bài 32",
+      "type": "choice",
+      "q": "ここから駅[えき]まで自転車[じてんしゃ]なら10分[ぷん]（ ）行[い]けます。",
+      "choices": ["に", "で", "を", "から"],
+      "answer": 1,
+      "explain": "10分で行けます: chỉ mất trong vòng 10 phút là tới ga."
+    },
+    {
+      "id": "hj-23-3",
+      "patternId": "g2-3",
+      "source": "Hyoujun • Bài 27",
+      "type": "choice",
+      "q": "すみませんが、もう少[すこ]し大[おお]きい声[こえ]（ ）話[はな]していただけませんか。",
+      "choices": ["に", "を", "で", "と"],
+      "answer": 2,
+      "explain": "Trợ từ で chỉ phương thức, cách thức (nói bằng giọng to hơn một chút)."
+    },
+    {
+      "id": "ko-23-4",
+      "patternId": "g2-3",
+      "source": "Kaite Oboeru • Tổng hợp",
+      "type": "choice",
+      "q": "現金[げんきん]がなくても、カード（ ）払[はら]えますよ。",
+      "choices": ["に", "を", "で", "から"],
+      "answer": 2,
+      "explain": "カードで払う: thanh toán bằng thẻ (phương tiện)."
+    },
+    {
+      "id": "rk-24-1",
+      "patternId": "g2-4",
+      "source": "Riki • Buổi 42",
+      "type": "choice",
+      "q": "A「私[わたし]は子どもが10人[にん]ほしいです。」\nB「へえ、10人[にん]（ ）ほしいんですか。」",
+      "choices": ["しか", "も", "ずつ", "でも"],
+      "answer": 1,
+      "explain": "10人も: nhấn mạnh sự ngạc nhiên trước con số nhiều (những 10 người con)."
+    },
+    {
+      "id": "rk-24-2",
+      "patternId": "g2-4",
+      "source": "Riki • Buổi 42",
+      "type": "choice",
+      "q": "A「この宿題[しゅくだい]をするのに3時間[じかん]かかりました。」\nB「へえ、3時間[じかん]（ ）かかったんですか。」",
+      "choices": ["しか", "ずつ", "も", "まで"],
+      "answer": 2,
+      "explain": "3時間も: mất tận 3 tiếng đồng hồ."
+    },
+    {
+      "id": "rk-25-1",
+      "patternId": "g2-5",
+      "source": "Riki • Buổi 30",
+      "type": "choice",
+      "q": "壁[かべ]に絵[え]（ ）時計[とけい]（ ）がかけてあります。",
+      "choices": ["と／と", "とか／とか", "や／や", "も／も"],
+      "answer": 1,
+      "explain": "N₁とかN₂とか: trên tường có treo những thứ như tranh, đồng hồ."
+    },
+    {
+      "id": "rk-25-2",
+      "patternId": "g2-5",
+      "source": "Riki • Buổi 30",
+      "type": "choice",
+      "q": "パーティーのために、スーパーでおかし（ ）ビール（ ）を買[か]っておきます。",
+      "choices": ["や／や", "も／も", "とか／とか", "から／から"],
+      "answer": 2,
+      "explain": "N₁とかN₂とか: liệt kê ví dụ tiêu biểu trong văn nói."
+    },
+    {
+      "id": "hj-31-1",
+      "patternId": "g3-1",
+      "source": "Hyoujun • Bài 29",
+      "type": "choice",
+      "q": "このスーパーは夜[よる]9時[じ]（ ）開[あ]いています。",
+      "choices": ["までに", "まで", "から", "に"],
+      "answer": 1,
+      "explain": "Trạng thái mở cửa kéo dài liên tục tới 9 giờ tối nên dùng まで."
+    },
+    {
+      "id": "hj-31-2",
+      "patternId": "g3-1",
+      "source": "Hyoujun • Bài 27",
+      "type": "choice",
+      "q": "10時[じ]（ ）帰[かえ]れたら、電話[でんわ]をください。",
+      "choices": ["まで", "までに", "ばかり", "しか"],
+      "answer": 1,
+      "explain": "Về tới nhà trước mốc 10 giờ → dùng までに."
+    },
+    {
+      "id": "hj-31-3",
+      "patternId": "g3-1",
+      "source": "Hyoujun • Bài 45",
+      "type": "choice",
+      "q": "30日[にち]（ ）お金[かね]が払[はら]えない場合[ばあい]は、わたしに相談[そうだん]してください。",
+      "choices": ["まで", "までに", "から", "ずつ"],
+      "answer": 1,
+      "explain": "Hạn chót thanh toán trước ngày 30 → dùng までに."
+    },
+    {
+      "id": "hj-31-4",
+      "patternId": "g3-1",
+      "source": "Hyoujun • Bài 30",
+      "type": "choice",
+      "q": "試験[しけん]（ ）この本[ほん]を読[よ]んでおかなければなりません。",
+      "choices": ["まで", "までに", "ながら", "あとで"],
+      "answer": 1,
+      "explain": "Hoàn thành việc đọc sách trước kỳ thi → dùng までに."
+    },
+    {
+      "id": "hj-32-1",
+      "patternId": "g3-2",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "休[やす]みの日はたいていプールで泳[およ]いだり、テニスを（ ）しています。",
+      "choices": ["して", "したり", "し", "する"],
+      "answer": 1,
+      "explain": "Cặp ～たり～たりしています để liệt kê các hoạt động ngày nghỉ."
+    },
+    {
+      "id": "hj-32-2",
+      "patternId": "g3-2",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "公園[こうえん]でみんな花[はな]を見[み]ながら、食[た]べ（ ）、飲[の]んだりしていました。",
+      "choices": ["たり", "て", "し", "ながら"],
+      "answer": 0,
+      "explain": "食べた + り、飲んだ + りしていました."
+    },
+    {
+      "id": "ko-33-1",
+      "patternId": "g3-3",
+      "source": "Kaite Oboeru • Bài 28",
+      "type": "choice",
+      "q": "ワット先生[せんせい]は、（ ）熱心[ねっしん]な先生です。",
+      "choices": ["まじめし、", "まじめだし、", "まじめくて、", "まじめたり、"],
+      "answer": 1,
+      "explain": "Tính từ đuôi な (まじめだ) + し → まじめだし."
+    },
+    {
+      "id": "ko-33-2",
+      "patternId": "g3-3",
+      "source": "Kaite Oboeru • Bài 28",
+      "type": "choice",
+      "q": "このカメラは小[ちい]さいし、軽[かる]いし、（ ）使[つか]い方[かた]も簡単[かんたん]です。",
+      "choices": ["それで", "それに", "しかし", "それでは"],
+      "answer": 1,
+      "explain": "それに dùng để bổ sung thêm ưu điểm cùng chiều."
+    },
+    {
+      "id": "ko-33-3",
+      "patternId": "g3-3",
+      "source": "Kaite Oboeru • Bài 28",
+      "type": "choice",
+      "q": "この店[みせ]はサービスもいいし、家[いえ]から近[ちか]いし、（ ）よく来[く]るんです。",
+      "choices": ["それに", "それで", "でも", "ところが"],
+      "answer": 1,
+      "explain": "それで dùng để nối các lý do phía trước với kết quả ở vế sau."
+    },
+    {
+      "id": "hj-33-4",
+      "patternId": "g3-3",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "A「どうしてこのマンションを選[えら]んだんですか。」\nB「広[ひろ]いし、車[くるま]（ ）置[お]けるし、ペットも飼[か]えるんです。」",
+      "choices": ["が", "を", "も", "は"],
+      "answer": 2,
+      "explain": "Trợ từ を/が thường đổi thành も trong cấu trúc ～し、～し để nhấn mạnh."
+    },
+    {
+      "id": "hj-34-1",
+      "patternId": "g3-4",
+      "source": "Hyoujun • Bài 38",
+      "type": "choice",
+      "q": "A「旅行中[りょこうちゅう]にパスポートとカメラをとられました。」\nB「パスポートとカメラ（ ）ですか。」",
+      "choices": ["だけ", "ばかり", "しか", "ずつ"],
+      "answer": 0,
+      "explain": "Nだけ: chỉ giới hạn đúng 2 thứ đó thôi (không đi với phủ định)."
+    },
+    {
+      "id": "mn-34-2",
+      "patternId": "g3-4",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "弟[おとうと]は毎日[まいにち]まんが（ ）読[よ]んでいて、ぜんぜん勉強[べんきょう]しません。",
+      "choices": ["だけ", "ばかり", "しか", "でも"],
+      "answer": 1,
+      "explain": "Nばかり: suốt ngày chỉ toàn đọc truyện tranh (hàm ý phàn nàn/chê trách)."
+    },
+    {
+      "id": "hj-41-1",
+      "patternId": "g4-1",
+      "source": "Hyoujun • Bài 46",
+      "type": "choice",
+      "q": "A「ニュースはもう始[はじ]まっていますか。」\nB「いいえ、ちょうど今[いま]から（ ）ところです。」",
+      "choices": ["始まる", "始まっている", "始まった", "始めて"],
+      "answer": 0,
+      "explain": "ちょうど今から + Vるところ: bản tin ngay lúc này sắp sửa bắt đầu."
+    },
+    {
+      "id": "hj-41-2",
+      "patternId": "g4-1",
+      "source": "Hyoujun • Bài 46",
+      "type": "choice",
+      "q": "A「ちょっとテープレコーダーを貸[か]していただけませんか。」\nB「すみません。今[いま]（ ）ところなんです。ちょっと待[ま]ってください。」",
+      "choices": ["使う", "使っている", "使った", "使って"],
+      "answer": 1,
+      "explain": "今 Vているところ: hiện tại đang đúng lúc sử dụng."
+    },
+    {
+      "id": "hj-41-3",
+      "patternId": "g4-1",
+      "source": "Hyoujun • Bài 46",
+      "type": "choice",
+      "q": "A「もしもし、今[いま]どこにいるんですか。」\nB「空港[くうこう]です。たった今[いま]日本[にほん]に（ ）ところです。」",
+      "choices": ["着く", "着いている", "着いた", "着いて"],
+      "answer": 2,
+      "explain": "たった今 Vたところ: vừa mới hạ cánh xuống Nhật tức thì."
+    },
+    {
+      "id": "hj-41-4",
+      "patternId": "g4-1",
+      "source": "Hyoujun • 復習43-50",
+      "type": "choice",
+      "q": "今[いま]ケーキを焼[や]いた（ ）です。いっしょに食[た]べませんか。",
+      "choices": ["ばかり", "ところ", "はず", "よう"],
+      "answer": 1,
+      "explain": "今 Vたところです: bánh vừa mới nướng xong ngay bây giờ."
+    },
+    {
+      "id": "mn-42-1",
+      "patternId": "g4-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "赤ちゃんが寝[ね]ている（ ）、晩[ばん]ごはんの支度[したく]をしてしまいます。",
+      "choices": ["ところ", "間に", "とき", "ながら"],
+      "answer": 1,
+      "explain": "Vている間に: tranh thủ lúc em bé đang ngủ thì chuẩn bị xong bữa tối."
+    },
+    {
+      "id": "mn-42-2",
+      "patternId": "g4-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "留守[るす]の（ ）、友[とも]だちが訪[たず]ねて来[き]たそうです。",
+      "choices": ["間に", "ところに", "ときに", "ままに"],
+      "answer": 0,
+      "explain": "Danh từ + の間に: trong lúc vắng nhà thì bạn đã ghé tới."
+    },
+    {
+      "id": "ko-43-1",
+      "patternId": "g4-3",
+      "source": "Kaite Oboeru • Bài 32",
+      "type": "choice",
+      "q": "やけどをした（ ）、すぐ冷[ひ]やしたほうがいいですよ。",
+      "choices": ["とき", "ところ", "あいだ", "ばかり"],
+      "answer": 0,
+      "explain": "Vたとき: khi bị bỏng thì nên chườm lạnh ngay."
+    },
+    {
+      "id": "ko-43-2",
+      "patternId": "g4-3",
+      "source": "Kaite Oboeru • Bài 35",
+      "type": "choice",
+      "q": "電話[でんわ]をかける（ ）、初[はじ]めにゼロを押[お]してください。",
+      "choices": ["とき", "ところ", "あいだ", "まま"],
+      "answer": 0,
+      "explain": "Vるとき: trước khi gọi điện thoại thì hãy bấm số 0 trước."
+    },
+    {
+      "id": "hj-43-3",
+      "patternId": "g4-3",
+      "source": "Hyoujun • 復習26-50",
+      "type": "choice",
+      "q": "けさ学校[がっこう]へ（ ）、駅[えき]で先生[せんせい]に会[あ]いました。",
+      "choices": ["来たとき", "来るとき", "来る場合", "来たところ"],
+      "answer": 1,
+      "explain": "来るとき: trên đường tới trường (chưa đến trường) thì gặp thầy ở nhà ga."
+    },
+    {
+      "id": "ko-44-1",
+      "patternId": "g4-4",
+      "source": "Kaite Oboeru • Bài 33",
+      "type": "choice",
+      "q": "「使用中[しようちゅう]」は今[いま]（ ）という意味[いみ]です。",
+      "choices": ["使っている", "使った", "使うな", "使えない"],
+      "answer": 0,
+      "explain": "N中 (ちゅう) chỉ hành động đang diễn ra: 使用中 = đang sử dụng."
+    },
+    {
+      "id": "hj-44-2",
+      "patternId": "g4-4",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "授業中[じゅぎょうちゅう]ですから、廊下[ろうか]は（ ）歩[ある]いてください。",
+      "choices": ["静かな", "静かに", "静かで", "静かだ"],
+      "answer": 1,
+      "explain": "授業中 (trong giờ học): tính từ な + に bổ nghĩa cho động từ 歩く."
+    },
+    {
+      "id": "ko-51-1",
+      "patternId": "g5-1",
+      "source": "Kaite Oboeru • Bài 28",
+      "type": "choice",
+      "q": "コーヒーを（ ）ながら、テレビを見[み]ます。",
+      "choices": ["飲む", "飲み", "飲んで", "飲んだ"],
+      "answer": 1,
+      "explain": "Vます (bỏ ます) + ながら → 飲みながら."
+    },
+    {
+      "id": "hj-51-2",
+      "patternId": "g5-1",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "ガムを（ ）運転[うんてん]すると、あまり眠[ねむ]くなりません。",
+      "choices": ["かみながら", "かむながら", "かんでながら", "かんだまま"],
+      "answer": 0,
+      "explain": "かみます → かみながら: vừa nhai kẹo cao su vừa lái xe."
+    },
+    {
+      "id": "hj-51-3",
+      "patternId": "g5-1",
+      "source": "Hyoujun • Bài 28",
+      "type": "choice",
+      "q": "彼女[かのじょ]は銀行[ぎんこう]で（ ）小説[しょうせつ]を書[か]きました。",
+      "choices": ["働くながら", "働きながら", "働いてながら", "働いたまま"],
+      "answer": 1,
+      "explain": "働きます → 働きながら: vừa làm việc ở ngân hàng vừa viết tiểu thuyết."
+    },
+    {
+      "id": "hj-51-4",
+      "patternId": "g5-1",
+      "source": "Hyoujun • 復習26-50",
+      "type": "choice",
+      "q": "お茶[ちゃ]でも（ ）相談[そうだん]しませんか。",
+      "choices": ["飲むながら", "飲みながら", "飲んでながら", "飲んだながら"],
+      "answer": 1,
+      "explain": "飲みながら相談しませんか: vừa uống trà vừa bàn bạc nhé?"
+    },
+    {
+      "id": "ko-52-1",
+      "patternId": "g5-2",
+      "source": "Kaite Oboeru • Bài 39",
+      "type": "choice",
+      "q": "お金[かね]が（ ）、困[こま]っています。",
+      "choices": ["ないで", "なくて", "なくで", "ないから"],
+      "answer": 1,
+      "explain": "Vなくて chỉ nguyên nhân: vì không có tiền nên đang gặp khó khăn."
+    },
+    {
+      "id": "ko-52-2",
+      "patternId": "g5-2",
+      "source": "Kaite Oboeru • Bài 39",
+      "type": "choice",
+      "q": "手紙[てがみ]が（ ）、寂[さび]しいです。",
+      "choices": ["来ないで", "来なくて", "来なくで", "来ないから"],
+      "answer": 1,
+      "explain": "Vなくて chỉ nguyên nhân dẫn đến cảm xúc buồn/cô đơn (寂しい)."
+    },
+    {
+      "id": "ko-52-3",
+      "patternId": "g5-2",
+      "source": "Kaite Oboeru • Bài 39",
+      "type": "choice",
+      "q": "（ ）で、うちが壊[こわ]れました。",
+      "choices": ["地震", "地震だ", "地震な", "地震の"],
+      "answer": 0,
+      "explain": "Danh từ trực tiếp + で chỉ nguyên nhân thiên tai: 地震で."
+    },
+    {
+      "id": "ko-52-4",
+      "patternId": "g5-2",
+      "source": "Kaite Oboeru • Tổng hợp",
+      "type": "choice",
+      "q": "この牛乳[ぎゅうにゅう]は（ ）飲[の]まないでください。",
+      "choices": ["古くて、", "古いですから、", "古いながら、", "古いし、"],
+      "answer": 1,
+      "explain": "Vế sau là câu yêu cầu/cấm đoán (飲まないでください) nên không dùng 古くて mà dùng から."
+    },
+    {
+      "id": "hj-52-5",
+      "patternId": "g5-2",
+      "source": "Hyoujun • 復習26-50",
+      "type": "choice",
+      "q": "足[あし]が痛[いた]くて、（ ）なりました。",
+      "choices": ["歩ける", "歩けなく", "歩かない", "歩かなく"],
+      "answer": 1,
+      "explain": "いたくて chỉ nguyên nhân khiến trở nên không đi bộ được (歩けなくなりました)."
+    },
+    {
+      "id": "ko-53-1",
+      "patternId": "g5-3",
+      "source": "Kaite Oboeru • Bài 34",
+      "type": "choice",
+      "q": "どこも（ ）うちにいます。",
+      "choices": ["行って", "行かないで", "行かなくて", "行くで"],
+      "answer": 1,
+      "explain": "Vないで: ở nhà mà không đi đâu cả."
+    },
+    {
+      "id": "ko-53-2",
+      "patternId": "g5-3",
+      "source": "Kaite Oboeru • Bài 34",
+      "type": "choice",
+      "q": "きょうはネクタイを（ ）出[で]かけます。",
+      "choices": ["して", "しないで", "しなくて", "するで"],
+      "answer": 1,
+      "explain": "ネクタイをしないで: đi ra ngoài mà không thắt cà vạt."
+    },
+    {
+      "id": "ko-53-3",
+      "patternId": "g5-3",
+      "source": "Kaite Oboeru • Bài 34",
+      "type": "choice",
+      "q": "彼[かれ]はいつも（ ）遊[あそ]んでいます。",
+      "choices": ["勉強しないで、", "勉強しなくて、", "勉強して、", "勉強しながら、"],
+      "answer": 0,
+      "explain": "Vないで chỉ trạng thái làm việc B mà không làm việc A (chơi mà không học)."
+    },
+    {
+      "id": "hj-53-4",
+      "patternId": "g5-3",
+      "source": "Hyoujun • 復習26-50",
+      "type": "choice",
+      "q": "タクシーに（ ）ないで、駅[えき]まで歩[ある]きました。",
+      "choices": ["乗る", "乗り", "乗ら", "乗って"],
+      "answer": 2,
+      "explain": "Thể ない của 乗ります là 乗らない → 乗らないで."
+    },
+    {
+      "id": "hj-54-1",
+      "patternId": "g5-4",
+      "source": "Hyoujun • Bài 30",
+      "type": "choice",
+      "q": "部屋[へや]はあとでわたしが片[かた]づけますから、その（ ）にしておいてください。",
+      "choices": ["まま", "とおり", "あいだ", "ところ"],
+      "answer": 0,
+      "explain": "そのままにしておく: cứ để nguyên trạng thái như vậy."
+    },
+    {
+      "id": "ko-54-2",
+      "patternId": "g5-4",
+      "source": "Kaite Oboeru • Bài 30",
+      "type": "choice",
+      "q": "A「テレビを消[け]してもいいですか。」\nB「いいえ。まだ見[み]ていますから、その（ ）にしておいてください。」",
+      "choices": ["ところ", "まま", "ほう", "こと"],
+      "answer": 1,
+      "explain": "そのままにしておく: giữ nguyên trạng thái tivi đang bật."
+    },
+    {
+      "id": "hj-61-1",
+      "patternId": "g6-1",
+      "source": "Hyoujun • Bài 26",
+      "type": "choice",
+      "q": "学校[がっこう]に（ ）ことがありますか。",
+      "choices": ["遅れる", "遅れた", "遅れて", "遅れない"],
+      "answer": 1,
+      "explain": "Vたことがありますか: hỏi về kinh nghiệm đã từng đi học muộn bao giờ chưa."
+    },
+    {
+      "id": "ko-61-2",
+      "patternId": "g6-1",
+      "source": "Kaite Oboeru • Bài 38",
+      "type": "choice",
+      "q": "飛行機[ひこうき]に乗[の]るのが嫌[きら]いですから、外国[がいこく]へ（ ）ことがありません。",
+      "choices": ["行く", "行った", "行って", "行かない"],
+      "answer": 1,
+      "explain": "Vたことがありません: chưa từng đi nước ngoài lần nào."
+    },
+    {
+      "id": "mn-62-1",
+      "patternId": "g6-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "仕事[しごと]が忙[いそが]しいときは、昼[ひる]ごはんを食[た]べない（ ）があります。",
+      "choices": ["もの", "こと", "ところ", "とき"],
+      "answer": 1,
+      "explain": "Vないことがあります: thỉnh thoảng có hôm không ăn trưa."
+    },
+    {
+      "id": "mn-62-2",
+      "patternId": "g6-2",
+      "source": "Minna N4 • Mở rộng",
+      "type": "choice",
+      "q": "朝[あさ]は道[みち]が込[こ]んで、バスが遅[おく]れる（ ）があります。",
+      "choices": ["こと", "ところ", "はず", "まま"],
+      "answer": 0,
+      "explain": "Vることがあります: đôi khi có lúc xe buýt bị trễ."
+    },
+    {
+      "id": "hj-63-1",
+      "patternId": "g6-3",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "土曜日[どようび]は都合[つごう]が悪[わる]いので、（ ）いただけませんか。",
+      "choices": ["日曜日にして", "日曜日になって", "日曜日にあって", "日曜日にいて"],
+      "answer": 0,
+      "explain": "Nにする: đổi lựa chọn/lịch hẹn sang ngày Chủ nhật."
+    },
+    {
+      "id": "hj-63-2",
+      "patternId": "g6-3",
+      "source": "Hyoujun • 復習43-50",
+      "type": "choice",
+      "q": "食事[しょくじ]は和食[わしょく]と洋食[ようしょく]とどちら（ ）しますか。",
+      "choices": ["を", "に", "で", "が"],
+      "answer": 1,
+      "explain": "どちらにしますか: bạn chọn món Nhật hay món Âu?"
+    },
+    {
+      "id": "hj-63-3",
+      "patternId": "g6-3",
+      "source": "Hyoujun • 復習26-50",
+      "type": "choice",
+      "q": "忘年会[ぼうねんかい]はいつ（ ）しますか。",
+      "choices": ["を", "で", "に", "が"],
+      "answer": 2,
+      "explain": "いつにしますか: quyết định chọn tổ chức tiệc tất niên vào khi nào?"
+    },
+    {
+      "id": "ko-64-1",
+      "patternId": "g6-4",
+      "source": "Kaite Oboeru • Bài 33",
+      "type": "choice",
+      "q": "さっき山田[やまだ]さんから電話[でんわ]があって、出張[しゅっちょう]は来週[らいしゅう]（ ）と言[い]っていました。",
+      "choices": ["になった", "にした", "にあった", "にいた"],
+      "answer": 0,
+      "explain": "Nになる: lịch công tác được quyết định dời sang tuần sau."
+    },
+    {
+      "id": "hj-64-2",
+      "patternId": "g6-4",
+      "source": "Hyoujun • 復習26-33",
+      "type": "choice",
+      "q": "すみませんが、山田[やまだ]さんに会議[かいぎ]はあした（ ）と伝[つた]えていただけませんか。",
+      "choices": ["になった", "にした", "にやった", "にあげた"],
+      "answer": 0,
+      "explain": "Nhắn lại thông báo khách quan từ công ty: cuộc họp được dời sang ngày mai (あしたになった)."
+    },
+    {
+      "id": "hj-65-1",
+      "patternId": "g6-5",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "コピーの色[いろ]が濃[こ]すぎますから、もう少[すこ]し（ ）ください。",
+      "choices": ["薄くして", "薄くなって", "薄いにして", "薄くあって"],
+      "answer": 0,
+      "explain": "Tính từ い (濃い → 薄い → 薄く) + してください: chỉnh màu nhạt đi một chút."
+    },
+    {
+      "id": "hj-65-2",
+      "patternId": "g6-5",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "ズボンが長[なが]すぎますから、（ ）ほうがいいですよ。",
+      "choices": ["短くした", "短くなった", "短いした", "短くあった"],
+      "answer": 0,
+      "explain": "短くしたほうがいい: nên cắt ngắn quần lại."
+    },
+    {
+      "id": "hj-65-3",
+      "patternId": "g6-5",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "赤ちゃんが寝[ね]ていますから、テレビの音[おと]を（ ）ください。",
+      "choices": ["小さくして", "小さくなって", "小さいして", "小さくあって"],
+      "answer": 0,
+      "explain": "小さくしてください: vui lòng vặn nhỏ tiếng tivi lại."
+    },
+    {
+      "id": "hj-65-4",
+      "patternId": "g6-5",
+      "source": "Hyoujun • 復習43-50",
+      "type": "choice",
+      "q": "髪[かみ]をショート（ ）してください。",
+      "choices": ["を", "に", "で", "く"],
+      "answer": 1,
+      "explain": "Danh từ (ショート) + にする: cắt tóc thành kiểu ngắn."
+    },
+    {
+      "id": "hj-65-5",
+      "patternId": "g6-5",
+      "source": "Hyoujun • Bài 44",
+      "type": "choice",
+      "q": "わたしはこの仕事[しごと]を（ ）しています。",
+      "choices": ["大切な", "大切に", "大切だ", "大切で"],
+      "answer": 1,
+      "explain": "Tính từ đuôi な (大切だ) + にする: trân trọng công việc này."
+    }
+  ]
+}
