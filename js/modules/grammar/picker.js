@@ -1,5 +1,5 @@
 import { getSummary } from '../../core/progress.js';
-import { parseRuby } from '../../core/ruby.js';
+import { parseRuby, stripRuby } from '../../core/ruby.js';
 import { speakJP } from '../../core/tts.js';
 import { escapeHtml } from '../../core/util.js';
 import { CLUSTERS, loadPatternBank, normalizeQuery, mountDrill } from './drill.js';
@@ -34,10 +34,27 @@ export async function mount(container, { level, query }) {
 
   const mode = query?.get('mode');
   const clusterId = query?.get('cluster');
-  if (mode === 'mix' || mode === 'weak' || clusterId) {
+  const dayLessonId = query?.get('day');
+  if (mode === 'mix' || mode === 'weak' || clusterId || dayLessonId) {
     const bank = await loadPatternBank(level, lessons);
     const fromLesson = query?.get('from');
     const backHash = fromLesson ? `${baseHash}?lesson=${encodeURIComponent(fromLesson)}` : `${baseHash}?tab=practice`;
+
+    if (dayLessonId) {
+      const meta = lessons.find((l) => l.id === dayLessonId);
+      const dayPats = bank.patterns.filter((p) => p.lessonId === dayLessonId);
+      const dayPool = dayPats.flatMap((p) => bank.exByPat.get(p.id) || []);
+      const patNames = dayPats.map((p) => stripRuby(p.pattern || '')).join(' • ');
+      mountDrill(container, {
+        level: level.toUpperCase(),
+        title: `Ôn trộn ${meta?.name || 'theo ngày'}`,
+        subtitle: patNames,
+        pool: dayPool,
+        limit: 12,
+        backHash
+      });
+      return;
+    }
 
     if (mode === 'mix') {
       mountDrill(container, {
@@ -158,6 +175,7 @@ export async function mount(container, { level, query }) {
           <div class="gr-pat-name jp">${parseRuby(p.pattern)}</div>
           <div class="gr-pat-vi">${escapeHtml(p.vi || '')}</div>
           ${exHtml}
+          <a href="${baseHash}?day=${encodeURIComponent(p.lessonId)}" class="btn btn-yellow gr-drill-btn"><span>📅 Ôn trộn ${escapeHtml(p.lessonName)}</span><span>→</span></a>
           ${cl ? `<a href="${baseHash}?cluster=${encodeURIComponent(cl.id)}" class="btn btn-teal gr-drill-btn"><span>⚡ Luyện cụm: ${escapeHtml(cl.title)}</span><span>→</span></a>` : ''}
         </article>`;
       }).join('');
@@ -165,6 +183,17 @@ export async function mount(container, { level, query }) {
 
     const wrongCnt = getWrongGrammarIds().length;
     const totalCnt = bankData.allExercises.length;
+    const dayLessons = lessons.filter((l) => l.type !== 'weekly_test');
+    const dayBtnsHtml = dayLessons.map((d) => {
+      const cnt = bankData.patterns
+        .filter((p) => p.lessonId === d.id)
+        .reduce((sum, p) => sum + (bankData.exByPat.get(p.id)?.length || 0), 0);
+      return `<button type="button" class="btn gr-day-btn" data-day-open="${escapeHtml(d.id)}">
+        <span class="gr-day-num">Ngày ${d.day || ''}</span>
+        <span class="gr-day-cnt">${cnt} câu</span>
+      </button>`;
+    }).join('');
+
     const clustersHtml = CLUSTERS.map((cl) => {
       const cnt = cl.patIds.reduce((sum, pid) => sum + (bankData.exByPat.get(pid)?.length || 0), 0);
       return `<button type="button" class="card gr-pat-link" data-cluster-open="${escapeHtml(cl.id)}">
@@ -187,6 +216,8 @@ export async function mount(container, { level, query }) {
           <span class="gr-mode-sub">${wrongCnt ? 'Làm lại câu nhầm' : 'Chưa có câu sai'}</span>
         </button>
       </div>
+      <div class="gr-sec-head"><h2 class="gr-sec-title">Ôn trộn theo Ngày (Tuần 1)</h2></div>
+      <div class="gr-day-grid">${dayBtnsHtml}</div>
       <div class="gr-sec-head"><h2 class="gr-sec-title">Cụm ngữ pháp dễ nhầm</h2></div>
       <div class="gr-ex-list">${clustersHtml}</div>
     `;
@@ -258,6 +289,10 @@ export async function mount(container, { level, query }) {
 
     const weakBtn = container.querySelector('#gr-weak-btn');
     if (weakBtn) weakBtn.onclick = () => { window.location.hash = `${baseHash}?mode=weak`; };
+
+    container.querySelectorAll('[data-day-open]').forEach((btn) => {
+      btn.onclick = () => { window.location.hash = `${baseHash}?day=${encodeURIComponent(btn.dataset.dayOpen)}`; };
+    });
 
     container.querySelectorAll('[data-cluster-open]').forEach((btn) => {
       btn.onclick = () => { window.location.hash = `${baseHash}?cluster=${encodeURIComponent(btn.dataset.clusterOpen)}`; };

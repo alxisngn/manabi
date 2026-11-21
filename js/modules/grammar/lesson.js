@@ -112,6 +112,10 @@ export function mount(container, { level, meta, data, backHash }) {
     const extraExHtml = showExtra
       ? extraList.map((ex, i) => renderExerciseCard(ex, i, extraStates[i], { tag: 'Luyện thêm' })).join('')
       : (extraList.length ? `<button type="button" id="gr-more-btn" class="btn btn-yellow">+ Luyện thêm ${extraList.length} câu (phủ mẫu còn lại)</button>` : '');
+    const dayDrillBtn = `<a href="${backHash}?day=${encodeURIComponent(meta.id)}&from=${encodeURIComponent(meta.id)}" class="btn btn-teal gr-drill-btn">
+      <span>🎲 Ôn trộn mở rộng ${escapeHtml(data.lesson?.name || meta.name)}</span>
+      <span>→</span>
+    </a>`;
 
     container.innerHTML = `
       <div class="gr-wrap">
@@ -141,6 +145,7 @@ export function mount(container, { level, meta, data, backHash }) {
         </div>
         <div id="gr-base-box" class="gr-ex-list">${baseExHtml}</div>
         <div id="gr-extra-box" class="gr-ex-list">${extraExHtml}</div>
+        ${dayDrillBtn}
       </div>
 
       <div class="gr-jump">
